@@ -446,7 +446,15 @@ class ParallaxEffect {
 
 class LoadingAnimation {
     constructor() {
-        this.init();
+        // Only show loading animation on first visit or page refresh
+        // Not when navigating within the same page
+        const isPageRefresh = performance.navigation.type === 1; // Refresh
+        const isFirstLoad = !sessionStorage.getItem('siteLoaded');
+        
+        if (isFirstLoad || isPageRefresh) {
+            this.init();
+            sessionStorage.setItem('siteLoaded', 'true');
+        }
     }
     
     init() {
@@ -520,6 +528,98 @@ class LoadingAnimation {
 }
 
 // ===========================
+// MOBILE MENU
+// ===========================
+
+class MobileMenu {
+    constructor() {
+        this.hamburger = document.getElementById('hamburgerMenu');
+        this.navLinks = document.getElementById('navLinks');
+        
+        if (this.hamburger && this.navLinks) {
+            this.init();
+        }
+    }
+    
+    init() {
+        // Toggle menu on hamburger click
+        this.hamburger.addEventListener('click', () => {
+            this.toggleMenu();
+        });
+        
+        // Close menu when clicking on a link
+        this.navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                this.closeMenu();
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!this.hamburger.contains(e.target) && 
+                !this.navLinks.contains(e.target) && 
+                this.navLinks.classList.contains('active')) {
+                this.closeMenu();
+            }
+        });
+    }
+    
+    toggleMenu() {
+        this.hamburger.classList.toggle('active');
+        this.navLinks.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (this.navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+    
+    closeMenu() {
+        this.hamburger.classList.remove('active');
+        this.navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// ===========================
+// SMOOTH SCROLL FOR MENU LINKS
+// ===========================
+
+function initSmoothScrollMenu() {
+    const links = document.querySelectorAll('.nav-links a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Close mobile menu if open
+                const hamburger = document.getElementById('hamburgerMenu');
+                const navLinks = document.getElementById('navLinks');
+                if (hamburger && navLinks) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                // Smooth scroll to target
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// ===========================
 // INITIALIZE ALL SYSTEMS
 // ===========================
 
@@ -530,6 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
     particleSystem.animate();
     
     // Initialize all interactive features
+    new MobileMenu();
     new ScrollAnimations();
     new SmoothScroll();
     new NavbarEffects();
@@ -541,7 +642,10 @@ document.addEventListener('DOMContentLoaded', () => {
     new ParallaxEffect();
     new LoadingAnimation();
     
-    console.log('🎮🇧🇯 VBucks Benin - Site chargé avec succès!');
+    // Initialize smooth scroll for menu
+    initSmoothScrollMenu();
+    
+    console.log('🎮 FortniteItems - Site chargé avec succès!');
 });
 
 // ===========================
