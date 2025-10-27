@@ -1,4 +1,4 @@
-# 🎮 Fortnite Shop - E-Commerce Platform
+# 🎮 FortniteItems - E-Commerce Platform
 
 Plateforme e-commerce complète pour la vente de V-Bucks et Fortnite Crew. Site moderne avec panier d'achat, pages produits individuelles et système de paiement intégré.
 

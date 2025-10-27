@@ -639,6 +639,8 @@ body {
     justify-content: center;
     gap: 15px;
     margin-bottom: 30px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .price-amount {
@@ -646,12 +648,14 @@ body {
     font-weight: 900;
     color: var(--electric-blue);
     font-family: var(--font-display);
+    white-space: nowrap;
 }
 
 .price-original {
     font-size: 24px;
     color: rgba(255, 255, 255, 0.4);
     text-decoration: line-through;
+    white-space: nowrap;
 }
 
 .product-button {
@@ -1019,6 +1023,7 @@ body {
     font-weight: 700;
     color: var(--gold);
     font-size: 14px;
+    white-space: nowrap;
 }
 
 /* ===========================
@@ -1419,8 +1424,42 @@ body {
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        padding: 12px 15px;
+    }
+    
+    .navbar .container {
+        gap: 15px;
+    }
+    
+    .nav-brand a {
+        font-size: 16px;
+    }
+    
+    .logo-text {
+        font-size: 22px;
+    }
+    
+    .logo-subtext {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+    
     .nav-links {
         display: none;
+    }
+    
+    .cart-button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .cart-count {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+        top: -6px;
+        right: -6px;
     }
     
     .hero-title {
