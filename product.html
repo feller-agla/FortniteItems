@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produit - Fortnite Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FORTNITE SHOP</span>
+                    <span class="logo-subtext">V-BUCKS STORE</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#products">Produits</a>
+                <a href="index.html#features">Avantages</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Page -->
+    <section class="product-page">
+        <div class="container">
+            <a href="index.html#products" class="back-link">← Retour aux produits</a>
+            
+            <div class="product-details">
+                <!-- Product Image/Visual -->
+                <div class="product-visual">
+                    <div class="product-image-container">
+                        <div id="productIcon" class="product-large-icon">
+                            <!-- Icon will be loaded by JS -->
+                        </div>
+                        <div class="energy-ring ring-1"></div>
+                        <div class="energy-ring ring-2"></div>
+                    </div>
+                    <div id="productBadge" class="product-badge-large">
+                        <!-- Badge will be loaded by JS -->
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <h1 id="productName" class="product-title">...</h1>
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-count">(2,547 avis)</span>
+                    </div>
+                    
+                    <div class="product-price-section">
+                        <div class="price-main">
+                            <span id="productPrice" class="price-large">$0.00</span>
+                            <span id="productOriginalPrice" class="price-strike">$0.00</span>
+                        </div>
+                        <div id="productSavings" class="savings-badge">
+                            <!-- Savings will be loaded by JS -->
+                        </div>
+                    </div>
+
+                    <div class="product-description">
+                        <h3>📦 Ce que tu reçois :</h3>
+                        <ul id="productFeatures">
+                            <!-- Features will be loaded by JS -->
+                        </ul>
+                    </div>
+
+                    <div class="product-delivery">
+                        <div class="delivery-item">
+                            <span class="delivery-icon">⚡</span>
+                            <div>
+                                <strong>Livraison Instantanée</strong>
+                                <p>Reçois tes V-Bucks immédiatement</p>
+                            </div>
+                        </div>
+                        <div class="delivery-item">
+                            <span class="delivery-icon">🔒</span>
+                            <div>
+                                <strong>100% Sécurisé</strong>
+                                <p>0 risque de ban, méthode officielle</p>
+                            </div>
+                        </div>
+                        <div class="delivery-item">
+                            <span class="delivery-icon">🎮</span>
+                            <div>
+                                <strong>Toutes Plateformes</strong>
+                                <p>Xbox, PS, PC, Switch, Mobile</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-actions-large">
+                        <div class="quantity-selector">
+                            <label>Quantité :</label>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                                <input type="number" id="quantity" value="1" min="1" max="10" readonly>
+                                <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+                        
+                        <button id="addToCartBtn" class="add-to-cart-large">
+                            <span class="cart-icon">🛒</span>
+                            <span>Ajouter au Panier</span>
+                        </button>
+                        
+                        <button id="buyNowBtn" class="buy-now-btn">
+                            <span>⚡ Acheter Maintenant</span>
+                        </button>
+                    </div>
+
+                    <div class="product-guarantee">
+                        <h4>✅ Notre Garantie</h4>
+                        <ul>
+                            <li>💯 Satisfaction garantie ou remboursé</li>
+                            <li>🔒 Paiement 100% sécurisé (SSL)</li>
+                            <li>📧 Support client 24/7</li>
+                            <li>⚡ Livraison instantanée</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="description">Description</button>
+                    <button class="tab-btn" data-tab="howto">Comment ça marche</button>
+                    <button class="tab-btn" data-tab="reviews">Avis Clients</button>
+                </div>
+
+                <div class="tabs-content">
+                    <div class="tab-pane active" id="description">
+                        <h3>À propos de ce produit</h3>
+                        <p id="fullDescription">
+                            <!-- Description will be loaded by JS -->
+                        </p>
+                        <div class="product-specs">
+                            <h4>Spécifications :</h4>
+                            <ul>
+                                <li><strong>Type :</strong> Monnaie virtuelle Fortnite</li>
+                                <li><strong>Livraison :</strong> Instantanée (0-5 minutes)</li>
+                                <li><strong>Plateforme :</strong> Toutes (Xbox, PS, PC, Switch, Mobile)</li>
+                                <li><strong>Région :</strong> Global (Mondial)</li>
+                                <li><strong>Garantie :</strong> 30 jours satisfait ou remboursé</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="howto">
+                        <h3>Comment ça marche ?</h3>
+                        <div class="how-to-steps">
+                            <div class="how-to-step">
+                                <div class="step-num">1</div>
+                                <h4>Ajoute au Panier</h4>
+                                <p>Sélectionne le pack que tu veux et ajoute-le à ton panier.</p>
+                            </div>
+                            <div class="how-to-step">
+                                <div class="step-num">2</div>
+                                <h4>Remplis tes Infos</h4>
+                                <p>Entre ton pseudo Fortnite, email Epic Games et ta plateforme.</p>
+                            </div>
+                            <div class="how-to-step">
+                                <div class="step-num">3</div>
+                                <h4>Paie en Sécurité</h4>
+                                <p>Choisis ton mode de paiement : Carte bancaire, Mobile Money ou PayPal.</p>
+                            </div>
+                            <div class="how-to-step">
+                                <div class="step-num">4</div>
+                                <h4>Reçois tes V-Bucks</h4>
+                                <p>Livraison instantanée sur ton compte ! Profite de tes achats dans Fortnite.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="reviews">
+                        <h3>Avis Clients</h3>
+                        <div class="reviews-summary">
+                            <div class="rating-overview">
+                                <div class="rating-score">4.9</div>
+                                <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+                                <p>Basé sur 2,547 avis</p>
+                            </div>
+                        </div>
+                        <div class="reviews-list">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <span class="reviewer-avatar">🎮</span>
+                                        <div>
+                                            <strong>Moussa K.</strong>
+                                            <span class="review-country">Level 234</span>
+                                        </div>
+                                    </div>
+                                    <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                                </div>
+                                <p class="review-text">"Excellent service ! J'ai reçu mes V-Bucks en moins de 2 minutes. Très fiable et sécurisé. Je recommande à 100% !"</p>
+                                <span class="review-date">Il y a 2 jours</span>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <span class="reviewer-avatar">⚔️</span>
+                                            <div>
+                                                <strong>Aissatou D.</strong>
+                                                <span class="review-country">Level 189</span>
+                                            </div>
+                                        </div>
+                                    <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                                </div>
+                                <p class="review-text">"Meilleurs prix que j'ai trouvés ! Paiement par Mobile Money super pratique. Mon fils est ravi !"</p>
+                                <span class="review-date">Il y a 5 jours</span>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <span class="reviewer-avatar">🏆</span>
+                                            <div>
+                                                <strong>Ousmane B.</strong>
+                                                <span class="review-country">Level 276</span>
+                                            </div>
+                                        </div>
+                                    <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                                </div>
+                                <p class="review-text">"Aucun problème, livraison instantanée comme promis. Site professionnel et sécurisé. Merci !"</p>
+                                <span class="review-date">Il y a 1 semaine</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- V-Bucks Spinner -->
+    <div class="vbucks-spinner">
+        <div class="spinner-coin">
+            <div class="coin-front">V</div>
+            <div class="coin-back">V</div>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="product.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite Shop - V-Bucks & Fortnite Crew -40% | Livraison Instantanée</title>
+    <meta name="description" content="V-Bucks Fortnite jusqu'à -42%. Livraison instantanée. Paiement sécurisé. Service mondial. Toutes les plateformes supportées.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+    
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FORTNITE SHOP</span>
+                    <span class="logo-subtext">V-BUCKS STORE</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="#products">Produits</a>
+                <a href="#features">Avantages</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-line">V-Bucks & Fortnite Crew</span>
+                        <span class="title-highlight">Jusqu'à -42%</span>
+                        <span class="lightning">⚡</span>
+                    </h1>
+                    <p class="hero-subtitle">Livraison instantanée | Paiement 100% sécurisé | Service mondial</p>
+                    <a href="#products" class="cta-button glow-button">
+                        <span>Voir les Offres</span>
+                        <div class="button-glow"></div>
+                    </a>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Clients Satisfaits</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Instantané</div>
+                            <div class="stat-label">Livraison</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                    <div class="payment-badges">
+                        <div class="badge">💳 Cartes Bancaires</div>
+                        <div class="badge">📱 Mobile Money</div>
+                        <div class="badge">💰 PayPal</div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-character"></div>
+                    <div class="energy-ring ring-1"></div>
+                    <div class="energy-ring ring-2"></div>
+                    <div class="energy-ring ring-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave"></div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">💎 Nos Offres V-Bucks</h2>
+                <p class="section-subtitle">Économise jusqu'à 42% sur tes achats</p>
+            </div>
+            <div class="products-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card" data-rarity="legendary" data-product-id="1">
+                    <div class="card-glow"></div>
+                    <div class="card-badge">STARTER</div>
+                    <div class="card-icon vbucks-icon">
+                        <div class="coin-shine"></div>
+                        <span class="icon-text">V</span>
+                    </div>
+                    <h3 class="product-name">1000 V-Bucks</h3>
+                    <p class="product-description">Parfait pour commencer ton aventure</p>
+                    <div class="product-price">
+                        <span class="price-amount">$7.99</span>
+                        <span class="price-original">$9.99</span>
+                    </div>
+                    <div class="savings">🔥 Économie : $2.00 (-20%)</div>
+                    <div class="product-actions">
+                        <a href="product.html?id=1" class="product-button secondary">
+                            <span>Voir Détails</span>
+                        </a>
+                        <button class="product-button add-to-cart" data-id="1" data-name="1000 V-Bucks" data-price="7.99">
+                            <span>Ajouter au Panier</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card" data-rarity="epic" data-product-id="2">
+                    <div class="card-glow"></div>
+                    <div class="card-badge">⭐ POPULAIRE</div>
+                    <div class="card-icon lootbox-icon">
+                        <div class="box-shimmer"></div>
+                        <span class="icon-text">V</span>
+                    </div>
+                    <h3 class="product-name">2800 V-Bucks</h3>
+                    <p class="product-description">Le choix préféré de nos clients</p>
+                    <div class="product-price">
+                        <span class="price-amount">$19.99</span>
+                        <span class="price-original">$24.99</span>
+                    </div>
+                    <div class="savings">🔥 Économie : $5.00 (-20%)</div>
+                    <div class="product-actions">
+                        <a href="product.html?id=2" class="product-button secondary">
+                            <span>Voir Détails</span>
+                        </a>
+                        <button class="product-button add-to-cart" data-id="2" data-name="2800 V-Bucks" data-price="19.99">
+                            <span>Ajouter au Panier</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card" data-rarity="mythic" data-product-id="3">
+                    <div class="card-glow"></div>
+                    <div class="card-badge">🔥 MEILLEUR DEAL</div>
+                    <div class="card-icon exclusive-icon">
+                        <div class="exclusive-shine"></div>
+                        <span class="icon-text">V</span>
+                    </div>
+                    <h3 class="product-name">5000 V-Bucks</h3>
+                    <p class="product-description">Meilleur rapport qualité-prix</p>
+                    <div class="product-price">
+                        <span class="price-amount">$34.99</span>
+                        <span class="price-original">$44.99</span>
+                    </div>
+                    <div class="savings">🔥 Économie : $10.00 (-22%)</div>
+                    <div class="product-actions">
+                        <a href="product.html?id=3" class="product-button secondary">
+                            <span>Voir Détails</span>
+                        </a>
+                        <button class="product-button add-to-cart" data-id="3" data-name="5000 V-Bucks" data-price="34.99">
+                            <span>Ajouter au Panier</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="product-card" data-rarity="mythic" data-product-id="4">
+                    <div class="card-glow"></div>
+                    <div class="card-badge">💎 MEGA PACK</div>
+                    <div class="card-icon exclusive-icon">
+                        <div class="exclusive-shine"></div>
+                        <span class="icon-text">👑</span>
+                    </div>
+                    <h3 class="product-name">13500 V-Bucks</h3>
+                    <p class="product-description">Pour les vrais gamers</p>
+                    <div class="product-price">
+                        <span class="price-amount">$79.99</span>
+                        <span class="price-original">$99.99</span>
+                    </div>
+                    <div class="savings">🔥 Économie : $20.00 (-20%)</div>
+                    <div class="product-actions">
+                        <a href="product.html?id=4" class="product-button secondary">
+                            <span>Voir Détails</span>
+                        </a>
+                        <button class="product-button add-to-cart" data-id="4" data-name="13500 V-Bucks" data-price="79.99">
+                            <span>Ajouter au Panier</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div class="product-card" data-rarity="legendary" data-product-id="5">
+                    <div class="card-glow"></div>
+                    <div class="card-badge">MENSUEL</div>
+                    <div class="card-icon crew-icon">
+                        <div class="coin-shine"></div>
+                        <span class="icon-text">🎮</span>
+                    </div>
+                    <h3 class="product-name">Fortnite Crew</h3>
+                    <p class="product-description">Abonnement mensuel avec bonus</p>
+                    <div class="product-price">
+                        <span class="price-amount">$8.99</span>
+                        <span class="price-original">$11.99</span>
+                    </div>
+                    <div class="savings">🔥 Économie : $3.00 (-25%)</div>
+                    <div class="product-actions">
+                        <a href="product.html?id=5" class="product-button secondary">
+                            <span>Voir Détails</span>
+                        </a>
+                        <button class="product-button add-to-cart" data-id="5" data-name="Fortnite Crew" data-price="8.99">
+                            <span>Ajouter au Panier</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">✅ Pourquoi Nous Choisir ?</h2>
+                <p class="section-subtitle">Le meilleur service V-Bucks en ligne</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <span class="icon">⚡</span>
+                    </div>
+                    <h3 class="feature-title">Livraison Instantanée</h3>
+                    <p class="feature-description">Reçois tes V-Bucks immédiatement après paiement validé.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <span class="icon">🔒</span>
+                    </div>
+                    <h3 class="feature-title">100% Sécurisé</h3>
+                    <p class="feature-description">Paiements cryptés SSL. Méthode officielle, 0 risque de ban.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <span class="icon">🌍</span>
+                    </div>
+                    <h3 class="feature-title">Service Mondial</h3>
+                    <p class="feature-description">Disponible partout dans le monde, livraison instantanée.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <span class="icon">💳</span>
+                    </div>
+                    <h3 class="feature-title">Paiements Flexibles</h3>
+                    <p class="feature-description">Carte bancaire, Mobile Money, PayPal et plus.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <span class="icon">🎮</span>
+                    </div>
+                    <h3 class="feature-title">Toutes Plateformes</h3>
+                    <p class="feature-description">Xbox, PlayStation, PC, Switch, Mobile - Tous supportés.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-glow"></div>
+                        <span class="icon">💬</span>
+                    </div>
+                    <h3 class="feature-title">Support 24/7</h3>
+                    <p class="feature-description">Équipe disponible jour et nuit pour t'aider.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="community-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">⭐ Ce Que Disent Nos Clients</h2>
+                <p class="section-subtitle">Plus de 10 000 gamers satisfaits dans le monde</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="chat-bubble">
+                        <div class="bubble-header">
+                            <div class="user-avatar">🎮</div>
+                            <div class="user-info">
+                                <div class="user-name">Alpha D.</div>
+                                <div class="user-level">Level 245</div>
+                            </div>
+                        </div>
+                        <div class="bubble-message">
+                            "Livraison instantanée ! Paiement par Mobile Money super simple. Je recommande à 100% !"
+                        </div>
+                        <div class="bubble-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="chat-bubble">
+                        <div class="bubble-header">
+                            <div class="user-avatar">⚔️</div>
+                            <div class="user-info">
+                                <div class="user-name">Fatou M.</div>
+                                <div class="user-level">Level 198</div>
+                            </div>
+                        </div>
+                        <div class="bubble-message">
+                            "Meilleurs prix que j'ai trouvés ! Site professionnel et sécurisé. Très satisfaite."
+                        </div>
+                        <div class="bubble-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="chat-bubble">
+                        <div class="bubble-header">
+                            <div class="user-avatar">🏆</div>
+                            <div class="user-info">
+                                <div class="user-name">Ibrahim K.</div>
+                                <div class="user-level">Level 312</div>
+                            </div>
+                        </div>
+                        <div class="bubble-message">
+                            "J'ai acheté le pack 13500, reçu immédiatement. Aucun problème, service au top !"
+                        </div>
+                        <div class="bubble-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="chat-bubble">
+                        <div class="bubble-header">
+                            <div class="user-avatar">🎯</div>
+                            <div class="user-info">
+                                <div class="user-name">Aminata S.</div>
+                                <div class="user-level">Level 267</div>
+                            </div>
+                        </div>
+                        <div class="bubble-message">
+                            "Paiement sécurisé, livraison rapide, support réactif. Que demander de plus ? 🔥"
+                        </div>
+                        <div class="bubble-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">❓ Questions Fréquentes</h2>
+                <p class="section-subtitle">Tout ce que tu dois savoir</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">💰</span>
+                        <h3>Pourquoi les prix sont moins chers ?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Nous utilisons des régions où Epic Games propose des prix officiellement réduits. C'est 100% légal et autorisé.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">🔒</span>
+                        <h3>Mon compte peut être banni ?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Non. Notre méthode est 100% officielle et sécurisée. Plus de 10 000 commandes livrées avec 0 ban.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">⏱️</span>
+                        <h3>Combien de temps pour recevoir mes V-Bucks ?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Livraison instantanée après validation du paiement. Tu reçois un email avec les détails.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">💳</span>
+                        <h3>Quels modes de paiement acceptez-vous ?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Cartes bancaires (Visa, Mastercard), Mobile Money (Orange, MTN, Moov), PayPal et autres.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">🌍</span>
+                        <h3>Service disponible partout ?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Oui ! Notre service est disponible mondialement. Livraison instantanée peu importe ta localisation.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">🎮</span>
+                        <h3>Toutes les plateformes sont supportées ?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Oui ! Xbox, PlayStation, PC, Nintendo Switch et Mobile (iOS/Android).
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">↩️</span>
+                        <h3>Puis-je être remboursé ?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Oui, si tu ne reçois pas tes V-Bucks, remboursement 100% garanti sous 24h.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">📧</span>
+                        <h3>Comment vous contacter ?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Support 24/7 via email (support@fortniteshop.com) ou chat en direct sur le site.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-text">FORTNITE SHOP</span>
+                        <span class="logo-subtext">V-BUCKS STORE</span>
+                    </div>
+                    <p class="footer-tagline">Votre boutique de confiance pour V-Bucks et Fortnite Crew</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Accueil</a>
+                    <a href="#products">Produits</a>
+                    <a href="cart.html">Panier</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="#">Centre d'Aide</a>
+                    <a href="#">Conditions d'Utilisation</a>
+                    <a href="#">Politique de Remboursement</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Paiement Sécurisé</h4>
+                    <div class="payment-icons">
+                        <span>💳 Visa</span>
+                        <span>💳 Mastercard</span>
+                        <span>📱 Mobile Money</span>
+                        <span>💰 PayPal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fortnite Shop. Tous droits réservés.</p>
+                <p class="disclaimer">Fortnite Shop n'est pas affilié à Epic Games. Fortnite est une marque déposée d'Epic Games.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- V-Bucks Spinner (Bonus Feature) -->
+    <div class="vbucks-spinner">
+        <div class="spinner-coin">
+            <div class="coin-front">V</div>
+            <div class="coin-back">V</div>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

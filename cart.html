@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - Fortnite Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FORTNITE SHOP</span>
+                    <span class="logo-subtext">V-BUCKS STORE</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#products">Produits</a>
+                <a href="index.html#features">Avantages</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button active">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Page -->
+    <section class="cart-page">
+        <div class="container">
+            <h1 class="page-title">🛒 Mon Panier</h1>
+            
+            <div class="cart-container">
+                <!-- Cart Items -->
+                <div class="cart-items-section">
+                    <div id="cartItems" class="cart-items">
+                        <!-- Items will be loaded here by JavaScript -->
+                    </div>
+                    
+                    <div id="emptyCart" class="empty-cart" style="display: none;">
+                        <div class="empty-cart-icon">🛒</div>
+                        <h2>Ton panier est vide</h2>
+                        <p>Découvre nos offres incroyables et commence à shopper !</p>
+                        <a href="index.html#products" class="cta-button">
+                            <span>Voir les Produits</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <h3>Résumé de Commande</h3>
+                    
+                    <div class="summary-line">
+                        <span>Sous-total</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-line">
+                        <span>Livraison</span>
+                        <span class="free">GRATUIT ⚡</span>
+                    </div>
+                    
+                    <div class="summary-line total">
+                        <span>Total</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    
+                    <div class="promo-code">
+                        <input type="text" id="promoInput" placeholder="Code promo">
+                        <button id="applyPromo" class="apply-btn">Appliquer</button>
+                    </div>
+                    
+                    <div id="promoSuccess" class="promo-success" style="display: none;">
+                        <span class="promo-text">✅ Code appliqué !</span>
+                    </div>
+                    
+                    <button id="checkoutBtn" class="checkout-btn" disabled>
+                        <span>Passer à la Commande</span>
+                    </button>
+                    
+                    <div class="secure-payment">
+                        <span class="secure-icon">🔒</span>
+                        <span>Paiement 100% Sécurisé</span>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <span>💳</span>
+                        <span>📱</span>
+                        <span>💰</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content checkout-modal">
+            <span class="close-modal">&times;</span>
+            
+            <h2>Finaliser la Commande</h2>
+            
+            <div class="checkout-steps">
+                <!-- Step 1: Account Info -->
+                <div class="checkout-step active" id="step1">
+                    <h3>📧 Informations de Compte</h3>
+                    <form id="accountForm">
+                        <div class="form-group">
+                            <label>Pseudo Fortnite *</label>
+                            <input type="text" id="fortniteName" required placeholder="Ton pseudo exact">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Epic Games *</label>
+                            <input type="email" id="epicEmail" required placeholder="email@exemple.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Plateforme *</label>
+                            <select id="platform" required>
+                                <option value="">Sélectionne ta plateforme</option>
+                                <option value="xbox">Xbox (One, Series X/S)</option>
+                                <option value="ps">PlayStation (4, 5)</option>
+                                <option value="pc">PC (Epic Games)</option>
+                                <option value="switch">Nintendo Switch</option>
+                                <option value="mobile">Mobile (iOS/Android)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="next-btn" onclick="nextStep(2)">Continuer</button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Payment Method -->
+                <div class="checkout-step" id="step2">
+                    <h3>💳 Méthode de Paiement</h3>
+                    <div class="payment-options">
+                        <div class="payment-option" data-method="card">
+                            <input type="radio" name="payment" id="payCard" value="card">
+                            <label for="payCard">
+                                <span class="payment-icon">💳</span>
+                                <div>
+                                    <strong>Carte Bancaire</strong>
+                                    <small>Visa, Mastercard</small>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="payment-option" data-method="mobile">
+                            <input type="radio" name="payment" id="payMobile" value="mobile">
+                            <label for="payMobile">
+                                <span class="payment-icon">📱</span>
+                                <div>
+                                    <strong>Mobile Money</strong>
+                                    <small>Orange, MTN, Moov</small>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="payment-option" data-method="paypal">
+                            <input type="radio" name="payment" id="payPaypal" value="paypal">
+                            <label for="payPaypal">
+                                <span class="payment-icon">💰</span>
+                                <div>
+                                    <strong>PayPal</strong>
+                                    <small>Paiement rapide et sécurisé</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-actions">
+                        <button type="button" class="back-btn" onclick="nextStep(1)">Retour</button>
+                        <button type="button" class="next-btn" onclick="processPayment()">Payer Maintenant</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Processing -->
+                <div class="checkout-step" id="step3">
+                    <div class="processing">
+                        <div class="spinner"></div>
+                        <h3>Traitement en cours...</h3>
+                        <p>Veuillez patienter pendant que nous vérifions votre paiement</p>
+                    </div>
+                </div>
+
+                <!-- Step 4: Success -->
+                <div class="checkout-step" id="step4">
+                    <div class="success-message">
+                        <div class="success-icon">✅</div>
+                        <h3>Commande Réussie !</h3>
+                        <p>Tes V-Bucks ont été livrés sur ton compte Fortnite</p>
+                        <div class="order-details">
+                            <p><strong>Numéro de commande:</strong> #<span id="orderNumber"></span></p>
+                            <p><strong>Email de confirmation envoyé à:</strong> <span id="confirmEmail"></span></p>
+                        </div>
+                        <a href="index.html" class="cta-button">Retour à l'Accueil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>
+

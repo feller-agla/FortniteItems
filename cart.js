@@ -1,0 +1,273 @@
+// ===========================
+// CART MANAGEMENT SYSTEM
+// ===========================
+
+class ShoppingCart {
+    constructor() {
+        this.items = this.loadCart();
+        this.init();
+    }
+
+    init() {
+        this.updateCartCount();
+        this.updateCartDisplay();
+        this.attachEventListeners();
+    }
+
+    // Load cart from localStorage
+    loadCart() {
+        const saved = localStorage.getItem('fortniteshop_cart');
+        return saved ? JSON.parse(saved) : [];
+    }
+
+    // Save cart to localStorage
+    saveCart() {
+        localStorage.setItem('fortniteshop_cart', JSON.stringify(this.items));
+    }
+
+    // Add item to cart
+    addItem(id, name, price, quantity = 1) {
+        const existingItem = this.items.find(item => item.id === id);
+        
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            this.items.push({
+                id: id,
+                name: name,
+                price: parseFloat(price),
+                quantity: quantity
+            });
+        }
+
+        this.saveCart();
+        this.updateCartCount();
+        this.updateCartDisplay();
+        this.showNotification(`✅ ${name} ajouté au panier !`);
+    }
+
+    // Remove item from cart
+    removeItem(id) {
+        this.items = this.items.filter(item => item.id !== id);
+        this.saveCart();
+        this.updateCartCount();
+        this.updateCartDisplay();
+        this.showNotification('❌ Produit retiré du panier');
+    }
+
+    // Update item quantity
+    updateQuantity(id, quantity) {
+        const item = this.items.find(item => item.id === id);
+        if (item) {
+            item.quantity = parseInt(quantity);
+            if (item.quantity <= 0) {
+                this.removeItem(id);
+            } else {
+                this.saveCart();
+                this.updateCartDisplay();
+            }
+        }
+    }
+
+    // Get cart total
+    getTotal() {
+        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    }
+
+    // Get items count
+    getItemsCount() {
+        return this.items.reduce((count, item) => count + item.quantity, 0);
+    }
+
+    // Update cart count badge
+    updateCartCount() {
+        const cartCounts = document.querySelectorAll('#cartCount, .cart-count');
+        const count = this.getItemsCount();
+        cartCounts.forEach(element => {
+            element.textContent = count;
+            element.style.display = count > 0 ? 'flex' : 'none';
+        });
+    }
+
+    // Update cart display (cart page)
+    updateCartDisplay() {
+        const cartItems = document.getElementById('cartItems');
+        const emptyCart = document.getElementById('emptyCart');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        
+        if (!cartItems) return; // Not on cart page
+
+        if (this.items.length === 0) {
+            cartItems.style.display = 'none';
+            emptyCart.style.display = 'flex';
+            if (checkoutBtn) checkoutBtn.disabled = true;
+        } else {
+            cartItems.style.display = 'block';
+            emptyCart.style.display = 'none';
+            if (checkoutBtn) checkoutBtn.disabled = false;
+
+            cartItems.innerHTML = this.items.map(item => `
+                <div class="cart-item" data-id="${item.id}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-icon">
+                            ${this.getProductIcon(item.id)}
+                        </div>
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p class="item-price">$${item.price.toFixed(2)} / unité</p>
+                        </div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <div class="quantity-control">
+                            <button class="qty-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
+                            <input type="number" value="${item.quantity}" min="1" max="10" 
+                                   onchange="cart.updateQuantity('${item.id}', this.value)" readonly>
+                            <button class="qty-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                        </div>
+                        <div class="item-total">$${(item.price * item.quantity).toFixed(2)}</div>
+                        <button class="remove-btn" onclick="cart.removeItem('${item.id}')">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        this.updateCartSummary();
+    }
+
+    // Update cart summary
+    updateCartSummary() {
+        const subtotal = this.getTotal();
+        const total = subtotal; // Add taxes/fees here if needed
+
+        const subtotalEl = document.getElementById('subtotal');
+        const totalEl = document.getElementById('total');
+
+        if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+        if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Get product icon based on ID
+    getProductIcon(id) {
+        const icons = {
+            '1': '<span class="product-icon-small" style="background: var(--gradient-primary);">V</span>',
+            '2': '<span class="product-icon-small" style="background: var(--gradient-secondary);">V</span>',
+            '3': '<span class="product-icon-small" style="background: var(--gradient-secondary);">V</span>',
+            '4': '<span class="product-icon-small" style="background: linear-gradient(135deg, #FFD700, #FFA500);">👑</span>',
+            '5': '<span class="product-icon-small" style="background: var(--gradient-primary);">🎮</span>'
+        };
+        return icons[id] || '<span class="product-icon-small">V</span>';
+    }
+
+    // Show notification
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Attach event listeners
+    attachEventListeners() {
+        // Add to cart buttons on product pages
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const btn = e.currentTarget;
+                const id = btn.dataset.id;
+                const name = btn.dataset.name;
+                const price = btn.dataset.price;
+                this.addItem(id, name, price);
+                
+                // Visual feedback
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => btn.style.transform = 'scale(1)', 150);
+            });
+        });
+
+        // Promo code
+        const applyPromo = document.getElementById('applyPromo');
+        if (applyPromo) {
+            applyPromo.addEventListener('click', () => this.applyPromoCode());
+        }
+
+        // Checkout button
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', () => this.openCheckout());
+        }
+    }
+
+    // Apply promo code
+    applyPromoCode() {
+        const promoInput = document.getElementById('promoInput');
+        const promoSuccess = document.getElementById('promoSuccess');
+        const code = promoInput.value.trim().toUpperCase();
+
+        const validCodes = {
+            'WELCOME10': 0.10,  // 10% off
+            'FIRST20': 0.20,    // 20% off
+            'VBUCKS15': 0.15    // 15% off
+        };
+
+        if (validCodes[code]) {
+            const discount = validCodes[code];
+            const subtotal = this.getTotal();
+            const discountAmount = subtotal * discount;
+            const newTotal = subtotal - discountAmount;
+
+            // Store promo code
+            localStorage.setItem('fortniteshop_promo', JSON.stringify({
+                code: code,
+                discount: discount
+            }));
+
+            // Update display
+            if (promoSuccess) {
+                promoSuccess.style.display = 'block';
+                promoSuccess.innerHTML = `✅ Code "${code}" appliqué ! -$${discountAmount.toFixed(2)}`;
+            }
+
+            const totalEl = document.getElementById('total');
+            if (totalEl) totalEl.textContent = `$${newTotal.toFixed(2)}`;
+
+            this.showNotification(`🎉 Promo "${code}" appliquée !`);
+        } else {
+            this.showNotification('❌ Code promo invalide');
+            if (promoSuccess) promoSuccess.style.display = 'none';
+        }
+    }
+
+    // Open checkout modal
+    openCheckout() {
+        const modal = document.getElementById('checkoutModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    // Clear cart
+    clearCart() {
+        this.items = [];
+        this.saveCart();
+        this.updateCartCount();
+        this.updateCartDisplay();
+    }
+}
+
+// Initialize cart
+const cart = new ShoppingCart();
+
+// Export for use in other scripts
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = ShoppingCart;
+}
+
