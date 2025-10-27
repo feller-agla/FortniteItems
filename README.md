@@ -72,11 +72,11 @@ C'est tout ! Aucune dépendance, aucun build nécessaire.
 
 | Produit | Prix | Prix Normal | Économie |
 |---------|------|-------------|----------|
-| 1000 V-Bucks | $7.99 | $9.99 | -20% |
-| 2800 V-Bucks | $19.99 | $24.99 | -20% |
-| 5000 V-Bucks | $34.99 | $44.99 | -22% |
-| 13500 V-Bucks | $79.99 | $99.99 | -20% |
-| Fortnite Crew | $8.99 | $11.99 | -25% |
+| 1000 V-Bucks | 3 500 F | 5 500 F | -36% |
+| 2800 V-Bucks | 9 000 F | 14 500 F | -38% |
+| 5000 V-Bucks | 16 000 F | 26 000 F | -38% |
+| 13500 V-Bucks | 38 000 F | 65 000 F | -42% |
+| Fortnite Crew | 4 500 F | 7 500 F | -40% |
 
 ---
 
@@ -533,17 +533,17 @@ console.log(typeof checkout);  // Doit afficher "object"
 
 ### Coûts Mensuels
 
-- Domaine : $1/mois (~$10/an)
+- Domaine : ~500 F/mois (~6 000 F/an)
 - Hosting Netlify : **Gratuit** (jusqu'à 100GB bandwidth)
 - SSL : **Gratuit** (Let's Encrypt)
-- **Total : ~$1/mois**
+- **Total : ~500 F/mois**
 
 ### Revenus Potentiels
 
-Avec **100 ventes/mois** (moyenne $30) :
-- CA : $3,000/mois
-- Marge (assumée 30%) : $900/mois
-- **Profit net : $899/mois** 🚀
+Avec **100 ventes/mois** (moyenne 15 000 F) :
+- CA : 1 500 000 F/mois
+- Marge (assumée 30%) : 450 000 F/mois
+- **Profit net : ~449 500 F/mois** 🚀
 
 ---
 

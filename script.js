@@ -7,7 +7,7 @@ class ParticleSystem {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.particles = [];
-        this.particleCount = 80;
+        this.particleCount = 40; // Réduit de 80 à 40
         
         this.resize();
         this.init();
@@ -470,13 +470,13 @@ class LoadingAnimation {
         
         loader.innerHTML = `
             <div style="font-size: 64px; font-weight: 900; font-family: 'Orbitron', sans-serif; background: linear-gradient(135deg, #00D4FF, #7B68EE); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: pulse 2s infinite;">
-                VBUCKS BENIN 🇧🇯
+                FORTNITE SHOP
             </div>
             <div style="font-size: 24px; color: #FFD700; margin-top: 10px; font-weight: 600;">
                 Chargement...
             </div>
             <div style="width: 200px; height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; margin-top: 20px;">
-                <div style="width: 0%; height: 100%; background: linear-gradient(90deg, #25D366, #00D4FF); animation: loadBar 2s ease-out forwards; border-radius: 10px;"></div>
+                <div style="width: 0%; height: 100%; background: linear-gradient(90deg, #7B68EE, #00D4FF); animation: loadBar 2s ease-out forwards; border-radius: 10px;"></div>
             </div>
         `;
         

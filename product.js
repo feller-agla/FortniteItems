@@ -7,9 +7,9 @@ const products = {
     '1': {
         id: '1',
         name: '1000 V-Bucks',
-        price: 7.99,
-        originalPrice: 9.99,
-        savings: 2.00,
+        price: 3500,
+        originalPrice: 5500,
+        savings: 2000,
         rarity: 'legendary',
         badge: 'STARTER',
         icon: 'V',
@@ -26,9 +26,9 @@ const products = {
     '2': {
         id: '2',
         name: '2800 V-Bucks',
-        price: 19.99,
-        originalPrice: 24.99,
-        savings: 5.00,
+        price: 9000,
+        originalPrice: 14500,
+        savings: 5500,
         rarity: 'epic',
         badge: '⭐ POPULAIRE',
         icon: 'V',
@@ -36,7 +36,7 @@ const products = {
         description: 'Le pack le plus populaire parmi nos clients ! Parfait équilibre entre quantité et prix. Idéal pour acheter plusieurs skins ou le Battle Pass avec des V-Bucks en rab.',
         features: [
             '2800 V-Bucks livrés instantanément',
-            'Économie de $5.00 par rapport au prix normal',
+            'Économie de 5 500 F par rapport au prix normal',
             'Assez pour Battle Pass + extras',
             'Livraison garantie en moins de 5 minutes',
             'Méthode 100% sécurisée, 0 risque de ban'
@@ -45,9 +45,9 @@ const products = {
     '3': {
         id: '3',
         name: '5000 V-Bucks',
-        price: 34.99,
-        originalPrice: 44.99,
-        savings: 10.00,
+        price: 16000,
+        originalPrice: 26000,
+        savings: 10000,
         rarity: 'mythic',
         badge: '🔥 MEILLEUR DEAL',
         icon: 'V',
@@ -55,7 +55,7 @@ const products = {
         description: 'Notre meilleur rapport qualité-prix ! Assez de V-Bucks pour te faire plaisir pendant plusieurs saisons. Achète les meilleurs skins, emotes et accessoires sans compter.',
         features: [
             '5000 V-Bucks livrés instantanément',
-            'Économie massive de $10.00',
+            'Économie massive de 10 000 F',
             'Battle Pass + plusieurs skins légendaires',
             'Pack le plus vendu de notre boutique',
             'Livraison express garantie'
@@ -64,9 +64,9 @@ const products = {
     '4': {
         id: '4',
         name: '13500 V-Bucks',
-        price: 79.99,
-        originalPrice: 99.99,
-        savings: 20.00,
+        price: 38000,
+        originalPrice: 65000,
+        savings: 27000,
         rarity: 'mythic',
         badge: '💎 MEGA PACK',
         icon: '👑',
@@ -74,7 +74,7 @@ const products = {
         description: 'Pour les vrais gamers ! Pack ultime qui te permet d\'acheter tout ce que tu veux dans Fortnite pendant des mois. Collection complète de skins, Battle Pass pour plusieurs saisons et plus encore.',
         features: [
             '13500 V-Bucks - Pack premium',
-            'Économie exceptionnelle de $20.00',
+            'Économie exceptionnelle de 27 000 F',
             'Équivalent à plusieurs Battle Pass',
             'Collection complète de skins possibles',
             'Support prioritaire pour ce pack'
@@ -83,9 +83,9 @@ const products = {
     '5': {
         id: '5',
         name: 'Fortnite Crew',
-        price: 8.99,
-        originalPrice: 11.99,
-        savings: 3.00,
+        price: 4500,
+        originalPrice: 7500,
+        savings: 3000,
         rarity: 'legendary',
         badge: 'MENSUEL',
         icon: '🎮',
@@ -142,12 +142,12 @@ class ProductPage {
         document.getElementById('productBadge').textContent = p.badge;
 
         // Prices
-        document.getElementById('productPrice').textContent = `$${p.price.toFixed(2)}`;
-        document.getElementById('productOriginalPrice').textContent = `$${p.originalPrice.toFixed(2)}`;
+        document.getElementById('productPrice').textContent = `${p.price.toLocaleString()} F`;
+        document.getElementById('productOriginalPrice').textContent = `${p.originalPrice.toLocaleString()} F`;
 
         // Savings
         const savingsPercent = Math.round((p.savings / p.originalPrice) * 100);
-        document.getElementById('productSavings').innerHTML = `🔥 Économie : $${p.savings.toFixed(2)} (-${savingsPercent}%)`;
+        document.getElementById('productSavings').innerHTML = `🔥 Économie : ${p.savings.toLocaleString()} F (-${savingsPercent}%)`;
 
         // Features
         const featuresList = document.getElementById('productFeatures');

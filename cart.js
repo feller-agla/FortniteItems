@@ -114,7 +114,7 @@ class ShoppingCart {
                         </div>
                         <div class="cart-item-details">
                             <h3>${item.name}</h3>
-                            <p class="item-price">$${item.price.toFixed(2)} / unité</p>
+                            <p class="item-price">${Math.round(item.price).toLocaleString()} F / unité</p>
                         </div>
                     </div>
                     <div class="cart-item-controls">
@@ -124,7 +124,7 @@ class ShoppingCart {
                                    onchange="cart.updateQuantity('${item.id}', this.value)" readonly>
                             <button class="qty-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
                         </div>
-                        <div class="item-total">$${(item.price * item.quantity).toFixed(2)}</div>
+                        <div class="item-total">${Math.round(item.price * item.quantity).toLocaleString()} F</div>
                         <button class="remove-btn" onclick="cart.removeItem('${item.id}')">🗑️</button>
                     </div>
                 </div>
@@ -142,8 +142,8 @@ class ShoppingCart {
         const subtotalEl = document.getElementById('subtotal');
         const totalEl = document.getElementById('total');
 
-        if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-        if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+        if (subtotalEl) subtotalEl.textContent = `${Math.round(subtotal).toLocaleString()} F`;
+        if (totalEl) totalEl.textContent = `${Math.round(total).toLocaleString()} F`;
     }
 
     // Get product icon based on ID
@@ -232,11 +232,11 @@ class ShoppingCart {
             // Update display
             if (promoSuccess) {
                 promoSuccess.style.display = 'block';
-                promoSuccess.innerHTML = `✅ Code "${code}" appliqué ! -$${discountAmount.toFixed(2)}`;
+                promoSuccess.innerHTML = `✅ Code "${code}" appliqué ! -${Math.round(discountAmount).toLocaleString()} F`;
             }
 
             const totalEl = document.getElementById('total');
-            if (totalEl) totalEl.textContent = `$${newTotal.toFixed(2)}`;
+            if (totalEl) totalEl.textContent = `${Math.round(newTotal).toLocaleString()} F`;
 
             this.showNotification(`🎉 Promo "${code}" appliquée !`);
         } else {

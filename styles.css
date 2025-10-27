@@ -74,9 +74,9 @@ body {
 .gradient-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.4;
-    animation: float 20s infinite ease-in-out;
+    filter: blur(100px);
+    opacity: 0.2; /* Réduit de 0.4 à 0.2 */
+    animation: float 25s infinite ease-in-out; /* Plus lent */
 }
 
 .orb-1 {
@@ -155,6 +155,10 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0;
+}
+
+.nav-brand a {
+    text-decoration: none;
 }
 
 .logo-text {
@@ -274,17 +278,17 @@ body {
 .lightning {
     display: inline-block;
     font-size: 60px;
-    animation: pulse 2s infinite;
+    animation: none; /* Désactiver l'animation pulse trop agressive */
 }
 
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
-        filter: drop-shadow(0 0 10px var(--electric-blue));
+        filter: drop-shadow(0 0 5px var(--electric-blue));
     }
     50% {
-        transform: scale(1.2);
-        filter: drop-shadow(0 0 30px var(--electric-blue));
+        transform: scale(1.05); /* Réduit de 1.2 à 1.05 */
+        filter: drop-shadow(0 0 15px var(--electric-blue)); /* Réduit */
     }
 }
 
@@ -311,7 +315,7 @@ body {
     cursor: pointer;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 30px rgba(255, 29, 203, 0.5);
+    box-shadow: 0 0 20px rgba(255, 29, 203, 0.3); /* Réduit */
     text-decoration: none;
 }
 
@@ -337,8 +341,8 @@ body {
 }
 
 .cta-button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 0 50px rgba(255, 29, 203, 0.8);
+    transform: translateY(-2px); /* Réduit le mouvement */
+    box-shadow: 0 0 25px rgba(255, 29, 203, 0.4); /* Moins intense */
 }
 
 .cta-button span {
@@ -502,9 +506,9 @@ body {
     border-radius: 20px;
     padding: 40px 30px;
     text-align: center;
-    border: 2px solid rgba(0, 217, 255, 0.2);
+    border: 2px solid rgba(0, 217, 255, 0.15); /* Plus subtil */
     overflow: hidden;
-    transition: transform 0.4s, box-shadow 0.4s;
+    transition: transform 0.3s, box-shadow 0.3s; /* Plus rapide */
     cursor: pointer;
 }
 
@@ -517,17 +521,17 @@ body {
     height: 100%;
     background: var(--gradient-secondary);
     opacity: 0;
-    transition: opacity 0.4s;
+    transition: opacity 0.3s;
     z-index: 0;
 }
 
 .product-card:hover::before {
-    opacity: 0.1;
+    opacity: 0.05; /* Réduit de 0.1 à 0.05 */
 }
 
 .product-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 60px rgba(0, 217, 255, 0.4);
+    transform: translateY(-5px); /* Réduit de -10px à -5px */
+    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2); /* Moins intense */
 }
 
 .card-glow {
@@ -569,9 +573,9 @@ body {
     justify-content: center;
     font-size: 60px;
     border-radius: 50%;
-    background: rgba(0, 217, 255, 0.1);
-    border: 3px solid var(--electric-blue);
-    box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+    background: rgba(0, 217, 255, 0.08);
+    border: 2px solid var(--electric-blue); /* Réduit de 3px à 2px */
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.15); /* Réduit l'intensité */
 }
 
 .product-card[data-rarity="legendary"] .card-icon {
@@ -768,11 +772,11 @@ body {
 @keyframes iconPulse {
     0%, 100% {
         transform: scale(1);
-        opacity: 0.2;
+        opacity: 0.15; /* Réduit */
     }
     50% {
-        transform: scale(1.2);
-        opacity: 0.4;
+        transform: scale(1.05); /* Réduit de 1.2 à 1.05 */
+        opacity: 0.25; /* Réduit de 0.4 à 0.25 */
     }
 }
 
@@ -1516,20 +1520,90 @@ body {
     }
     
     .hero-title {
-        font-size: 36px;
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 14px;
     }
     
     .cta-button {
-        padding: 15px 35px;
-        font-size: 18px;
+        padding: 15px 30px;
+        font-size: 16px;
     }
     
     .product-card {
-        padding: 30px 20px;
+        padding: 25px 15px;
     }
     
     .price-amount {
+        font-size: 28px;
+    }
+    
+    .product-name {
+        font-size: 24px;
+    }
+    
+    .section-title {
         font-size: 32px;
+    }
+    
+    .page-title {
+        font-size: 32px;
+    }
+}
+
+/* Extra responsive pour très petits écrans */
+@media (max-width: 320px) {
+    .hero-title {
+        font-size: 28px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    .logo-subtext {
+        font-size: 10px;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+}
+
+/* Responsive améliorée pour tablettes */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-text {
+        align-items: center;
+    }
+    
+    .hero-visual {
+        margin: 0 auto;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Grands écrans */
+@media (min-width: 1441px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -1585,8 +1659,8 @@ body {
     font-size: 12px;
     font-weight: 700;
     font-family: var(--font-display);
-    box-shadow: 0 0 15px rgba(255, 29, 203, 0.6);
-    animation: cartPulse 2s infinite;
+    box-shadow: 0 0 10px rgba(255, 29, 203, 0.3); /* Réduit */
+    animation: none; /* Désactiver l'animation pulse */
 }
 
 @keyframes cartPulse {
@@ -1594,7 +1668,7 @@ body {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.1);
+        transform: scale(1.05); /* Réduit */
     }
 }
 
