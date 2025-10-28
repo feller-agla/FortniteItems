@@ -14,6 +14,7 @@ const products = {
         badge: 'STARTER',
         icon: 'V',
         iconStyle: 'background: var(--gradient-primary);',
+        image: 'https://cdn1.epicgames.com/offer/fn/FNECO_32-00_VbuckStoreArtUpdate_1000_EGS_1200x1600_1200x1600-e70f8c1bfbd98a4a3d619e9527aeef8e',
         description: 'Pack parfait pour commencer ton aventure Fortnite. Idéal pour acheter un skin, une emote ou un accessoire dans la boutique.',
         features: [
             '1000 V-Bucks instantanément livrés',
@@ -33,6 +34,7 @@ const products = {
         badge: '⭐ POPULAIRE',
         icon: 'V',
         iconStyle: 'background: var(--gradient-secondary);',
+        image: 'https://cdn1.epicgames.com/offer/fn/FNECO_32-00_VbuckStoreArtUpdate_2800_EGS_1200x1600_1200x1600-380718e8fb23306b6e8a801d27880104',
         description: 'Le pack le plus populaire parmi nos clients ! Parfait équilibre entre quantité et prix. Idéal pour acheter plusieurs skins ou le Battle Pass avec des V-Bucks en rab.',
         features: [
             '2800 V-Bucks livrés instantanément',
@@ -52,6 +54,7 @@ const products = {
         badge: '🔥 MEILLEUR DEAL',
         icon: 'V',
         iconStyle: 'background: var(--gradient-secondary);',
+        image: 'https://cdn1.epicgames.com/offer/fn/FNECO_32-00_VbuckStoreArtUpdate_5000_EGS_1200x1600_1200x1600-eb3c8e7ca0803a6cb2fb374d271227f2',
         description: 'Notre meilleur rapport qualité-prix ! Assez de V-Bucks pour te faire plaisir pendant plusieurs saisons. Achète les meilleurs skins, emotes et accessoires sans compter.',
         features: [
             '5000 V-Bucks livrés instantanément',
@@ -71,6 +74,7 @@ const products = {
         badge: '💎 MEGA PACK',
         icon: '👑',
         iconStyle: 'background: linear-gradient(135deg, #FFD700, #FFA500);',
+        image: 'https://cdn1.epicgames.com/offer/fn/FNECO_32-00_VbuckStoreArtUpdate_13500_EGS_1200x1600_1200x1600-d283e52ea33ff79da7d4be0ff86d6e52',
         description: 'Pour les vrais gamers ! Pack ultime qui te permet d\'acheter tout ce que tu veux dans Fortnite pendant des mois. Collection complète de skins, Battle Pass pour plusieurs saisons et plus encore.',
         features: [
             '13500 V-Bucks - Pack premium',
@@ -90,6 +94,7 @@ const products = {
         badge: 'MENSUEL',
         icon: '🎮',
         iconStyle: 'background: var(--gradient-primary);',
+        image: 'https://cdn2.unrealengine.com/crew-subscription-share-image-1920x1080-1920x1080-d4a70e27ef1c.jpg',
         description: 'Abonnement mensuel qui inclut 1000 V-Bucks PLUS un skin exclusif Crew PLUS le Battle Pass de la saison actuelle. Meilleure valeur pour les joueurs réguliers !',
         features: [
             '1000 V-Bucks chaque mois',
@@ -133,9 +138,24 @@ class ProductPage {
         // Product name
         document.getElementById('productName').textContent = p.name;
 
-        // Product icon
+        // Product icon or image with overlay
         const iconContainer = document.getElementById('productIcon');
-        iconContainer.innerHTML = `<span class="icon-text" style="${p.iconStyle}">${p.icon}</span>`;
+        if (p.image) {
+            // Use real image with text overlay
+            iconContainer.innerHTML = `
+                <div class="vbucks-image-container">
+                    <img src="${p.image}" alt="${p.name}" class="vbucks-official-image">
+                    <div class="vbucks-overlay">
+                        <div class="vbucks-quantity">${p.name}</div>
+                        <div class="vbucks-price">${p.price.toLocaleString()} F</div>
+                    </div>
+                </div>
+            `;
+            iconContainer.style.cssText = 'background: transparent; padding: 0;';
+        } else {
+            // Use icon fallback
+            iconContainer.innerHTML = `<span class="icon-text" style="${p.iconStyle}">${p.icon}</span>`;
+        }
         iconContainer.className = `product-large-icon ${p.rarity}`;
 
         // Product badge

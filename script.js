@@ -624,26 +624,30 @@ function initSmoothScrollMenu() {
 // ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize particle system
+    // Initialize particle system (only if canvas exists - index page)
     const canvas = document.getElementById('particleCanvas');
-    const particleSystem = new ParticleSystem(canvas);
-    particleSystem.animate();
+    if (canvas) {
+        const particleSystem = new ParticleSystem(canvas);
+        particleSystem.animate();
+    }
     
-    // Initialize all interactive features
+    // Initialize mobile menu (all pages)
     new MobileMenu();
-    new ScrollAnimations();
-    new SmoothScroll();
-    new NavbarEffects();
-    new ProductCards();
-    new WhatsAppIntegration();
-    new CursorTrail();
-    new TextEffects();
-    new StatsCounter();
-    new ParallaxEffect();
-    new LoadingAnimation();
     
-    // Initialize smooth scroll for menu
+    // Initialize smooth scroll for menu (all pages)
     initSmoothScrollMenu();
+    
+    // Initialize other features (only if they exist on the page)
+    if (typeof ScrollAnimations !== 'undefined') new ScrollAnimations();
+    if (typeof SmoothScroll !== 'undefined') new SmoothScroll();
+    if (typeof NavbarEffects !== 'undefined') new NavbarEffects();
+    if (typeof ProductCards !== 'undefined') new ProductCards();
+    if (typeof WhatsAppIntegration !== 'undefined') new WhatsAppIntegration();
+    if (typeof CursorTrail !== 'undefined') new CursorTrail();
+    if (typeof TextEffects !== 'undefined') new TextEffects();
+    if (typeof StatsCounter !== 'undefined') new StatsCounter();
+    if (typeof ParallaxEffect !== 'undefined') new ParallaxEffect();
+    if (typeof LoadingAnimation !== 'undefined') new LoadingAnimation();
     
     console.log('🎮 FortniteItems - Site chargé avec succès!');
 });
