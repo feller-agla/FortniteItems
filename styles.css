@@ -2283,6 +2283,9 @@ body {
 .product-page {
     min-height: 100vh;
     padding: 120px 0 60px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .back-link {
@@ -3174,21 +3177,24 @@ body {
     }
     
     .product-page {
-        padding: 85px 10px 35px 10px;
+        padding: 85px 5px 35px 5px;
+        width: 100%;
+        max-width: 100vw;
     }
     
     .back-link {
         font-size: 13px;
         margin-bottom: 20px;
+        margin-left: 10px;
     }
     
     .product-visual {
-        padding: 20px 0;
+        padding: 15px 5px;
     }
     
     .product-image-container {
         width: 100%;
-        max-width: 85%;
+        max-width: 90%;
         margin: 0 auto;
     }
     
