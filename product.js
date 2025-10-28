@@ -138,20 +138,20 @@ class ProductPage {
         // Product name
         document.getElementById('productName').textContent = p.name;
 
-        // Product icon or image with overlay
+        // Product icon or image with overlay (same as homepage)
         const iconContainer = document.getElementById('productIcon');
         if (p.image) {
             // Use real image with text overlay
             iconContainer.innerHTML = `
                 <div class="vbucks-image-container">
                     <img src="${p.image}" alt="${p.name}" class="vbucks-official-image">
-                    <div class="vbucks-overlay">
-                        <div class="vbucks-quantity">${p.name}</div>
-                        <div class="vbucks-price">${p.price.toLocaleString()} F</div>
+                    <div class="card-overlay">
+                        <div class="overlay-quantity">${p.name}</div>
+                        <div class="overlay-price">${p.price.toLocaleString()} F</div>
                     </div>
                 </div>
             `;
-            iconContainer.style.cssText = 'background: transparent; padding: 0;';
+            iconContainer.style.cssText = 'background: transparent; padding: 0; border: none; border-radius: 20px; overflow: hidden;';
         } else {
             // Use icon fallback
             iconContainer.innerHTML = `<span class="icon-text" style="${p.iconStyle}">${p.icon}</span>`;
@@ -160,18 +160,6 @@ class ProductPage {
 
         // Product badge
         document.getElementById('productBadge').textContent = p.badge;
-
-        // Prices
-        document.getElementById('productPrice').textContent = `${p.price.toLocaleString()} F`;
-        document.getElementById('productOriginalPrice').textContent = `${p.originalPrice.toLocaleString()} F`;
-
-        // Savings
-        const savingsPercent = Math.round((p.savings / p.originalPrice) * 100);
-        document.getElementById('productSavings').innerHTML = `🔥 Économie : ${p.savings.toLocaleString()} F (-${savingsPercent}%)`;
-
-        // Features
-        const featuresList = document.getElementById('productFeatures');
-        featuresList.innerHTML = p.features.map(f => `<li>✅ ${f}</li>`).join('');
 
         // Full description
         document.getElementById('fullDescription').textContent = p.description;

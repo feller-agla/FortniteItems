@@ -2311,12 +2311,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 0;
 }
 
 .product-image-container {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     height: auto;
     margin: 0 auto;
     display: flex;
@@ -3172,50 +3173,126 @@ body {
         padding: 0 20px;
     }
     
+    .product-page {
+        padding: 85px 10px 35px 10px;
+    }
+    
+    .back-link {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    
+    .product-visual {
+        padding: 20px 0;
+    }
+    
     .product-image-container {
-        width: 280px;
-        height: 280px;
+        width: 100%;
+        max-width: 85%;
         margin: 0 auto;
     }
     
     .product-large-icon {
-        max-width: 280px;
-        font-size: 80px;
-    }
-    
-    .vbucks-quantity {
-        font-size: 24px;
-    }
-    
-    .vbucks-price {
-        font-size: 18px;
-    }
-    
-    .vbucks-overlay {
-        bottom: 15px;
-        left: 15px;
-        right: 15px;
+        max-width: 100%;
+        font-size: 60px;
     }
     
     .vbucks-image-container {
-        max-width: 300px;
-        max-height: 400px;
+        max-width: 100%;
+        aspect-ratio: 3/4;
     }
     
-    .product-image-container {
-        max-width: 300px;
+    .vbucks-official-image {
+        object-fit: contain;
     }
     
-    .product-badge {
-        font-size: 12px;
-        padding: 6px 15px;
-        letter-spacing: 0.5px;
+    .card-overlay {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        padding: 8px 12px;
     }
     
-    .product-name {
-        font-size: 30px;
+    .overlay-quantity {
+        font-size: 18px;
+    }
+    
+    .overlay-price {
+        font-size: 17px;
+    }
+    
+    .product-badge-large {
+        font-size: 11px;
+        padding: 6px 14px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .product-info {
+        padding: 0 10px;
+    }
+    
+    .product-title {
+        font-size: 22px;
         line-height: 1.3;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .product-description h3 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .product-description ul {
+        font-size: 14px;
+    }
+    
+    .delivery-item {
+        padding: 12px;
+    }
+    
+    .delivery-icon {
+        font-size: 28px;
+    }
+    
+    .add-to-cart-large,
+    .buy-now-btn {
+        padding: 13px 20px;
+        font-size: 15px;
+    }
+    
+    .quantity-controls input {
+        width: 50px;
+        font-size: 16px;
+    }
+    
+    .tab-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+        flex: 1;
+        min-width: auto;
+    }
+    
+    .tab-pane {
+        padding: 20px 10px;
+    }
+    
+    .tab-pane h3 {
+        font-size: 18px;
+    }
+    
+    .how-to-step {
+        padding: 15px;
+    }
+    
+    .step-num {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .review-item {
+        padding: 15px;
     }
     
     .product-rating {

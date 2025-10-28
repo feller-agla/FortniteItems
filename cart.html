@@ -154,19 +154,8 @@
                 <div class="checkout-step" id="step2">
                     <h3>💳 Méthode de Paiement</h3>
                     <div class="payment-options">
-                        <div class="payment-option" data-method="card">
-                            <input type="radio" name="payment" id="payCard" value="card">
-                            <label for="payCard">
-                                <span class="payment-icon">💳</span>
-                                <div>
-                                    <strong>Carte Bancaire</strong>
-                                    <small>Visa, Mastercard</small>
-                                </div>
-                            </label>
-                        </div>
-                        
-                        <div class="payment-option" data-method="mobile">
-                            <input type="radio" name="payment" id="payMobile" value="mobile">
+                        <div class="payment-option active" data-method="mobile">
+                            <input type="radio" name="payment" id="payMobile" value="mobile" checked>
                             <label for="payMobile">
                                 <span class="payment-icon">📱</span>
                                 <div>
@@ -176,13 +165,13 @@
                             </label>
                         </div>
                         
-                        <div class="payment-option" data-method="paypal">
-                            <input type="radio" name="payment" id="payPaypal" value="paypal">
-                            <label for="payPaypal">
-                                <span class="payment-icon">💰</span>
+                        <div class="payment-option" data-method="crypto">
+                            <input type="radio" name="payment" id="payCrypto" value="crypto">
+                            <label for="payCrypto">
+                                <span class="payment-icon">₿</span>
                                 <div>
-                                    <strong>PayPal</strong>
-                                    <small>Paiement rapide et sécurisé</small>
+                                    <strong>Crypto</strong>
+                                    <small>Bitcoin, USDT, Ethereum</small>
                                 </div>
                             </label>
                         </div>

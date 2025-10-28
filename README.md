@@ -14,9 +14,8 @@ Plateforme e-commerce complète pour la vente de V-Bucks et Fortnite Crew. Site 
 - Notifications en temps réel
 
 ### 💳 **Paiement Intégré**
-- Cartes bancaires (Visa, Mastercard)
 - Mobile Money (Orange, MTN, Moov)
-- PayPal
+- Crypto (Bitcoin, USDT, Ethereum)
 - Système de codes promo
 
 ### 🎯 **Expérience Utilisateur**
