@@ -215,6 +215,25 @@ def get_all_orders():
     return jsonify(list(orders_db.values())), 200
 
 
+@app.route('/', methods=['GET'])
+def index():
+    """
+    Page d'accueil de l'API
+    """
+    return jsonify({
+        "service": "FortniteItems Backend API",
+        "status": "running",
+        "version": "1.0.0",
+        "endpoints": {
+            "health": "/health",
+            "create_payment": "/api/create-payment [POST]",
+            "webhook": "/api/webhook/lygos [POST]",
+            "order": "/api/orders/<order_id> [GET]",
+            "all_orders": "/api/orders [GET]"
+        }
+    }), 200
+
+
 @app.route('/health', methods=['GET'])
 def health_check():
     """
@@ -228,11 +247,16 @@ def health_check():
 
 
 if __name__ == '__main__':
+    # Utiliser le port de la variable d'environnement (Render) ou 5000 par défaut (local)
+    port = int(os.getenv('PORT', 5000))
+    
     print("🚀 FortniteItems Backend API démarré")
     print(f"📍 URLs de redirection:")
     print(f"   - Success: {SUCCESS_URL}")
     print(f"   - Failure: {FAILURE_URL}")
     print(f"🔑 Lygos API Key: {LYGOS_API_KEY[:20]}...")
-    print(f"🌐 Serveur en écoute sur http://0.0.0.0:5000")
+    print(f"🌐 Serveur en écoute sur http://0.0.0.0:{port}")
     
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # En production (Render), debug=False
+    debug_mode = os.getenv('FLASK_ENV', 'production') == 'development'
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
