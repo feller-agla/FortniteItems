@@ -8,18 +8,26 @@ from flask_cors import CORS
 import requests
 import uuid
 import json
+import os
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app)  # Permettre les requêtes depuis le frontend
 
-# Configuration Lygos
-LYGOS_API_KEY = "lygosapp-9651642a-25f7-4e06-98b9-3617433e335c"
+# Configuration CORS - Permettre les requêtes depuis votre frontend
+ALLOWED_ORIGINS = [
+    "https://fortniteitems.netlify.app",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000"
+]
+CORS(app, origins=ALLOWED_ORIGINS)
+
+# Configuration Lygos - Utiliser variables d'environnement en production
+LYGOS_API_KEY = os.getenv("LYGOS_API_KEY", "lygosapp-9651642a-25f7-4e06-98b9-3617433e335c")
 LYGOS_API_URL = "https://api.lygosapp.com/v1/gateway"
 SHOP_NAME = "FortniteItems"
 
-# URLs de base (à modifier selon votre domaine)
-BASE_URL = "https://fortniteitems.netlify.app"  # En production: https://votredomaine.com
+# URLs de base - Utiliser variable d'environnement en production
+BASE_URL = os.getenv("BASE_URL", "https://fortniteitems.netlify.app")
 SUCCESS_URL = f"{BASE_URL}/success.html"
 FAILURE_URL = f"{BASE_URL}/payment-failed.html"
 
