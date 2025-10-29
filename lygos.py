@@ -19,7 +19,7 @@ LYGOS_API_URL = "https://api.lygosapp.com/v1/gateway"
 SHOP_NAME = "FortniteItems"
 
 # URLs de base (à modifier selon votre domaine)
-BASE_URL = "http://localhost:8000"  # En production: https://votredomaine.com
+BASE_URL = "https://fortniteitems.netlify.app"  # En production: https://votredomaine.com
 SUCCESS_URL = f"{BASE_URL}/success.html"
 FAILURE_URL = f"{BASE_URL}/payment-failed.html"
 
