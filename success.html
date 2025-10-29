@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande Réussie - Fortnite Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FortniteItems</span>
+                    <span class="logo-subtext">SHOP</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#home">Accueil</a>
+                <a href="index.html#products">Produits</a>
+                <a href="index.html#features">Avantages</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Page -->
+    <section class="success-page">
+        <div class="container">
+            <div class="success-content">
+                <div class="success-animation">
+                    <div class="success-circle">
+                        <div class="success-checkmark">✓</div>
+                    </div>
+                </div>
+                
+                <h1 class="success-title">🎉 Commande Réussie !</h1>
+                <p class="success-subtitle">Merci pour ton achat !</p>
+                
+                <div class="order-details">
+                    <h3>📦 Détails de ta Commande</h3>
+                    <div class="detail-line">
+                        <span class="label">Numéro de commande :</span>
+                        <span class="value" id="orderNumber">FN-XXXXX</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="label">Email :</span>
+                        <span class="value" id="orderEmail">email@exemple.com</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="label">Pseudo Fortnite :</span>
+                        <span class="value" id="orderFortniteName">Username</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="label">Plateforme :</span>
+                        <span class="value" id="orderPlatform">PC</span>
+                    </div>
+                </div>
+
+                <div class="delivery-info">
+                    <div class="info-box">
+                        <span class="info-icon">⚡</span>
+                        <div>
+                            <h4>Livraison en cours...</h4>
+                            <p>Tes V-Bucks seront livrés dans les <strong>15-45 minutes</strong></p>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-icon">📧</span>
+                        <div>
+                            <h4>Email de confirmation envoyé</h4>
+                            <p>Vérifie ta boîte mail (et les spams)</p>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-icon">💬</span>
+                        <div>
+                            <h4>Besoin d'aide ?</h4>
+                            <p>Contacte-nous sur WhatsApp : <strong>+229 65 62 36 91</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="next-steps">
+                    <h3>📝 Prochaines Étapes</h3>
+                    <ol>
+                        <li>Tu vas recevoir un email de confirmation</li>
+                        <li>Nos équipes vont traiter ta commande</li>
+                        <li>Tes V-Bucks seront livrés sur ton compte Fortnite</li>
+                        <li>Tu recevras une notification une fois la livraison effectuée</li>
+                    </ol>
+                </div>
+
+                <div class="success-actions">
+                    <a href="index.html#products" class="btn-primary">
+                        <span>🛍️ Continuer mes Achats</span>
+                    </a>
+                    <a href="https://wa.me/22965623691?text=Bonjour,%20j'ai%20une%20question%20concernant%20ma%20commande" 
+                       class="btn-secondary" target="_blank">
+                        <span>💬 Support WhatsApp</span>
+                    </a>
+                </div>
+
+                <div class="guarantee-reminder">
+                    <p>✅ <strong>Garantie 100% Satisfait ou Remboursé</strong></p>
+                    <p>Si tu ne reçois pas tes V-Bucks dans les 45 minutes, contacte-nous immédiatement !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 FortniteItems. Tous droits réservés.</p>
+            <p class="disclaimer">Fortnite est une marque déposée d'Epic Games. Ce site est indépendant.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        // Charger les infos de commande depuis localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const pendingOrder = localStorage.getItem('fortniteshop_pending_order');
+            
+            if (pendingOrder) {
+                const order = JSON.parse(pendingOrder);
+                
+                // Générer un numéro de commande
+                const orderNumber = 'FN' + Date.now() + Math.floor(Math.random() * 1000);
+                
+                // Afficher les infos
+                document.getElementById('orderNumber').textContent = orderNumber;
+                document.getElementById('orderEmail').textContent = order.epicEmail || 'N/A';
+                document.getElementById('orderFortniteName').textContent = order.fortniteName || 'N/A';
+                
+                // Formatter la plateforme
+                const platformNames = {
+                    'xbox': 'Xbox (One, Series X/S)',
+                    'ps': 'PlayStation (4, 5)',
+                    'pc': 'PC (Epic Games)',
+                    'switch': 'Nintendo Switch',
+                    'mobile': 'Mobile (iOS/Android)'
+                };
+                document.getElementById('orderPlatform').textContent = platformNames[order.platform] || order.platform || 'N/A';
+                
+                // Sauvegarder l'historique des commandes
+                const orders = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+                orders.push({
+                    orderNumber: orderNumber,
+                    date: new Date().toISOString(),
+                    items: order.items,
+                    email: order.epicEmail,
+                    fortniteName: order.fortniteName,
+                    platform: order.platform
+                });
+                localStorage.setItem('fortniteshop_orders', JSON.stringify(orders));
+                
+                // Nettoyer la commande en attente et le panier
+                localStorage.removeItem('fortniteshop_pending_order');
+                cart.clearCart();
+                
+                // Animation de la checkmark
+                setTimeout(() => {
+                    document.querySelector('.success-circle').classList.add('animate');
+                }, 500);
+            } else {
+                // Si pas de commande en attente, afficher message générique
+                document.getElementById('orderNumber').textContent = 'Commande en cours...';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement Échoué - Fortnite Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FortniteItems</span>
+                    <span class="logo-subtext">SHOP</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#home">Accueil</a>
+                <a href="index.html#products">Produits</a>
+                <a href="index.html#features">Avantages</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Failed Payment Page -->
+    <section class="failed-page">
+        <div class="container">
+            <div class="failed-content">
+                <div class="failed-animation">
+                    <div class="failed-circle">
+                        <div class="failed-icon">✕</div>
+                    </div>
+                </div>
+                
+                <h1 class="failed-title">😔 Paiement Échoué</h1>
+                <p class="failed-subtitle">Nous n'avons pas pu traiter ton paiement</p>
+                
+                <div class="failed-reasons">
+                    <h3>❓ Raisons possibles :</h3>
+                    <ul>
+                        <li>❌ Solde insuffisant sur ton compte Mobile Money</li>
+                        <li>❌ Transaction annulée manuellement</li>
+                        <li>❌ Problème de connexion réseau</li>
+                        <li>❌ Limite de transaction dépassée</li>
+                        <li>❌ Numéro de téléphone incorrect</li>
+                    </ul>
+                </div>
+
+                <div class="order-info">
+                    <h3>📦 Ton Panier est Toujours Là !</h3>
+                    <p>Ne t'inquiète pas, tes articles sont toujours dans ton panier. Tu peux réessayer quand tu veux !</p>
+                    <div id="cartPreview"></div>
+                </div>
+
+                <div class="next-actions">
+                    <h3>💡 Que Faire Maintenant ?</h3>
+                    <div class="action-cards">
+                        <div class="action-card">
+                            <span class="action-icon">🔄</span>
+                            <h4>Réessayer le Paiement</h4>
+                            <p>Vérifie ton solde et réessaie</p>
+                            <a href="cart.html" class="action-btn primary">
+                                Retour au Panier
+                            </a>
+                        </div>
+                        
+                        <div class="action-card">
+                            <span class="action-icon">💬</span>
+                            <h4>Besoin d'Aide ?</h4>
+                            <p>Notre équipe est là pour toi</p>
+                            <a href="https://wa.me/22965623691?text=Bonjour,%20j'ai%20un%20problème%20avec%20mon%20paiement" 
+                               class="action-btn secondary" target="_blank">
+                                Contacter Support
+                            </a>
+                        </div>
+                        
+                        <div class="action-card">
+                            <span class="action-icon">🛍️</span>
+                            <h4>Continuer à Shopper</h4>
+                            <p>Découvre d'autres offres</p>
+                            <a href="index.html#products" class="action-btn tertiary">
+                                Voir les Produits
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3>🆘 Problèmes Fréquents & Solutions</h3>
+                    <div class="faq-item">
+                        <h4>💸 "Solde insuffisant"</h4>
+                        <p><strong>Solution :</strong> Recharge ton compte Mobile Money et réessaie. Assure-toi d'avoir au moins le montant total + frais de transaction.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>📱 "Numéro invalide"</h4>
+                        <p><strong>Solution :</strong> Vérifie que tu as entré le bon numéro au format international (ex: +229 XX XX XX XX).</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>⏱️ "Transaction expirée"</h4>
+                        <p><strong>Solution :</strong> Tu as peut-être mis trop de temps à valider. Retourne au panier et relance le paiement.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>🔒 "Transaction refusée"</h4>
+                        <p><strong>Solution :</strong> Contacte ton opérateur (Orange/MTN/Moov) pour débloquer les transactions en ligne ou augmenter ta limite.</p>
+                    </div>
+                </div>
+
+                <div class="payment-tips">
+                    <h3>💡 Conseils pour Réussir ton Paiement</h3>
+                    <div class="tips-grid">
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p>Vérifie ton solde avant de payer</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p>Assure-toi d'avoir du réseau</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p>Entre le bon numéro de téléphone</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p>Valide rapidement la transaction</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p>Active les paiements en ligne</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p>Contacte-nous en cas de problème</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-reminder">
+                    <p>🔒 <strong>Sécurité Garantie</strong></p>
+                    <p>Tous nos paiements sont 100% sécurisés. Aucune transaction n'a été effectuée sur ton compte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 FortniteItems. Tous droits réservés.</p>
+            <p class="disclaimer">Fortnite est une marque déposée d'Epic Games. Ce site est indépendant.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        // Charger un aperçu du panier
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartPreview = document.getElementById('cartPreview');
+            
+            if (cart && cart.items && cart.items.length > 0) {
+                let html = '<div class="cart-summary-preview">';
+                html += '<h4>Articles dans ton panier :</h4>';
+                
+                cart.items.forEach(item => {
+                    html += `
+                        <div class="cart-item-preview">
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-qty">x${item.quantity}</span>
+                            <span class="item-price">${Math.round(item.price * item.quantity).toLocaleString()} F</span>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                    <div class="cart-total-preview">
+                        <strong>Total :</strong>
+                        <strong>${Math.round(cart.getTotal()).toLocaleString()} F</strong>
+                    </div>
+                `;
+                html += '</div>';
+                
+                cartPreview.innerHTML = html;
+            } else {
+                cartPreview.innerHTML = '<p class="info">Ton panier est vide.</p>';
+            }
+            
+            // Animation de l'icône d'erreur
+            setTimeout(() => {
+                document.querySelector('.failed-circle').classList.add('animate');
+            }, 300);
+        });
+    </script>
+</body>
+</html>

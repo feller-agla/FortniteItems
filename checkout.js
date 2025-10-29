@@ -48,13 +48,15 @@ class CheckoutManager {
             });
         }
 
-        // Payment method selection
+        // Payment method selection avec style visuel
         document.querySelectorAll('.payment-option input[type="radio"]').forEach(radio => {
             radio.addEventListener('change', (e) => {
+                // Retirer la classe 'active' de toutes les options
                 document.querySelectorAll('.payment-option').forEach(opt => {
-                    opt.classList.remove('selected');
+                    opt.classList.remove('active');
                 });
-                e.target.closest('.payment-option').classList.add('selected');
+                // Ajouter la classe 'active' à l'option sélectionnée
+                e.target.closest('.payment-option').classList.add('active');
             });
         });
     }
@@ -130,6 +132,8 @@ class CheckoutManager {
 
 // Step navigation
 function nextStep(step) {
+    console.log('nextStep appelé avec step:', step);
+    
     if (step === 2) {
         // Validate step 1
         const fortniteName = document.getElementById('fortniteName').value.trim();
@@ -149,30 +153,161 @@ function nextStep(step) {
     }
 
     // Hide all steps
+    console.log('Masquage de toutes les étapes');
     document.querySelectorAll('.checkout-step').forEach(s => {
         s.classList.remove('active');
+        console.log('Step masquée:', s.id);
     });
 
     // Show selected step
-    document.getElementById(`step${step}`).classList.add('active');
+    const targetStep = document.getElementById(`step${step}`);
+    console.log('Affichage étape:', `step${step}`, targetStep);
+    
+    if (targetStep) {
+        targetStep.classList.add('active');
+        console.log('✅ Étape', step, 'affichée');
+    } else {
+        console.error('❌ Étape introuvable:', `step${step}`);
+    }
 }
 
 // Process payment
 function processPayment() {
-    const selectedPayment = document.querySelector('input[name="payment"]:checked');
+    console.log('========================================');
+    console.log('🚀 processPayment appelé');
+    console.log('========================================');
     
+    const selectedPayment = document.querySelector('input[name="payment"]:checked');
+    console.log('Paiement sélectionné:', selectedPayment);
+    
+    // VALIDATION: Vérifier qu'un moyen de paiement est sélectionné
     if (!selectedPayment) {
+        console.log('❌ Aucun paiement sélectionné!');
         checkout.showError('Veuillez sélectionner un mode de paiement');
-        return;
+        return false;
     }
 
-    // Show processing step
-    nextStep(3);
+    const paymentMethod = selectedPayment.value;
+    console.log('💳 Méthode de paiement:', paymentMethod);
+    
+    // Si Crypto, afficher message coming soon
+    if (paymentMethod === 'crypto') {
+        console.log('₿ Crypto sélectionné - Coming Soon');
+        checkout.showError('Paiement Crypto - Coming Soon 🚀');
+        return false;
+    }
+    
+    // Si Mobile Money, afficher traitement puis rediriger vers Lygos
+    if (paymentMethod === 'mobile') {
+        console.log('📱 Mobile Money sélectionné');
+        console.log('⏳ Affichage de l\'étape de traitement...');
+        
+        // Afficher l'étape de traitement (Step 3)
+        nextStep(3);
+        
+        console.log('⏰ Timer de 2 secondes avant redirection...');
+        // Attendre 2 secondes pour que l'utilisateur voie le message "Traitement en cours"
+        setTimeout(() => {
+            console.log('✅ Redirection vers Lygos maintenant...');
+            redirectToLygosPayment();
+        }, 2000);
+        
+        return true;
+    }
 
-    // Simulate payment processing
-    setTimeout(() => {
-        completeOrder();
-    }, 3000);
+    // Ne devrait jamais arriver ici avec la config actuelle
+    console.log('⚠️ Méthode de paiement inconnue:', paymentMethod);
+    checkout.showError('Méthode de paiement non supportée');
+    return false;
+}
+
+// Redirect to Lygos payment link based on cart items
+async function redirectToLygosPayment() {
+    console.log('=== DEBUT redirectToLygosPayment ===');
+    console.log('cart object:', cart);
+    console.log('cart.items:', cart.items);
+    
+    const cartItems = cart.items;
+    
+    if (!cartItems || cartItems.length === 0) {
+        console.log('ERREUR: Panier vide');
+        checkout.showError('Votre panier est vide');
+        return false;
+    }
+    
+    console.log('Nombre d\'articles:', cartItems.length);
+    
+    // Récupérer les infos du formulaire
+    const fortniteName = document.getElementById('fortniteName').value;
+    const epicEmail = document.getElementById('epicEmail').value;
+    const platform = document.getElementById('platform').value;
+    
+    // Calculer le montant total
+    const totalAmount = cart.getTotal();
+    
+    console.log('Montant total:', totalAmount);
+    
+    // Préparer les données pour l'API
+    const paymentData = {
+        amount: totalAmount,
+        items: cartItems,
+        customer: {
+            fortniteName: fortniteName,
+            epicEmail: epicEmail,
+            platform: platform
+        }
+    };
+    
+    console.log('Données envoyées à l\'API:', paymentData);
+    
+    try {
+        // Appeler l'API backend pour créer le paiement
+        const response = await fetch('http://localhost:5000/api/create-payment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(paymentData)
+        });
+        
+        const result = await response.json();
+        console.log('Réponse de l\'API:', result);
+        
+        if (result.success && result.payment_link) {
+            console.log('✅ Lien de paiement généré:', result.payment_link);
+            
+            // Sauvegarder les infos de commande avec l'order_id
+            localStorage.setItem('fortniteshop_pending_order', JSON.stringify({
+                order_id: result.order_id,
+                fortniteName: fortniteName,
+                epicEmail: epicEmail,
+                platform: platform,
+                items: cartItems,
+                amount: totalAmount,
+                timestamp: new Date().toISOString()
+            }));
+            
+            // Rediriger vers la page de paiement Lygos
+            console.log('🚀 Redirection vers Lygos...');
+            window.location.href = result.payment_link;
+            
+            return true;
+        } else {
+            console.log('❌ Erreur lors de la création du paiement:', result.error);
+            checkout.showError(result.error || 'Erreur lors de la création du paiement');
+            
+            // Retourner à l'étape 2
+            nextStep(2);
+            return false;
+        }
+    } catch (error) {
+        console.error('❌ Erreur réseau:', error);
+        checkout.showError('Erreur de connexion. Vérifiez que le serveur backend est démarré.');
+        
+        // Retourner à l'étape 2
+        nextStep(2);
+        return false;
+    }
 }
 
 // Complete order

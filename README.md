@@ -35,6 +35,8 @@ FortniteItems/
 ├── index.html              # Page d'accueil / Landing page
 ├── product.html            # Page détails produit
 ├── cart.html               # Page panier & checkout
+├── success.html            # Page confirmation commande ✨ NEW
+├── payment-failed.html     # Page échec paiement ✨ NEW
 │
 ├── styles.css              # Tous les styles (46KB)
 │
@@ -43,7 +45,8 @@ FortniteItems/
 ├── product.js              # Chargement des produits
 ├── checkout.js             # Processus de paiement
 │
-└── README.md               # Ce fichier
+├── README.md               # Ce fichier
+└── LYGOS_CONFIG.md         # Configuration paiement Lygos ✨ NEW
 ```
 
 ---
