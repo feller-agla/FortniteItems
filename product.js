@@ -135,9 +135,6 @@ class ProductPage {
         // Update page title
         document.title = `${p.name} - Fortnite Shop`;
 
-        // Product name
-        document.getElementById('productName').textContent = p.name;
-
         // Product icon or image with overlay (same as homepage)
         const iconContainer = document.getElementById('productIcon');
         if (p.image) {
