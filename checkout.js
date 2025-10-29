@@ -260,9 +260,12 @@ async function redirectToLygosPayment() {
     
     console.log('Données envoyées à l\'API:', paymentData);
     
+    // URL de l'API - Production sur Render
+    const API_URL = 'https://fortniteitems.onrender.com';
+    
     try {
         // Appeler l'API backend pour créer le paiement
-        const response = await fetch('http://localhost:5000/api/create-payment', {
+        const response = await fetch(`${API_URL}/api/create-payment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
