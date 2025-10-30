@@ -5,7 +5,7 @@
 // Configuration API Backend
 // Pour tester en LOCAL, utilise : http://localhost:5000
 // Pour PRODUCTION, utilise l'URL Render après déploiement
-const API_URL = 'http://localhost:5000';  // Backend Lygos
+const API_URL = 'https://fortniteitems.onrender.com';  // Backend Lygos sur Render
 const PAYMENT_PROVIDER = 'lygos';  // Lygos payment provider
 
 let isProcessingPayment = false;
