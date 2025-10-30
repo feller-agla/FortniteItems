@@ -2,6 +2,16 @@
 // CHECKOUT PROCESS MANAGER
 // ===========================
 
+// Configuration API Backend
+// Pour tester en LOCAL, utilise : http://localhost:5000
+// Pour PRODUCTION, utilise l'URL Render après déploiement
+const API_URL = 'http://localhost:5000';  // Backend Lygos
+const PAYMENT_PROVIDER = 'lygos';  // Lygos payment provider
+
+let isProcessingPayment = false;
+let processingStatusTimer;
+let processingHintTimer;
+
 class CheckoutManager {
     constructor() {
         this.currentStep = 1;
@@ -120,6 +130,7 @@ class CheckoutManager {
         if (modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            resetProcessingUI();
         }
     }
 
@@ -129,6 +140,82 @@ class CheckoutManager {
         return `FN${timestamp}${random}`;
     }
 }
+
+function updateProcessingStatus(message) {
+    const statusElement = document.getElementById('processingStatus');
+    if (statusElement) {
+        statusElement.textContent = message;
+    }
+}
+
+function hideProcessingHint() {
+    const hint = document.getElementById('processingHint');
+    if (hint) {
+        hint.classList.remove('show');
+    }
+}
+
+function showProcessingHint() {
+    const hint = document.getElementById('processingHint');
+    if (hint) {
+        hint.classList.add('show');
+    }
+    // Autoriser une nouvelle tentative
+    isProcessingPayment = false;
+}
+
+function startProcessingUI() {
+    updateProcessingStatus('Initialisation du paiement sécurisé...');
+    hideProcessingHint();
+    clearTimeout(processingStatusTimer);
+    clearTimeout(processingHintTimer);
+
+    processingStatusTimer = setTimeout(() => {
+        updateProcessingStatus('Connexion à Lygos... Cela peut prendre quelques secondes.');
+    }, 1200);
+
+    processingHintTimer = setTimeout(() => {
+        updateProcessingStatus('Toujours en cours... Lygos peut mettre jusqu\'à 10 secondes à s\'ouvrir.');
+        showProcessingHint();
+    }, 6000);
+}
+
+function resetProcessingUI() {
+    clearTimeout(processingStatusTimer);
+    clearTimeout(processingHintTimer);
+    hideProcessingHint();
+    isProcessingPayment = false;
+}
+
+function retryPaymentRedirect() {
+    if (isProcessingPayment) {
+        return;
+    }
+    isProcessingPayment = true;
+    startProcessingUI();
+    updateProcessingStatus('Nouvelle tentative de redirection en cours...');
+    warmupBackend();
+
+    setTimeout(() => {
+        redirectToLygosPayment();
+    }, 120);
+}
+
+async function warmupBackend() {
+    try {
+        await fetch(`${API_URL}/health`, {
+            method: 'GET',
+            cache: 'no-store'
+        });
+        console.log('🔥 Backend warmup OK');
+    } catch (error) {
+        console.warn('⚠️ Échec du warmup backend:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => warmupBackend(), 600);
+});
 
 // Step navigation
 function nextStep(step) {
@@ -190,6 +277,11 @@ function processPayment() {
     const paymentMethod = selectedPayment.value;
     console.log('💳 Méthode de paiement:', paymentMethod);
     
+    if (isProcessingPayment) {
+        console.log('⚠️ Un paiement est déjà en cours');
+        return false;
+    }
+    
     // Si Crypto, afficher message coming soon
     if (paymentMethod === 'crypto') {
         console.log('₿ Crypto sélectionné - Coming Soon');
@@ -204,13 +296,14 @@ function processPayment() {
         
         // Afficher l'étape de traitement (Step 3)
         nextStep(3);
-        
-        console.log('⏰ Timer de 2 secondes avant redirection...');
-        // Attendre 2 secondes pour que l'utilisateur voie le message "Traitement en cours"
+        startProcessingUI();
+        isProcessingPayment = true;
+        warmupBackend();
+
+        console.log('🚀 Initialisation immédiate du paiement Lygos');
         setTimeout(() => {
-            console.log('✅ Redirection vers Lygos maintenant...');
             redirectToLygosPayment();
-        }, 2000);
+        }, 120);
         
         return true;
     }
@@ -232,6 +325,8 @@ async function redirectToLygosPayment() {
     if (!cartItems || cartItems.length === 0) {
         console.log('ERREUR: Panier vide');
         checkout.showError('Votre panier est vide');
+        resetProcessingUI();
+        nextStep(1);
         return false;
     }
     
@@ -259,9 +354,7 @@ async function redirectToLygosPayment() {
     };
     
     console.log('Données envoyées à l\'API:', paymentData);
-    
-    // URL de l'API - Production sur Render
-    const API_URL = 'https://fortniteitems.onrender.com';
+    updateProcessingStatus('Création de la session de paiement sécurisée...');
     
     try {
         // Appeler l'API backend pour créer le paiement
@@ -277,27 +370,33 @@ async function redirectToLygosPayment() {
         console.log('Réponse de l\'API:', result);
         
         if (result.success && result.payment_link) {
-            console.log('✅ Lien de paiement généré:', result.payment_link);
+            console.log('✅ Transaction créée:', result.transaction_id);
+            console.log('✅ Lien de paiement:', result.payment_link);
+            updateProcessingStatus('Redirection vers la page de paiement sécurisée...');
             
             // Sauvegarder les infos de commande avec l'order_id
             localStorage.setItem('fortniteshop_pending_order', JSON.stringify({
                 order_id: result.order_id,
+                transaction_id: result.transaction_id,
                 fortniteName: fortniteName,
                 epicEmail: epicEmail,
                 platform: platform,
                 items: cartItems,
                 amount: totalAmount,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                payment_provider: PAYMENT_PROVIDER
             }));
             
-            // Rediriger vers la page de paiement Lygos
-            console.log('🚀 Redirection vers Lygos...');
+            // Redirection vers FedaPay
+            console.log(`🚀 Redirection vers FedaPay...`);
+            resetProcessingUI();
             window.location.href = result.payment_link;
             
             return true;
         } else {
             console.log('❌ Erreur lors de la création du paiement:', result.error);
             checkout.showError(result.error || 'Erreur lors de la création du paiement');
+            resetProcessingUI();
             
             // Retourner à l'étape 2
             nextStep(2);
@@ -306,6 +405,7 @@ async function redirectToLygosPayment() {
     } catch (error) {
         console.error('❌ Erreur réseau:', error);
         checkout.showError('Erreur de connexion. Vérifiez que le serveur backend est démarré.');
+        resetProcessingUI();
         
         // Retourner à l'étape 2
         nextStep(2);

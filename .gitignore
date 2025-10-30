@@ -29,6 +29,8 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+.env.fedapay
+.env.lygos
 
 # Database
 *.db
@@ -38,7 +40,10 @@ Thumbs.db
 # Node (si vous ajoutez npm plus tard)
 node_modules/
 package-lock.json
+*.sh
 
 # Backup files
 *.bak
 *.backup
+fedapay_api.py
+render-fedapay.yaml

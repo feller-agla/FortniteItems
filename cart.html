@@ -130,15 +130,20 @@
             <div class="checkout-steps">
                 <!-- Step 1: Account Info -->
                 <div class="checkout-step active" id="step1">
-                    <h3>📧 Informations de Compte</h3>
+                    <h3>📧 Informations de Livraison</h3>
+                    <p style="margin-bottom: 20px; color: #aaa; font-size: 14px;">
+                        ℹ️ Tu recevras par email les identifiants d'un compte Epic Games contenant tes V-Bucks. 
+                        Ajoute ce compte en ami, attends 48h, puis offre-toi ce que tu veux sur ton compte principal !
+                    </p>
                     <form id="accountForm">
                         <div class="form-group">
-                            <label>Pseudo Fortnite *</label>
+                            <label>Pseudo Fortnite (ton compte principal) *</label>
                             <input type="text" id="fortniteName" required placeholder="Ton pseudo exact">
                         </div>
                         <div class="form-group">
-                            <label>Email Epic Games *</label>
+                            <label>Email pour recevoir les identifiants *</label>
                             <input type="email" id="epicEmail" required placeholder="email@exemple.com">
+                            <small style="color: #888; font-size: 12px;">Tu recevras les identifiants du compte secondaire à cette adresse</small>
                         </div>
                         <div class="form-group">
                             <label>Plateforme *</label>
@@ -192,8 +197,14 @@
                 <div class="checkout-step" id="step3">
                     <div class="processing">
                         <div class="spinner"></div>
-                        <h3>Traitement en cours...</h3>
-                        <p>Veuillez patienter pendant que nous vérifions votre paiement</p>
+                        <h3>Initialisation du paiement sécurisé...</h3>
+                        <p class="processing-status" id="processingStatus">
+                            Connexion à Lygos en cours (1-3 secondes)
+                        </p>
+                        <div class="processing-hint" id="processingHint">
+                            <p>🔄 Cela prend plus de temps que prévu. Clique ci-dessous pour relancer l'ouverture de la page de paiement.</p>
+                            <button type="button" class="retry-btn" onclick="retryPaymentRedirect()">Relancer le paiement</button>
+                        </div>
                     </div>
                 </div>
 
@@ -202,7 +213,7 @@
                     <div class="success-message">
                         <div class="success-icon">✅</div>
                         <h3>Commande Réussie !</h3>
-                        <p>Tes V-Bucks ont été livrés sur ton compte Fortnite</p>
+                        <p>Tu vas recevoir les identifiants du compte par email sous 15-45 minutes.</p>
                         <div class="order-details">
                             <p><strong>Numéro de commande:</strong> #<span id="orderNumber"></span></p>
                             <p><strong>Email de confirmation envoyé à:</strong> <span id="confirmEmail"></span></p>
@@ -213,6 +224,16 @@
             </div>
         </div>
     </div>
+
+    <!-- WhatsApp Support Button (Floating) -->
+    <a href="https://wa.me/22965623691?text=Bonjour,%20j'ai%20besoin%20d'aide%20avec%20ma%20commande" 
+       class="whatsapp-float" 
+       target="_blank"
+       aria-label="Support WhatsApp">
+        <svg viewBox="0 0 32 32" fill="currentColor" width="28" height="28">
+            <path d="M16.002 0C7.164 0 0 7.164 0 16.002c0 2.827.736 5.482 2.023 7.787L.057 31.972l8.355-2.193c2.215 1.203 4.76 1.893 7.59 1.893 8.838 0 16.002-7.164 16.002-16.002S24.84 0 16.002 0zm9.388 22.594c-.392.976-1.943 1.794-2.827 1.91-.758.098-1.747.139-2.817-.176-1.066-.315-2.433-.732-4.197-1.432-7.368-2.926-12.17-10.336-12.54-10.814-.37-.478-3.02-4.016-3.02-7.66 0-3.644 1.91-5.433 2.588-6.168.678-.735 1.479-.92 1.972-.92.493 0 .986.004 1.418.026.455.022.987-.174 1.543 1.18.556 1.354 1.899 4.622 2.065 4.958.166.336.277.728.055 1.173-.222.445-.333.723-.666 1.113-.333.39-.699.87-1 1.173-.333.336-.678.698-.291 1.37.387.672 1.722 2.84 3.696 4.603 2.54 2.27 4.68 2.976 5.348 3.311.668.335 1.056.28 1.443-.166.387-.446 1.66-1.937 2.103-2.605.443-.668.887-.557 1.494-.335.607.222 3.851 1.816 4.519 2.15.668.335 1.112.502 1.279.777.167.276.167 1.602-.225 2.578z"/>
+        </svg>
+    </a>
 
     <script src="script.js"></script>
     <script src="cart.js"></script>

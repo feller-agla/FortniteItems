@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide d'Utilisation - FortniteItems</title>
+    <link rel="icon" type="image/png" href="/assets/favicnon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #fff;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2em;
+        }
+        .step-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .step-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .step-content {
+            padding-left: 80px;
+        }
+        .step-description {
+            color: #ccc;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .important-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .important-box strong {
+            color: #ffc107;
+        }
+        .info-box {
+            background: rgba(33, 150, 243, 0.1);
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .info-box strong {
+            color: #2196f3;
+        }
+        .success-box {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .success-box strong {
+            color: #4caf50;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            z-index: -1;
+        }
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+        }
+        .timeline-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .timeline-label {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        .faq-section {
+            margin-top: 50px;
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        .faq-answer {
+            color: #ccc;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .support-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        .support-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Guide d'Utilisation des V-Bucks</h1>
+            <p class="subtitle">Comment recevoir et utiliser tes V-Bucks FortniteItems</p>
+        </header>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon">🛒</div>
+                <div class="timeline-label">Commande</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">📧</div>
+                <div class="timeline-label">Email<br>(15-45 min)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">👥</div>
+                <div class="timeline-label">Ajout Ami</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">⏰</div>
+                <div class="timeline-label">Attente<br>(48h)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🎁</div>
+                <div class="timeline-label">Cadeaux !</div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-title">Passe ta Commande</div>
+            </div>
+            <div class="step-content">
+                <p class="step-description">
+                    Choisis le pack de V-Bucks que tu veux, ajoute-le au panier et paie en toute sécurité avec Mobile Money ou Crypto.
+                </p>
+                <div class="info-box">
+                    <strong>📝 Info importante :</strong> L'email que tu fournis sera utilisé pour t'envoyer les identifiants du compte. Vérifie bien qu'il est correct !
+                </div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-title">Reçois les Identifiants par Email</div>
+            </div>
+            <div class="step-content">
+                <p class="step-description">
+                    Dans les <strong>15 à 45 minutes</strong> après ton paiement, tu reçois un email avec :
+                </p>
+                <ul style="margin-left: 20px; color: #ccc;">
+                    <li>📧 Email du compte Epic Games</li>
+                    <li>🔑 Mot de passe du compte</li>
+                    <li>📋 Instructions détaillées</li>
+                </ul>
+                <div class="important-box">
+                    <strong>⚠️ Attention :</strong> Vérifie tes spams si tu ne vois pas l'email ! Il peut parfois arriver là-bas.
+                </div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <div class="step-title">Connecte-toi au Compte Secondaire</div>
+            </div>
+            <div class="step-content">
+                <p class="step-description">
+                    Utilise les identifiants reçus pour te connecter à ce compte sur Fortnite :
+                </p>
+                <ol style="margin-left: 20px; color: #ccc;">
+                    <li>Lance Fortnite sur ta plateforme (Xbox, PS, PC, Mobile...)</li>
+                    <li>Déconnecte-toi de ton compte actuel</li>
+                    <li>Connecte-toi avec l'email et le mot de passe reçus</li>
+                    <li>Vérifie que les V-Bucks sont bien présents dans ton solde</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <div class="step-title">Ajoute ton Compte Principal en Ami</div>
+            </div>
+            <div class="step-content">
+                <p class="step-description">
+                    Depuis le compte secondaire (celui avec les V-Bucks), ajoute ton compte principal en ami :
+                </p>
+                <ol style="margin-left: 20px; color: #ccc;">
+                    <li>Va dans le menu Social/Amis de Fortnite</li>
+                    <li>Cherche ton pseudo habituel (ton compte principal)</li>
+                    <li>Envoie une demande d'ami</li>
+                    <li>Déconnecte-toi et reconnecte-toi à ton compte principal</li>
+                    <li>Accepte la demande d'ami du compte secondaire</li>
+                </ol>
+                <div class="success-box">
+                    <strong>✅ C'est fait !</strong> Les deux comptes sont maintenant amis. Place à l'étape suivante...
+                </div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <div class="step-title">Attends 48 Heures</div>
+            </div>
+            <div class="step-content">
+                <p class="step-description">
+                    C'est l'étape la plus importante : tu dois <strong>patienter 48 heures</strong> avant de pouvoir offrir des cadeaux.
+                </p>
+                <div class="important-box">
+                    <strong>⏰ Pourquoi 48h ?</strong><br>
+                    C'est une règle de sécurité d'Epic Games : deux comptes doivent être amis depuis au moins 48 heures pour pouvoir s'échanger des cadeaux. 
+                    Ce n'est pas une règle de notre service, c'est Epic Games qui l'impose.
+                </div>
+                <div class="info-box">
+                    <strong>💡 Astuce :</strong> Note l'heure exacte à laquelle tu as ajouté l'ami, et ajoute 48h. C'est l'heure à partir de laquelle tu pourras offrir !
+                </div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <div class="step-title">Offre-toi ce que tu veux !</div>
+            </div>
+            <div class="step-content">
+                <p class="step-description">
+                    Après 48h, c'est le moment tant attendu ! Reconnecte-toi au compte secondaire et offre-toi des cadeaux :
+                </p>
+                <ol style="margin-left: 20px; color: #ccc;">
+                    <li>Connecte-toi au compte secondaire (celui avec les V-Bucks)</li>
+                    <li>Va dans la Boutique Fortnite</li>
+                    <li>Choisis le skin, l'emote ou l'item que tu veux</li>
+                    <li>Clique sur "Acheter en cadeau" (au lieu de "Acheter")</li>
+                    <li>Sélectionne ton compte principal dans ta liste d'amis</li>
+                    <li>Confirme l'achat !</li>
+                </ol>
+                <div class="success-box">
+                    <strong>🎉 Félicitations !</strong> Le cadeau apparaît instantanément sur ton compte principal. Tu peux recommencer l'opération pour chaque item que tu veux !
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 style="text-align: center; margin-bottom: 30px;">❓ Questions Fréquentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">🔒 C'est sûr ? Mon compte ne risque rien ?</div>
+                <div class="faq-answer">
+                    Oui, c'est 100% sûr ! Le système d'offres entre amis est une fonctionnalité officielle d'Epic Games. 
+                    Plus de 10 000 clients ont utilisé notre service sans aucun problème.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">⏱️ Je n'ai pas reçu l'email, que faire ?</div>
+                <div class="faq-answer">
+                    1) Vérifie tes spams/courriers indésirables<br>
+                    2) Attends jusqu'à 45 minutes maximum<br>
+                    3) Si toujours rien, contacte-nous sur WhatsApp : +229 65 62 36 91
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">🔑 Les identifiants ne fonctionnent pas, que faire ?</div>
+                <div class="faq-answer">
+                    Contacte-nous immédiatement sur WhatsApp avec ta preuve de paiement. 
+                    Nous te fournirons de nouveaux identifiants dans les 10 minutes.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">⏰ Dois-je vraiment attendre 48h ?</div>
+                <div class="faq-answer">
+                    Oui, c'est obligatoire. C'est une règle de sécurité d'Epic Games qu'on ne peut pas contourner. 
+                    Mais une fois les 48h passées, tu peux t'offrir autant de cadeaux que tu veux instantanément !
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">🎮 Ça fonctionne sur toutes les plateformes ?</div>
+                <div class="faq-answer">
+                    Oui ! Xbox, PlayStation, PC, Nintendo Switch et Mobile (iOS/Android). 
+                    Le système d'offres entre amis fonctionne entre toutes les plateformes.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">💰 Je peux utiliser tous les V-Bucks ?</div>
+                <div class="faq-answer">
+                    Oui ! Tu peux offrir autant de cadeaux que tu veux jusqu'à épuisement des V-Bucks du compte secondaire.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">🔄 Puis-je garder le compte secondaire ?</div>
+                <div class="faq-answer">
+                    Oui, mais une fois les V-Bucks utilisés, le compte n'a plus d'intérêt. 
+                    Tu peux le supprimer de ta liste d'amis si tu veux.
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p style="color: #aaa; margin-bottom: 20px;">
+                Besoin d'aide ? Notre équipe est disponible 24/7 pour t'accompagner !
+            </p>
+            <a href="https://wa.me/22965623691?text=Bonjour,%20j'ai%20besoin%20d'aide%20avec%20ma%20commande" 
+               class="support-btn" target="_blank">
+                💬 Contacter le Support WhatsApp
+            </a>
+            <p style="margin-top: 40px; color: #666; font-size: 0.9em;">
+                FortniteItems - Guide d'Utilisation v1.0<br>
+                © 2025 Tous droits réservés
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -3035,9 +3035,66 @@ body {
     animation: spin 1s linear infinite;
 }
 
+.processing h3 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.processing-status {
+    font-size: 1rem;
+    color: rgba(174, 186, 255, 0.85);
+    margin-bottom: 20px;
+}
+
+.processing-hint {
+    display: none;
+    margin: 25px auto 0;
+    max-width: 420px;
+    background: rgba(102, 126, 234, 0.12);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+    border-radius: 16px;
+    padding: 18px 20px;
+    color: rgba(193, 206, 255, 0.9);
+    line-height: 1.5;
+}
+
+.processing-hint.show {
+    display: block;
+    animation: fadeIn 0.35s ease-out;
+}
+
+.retry-btn {
+    margin-top: 16px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(120deg, #25D366, #128C7E);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+}
+
+.retry-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.45);
+}
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -4395,3 +4452,61 @@ body {
     }
 }
 
+/* ===========================
+   WHATSAPP FLOATING BUTTON
+   =========================== */
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    animation: whatsappPulse 2s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
+    animation: none;
+}
+
+.whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+}
+
+@keyframes whatsappPulse {
+    0%, 100% {
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7), 0 0 0 15px rgba(37, 211, 102, 0.1);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .whatsapp-float svg {
+        width: 26px;
+        height: 26px;
+    }
+}
