@@ -14,7 +14,7 @@ const products = {
         badge: 'STARTER',
         icon: 'V',
         iconStyle: 'background: var(--gradient-primary);',
-        image: 'https://cdn1.epicgames.com/offer/fn/FNECO_32-00_VbuckStoreArtUpdate_1000_EGS_1200x1600_1200x1600-e70f8c1bfbd98a4a3d619e9527aeef8e',
+        image: 'assets/1000vbucks.png',
         description: 'Pack parfait pour commencer ton aventure Fortnite. Reçois un compte secondaire avec 1000 V-Bucks, ajoute-le en ami et offre-toi ce que tu veux après 48h.',
         features: [
             'Identifiants d\'un compte avec 1000 V-Bucks',
@@ -35,7 +35,7 @@ const products = {
         badge: '⭐ POPULAIRE',
         icon: 'V',
         iconStyle: 'background: var(--gradient-secondary);',
-        image: 'https://cdn1.epicgames.com/offer/fn/FNECO_32-00_VbuckStoreArtUpdate_2800_EGS_1200x1600_1200x1600-380718e8fb23306b6e8a801d27880104',
+        image: 'assets/2800vbucks.png',
         paymentLink: 'https://pay.lygosapp.com/link/93049047-a2b4-4920-a708-b0547b39b585',
         description: 'Le pack le plus populaire parmi nos clients ! Reçois un compte avec 2800 V-Bucks, ajoute-le en ami, attends 48h et achète Battle Pass, skins ou emotes.',
         features: [
@@ -57,7 +57,7 @@ const products = {
         badge: '🔥 MEILLEUR DEAL',
         icon: 'V',
         iconStyle: 'background: var(--gradient-secondary);',
-        image: 'https://cdn1.epicgames.com/offer/fn/FNECO_32-00_VbuckStoreArtUpdate_5000_EGS_1200x1600_1200x1600-eb3c8e7ca0803a6cb2fb374d271227f2',
+        image: 'assets/5000vbucks.png',
         paymentLink: 'https://pay.lygosapp.com/link/ecc76f1a-3aa7-4397-ae55-4aa76dc86a70',
         description: 'Notre meilleur rapport qualité-prix ! Reçois un compte avec 5000 V-Bucks par email, ajoute-le en ami, et après 48h offre-toi les meilleurs skins et emotes.',
         features: [
@@ -79,7 +79,7 @@ const products = {
         badge: '💎 MEGA PACK',
         icon: '👑',
         iconStyle: 'background: linear-gradient(135deg, #FFD700, #FFA500);',
-        image: 'https://cdn1.epicgames.com/offer/fn/FNECO_32-00_VbuckStoreArtUpdate_13500_EGS_1200x1600_1200x1600-d283e52ea33ff79da7d4be0ff86d6e52',
+        image: 'assets/13500vbucks.png',
         paymentLink: 'https://pay.lygosapp.com/link/dfc40c75-1d83-44c2-9c9b-469a83d62408',
         description: 'Pour les vrais gamers ! Reçois un compte avec 13500 V-Bucks par email. Ajoute-le en ami, attends 48h, puis offre-toi tout ce que tu veux pendant des mois.',
         features: [
@@ -101,7 +101,7 @@ const products = {
         badge: 'MENSUEL',
         icon: '🎮',
         iconStyle: 'background: var(--gradient-primary);',
-        image: 'https://cdn2.unrealengine.com/crew-subscription-share-image-1920x1080-1920x1080-d4a70e27ef1c.jpg',
+        image: 'assets/crew.png',
         paymentLink: 'https://pay.lygosapp.com/link/ba797d68-7f79-4798-9edb-11f13559d802',
         description: 'Abonnement mensuel qui inclut 1000 V-Bucks PLUS un skin exclusif Crew PLUS le Battle Pass de la saison actuelle. Meilleure valeur pour les joueurs réguliers !',
         features: [
