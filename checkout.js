@@ -194,38 +194,37 @@ class CheckoutManager {
         const cartItems = cart.items;
         
         // Construire le message WhatsApp
-        let message = `🎮 *NOUVELLE COMMANDE FORTNITEITEMS*\n\n`;
-        message += `📦 *Articles commandés:*\n`;
+        let message = `*NOUVELLE COMMANDE FORTNITEITEMS*\n\n`;
+        message += `*Articles commandes:*\n`;
         
         let total = 0;
         cartItems.forEach(item => {
             const itemTotal = item.price * item.quantity;
             total += itemTotal;
-            message += `• ${item.name} x${item.quantity} = ${itemTotal.toLocaleString('fr-FR')} FCFA\n`;
+            message += `- ${item.name} x${item.quantity} = ${itemTotal.toLocaleString('fr-FR')} FCFA\n`;
         });
         
-        message += `\n💰 *Total: ${total.toLocaleString('fr-FR')} FCFA*\n\n`;
-        message += `👤 *Informations client:*\n`;
-        message += `• Nom: ${customer.fullName}\n`;
-        message += `• Email: ${customer.contactEmail}\n`;
+        message += `\n*Total: ${total.toLocaleString('fr-FR')} FCFA*\n\n`;
+        message += `*Informations client:*\n`;
+        message += `- Nom: ${customer.fullName}\n`;
+        message += `- Email: ${customer.contactEmail}\n`;
         
         if (this.hasCrewProduct) {
             // Informations Fortnite Crew
-            message += `• Type: Fortnite Crew\n`;
-            message += `• Pseudo Epic: ${customer.epicUsername}\n`;
-            message += `• Email Epic: ${customer.epicLoginEmail}\n`;
-            message += `• WhatsApp: ${customer.whatsappNumber}\n`;
+            message += `- Type: Fortnite Crew\n`;
+            message += `- Pseudo Epic: ${customer.epicUsername}\n`;
+            message += `- Email Epic: ${customer.epicLoginEmail}\n`;
+            message += `- WhatsApp: ${customer.whatsappNumber}\n`;
         } else {
             // Informations V-Bucks
-            message += `• Type: V-Bucks\n`;
-            message += `• Plateforme: ${customer.platform}\n`;
+            message += `- Type: V-Bucks\n`;
+            message += `- Plateforme: ${customer.platform}\n`;
         }
         
-        message += `\n✅ Je souhaite finaliser cette commande !`;
+        message += `\nJe souhaite finaliser cette commande !`;
         
         // Encoder le message pour URL
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappURL = `https://wa.me/22965623691?text=${encodedMessage}`;
+        const whatsappURL = `https://wa.me/22965623691?text=${encodeURIComponent(message)}`;
         
         // Fermer le modal
         this.closeModal();
@@ -238,7 +237,7 @@ class CheckoutManager {
         
         // Afficher un message de confirmation
         setTimeout(() => {
-            alert('✅ Votre commande a été envoyée sur WhatsApp !\n\nVous allez être redirigé pour finaliser le paiement avec notre équipe.');
+            alert('Votre commande a ete envoyee sur WhatsApp !\n\nVous allez etre redirige pour finaliser le paiement avec notre equipe.');
         }, 500);
     }
 
