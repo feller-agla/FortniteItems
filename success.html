@@ -147,8 +147,16 @@
     <script src="script.js"></script>
     <script src="cart.js"></script>
     <script>
+        // Configuration API - Détection automatique de l'environnement
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000'  // Environnement local
+            : 'https://fortniteitems.onrender.com';  // Environnement production
+        
+        console.log(`🌐 Success Page - Environnement: ${window.location.hostname === 'localhost' ? 'LOCAL' : 'PRODUCTION'}`);
+        console.log(`🔗 API Backend: ${API_URL}`);
+        
         // Charger les infos de commande depuis localStorage
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             const pendingOrder = localStorage.getItem('fortniteshop_pending_order');
             
             if (pendingOrder) {
@@ -157,30 +165,72 @@
                 // Générer un numéro de commande
                 const orderNumber = 'FN' + Date.now() + Math.floor(Math.random() * 1000);
                 
-                // Afficher les infos
-                document.getElementById('orderNumber').textContent = orderNumber;
-                document.getElementById('orderEmail').textContent = order.epicEmail || 'N/A';
-                document.getElementById('orderFortniteName').textContent = order.fortniteName || 'N/A';
+                // 📧 ENVOYER LES DÉTAILS DE COMMANDE AU BACKEND (email sera envoyé après webhook)
+                try {
+                    console.log('📤 Envoi des détails de commande au backend...');
+                    const response = await fetch(`${API_URL}/api/submit-order`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            order_id: order.order_id,
+                            customer: order.customer,
+                            items: order.items,
+                            amount: order.amount
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        console.log('✅ Détails de commande envoyés avec succès');
+                        console.log('📧 Email sera envoyé après confirmation du paiement par Lygos');
+                    } else {
+                        console.warn('⚠️ Erreur lors de l\'envoi des détails');
+                    }
+                } catch (error) {
+                    console.error('❌ Erreur réseau:', error);
+                }
                 
-                // Formatter la plateforme
-                const platformNames = {
-                    'xbox': 'Xbox (One, Series X/S)',
-                    'ps': 'PlayStation (4, 5)',
-                    'pc': 'PC (Epic Games)',
-                    'switch': 'Nintendo Switch',
-                    'mobile': 'Mobile (iOS/Android)'
-                };
-                document.getElementById('orderPlatform').textContent = platformNames[order.platform] || order.platform || 'N/A';
+                // Afficher les infos
+                document.getElementById('orderNumber').textContent = order.order_id || orderNumber;
+                
+                // Afficher les infos client selon le type de produit
+                const customer = order.customer || {};
+                document.getElementById('orderEmail').textContent = customer.contactEmail || customer.epicEmail || 'N/A';
+                
+                // Adapter l'affichage selon le type de produit
+                if (customer.epicUsername) {
+                    // Commande Fortnite Crew
+                    document.getElementById('orderFortniteName').textContent = customer.epicUsername || 'N/A';
+                    document.querySelector('.detail-line:nth-child(3) .label').textContent = 'Pseudo Epic Games :';
+                    
+                    // Masquer la ligne plateforme et afficher WhatsApp
+                    const platformLine = document.querySelector('.detail-line:nth-child(4)');
+                    platformLine.querySelector('.label').textContent = 'WhatsApp :';
+                    platformLine.querySelector('.value').textContent = customer.whatsappNumber || 'N/A';
+                } else {
+                    // Commande V-Bucks
+                    document.getElementById('orderFortniteName').textContent = customer.fullName || 'N/A';
+                    document.querySelector('.detail-line:nth-child(3) .label').textContent = 'Nom complet :';
+                    
+                    // Formatter la plateforme
+                    const platformNames = {
+                        'xbox': 'Xbox (One, Series X/S)',
+                        'ps': 'PlayStation (4, 5)',
+                        'pc': 'PC (Epic Games)',
+                        'switch': 'Nintendo Switch',
+                        'mobile': 'Mobile (iOS/Android)'
+                    };
+                    document.getElementById('orderPlatform').textContent = platformNames[customer.platform] || customer.platform || 'N/A';
+                }
                 
                 // Sauvegarder l'historique des commandes
                 const orders = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
                 orders.push({
-                    orderNumber: orderNumber,
+                    orderNumber: order.order_id || orderNumber,
                     date: new Date().toISOString(),
                     items: order.items,
-                    email: order.epicEmail,
-                    fortniteName: order.fortniteName,
-                    platform: order.platform
+                    customer: customer
                 });
                 localStorage.setItem('fortniteshop_orders', JSON.stringify(orders));
                 

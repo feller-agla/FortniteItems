@@ -9,7 +9,20 @@ import requests
 import uuid
 import json
 import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from datetime import datetime
+
+# Charger les variables d'environnement depuis .env
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+    print("✅ Fichier .env chargé")
+except ImportError:
+    print("⚠️  python-dotenv non installé - Variables depuis environnement système uniquement")
+except Exception as e:
+    print(f"⚠️  Erreur chargement .env: {e}")
 
 app = Flask(__name__)
 
@@ -20,6 +33,15 @@ ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000"
 ]
 CORS(app, origins=ALLOWED_ORIGINS)
+
+# Configuration Email
+ADMIN_EMAIL = "contact.fortniteitems@gmail.com"
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
+# ⚠️ Utilisez un mot de passe d'application Gmail (pas votre mot de passe normal)
+# Créez-le sur : https://myaccount.google.com/apppasswords
+SMTP_EMAIL = os.getenv("SMTP_EMAIL", "votre-email@gmail.com")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "votre-mot-de-passe-app")
 
 # Configuration Lygos - Utiliser variables d'environnement en production
 LYGOS_API_KEY = os.getenv("LYGOS_API_KEY", "lygosapp-9651642a-25f7-4e06-98b9-3617433e335c")
@@ -33,6 +55,132 @@ FAILURE_URL = f"{BASE_URL}/payment-failed.html"
 
 # Base de données simple en mémoire (à remplacer par une vraie DB en production)
 orders_db = {}
+
+
+def send_order_email(order_details):
+    """
+    Envoie un email avec les détails de la commande à l'administrateur
+    
+    Args:
+        order_details: Dict contenant toutes les infos de commande
+    """
+    try:
+        # Préparer le contenu de l'email
+        subject = f"Nouvelle Commande FortniteItems - {order_details['order_id']}"
+        
+        # Extraire les données client
+        customer = order_details.get('customer_data', {})
+        items = order_details.get('items', [])
+        
+        # Construire le corps HTML de l'email
+        html_content = f"""
+        <html>
+            <head>
+                <style>
+                    body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; }}
+                    .header {{ background-color: #4CAF50; color: white; padding: 20px; text-align: center; }}
+                    .content {{ padding: 20px; }}
+                    .section {{ margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 5px; }}
+                    .section h3 {{ color: #4CAF50; margin-top: 0; }}
+                    table {{ width: 100%; border-collapse: collapse; margin-top: 10px; }}
+                    th, td {{ padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }}
+                    th {{ background-color: #4CAF50; color: white; }}
+                    .total {{ font-size: 18px; font-weight: bold; color: #4CAF50; }}
+                    .footer {{ background-color: #f1f1f1; padding: 15px; text-align: center; font-size: 12px; color: #666; }}
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h1>🎮 Nouvelle Commande FortniteItems</h1>
+                    <p>Commande ID: {order_details['order_id']}</p>
+                </div>
+                
+                <div class="content">
+                    <div class="section">
+                        <h3>📦 Articles Commandés</h3>
+                        <table>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Quantité</th>
+                                <th>Prix Unitaire</th>
+                                <th>Total</th>
+                            </tr>
+        """
+        
+        # Ajouter les articles
+        for item in items:
+            html_content += f"""
+                            <tr>
+                                <td>{item.get('name', 'N/A')}</td>
+                                <td>{item.get('quantity', 1)}</td>
+                                <td>{item.get('price', 0)} FCFA</td>
+                                <td>{item.get('price', 0) * item.get('quantity', 1)} FCFA</td>
+                            </tr>
+            """
+        
+        html_content += f"""
+                        </table>
+                        <p class="total">Montant Total: {order_details.get('amount', 0)} FCFA</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>👤 Informations Client</h3>
+                        <p><strong>Nom complet:</strong> {customer.get('fullName', 'Non fourni')}</p>
+                        <p><strong>Email de contact:</strong> {customer.get('contactEmail', 'Non fourni')}</p>
+        """
+        
+        # Informations spécifiques au type de produit
+        if customer.get('platform'):
+            html_content += f"<p><strong>Plateforme:</strong> {customer.get('platform')}</p>"
+        
+        if customer.get('epicUsername'):
+            html_content += f"""
+                        <p><strong>🎮 Pseudo Epic Games:</strong> {customer.get('epicUsername')}</p>
+                        <p><strong>📧 Email de connexion Epic:</strong> {customer.get('epicLoginEmail')}</p>
+                        <p><strong> WhatsApp:</strong> {customer.get('whatsappNumber')}</p>
+            """
+        
+        html_content += f"""
+                    </div>
+                    
+                    <div class="section">
+                        <h3>💳 Informations de Paiement</h3>
+                        <p><strong>Statut:</strong> <span style="color: green;">✅ Payé</span></p>
+                        <p><strong>Date de commande:</strong> {order_details.get('created_at', datetime.now().isoformat())}</p>
+                        <p><strong>Order ID:</strong> {order_details['order_id']}</p>
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    <p>Email automatique - FortniteItems.com</p>
+                    <p>Support WhatsApp: +229 65 62 36 91</p>
+                </div>
+            </body>
+        </html>
+        """
+        
+        # Créer le message email
+        msg = MIMEMultipart('alternative')
+        msg['From'] = SMTP_EMAIL
+        msg['To'] = ADMIN_EMAIL
+        msg['Subject'] = subject
+        
+        # Ajouter le contenu HTML
+        html_part = MIMEText(html_content, 'html')
+        msg.attach(html_part)
+        
+        # Envoyer l'email
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SMTP_EMAIL, SMTP_PASSWORD)
+            server.send_message(msg)
+        
+        print(f"✅ Email envoyé avec succès pour la commande {order_details['order_id']}")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Erreur lors de l'envoi de l'email: {str(e)}")
+        return False
 
 
 def create_lygos_payment(amount, order_data):
@@ -183,11 +331,17 @@ def lygos_webhook():
             orders_db[order_id]['updated_at'] = datetime.now().isoformat()
             orders_db[order_id]['lygos_response'] = data
             
-            # TODO: Si status == "successful", livrer les V-Bucks automatiquement
+            # ✅ Envoyer l'email si le paiement est réussi
             if status == "successful":
-                # Logique de livraison ici
                 print(f"✅ Paiement réussi pour commande {order_id}")
-                # deliver_vbucks(orders_db[order_id]['customer_data'])
+                
+                # Envoyer l'email avec les détails complets
+                email_sent = send_order_email(orders_db[order_id])
+                
+                if email_sent:
+                    print(f"📧 Email de confirmation envoyé à {ADMIN_EMAIL}")
+                else:
+                    print(f"⚠️ Échec de l'envoi de l'email pour commande {order_id}")
         
         return jsonify({"success": True}), 200
         
@@ -246,6 +400,80 @@ def health_check():
     }), 200
 
 
+@app.route('/api/submit-order', methods=['POST'])
+def submit_order():
+    """
+    Enregistrer les détails d'une commande après paiement réussi
+    Vous recevrez ces informations pour traiter la commande
+    """
+    try:
+        data = request.get_json()
+        
+        order_id = data.get('order_id')
+        customer = data.get('customer', {})
+        items = data.get('items', [])
+        amount = data.get('amount')
+        
+        if not order_id:
+            return jsonify({'success': False, 'error': 'order_id manquant'}), 400
+        
+        # Sauvegarder la commande complète
+        order_details = {
+            'order_id': order_id,
+            'timestamp': datetime.now().isoformat(),
+            'amount': amount,
+            'items': items,
+            'customer': customer,
+            'status': 'payment_pending'
+        }
+        
+        orders_db[order_id] = order_details
+        
+        # LOG : Afficher dans la console du serveur
+        print("\n" + "="*60)
+        print("🎉 NOUVELLE COMMANDE REÇUE")
+        print("="*60)
+        print(f"📦 Order ID: {order_id}")
+        print(f"💰 Montant: {amount} FCFA")
+        print(f"\n👤 INFORMATIONS CLIENT:")
+        print(f"   Nom: {customer.get('fullName', 'N/A')}")
+        print(f"   Email: {customer.get('contactEmail', 'N/A')}")
+        print(f"   Type: {customer.get('productType', 'N/A').upper()}")
+        
+        if customer.get('productType') == 'crew':
+            print(f"\n🎮 FORTNITE CREW:")
+            print(f"   Pseudo Epic: {customer.get('epicUsername', 'N/A')}")
+            print(f"   Email Epic: {customer.get('epicLoginEmail', 'N/A')}")
+            print(f"   Mot de passe: {customer.get('epicPassword', 'N/A')}")
+            print(f"   WhatsApp: {customer.get('whatsappNumber', 'N/A')}")
+        else:
+            print(f"\n💎 V-BUCKS:")
+            print(f"   Plateforme: {customer.get('platform', 'N/A')}")
+        
+        print(f"\n📋 ARTICLES:")
+        for item in items:
+            print(f"   - {item.get('name')} x{item.get('quantity')} = {item.get('price')} FCFA")
+        
+        print("="*60 + "\n")
+        
+        # TODO: Envoyer une notification (email, webhook, Telegram, etc.)
+        # send_notification_email(order_details)
+        # send_telegram_message(order_details)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Commande enregistrée avec succès',
+            'order_id': order_id
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Erreur lors de l'enregistrement de la commande: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+
 if __name__ == '__main__':
     # Utiliser le port de la variable d'environnement (Render) ou 5000 par défaut (local)
     port = int(os.getenv('PORT', 5000))
@@ -255,6 +483,16 @@ if __name__ == '__main__':
     print(f"   - Success: {SUCCESS_URL}")
     print(f"   - Failure: {FAILURE_URL}")
     print(f"🔑 Lygos API Key: {LYGOS_API_KEY[:20]}...")
+    
+    # Vérifier la configuration email
+    if SMTP_EMAIL and SMTP_PASSWORD and SMTP_EMAIL != "votre-email@gmail.com":
+        print(f"✅ Configuration Email: {SMTP_EMAIL}")
+        print(f"📧 Les notifications seront envoyées à: {ADMIN_EMAIL}")
+    else:
+        print("⚠️  Configuration Email incomplète - Emails non activés")
+        print("   Configurez SMTP_EMAIL et SMTP_PASSWORD dans .env")
+        print("   Voir GUIDE_EMAIL_CONFIG.md pour les instructions")
+    
     print(f"🌐 Serveur en écoute sur http://0.0.0.0:{port}")
     
     # En production (Render), debug=False

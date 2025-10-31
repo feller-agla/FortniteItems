@@ -2,11 +2,15 @@
 // CHECKOUT PROCESS MANAGER
 // ===========================
 
-// Configuration API Backend
-// Pour tester en LOCAL, utilise : http://localhost:5000
-// Pour PRODUCTION, utilise l'URL Render après déploiement
-const API_URL = 'https://fortniteitems.onrender.com';  // Backend Lygos sur Render
+// Configuration API Backend - Détection automatique de l'environnement
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000'  // Environnement LOCAL (développement)
+    : 'https://fortniteitems.onrender.com';  // Environnement PRODUCTION (en ligne)
+
 const PAYMENT_PROVIDER = 'lygos';  // Lygos payment provider
+
+console.log(`🌐 Environnement détecté: ${window.location.hostname === 'localhost' ? 'LOCAL' : 'PRODUCTION'}`);
+console.log(`🔗 API Backend: ${API_URL}`);
 
 let isProcessingPayment = false;
 let processingStatusTimer;
@@ -16,12 +20,66 @@ class CheckoutManager {
     constructor() {
         this.currentStep = 1;
         this.orderData = {};
+        this.hasCrewProduct = false;
         this.init();
     }
 
     init() {
         this.attachModalEvents();
         this.attachFormValidation();
+        this.detectProductType();
+    }
+    
+    detectProductType() {
+        // Détecter si le panier contient Fortnite Crew (id = 5)
+        if (typeof cart !== 'undefined' && cart.items) {
+            this.hasCrewProduct = cart.items.some(item => item.id === '5');
+            this.updateFormFields();
+        }
+    }
+    
+    updateFormFields() {
+        const crewFields = document.getElementById('crewFields');
+        const vbucksFields = document.getElementById('vbucksFields');
+        const crewMessage = document.getElementById('crewMessage');
+        const vbucksMessage = document.getElementById('vbucksMessage');
+        const emailHint = document.getElementById('emailHint');
+        
+        if (this.hasCrewProduct) {
+            // Afficher les champs Fortnite Crew
+            if (crewFields) {
+                crewFields.style.display = 'block';
+                // Rendre les champs obligatoires
+                document.getElementById('epicUsername').required = true;
+                document.getElementById('epicLoginEmail').required = true;
+                document.getElementById('whatsappNumber').required = true;
+            }
+            if (vbucksFields) vbucksFields.style.display = 'none';
+            if (crewMessage) crewMessage.style.display = 'block';
+            if (vbucksMessage) vbucksMessage.style.display = 'none';
+            if (emailHint) emailHint.textContent = 'Pour la confirmation de commande';
+            
+            // Retirer l'obligation du champ plateforme
+            const platformField = document.getElementById('platform');
+            if (platformField) platformField.required = false;
+        } else {
+            // Afficher les champs V-Bucks uniquement
+            if (crewFields) {
+                crewFields.style.display = 'none';
+                // Retirer l'obligation des champs Crew
+                document.getElementById('epicUsername').required = false;
+                document.getElementById('epicLoginEmail').required = false;
+                document.getElementById('whatsappNumber').required = false;
+            }
+            if (vbucksFields) vbucksFields.style.display = 'block';
+            if (crewMessage) crewMessage.style.display = 'none';
+            if (vbucksMessage) vbucksMessage.style.display = 'block';
+            if (emailHint) emailHint.textContent = 'Pour recevoir les identifiants du compte';
+            
+            // Réactiver l'obligation du champ plateforme
+            const platformField = document.getElementById('platform');
+            if (platformField) platformField.required = true;
+        }
     }
 
     attachModalEvents() {
@@ -72,28 +130,61 @@ class CheckoutManager {
     }
 
     validateStep1() {
-        const fortniteName = document.getElementById('fortniteName').value.trim();
-        const epicEmail = document.getElementById('epicEmail').value.trim();
-        const platform = document.getElementById('platform').value;
-
-        if (!fortniteName || !epicEmail || !platform) {
+        const fullName = document.getElementById('fullName').value.trim();
+        const contactEmail = document.getElementById('contactEmail').value.trim();
+        
+        // Validation de base
+        if (!fullName || !contactEmail) {
             this.showError('Veuillez remplir tous les champs requis');
             return false;
         }
 
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(epicEmail)) {
+        if (!emailRegex.test(contactEmail)) {
             this.showError('Email invalide');
             return false;
         }
 
-        // Store data
-        this.orderData.fortniteName = fortniteName;
-        this.orderData.epicEmail = epicEmail;
-        this.orderData.platform = platform;
+        // Stocker les données communes
+        this.orderData.fullName = fullName;
+        this.orderData.contactEmail = contactEmail;
+        this.orderData.productType = this.hasCrewProduct ? 'crew' : 'vbucks';
 
-        nextStep(2);
+        if (this.hasCrewProduct) {
+            // Validation des champs Fortnite Crew
+            const epicUsername = document.getElementById('epicUsername').value.trim();
+            const epicLoginEmail = document.getElementById('epicLoginEmail').value.trim();
+            const whatsappNumber = document.getElementById('whatsappNumber').value.trim();
+            
+            if (!epicUsername || !epicLoginEmail || !whatsappNumber) {
+                this.showError('Veuillez remplir tous les champs Fortnite Crew');
+                return false;
+            }
+            
+            if (!emailRegex.test(epicLoginEmail)) {
+                this.showError('Email Epic Games invalide');
+                return false;
+            }
+            
+            // Stocker les données Crew
+            this.orderData.epicUsername = epicUsername;
+            this.orderData.epicLoginEmail = epicLoginEmail;
+            this.orderData.whatsappNumber = whatsappNumber;
+        } else {
+            // Validation des champs V-Bucks
+            const platform = document.getElementById('platform').value;
+            
+            if (!platform) {
+                this.showError('Veuillez sélectionner une plateforme');
+                return false;
+            }
+            
+            // Stocker les données V-Bucks
+            this.orderData.platform = platform;
+        }
+
+        this.nextStep(2);
         return true;
     }
 
@@ -107,6 +198,24 @@ class CheckoutManager {
 
         this.orderData.paymentMethod = selectedPayment.value;
         return true;
+    }
+
+    nextStep(step) {
+        console.log('nextStep appelé avec step:', step);
+        
+        // Masquer toutes les étapes
+        document.querySelectorAll('.checkout-step').forEach(s => {
+            s.classList.remove('active');
+        });
+
+        // Afficher l'étape cible
+        const targetStep = document.getElementById(`step${step}`);
+        if (targetStep) {
+            targetStep.classList.add('active');
+            console.log('✅ Étape', step, 'affichée');
+        } else {
+            console.error('❌ Étape introuvable:', `step${step}`);
+        }
     }
 
     showError(message) {
@@ -217,47 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => warmupBackend(), 600);
 });
 
-// Step navigation
-function nextStep(step) {
-    console.log('nextStep appelé avec step:', step);
-    
-    if (step === 2) {
-        // Validate step 1
-        const fortniteName = document.getElementById('fortniteName').value.trim();
-        const epicEmail = document.getElementById('epicEmail').value.trim();
-        const platform = document.getElementById('platform').value;
-
-        if (!fortniteName || !epicEmail || !platform) {
-            checkout.showError('Veuillez remplir tous les champs requis');
-            return;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(epicEmail)) {
-            checkout.showError('Email invalide');
-            return;
-        }
-    }
-
-    // Hide all steps
-    console.log('Masquage de toutes les étapes');
-    document.querySelectorAll('.checkout-step').forEach(s => {
-        s.classList.remove('active');
-        console.log('Step masquée:', s.id);
-    });
-
-    // Show selected step
-    const targetStep = document.getElementById(`step${step}`);
-    console.log('Affichage étape:', `step${step}`, targetStep);
-    
-    if (targetStep) {
-        targetStep.classList.add('active');
-        console.log('✅ Étape', step, 'affichée');
-    } else {
-        console.error('❌ Étape introuvable:', `step${step}`);
-    }
-}
-
 // Process payment
 function processPayment() {
     console.log('========================================');
@@ -295,7 +363,7 @@ function processPayment() {
         console.log('⏳ Affichage de l\'étape de traitement...');
         
         // Afficher l'étape de traitement (Step 3)
-        nextStep(3);
+        checkout.nextStep(3);
         startProcessingUI();
         isProcessingPayment = true;
         warmupBackend();
@@ -326,31 +394,43 @@ async function redirectToLygosPayment() {
         console.log('ERREUR: Panier vide');
         checkout.showError('Votre panier est vide');
         resetProcessingUI();
-        nextStep(1);
+        checkout.nextStep(1);
         return false;
     }
     
     console.log('Nombre d\'articles:', cartItems.length);
     
-    // Récupérer les infos du formulaire
-    const fortniteName = document.getElementById('fortniteName').value;
-    const epicEmail = document.getElementById('epicEmail').value;
-    const platform = document.getElementById('platform').value;
+    // Récupérer les infos du formulaire selon le type de produit
+    const fullName = document.getElementById('fullName').value;
+    const contactEmail = document.getElementById('contactEmail').value;
     
     // Calculer le montant total
     const totalAmount = cart.getTotal();
     
     console.log('Montant total:', totalAmount);
     
+    // Préparer les données client selon le type de produit
+    const customerData = {
+        fullName: fullName,
+        contactEmail: contactEmail,
+        productType: checkout.hasCrewProduct ? 'crew' : 'vbucks'
+    };
+    
+    if (checkout.hasCrewProduct) {
+        // Données Fortnite Crew
+        customerData.epicUsername = document.getElementById('epicUsername').value;
+        customerData.epicLoginEmail = document.getElementById('epicLoginEmail').value;
+        customerData.whatsappNumber = document.getElementById('whatsappNumber').value;
+    } else {
+        // Données V-Bucks
+        customerData.platform = document.getElementById('platform').value;
+    }
+    
     // Préparer les données pour l'API
     const paymentData = {
         amount: totalAmount,
         items: cartItems,
-        customer: {
-            fortniteName: fortniteName,
-            epicEmail: epicEmail,
-            platform: platform
-        }
+        customer: customerData
     };
     
     console.log('Données envoyées à l\'API:', paymentData);
@@ -370,25 +450,23 @@ async function redirectToLygosPayment() {
         console.log('Réponse de l\'API:', result);
         
         if (result.success && result.payment_link) {
-            console.log('✅ Transaction créée:', result.transaction_id);
-            console.log('✅ Lien de paiement:', result.payment_link);
+            console.log('✅ Lien de paiement créé:', result.order_id);
+            console.log('✅ URL paiement:', result.payment_link);
+            
             updateProcessingStatus('Redirection vers la page de paiement sécurisée...');
             
-            // Sauvegarder les infos de commande avec l'order_id
+            // Sauvegarder les infos de commande localement pour les envoyer après paiement réussi
             localStorage.setItem('fortniteshop_pending_order', JSON.stringify({
                 order_id: result.order_id,
-                transaction_id: result.transaction_id,
-                fortniteName: fortniteName,
-                epicEmail: epicEmail,
-                platform: platform,
+                customer: customerData,
                 items: cartItems,
                 amount: totalAmount,
                 timestamp: new Date().toISOString(),
                 payment_provider: PAYMENT_PROVIDER
             }));
             
-            // Redirection vers FedaPay
-            console.log(`🚀 Redirection vers FedaPay...`);
+            // Redirection vers Lygos
+            console.log(`🚀 Redirection vers Lygos...`);
             resetProcessingUI();
             window.location.href = result.payment_link;
             
@@ -399,7 +477,7 @@ async function redirectToLygosPayment() {
             resetProcessingUI();
             
             // Retourner à l'étape 2
-            nextStep(2);
+            checkout.nextStep(2);
             return false;
         }
     } catch (error) {
@@ -408,7 +486,7 @@ async function redirectToLygosPayment() {
         resetProcessingUI();
         
         // Retourner à l'étape 2
-        nextStep(2);
+        checkout.nextStep(2);
         return false;
     }
 }
@@ -422,7 +500,7 @@ function completeOrder() {
     document.getElementById('confirmEmail').textContent = epicEmail;
 
     // Show success step
-    nextStep(4);
+    checkout.nextStep(4);
 
     // Clear cart
     cart.clearCart();
@@ -498,3 +576,43 @@ function processFlutterwavePayment(amount, email) {
 }
 */
 
+// Initialiser les gestionnaires d'événements
+// Attendre que checkout soit initialisé
+setTimeout(function() {
+    // Bouton Continuer étape 1
+    const step1NextBtn = document.getElementById('step1NextBtn');
+    if (step1NextBtn) {
+        step1NextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('🔘 Bouton Continuer cliqué');
+            if (checkout.validateStep1()) {
+                checkout.nextStep(2);
+            }
+        });
+        console.log('✅ Bouton Continuer (étape 1) connecté');
+    } else {
+        console.warn('⚠️ Bouton step1NextBtn non trouvé');
+    }
+    
+    // Bouton Retour étape 2
+    const step2BackBtn = document.getElementById('step2BackBtn');
+    if (step2BackBtn) {
+        step2BackBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('🔙 Bouton Retour cliqué');
+            checkout.nextStep(1);
+        });
+        console.log('✅ Bouton Retour (étape 2) connecté');
+    }
+    
+    // Bouton Payer Maintenant étape 2
+    const step2NextBtn = document.getElementById('step2NextBtn');
+    if (step2NextBtn) {
+        step2NextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('💳 Bouton Payer Maintenant cliqué');
+            processPayment();
+        });
+        console.log('✅ Bouton Payer Maintenant (étape 2) connecté');
+    }
+}, 100);

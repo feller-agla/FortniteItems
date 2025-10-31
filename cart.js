@@ -251,6 +251,11 @@ class ShoppingCart {
         if (modal) {
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            
+            // Détecter le type de produit et adapter le formulaire
+            if (typeof checkout !== 'undefined' && checkout.detectProductType) {
+                checkout.detectProductType();
+            }
         }
     }
 

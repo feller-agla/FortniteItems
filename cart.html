@@ -84,7 +84,7 @@
                     
                     <div class="summary-line">
                         <span>Livraison</span>
-                        <span class="free">GRATUIT ⚡</span>
+                        <span class="free">15 - 45 min ⚡</span>
                     </div>
                     
                     <div class="summary-line total">
@@ -131,32 +131,68 @@
                 <!-- Step 1: Account Info -->
                 <div class="checkout-step active" id="step1">
                     <h3>📧 Informations de Livraison</h3>
-                    <p style="margin-bottom: 20px; color: #aaa; font-size: 14px;">
+                    
+                    <!-- Message pour V-Bucks uniquement -->
+                    <p id="vbucksMessage" style="margin-bottom: 20px; color: #aaa; font-size: 14px; display: none;">
                         ℹ️ Tu recevras par email les identifiants d'un compte Epic Games contenant tes V-Bucks. 
                         Ajoute ce compte en ami, attends 48h, puis offre-toi ce que tu veux sur ton compte principal !
                     </p>
+                    
+                    <!-- Message pour Fortnite Crew -->
+                    <p id="crewMessage" style="margin-bottom: 20px; color: #aaa; font-size: 14px; display: none;">
+                        ℹ️ Pour l'abonnement Fortnite Crew, nous avons besoin de tes identifiants Epic Games pour activer le Crew sur ton compte.
+                    </p>
+                    
                     <form id="accountForm">
+                        <!-- Champs communs -->
                         <div class="form-group">
-                            <label>Pseudo Fortnite (ton compte principal) *</label>
-                            <input type="text" id="fortniteName" required placeholder="Ton pseudo exact">
+                            <label>Nom et Prénom *</label>
+                            <input type="text" id="fullName" required placeholder="Ex: Jean Dupont">
                         </div>
+                        
                         <div class="form-group">
-                            <label>Email pour recevoir les identifiants *</label>
-                            <input type="email" id="epicEmail" required placeholder="email@exemple.com">
-                            <small style="color: #888; font-size: 12px;">Tu recevras les identifiants du compte secondaire à cette adresse</small>
+                            <label>Email de contact *</label>
+                            <input type="email" id="contactEmail" required placeholder="email@exemple.com">
+                            <small style="color: #888; font-size: 12px;" id="emailHint">Pour recevoir les identifiants du compte</small>
                         </div>
-                        <div class="form-group">
-                            <label>Plateforme *</label>
-                            <select id="platform" required>
-                                <option value="">Sélectionne ta plateforme</option>
-                                <option value="xbox">Xbox (One, Series X/S)</option>
-                                <option value="ps">PlayStation (4, 5)</option>
-                                <option value="pc">PC (Epic Games)</option>
-                                <option value="switch">Nintendo Switch</option>
-                                <option value="mobile">Mobile (iOS/Android)</option>
-                            </select>
+                        
+                        <!-- Champs spécifiques Fortnite Crew (masqués par défaut) -->
+                        <div id="crewFields" style="display: none;">
+                            <div class="form-group">
+                                <label>Pseudo Epic Games *</label>
+                                <input type="text" id="epicUsername" placeholder="Ton pseudo sur Epic Games">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email de connexion Epic Games *</label>
+                                <input type="email" id="epicLoginEmail" placeholder="Email de ton compte Epic">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Numéro WhatsApp *</label>
+                                <input type="tel" id="whatsappNumber" placeholder="+229 XX XX XX XX">
+                                <small style="color: #888; font-size: 12px;">Pour confirmer l'activation</small>
+                            </div>
                         </div>
-                        <button type="button" class="next-btn" onclick="nextStep(2)">Continuer</button>
+                        
+                        <!-- Champs V-Bucks uniquement -->
+                        <div id="vbucksFields" style="display: block;">
+                            <div class="form-group">
+                                <label>Plateforme *</label>
+                                <select id="platform" required>
+                                    <option value="">Sélectionne ta plateforme</option>
+                                    <option value="xbox">Xbox (One, Series X/S)</option>
+                                    <option value="ps">PlayStation (4, 5)</option>
+                                    <option value="pc">PC (Epic Games)</option>
+                                    <option value="switch">Nintendo Switch</option>
+                                    <option value="mobile">Mobile (iOS/Android)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="next-btn" id="step1NextBtn">Continuer</button>
+                    </form>
+                </div>
                     </form>
                 </div>
 
@@ -188,8 +224,8 @@
                     </div>
                     
                     <div class="checkout-actions">
-                        <button type="button" class="back-btn" onclick="nextStep(1)">Retour</button>
-                        <button type="button" class="next-btn" onclick="processPayment()">Payer Maintenant</button>
+                        <button type="button" class="back-btn" id="step2BackBtn">Retour</button>
+                        <button type="button" class="next-btn" id="step2NextBtn">Payer Maintenant</button>
                     </div>
                 </div>
 
