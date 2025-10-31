@@ -208,71 +208,18 @@
                             </div>
                         </div>
                         
-                        <button type="button" class="next-btn" id="step1NextBtn">Continuer</button>
-                    </form>
-                </div>
+                        <button type="button" class="next-btn" id="step1NextBtn">Finaliser sur WhatsApp 💬</button>
                     </form>
                 </div>
 
-                <!-- Step 2: Payment Method -->
+                <!-- Step 2: Processing (optionnel, peut être supprimé) -->
                 <div class="checkout-step" id="step2">
-                    <h3>💳 Méthode de Paiement</h3>
-                    <div class="payment-options">
-                        <div class="payment-option active" data-method="mobile">
-                            <input type="radio" name="payment" id="payMobile" value="mobile" checked>
-                            <label for="payMobile">
-                                <span class="payment-icon">📱</span>
-                                <div>
-                                    <strong>Mobile Money</strong>
-                                    <small>Orange, MTN, Moov</small>
-                                </div>
-                            </label>
-                        </div>
-                        
-                        <div class="payment-option" data-method="crypto">
-                            <input type="radio" name="payment" id="payCrypto" value="crypto">
-                            <label for="payCrypto">
-                                <span class="payment-icon">₿</span>
-                                <div>
-                                    <strong>Crypto</strong>
-                                    <small>Bitcoin, USDT, Ethereum</small>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="checkout-actions">
-                        <button type="button" class="back-btn" id="step2BackBtn">Retour</button>
-                        <button type="button" class="next-btn" id="step2NextBtn">Payer Maintenant</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Processing -->
-                <div class="checkout-step" id="step3">
                     <div class="processing">
                         <div class="spinner"></div>
-                        <h3>Initialisation du paiement sécurisé...</h3>
-                        <p class="processing-status" id="processingStatus">
-                            Connexion à Lygos en cours (1-3 secondes)
+                        <h3>Redirection vers WhatsApp...</h3>
+                        <p class="processing-status">
+                            Préparation de votre commande
                         </p>
-                        <div class="processing-hint" id="processingHint">
-                            <p>🔄 Cela prend plus de temps que prévu. Clique ci-dessous pour relancer l'ouverture de la page de paiement.</p>
-                            <button type="button" class="retry-btn" onclick="retryPaymentRedirect()">Relancer le paiement</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 4: Success -->
-                <div class="checkout-step" id="step4">
-                    <div class="success-message">
-                        <div class="success-icon">✅</div>
-                        <h3>Commande Réussie !</h3>
-                        <p>Tu vas recevoir les identifiants du compte par email sous 15-45 minutes.</p>
-                        <div class="order-details">
-                            <p><strong>Numéro de commande:</strong> #<span id="orderNumber"></span></p>
-                            <p><strong>Email de confirmation envoyé à:</strong> <span id="confirmEmail"></span></p>
-                        </div>
-                        <a href="index.html" class="cta-button">Retour à l'Accueil</a>
                     </div>
                 </div>
             </div>

@@ -184,8 +184,62 @@ class CheckoutManager {
             this.orderData.platform = platform;
         }
 
-        this.nextStep(2);
+        // Redirection directe vers WhatsApp
+        this.redirectToWhatsApp();
         return true;
+    }
+    
+    redirectToWhatsApp() {
+        const customer = this.orderData;
+        const cartItems = cart.items;
+        
+        // Construire le message WhatsApp
+        let message = `🎮 *NOUVELLE COMMANDE FORTNITEITEMS*\n\n`;
+        message += `📦 *Articles commandés:*\n`;
+        
+        let total = 0;
+        cartItems.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            message += `• ${item.name} x${item.quantity} = ${itemTotal.toLocaleString('fr-FR')} FCFA\n`;
+        });
+        
+        message += `\n💰 *Total: ${total.toLocaleString('fr-FR')} FCFA*\n\n`;
+        message += `👤 *Informations client:*\n`;
+        message += `• Nom: ${customer.fullName}\n`;
+        message += `• Email: ${customer.contactEmail}\n`;
+        
+        if (this.hasCrewProduct) {
+            // Informations Fortnite Crew
+            message += `• Type: Fortnite Crew\n`;
+            message += `• Pseudo Epic: ${customer.epicUsername}\n`;
+            message += `• Email Epic: ${customer.epicLoginEmail}\n`;
+            message += `• WhatsApp: ${customer.whatsappNumber}\n`;
+        } else {
+            // Informations V-Bucks
+            message += `• Type: V-Bucks\n`;
+            message += `• Plateforme: ${customer.platform}\n`;
+        }
+        
+        message += `\n✅ Je souhaite finaliser cette commande !`;
+        
+        // Encoder le message pour URL
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://wa.me/22965623691?text=${encodedMessage}`;
+        
+        // Fermer le modal
+        this.closeModal();
+        
+        // Vider le panier
+        cart.clearCart();
+        
+        // Rediriger vers WhatsApp
+        window.open(whatsappURL, '_blank');
+        
+        // Afficher un message de confirmation
+        setTimeout(() => {
+            alert('✅ Votre commande a été envoyée sur WhatsApp !\n\nVous allez être redirigé pour finaliser le paiement avec notre équipe.');
+        }, 500);
     }
 
     validateStep2() {
@@ -579,40 +633,19 @@ function processFlutterwavePayment(amount, email) {
 // Initialiser les gestionnaires d'événements
 // Attendre que checkout soit initialisé
 setTimeout(function() {
-    // Bouton Continuer étape 1
+    // Bouton Finaliser sur WhatsApp étape 1
     const step1NextBtn = document.getElementById('step1NextBtn');
     if (step1NextBtn) {
         step1NextBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log('🔘 Bouton Continuer cliqué');
+            console.log('🔘 Bouton Finaliser sur WhatsApp cliqué');
             if (checkout.validateStep1()) {
-                checkout.nextStep(2);
+                // La méthode validateStep1 appelle déjà redirectToWhatsApp
+                console.log('✅ Redirection vers WhatsApp');
             }
         });
-        console.log('✅ Bouton Continuer (étape 1) connecté');
+        console.log('✅ Bouton Finaliser sur WhatsApp (étape 1) connecté');
     } else {
         console.warn('⚠️ Bouton step1NextBtn non trouvé');
-    }
-    
-    // Bouton Retour étape 2
-    const step2BackBtn = document.getElementById('step2BackBtn');
-    if (step2BackBtn) {
-        step2BackBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('🔙 Bouton Retour cliqué');
-            checkout.nextStep(1);
-        });
-        console.log('✅ Bouton Retour (étape 2) connecté');
-    }
-    
-    // Bouton Payer Maintenant étape 2
-    const step2NextBtn = document.getElementById('step2NextBtn');
-    if (step2NextBtn) {
-        step2NextBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('💳 Bouton Payer Maintenant cliqué');
-            processPayment();
-        });
-        console.log('✅ Bouton Payer Maintenant (étape 2) connecté');
     }
 }, 100);
