@@ -44,6 +44,17 @@ class ShoppingCart {
         this.updateCartCount();
         this.updateCartDisplay();
         this.showNotification(`✅ ${name} ajouté au panier !`);
+        
+        // 📊 Facebook Pixel - Tracker l'ajout au panier
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'AddToCart', {
+                content_ids: [id],
+                content_name: name,
+                content_type: 'product',
+                value: parseFloat(price),
+                currency: 'XOF'  // Franc CFA
+            });
+        }
     }
 
     // Remove item from cart
@@ -255,6 +266,26 @@ class ShoppingCart {
             // Détecter le type de produit et adapter le formulaire
             if (typeof checkout !== 'undefined' && checkout.detectProductType) {
                 checkout.detectProductType();
+            }
+            
+            // 📊 Facebook Pixel - Tracker le début du checkout
+            if (typeof fbq !== 'undefined') {
+                const totalAmount = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const contentIds = this.items.map(item => item.id);
+                const contents = this.items.map(item => ({
+                    id: item.id,
+                    quantity: item.quantity,
+                    item_price: item.price
+                }));
+                
+                fbq('track', 'InitiateCheckout', {
+                    content_ids: contentIds,
+                    contents: contents,
+                    content_type: 'product',
+                    value: totalAmount,
+                    currency: 'XOF',
+                    num_items: this.items.reduce((sum, item) => sum + item.quantity, 0)
+                });
             }
         }
     }
