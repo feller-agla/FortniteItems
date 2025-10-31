@@ -2110,6 +2110,10 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .remove-btn:hover {
@@ -3587,10 +3591,12 @@ body {
     
     .remove-btn {
         order: 3;
-        font-size: 22px;
-        padding: 10px;
+        font-size: 20px;
         width: 40px;
         height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .summary-line {
@@ -4483,8 +4489,13 @@ body {
 }
 
 .whatsapp-float svg {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes whatsappPulse {
@@ -4506,7 +4517,7 @@ body {
     }
     
     .whatsapp-float svg {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
     }
 }
