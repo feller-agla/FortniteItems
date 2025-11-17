@@ -104,7 +104,12 @@
             if (!pack) return;
             const suffix = this.currentItem?.name ? ` · ${this.currentItem.name}` : '';
             const lineName = `${pack.name}${suffix}`;
-            cart.addItem(pack.id, lineName, pack.price, 1);
+            const cartId = this.buildCartItemId(pack, this.currentItem);
+            const metadata = this.buildMetadata(this.currentItem);
+            cart.addItem(cartId, lineName, pack.price, 1, {
+                baseId: pack.id,
+                metadata
+            });
             this.persistNote();
             this.closeModal();
         }
@@ -118,6 +123,37 @@
             if (!this.packOptions.length) return null;
             const selectedId = this.packSelect?.value;
             return this.packOptions.find((pack) => pack.id === selectedId) || this.packOptions[0];
+        }
+
+        buildCartItemId(pack, item) {
+            if (!pack) return '';
+            if (!item || (!item.id && !item.name)) {
+                return pack.id;
+            }
+            const suffix = item.id || this.slugifyIdentifier(item.name);
+            return `${pack.id}::${suffix}`;
+        }
+
+        slugifyIdentifier(value) {
+            if (!value) {
+                return `item-${Date.now().toString(36)}`;
+            }
+            const slug = String(value)
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+            return slug || `item-${Date.now().toString(36)}`;
+        }
+
+        buildMetadata(item) {
+            if (!item || (!item.id && !item.name && !item.section)) {
+                return null;
+            }
+            return {
+                shopItemId: item.id || null,
+                shopItemName: item.name || null,
+                shopSection: item.section || null
+            };
         }
 
         persistNote() {
@@ -497,10 +533,12 @@
 
             if (this.elements.featuredCta) {
                 this.elements.featuredCta.href = '#products';
+                this.elements.featuredCta.dataset.itemId = featuredItem.id;
                 this.elements.featuredCta.dataset.itemName = featuredItem.name;
                 this.elements.featuredCta.dataset.itemPrice = featuredItem.price;
                 this.elements.featuredCta.dataset.itemSection = featuredItem.type.name;
                 this.orderBridge?.bind(this.elements.featuredCta, {
+                    id: featuredItem.id,
                     name: featuredItem.name,
                     price: featuredItem.price,
                     section: featuredItem.type.name
@@ -658,6 +696,7 @@
                             <p class="shop-card-hint">${this.escapeHtml(orderHint)}</p>
                             <button type="button"
                                 class="product-button cart-flow-cta"
+                                data-item-id="${this.escapeHtml(item.id || '')}"
                                 data-item-name="${this.escapeHtml(item.name)}"
                                 data-item-price="${item.price}"
                                 data-item-section="${this.escapeHtml(sectionTitle)}"
@@ -703,6 +742,7 @@
             const ctas = this.root.querySelectorAll('.cart-flow-cta');
             ctas.forEach((cta) => {
                 const item = {
+                    id: cta.dataset.itemId || null,
                     name: cta.dataset.itemName || 'Commande Fortnite',
                     price: Number(cta.dataset.itemPrice) || 0,
                     section: cta.dataset.itemSection || 'Boutique Live'

@@ -16,8 +16,31 @@ class ShoppingCart {
 
     // Load cart from localStorage
     loadCart() {
-        const saved = localStorage.getItem('fortniteshop_cart');
-        return saved ? JSON.parse(saved) : [];
+        try {
+            const saved = localStorage.getItem('fortniteshop_cart');
+            if (!saved) return [];
+            const parsed = JSON.parse(saved);
+            if (!Array.isArray(parsed)) return [];
+            return this.normalizeCartItems(parsed);
+        } catch (error) {
+            console.warn('Impossible de charger le panier localStorage', error);
+            return [];
+        }
+    }
+
+    normalizeCartItems(items) {
+        return items.map((item) => ({
+            ...item,
+            baseId: item.baseId || this.extractBaseProductId(item.id),
+            metadata: item.metadata || null
+        }));
+    }
+
+    extractBaseProductId(id) {
+        if (!id) return '';
+        const normalized = String(id);
+        const [head] = normalized.split('::');
+        return head.split('-')[0];
     }
 
     // Save cart to localStorage
@@ -26,17 +49,31 @@ class ShoppingCart {
     }
 
     // Add item to cart
-    addItem(id, name, price, quantity = 1) {
-        const existingItem = this.items.find(item => item.id === id);
+    addItem(id, name, price, quantity = 1, options = {}) {
+        const normalizedId = String(id);
+        const safeQuantity = Math.max(1, parseInt(quantity, 10) || 1);
+        const numericPrice = Number.parseFloat(price) || 0;
+        const baseId = options.baseId || this.extractBaseProductId(normalizedId);
+        const metadata = options.metadata || null;
+
+        const existingItem = this.items.find(item => item.id === normalizedId);
         
         if (existingItem) {
-            existingItem.quantity += quantity;
+            existingItem.quantity += safeQuantity;
+            existingItem.price = numericPrice;
+            existingItem.name = name;
+            existingItem.baseId = existingItem.baseId || baseId;
+            if (metadata) {
+                existingItem.metadata = metadata;
+            }
         } else {
             this.items.push({
-                id: id,
-                name: name,
-                price: parseFloat(price),
-                quantity: quantity
+                id: normalizedId,
+                baseId,
+                name,
+                price: numericPrice,
+                quantity: safeQuantity,
+                metadata
             });
         }
 
@@ -121,7 +158,7 @@ class ShoppingCart {
                 <div class="cart-item" data-id="${item.id}">
                     <div class="cart-item-info">
                         <div class="cart-item-icon">
-                            ${this.getProductIcon(item.id)}
+                            ${this.getProductIcon(item)}
                         </div>
                         <div class="cart-item-details">
                             <h3>${item.name}</h3>
@@ -158,7 +195,11 @@ class ShoppingCart {
     }
 
     // Get product icon based on ID
-    getProductIcon(id) {
+    getProductIcon(itemOrId) {
+        const baseId = (itemOrId && typeof itemOrId === 'object')
+            ? (itemOrId.baseId || this.extractBaseProductId(itemOrId.id))
+            : this.extractBaseProductId(itemOrId);
+
         const icons = {
             '1': '<span class="product-icon-small" style="background: var(--gradient-primary);">V</span>',
             '2': '<span class="product-icon-small" style="background: var(--gradient-secondary);">V</span>',
@@ -166,7 +207,7 @@ class ShoppingCart {
             '4': '<span class="product-icon-small" style="background: linear-gradient(135deg, #FFD700, #FFA500);">👑</span>',
             '5': '<span class="product-icon-small" style="background: var(--gradient-primary);">🎮</span>'
         };
-        return icons[id] || '<span class="product-icon-small">V</span>';
+        return icons[baseId] || '<span class="product-icon-small">V</span>';
     }
 
     // Show notification

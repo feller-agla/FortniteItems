@@ -951,6 +951,12 @@ body.prefers-reduced-motion .hero-visual {
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    text-decoration: none;
 }
 
 .product-button::before {
@@ -4721,9 +4727,24 @@ body.prefers-reduced-motion .hero-visual {
     .hero-card-footer {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: stretch;
         gap: 16px;
         margin-top: 24px;
+        flex-wrap: wrap;
+    }
+
+    .hero-price {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .hero-card-footer .product-button {
+        flex: 1 1 200px;
+        min-height: 56px;
     }
 
     .hero-card-badge {
@@ -5179,6 +5200,30 @@ body.prefers-reduced-motion .hero-visual {
 
         .shop-card-actions .product-button,
         .shop-card-actions .ghost-button {
+            width: 100%;
+        }
+
+        .hero-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .hero-actions .cta-button,
+        .hero-actions .ghost-button {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .hero-card-footer {
+            flex-direction: column;
+        }
+
+        .hero-card-footer .hero-price {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .hero-card-footer .product-button {
             width: 100%;
         }
 
