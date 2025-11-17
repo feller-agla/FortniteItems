@@ -25,6 +25,13 @@ Plateforme e-commerce complète pour la vente de V-Bucks et Fortnite Crew. Site 
 - Particules animées et effets visuels
 - Navigation intuitive
 
+### 🛍️ **Boutique Fortnite en direct**
+- Page `frontend/shop.html` reliée à notre backend Render
+- Synchronisation automatique toutes les 15 minutes via `fortnite-api.com`
+- Filtres par rareté, type, ordre de prix + recherche plein texte
+- CTA WhatsApp préremplis pour commander un skin en un clic
+- Cache contrôlé depuis `backend/services/fortnite_api.py`
+
 ---
 
 ## 📦 Structure du Projet
@@ -32,21 +39,34 @@ Plateforme e-commerce complète pour la vente de V-Bucks et Fortnite Crew. Site 
 ```
 FortniteItems/
 │
-├── index.html              # Page d'accueil / Landing page
-├── product.html            # Page détails produit
-├── cart.html               # Page panier & checkout
-├── success.html            # Page confirmation commande ✨ NEW
-├── payment-failed.html     # Page échec paiement ✨ NEW
+├── frontend/               # Interface complète (HTML/CSS/JS + assets)
+│   ├── index.html          # Landing page
+│   ├── shop.html           # Boutique Fortnite connectée à l'API
+│   ├── product.html        # Page détails produit
+│   ├── cart.html           # Panier & checkout
+│   ├── success.html        # Confirmation commande
+│   ├── payment-failed.html # Échec paiement
+│   ├── styles.css          # Design global
+│   ├── script.js           # Animations & effets visuels
+│   ├── shop.js             # Client pour /api/shop + filtres
+│   ├── cart.js             # Gestion panier
+│   ├── product.js          # Données produits
+│   ├── checkout.js         # Processus paiement
+│   ├── analytics.js        # Tracking / analytics
+│   └── assets/             # Images, icônes, vidéos
 │
-├── styles.css              # Tous les styles (46KB)
+├── backend/                # API Flask + scripts auxiliaires
+│   ├── lygos.py            # API paiement + webhooks
+│   ├── requirements.txt    # Dépendances backend
+│   ├── start-backend.sh    # Script de démarrage
+│   ├── test_backend.sh     # Script de tests HTTP
+│   ├── test_email.py       # Vérification SMTP
+│   ├── gunicorn.conf.py    # Config production
+│   ├── render.yaml         # Déploiement Render
+│   └── .env.example        # Variables d'environnement
 │
-├── script.js               # Animations & effets visuels
-├── cart.js                 # Gestion du panier
-├── product.js              # Chargement des produits
-├── checkout.js             # Processus de paiement
-│
-├── README.md               # Ce fichier
-└── LYGOS_CONFIG.md         # Configuration paiement Lygos ✨ NEW
+├── Documentations/         # Guides d'installation et procédures
+└── README.md               # Ce fichier
 ```
 
 ---
@@ -59,14 +79,52 @@ FortniteItems/
 # 1. Clone ou télécharge le projet
 cd /home/FeLLeRGLITCH_x/FortniteItems
 
-# 2. Lance un serveur local
+# 2. Lance le frontend statique
+cd frontend
 python3 -m http.server 8000
 
 # 3. Ouvre dans ton navigateur
 http://localhost:8000
 ```
 
-C'est tout ! Aucune dépendance, aucun build nécessaire.
+### Démarrer l'API backend (optionnel)
+
+```bash
+cd /home/FeLLeRGLITCH_x/FortniteItems/backend
+./start-backend.sh
+```
+
+Le script crée (si besoin) un environnement virtuel local `backend/.venv`, installe automatiquement les dépendances (`requirements.txt`) puis lance `lygos.py` sur http://localhost:5000.
+
+> 💡 Tu peux aussi activer l'environnement manuellement avec `source backend/.venv/bin/activate` pour lancer `python lygos.py` ou `pip install ...` sans toucher à l'installation système.
+
+## 🛰️ API Boutique Fortnite
+
+- Ajoute `FORTNITE_API_KEY` (ta clé `fortnite-api.com`) dans `backend/.env`.
+- Rafraîchis le cache manuellement avec :
+    ```bash
+    cd backend
+    python3 fetch_shop.py
+    ```
+- Endpoint disponible : `GET /api/shop` (paramètre optionnel `?refresh=1`). La réponse contient `last_updated`, `ttl_seconds` et la structure `data` renvoyée par Fortnite API.
+
+> ⚠️ Si `FORTNITE_API_KEY` est absente ou invalide, le backend renverra `503` avec le message `FORTNITE_API_KEY non configurée`. Ajoute ta clé Fortnite-API.com dans `backend/.env` (ou via les variables d'environnement) pour activer la boutique.
+
+La page `frontend/shop.html` consomme directement cet endpoint. En local, elle cible `http://localhost:5000`. En production, tu peux surcharger l'URL backend en ajoutant avant `shop.js` :
+
+```html
+<script>
+    window.FORTNITE_ITEMS_BACKEND = 'https://fortniteitems-backend.onrender.com';
+</script>
+```
+
+Le script applique ensuite les filtres (recherche, rareté, type, tri) et pré-remplit les CTA WhatsApp avec le nom du skin et son prix officiel.
+
+## ♿ Accessibilité & performances
+
+- Les animations lourdes (particules, parallax, cursor trail, loader) se désactivent automatiquement sur mobile et pour les utilisateurs ayant activé `prefers-reduced-motion`.
+- Les ressources statiques du frontend utilisent uniquement des chemins relatifs (`assets/...`) afin de fonctionner en local comme en production.
+- Tous les boutons WhatsApp s'appuient sur `data-whatsapp-message` et sont générés par `WhatsAppIntegration` pour assurer un numéro unique et des messages cohérents.
 
 ---
 
@@ -86,7 +144,7 @@ C'est tout ! Aucune dépendance, aucun build nécessaire.
 
 ### Modifier les Produits
 
-Édite `product.js` (lignes 7-62) pour changer prix, descriptions, features :
+Édite `frontend/product.js` (lignes 7-62) pour changer prix, descriptions, features :
 
 ```javascript
 const products = {
@@ -102,14 +160,14 @@ const products = {
 
 ### Ajouter un Nouveau Produit
 
-**1. Dans `index.html`** (section products) :
+**1. Dans `frontend/index.html`** (section products) :
 ```html
 <div class="product-card" data-rarity="legendary" data-product-id="6">
     <!-- ... structure du card ... -->
 </div>
 ```
 
-**2. Dans `product.js`** :
+**2. Dans `frontend/product.js`** :
 ```javascript
 '6': {
     id: '6',
@@ -122,7 +180,7 @@ const products = {
 
 ### Codes Promo
 
-Édite `cart.js` (lignes 157-161) :
+Édite `frontend/cart.js` (lignes 157-161) :
 
 ```javascript
 const validCodes = {
@@ -134,7 +192,7 @@ const validCodes = {
 
 ### Changer les Couleurs
 
-Dans `styles.css` (lignes 6-21) :
+Dans `frontend/styles.css` (lignes 6-21) :
 
 ```css
 :root {
@@ -155,7 +213,7 @@ Le site est prêt pour l'intégration avec des APIs de paiement réelles.
 
 #### 1. **Stripe** (International + Cartes)
 ```javascript
-// Dans checkout.js
+// Dans frontend/checkout.js
 const stripe = Stripe('pk_test_YOUR_KEY');
 
 stripe.redirectToCheckout({
@@ -170,7 +228,7 @@ stripe.redirectToCheckout({
 
 #### 2. **Flutterwave** (Afrique + Mobile Money)
 ```javascript
-// Dans checkout.js
+// Dans frontend/checkout.js
 FlutterwaveCheckout({
     public_key: "FLWPUBK-xxxxx",
     tx_ref: orderNumber,
@@ -193,7 +251,7 @@ FlutterwaveCheckout({
 
 #### 3. **Paystack** (Afrique + Mobile Money)
 ```javascript
-// Dans checkout.js
+// Dans frontend/checkout.js
 var handler = PaystackPop.setup({
     key: 'pk_test_xxxxx',
     email: customerEmail,
@@ -212,11 +270,11 @@ handler.openIframe();
 
 1. **Inscris-toi** sur la plateforme choisie
 2. **Obtiens tes clés API** (test & production)
-3. **Ajoute le SDK** dans `checkout.html` :
+3. **Ajoute le SDK** dans ta page checkout (ex: `frontend/cart.html`) :
    ```html
    <script src="https://js.stripe.com/v3/"></script>
    ```
-4. **Remplace le code** dans `checkout.js` fonction `processPayment()`
+4. **Remplace le code** dans `frontend/checkout.js` fonction `processPayment()`
 5. **Configure le webhook** pour confirmation paiement
 6. **Test** avec clés de test avant production
 
@@ -464,7 +522,7 @@ localStorage.removeItem('fortniteshop_cart');
 
 ### Les produits ne chargent pas
 
-Vérifie que l'ID dans l'URL correspond à un produit dans `product.js` :
+Vérifie que l'ID dans l'URL correspond à un produit dans `frontend/product.js` :
 ```
 product.html?id=1  // ← ID doit exister dans products{}
 ```
@@ -472,7 +530,7 @@ product.html?id=1  // ← ID doit exister dans products{}
 ### Modal checkout ne s'ouvre pas
 
 ```javascript
-// Vérifie que checkout.js est bien chargé
+// Vérifie que frontend/checkout.js est bien chargé
 console.log(typeof checkout);  // Doit afficher "object"
 ```
 

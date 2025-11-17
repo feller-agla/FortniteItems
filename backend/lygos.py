@@ -14,6 +14,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
+from services.fortnite_api import FortniteAPIClient, FortniteAPIError
+
 # Charger les variables d'environnement depuis .env
 try:
     from dotenv import load_dotenv
@@ -48,6 +50,10 @@ LYGOS_API_KEY = os.getenv("LYGOS_API_KEY", "lygosapp-9651642a-25f7-4e06-98b9-361
 LYGOS_API_URL = "https://api.lygosapp.com/v1/gateway"
 SHOP_NAME = "FortniteItems"
 
+# Fortnite API
+FORTNITE_API_KEY = os.getenv("FORTNITE_API_KEY")
+FORTNITE_SHOP_TTL = int(os.getenv("FORTNITE_SHOP_TTL", "900"))
+
 # URLs de base - Utiliser variable d'environnement en production
 BASE_URL = os.getenv("BASE_URL", "https://fortniteitems.netlify.app")
 SUCCESS_URL = f"{BASE_URL}/success.html"
@@ -55,6 +61,19 @@ FAILURE_URL = f"{BASE_URL}/payment-failed.html"
 
 # Base de données simple en mémoire (à remplacer par une vraie DB en production)
 orders_db = {}
+
+# Fortnite client
+fortnite_client = None
+if FORTNITE_API_KEY:
+    try:
+        fortnite_client = FortniteAPIClient(
+            api_key=FORTNITE_API_KEY,
+            cache_ttl_seconds=FORTNITE_SHOP_TTL,
+        )
+    except Exception as e:
+        print(f"❌ Impossible d'initialiser FortniteAPIClient: {e}")
+else:
+    print("⚠️  FORTNITE_API_KEY non définie - endpoint /api/shop désactivé")
 
 
 def send_order_email(order_details):
@@ -367,6 +386,38 @@ def get_all_orders():
     Récupérer toutes les commandes (pour admin)
     """
     return jsonify(list(orders_db.values())), 200
+
+
+@app.route('/api/shop', methods=['GET'])
+def get_fortnite_shop():
+    """Retourner la boutique Fortnite (cache + option refresh)."""
+    if fortnite_client is None:
+        return jsonify({
+            "success": False,
+            "error": "FORTNITE_API_KEY non configurée sur le backend"
+        }), 503
+
+    force_refresh = request.args.get('refresh', '0') == '1'
+
+    try:
+        payload = fortnite_client.get_shop(force_refresh=force_refresh)
+        return jsonify({
+            "success": True,
+            "last_updated": payload.get('last_updated'),
+            "source_status": payload.get('status'),
+            "data": payload.get('data'),
+            "ttl_seconds": FORTNITE_SHOP_TTL
+        }), 200
+    except FortniteAPIError as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 502
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": f"Erreur serveur: {str(e)}"
+        }), 500
 
 
 @app.route('/', methods=['GET'])

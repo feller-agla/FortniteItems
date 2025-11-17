@@ -32,21 +32,32 @@ Plateforme e-commerce complète pour la vente de V-Bucks et Fortnite Crew. Site 
 ```
 FortniteItems/
 │
-├── index.html              # Page d'accueil / Landing page
-├── product.html            # Page détails produit
-├── cart.html               # Page panier & checkout
-├── success.html            # Page confirmation commande ✨ NEW
-├── payment-failed.html     # Page échec paiement ✨ NEW
+├── frontend/               # Interface complète (HTML/CSS/JS + assets)
+│   ├── index.html          # Landing page
+│   ├── product.html        # Page détails produit
+│   ├── cart.html           # Panier & checkout
+│   ├── success.html        # Confirmation commande
+│   ├── payment-failed.html # Échec paiement
+│   ├── styles.css          # Design global
+│   ├── script.js           # Animations & effets visuels
+│   ├── cart.js             # Gestion panier
+│   ├── product.js          # Données produits
+│   ├── checkout.js         # Processus paiement
+│   ├── analytics.js        # Tracking / analytics
+│   └── assets/             # Images, icônes, vidéos
 │
-├── styles.css              # Tous les styles (46KB)
+├── backend/                # API Flask + scripts auxiliaires
+│   ├── lygos.py            # API paiement + webhooks
+│   ├── requirements.txt    # Dépendances backend
+│   ├── start-backend.sh    # Script de démarrage
+│   ├── test_backend.sh     # Script de tests HTTP
+│   ├── test_email.py       # Vérification SMTP
+│   ├── gunicorn.conf.py    # Config production
+│   ├── render.yaml         # Déploiement Render
+│   └── .env.example        # Variables d'environnement
 │
-├── script.js               # Animations & effets visuels
-├── cart.js                 # Gestion du panier
-├── product.js              # Chargement des produits
-├── checkout.js             # Processus de paiement
-│
-├── README.md               # Ce fichier
-└── LYGOS_CONFIG.md         # Configuration paiement Lygos ✨ NEW
+├── Documentations/         # Guides d'installation et procédures
+└── README.md               # Ce fichier
 ```
 
 ---
@@ -59,14 +70,42 @@ FortniteItems/
 # 1. Clone ou télécharge le projet
 cd /home/FeLLeRGLITCH_x/FortniteItems
 
-# 2. Lance un serveur local
+# 2. Lance le frontend statique
+cd frontend
 python3 -m http.server 8000
 
 # 3. Ouvre dans ton navigateur
 http://localhost:8000
 ```
 
-C'est tout ! Aucune dépendance, aucun build nécessaire.
+### Démarrer l'API backend (optionnel)
+
+```bash
+cd /home/FeLLeRGLITCH_x/FortniteItems/backend
+./start-backend.sh
+```
+
+Le script installe automatiquement les dépendances (`requirements.txt`) puis lance `lygos.py` sur http://localhost:5000.
+
+## 🛰️ API Boutique Fortnite
+
+- Déclare `FORTNITE_API_KEY` (issue de https://fortnite-api.com) dans `backend/.env`.
+- Utilise `python3 fetch_shop.py` pour rafraîchir le cache local `backend/data/shop_cache.json`.
+- Endpoint REST : `GET /api/shop` (paramètre `refresh=1` pour ignorer le cache). Réponse :
+    ```json
+    {
+        "success": true,
+        "last_updated": "2025-11-17T12:34:00+00:00",
+        "ttl_seconds": 900,
+        "data": { "featured": { ... }, ... }
+    }
+    ```
+
+## ♿ Accessibilité & performances
+
+- Les animations gourmandes (particules, parallax, cursor trail, loader) sont automatiquement désactivées sur mobile et pour les utilisateurs ayant activé `prefers-reduced-motion`.
+- Toutes les ressources frontend exploitent des chemins relatifs (`assets/...`) pour garantir le fonctionnement en local et en production.
+- Les boutons WhatsApp reposent sur `data-whatsapp-message` et sont alimentés par `WhatsAppIntegration` afin d'unifier le numéro de support et les messages préremplis.
 
 ---
 
@@ -86,7 +125,7 @@ C'est tout ! Aucune dépendance, aucun build nécessaire.
 
 ### Modifier les Produits
 
-Édite `product.js` (lignes 7-62) pour changer prix, descriptions, features :
+Édite `frontend/product.js` (lignes 7-62) pour changer prix, descriptions, features :
 
 ```javascript
 const products = {
@@ -102,14 +141,14 @@ const products = {
 
 ### Ajouter un Nouveau Produit
 
-**1. Dans `index.html`** (section products) :
+**1. Dans `frontend/index.html`** (section products) :
 ```html
 <div class="product-card" data-rarity="legendary" data-product-id="6">
     <!-- ... structure du card ... -->
 </div>
 ```
 
-**2. Dans `product.js`** :
+**2. Dans `frontend/product.js`** :
 ```javascript
 '6': {
     id: '6',
@@ -122,7 +161,7 @@ const products = {
 
 ### Codes Promo
 
-Édite `cart.js` (lignes 157-161) :
+Édite `frontend/cart.js` (lignes 157-161) :
 
 ```javascript
 const validCodes = {
@@ -134,7 +173,7 @@ const validCodes = {
 
 ### Changer les Couleurs
 
-Dans `styles.css` (lignes 6-21) :
+Dans `frontend/styles.css` (lignes 6-21) :
 
 ```css
 :root {
@@ -155,7 +194,7 @@ Le site est prêt pour l'intégration avec des APIs de paiement réelles.
 
 #### 1. **Stripe** (International + Cartes)
 ```javascript
-// Dans checkout.js
+// Dans frontend/checkout.js
 const stripe = Stripe('pk_test_YOUR_KEY');
 
 stripe.redirectToCheckout({
@@ -170,7 +209,7 @@ stripe.redirectToCheckout({
 
 #### 2. **Flutterwave** (Afrique + Mobile Money)
 ```javascript
-// Dans checkout.js
+// Dans frontend/checkout.js
 FlutterwaveCheckout({
     public_key: "FLWPUBK-xxxxx",
     tx_ref: orderNumber,
@@ -193,7 +232,7 @@ FlutterwaveCheckout({
 
 #### 3. **Paystack** (Afrique + Mobile Money)
 ```javascript
-// Dans checkout.js
+// Dans frontend/checkout.js
 var handler = PaystackPop.setup({
     key: 'pk_test_xxxxx',
     email: customerEmail,
@@ -212,11 +251,11 @@ handler.openIframe();
 
 1. **Inscris-toi** sur la plateforme choisie
 2. **Obtiens tes clés API** (test & production)
-3. **Ajoute le SDK** dans `checkout.html` :
+3. **Ajoute le SDK** dans ta page checkout (ex: `frontend/cart.html`) :
    ```html
    <script src="https://js.stripe.com/v3/"></script>
    ```
-4. **Remplace le code** dans `checkout.js` fonction `processPayment()`
+4. **Remplace le code** dans `frontend/checkout.js` fonction `processPayment()`
 5. **Configure le webhook** pour confirmation paiement
 6. **Test** avec clés de test avant production
 
@@ -464,7 +503,7 @@ localStorage.removeItem('fortniteshop_cart');
 
 ### Les produits ne chargent pas
 
-Vérifie que l'ID dans l'URL correspond à un produit dans `product.js` :
+Vérifie que l'ID dans l'URL correspond à un produit dans `frontend/product.js` :
 ```
 product.html?id=1  // ← ID doit exister dans products{}
 ```
@@ -472,7 +511,7 @@ product.html?id=1  // ← ID doit exister dans products{}
 ### Modal checkout ne s'ouvre pas
 
 ```javascript
-// Vérifie que checkout.js est bien chargé
+// Vérifie que frontend/checkout.js est bien chargé
 console.log(typeof checkout);  // Doit afficher "object"
 ```
 

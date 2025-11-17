@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Fortnite en direct | FortniteItems</title>
+    <meta name="description" content="Parcours toutes les offres Fortnite du jour : skins, emotes, bundles et promotions officielles synchronisées via Fortnite-API.">
+    <link rel="icon" type="image/png" href="assets/favicnon.png">
+    <link rel="apple-touch-icon" href="assets/favicnon.png">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="shop-page-body">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Particle Canvas (auto-disabled en mode réduit) -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FortniteItems</span>
+                    <span class="logo-subtext">SHOP</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" data-nav-target="#home">Accueil</a>
+                <a href="#products" data-nav-target="#products">Offres V-Bucks</a>
+                <a href="shop.html" class="active">Boutique Fortnite</a>
+                <a href="guide.html">📖 Guide</a>
+                <a href="#features" data-nav-target="#features">Avantages</a>
+                <a href="#faq" data-nav-target="#faq">FAQ</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="shopApp" class="shop-app">
+        <section class="shop-hero" id="shopHero">
+            <div class="shop-hero-content">
+                <p class="eyebrow">Boutique officielle · synchronisée via Fortnite-API.com</p>
+                <h1>Suits, emotes & offres du jour</h1>
+                <p class="hero-description">
+                    Rafraîchie automatiquement toutes les <strong>15 minutes</strong>. Visualise les prix, note les skins qui t'intéressent puis passe commande via ton panier habituel.
+                </p>
+                <div class="hero-actions">
+                    <a href="#shopSections" class="cta-button glow-button">
+                        <span>Explorer la boutique</span>
+                        <div class="button-glow"></div>
+                    </a>
+                    <button id="shopRefreshButton" class="ghost-button" type="button">
+                        🔄 Actualiser maintenant
+                    </button>
+                </div>
+                <div class="hero-metrics">
+                    <div class="metric">
+                        <span class="metric-label">Dernière synchro</span>
+                        <strong id="shopLastUpdate">--</strong>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Articles suivis</span>
+                        <strong id="shopItemsCount">0</strong>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Cache TTL</span>
+                        <strong id="shopTtl">15 min</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-hero-art" id="shopHeroArt">
+                <div class="hero-card" id="shopFeaturedCard">
+                    <div class="hero-card-media" id="shopFeaturedMedia"></div>
+                    <div class="hero-card-content">
+                        <span class="hero-card-tag" id="shopFeaturedTag">En attente</span>
+                        <h3 id="shopFeaturedName">Chargement de la boutique…</h3>
+                        <p id="shopFeaturedDescription">Les dernières offres arrivent depuis Fortnite-API.</p>
+                        <div class="hero-card-footer">
+                            <div class="hero-price">
+                                <img src="assets/icon.png" alt="Icône V-Bucks" class="vbuck-icon" loading="lazy">
+                                <span id="shopFeaturedPrice">--</span>
+                            </div>
+                            <a id="shopFeaturedCta" class="product-button cart-flow-cta" href="index.html#products" data-nav-target="#products">
+                                Préparer ma commande
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <span class="hero-card-badge" id="shopFeaturedBadge">Live</span>
+            </div>
+        </section>
+
+        <section class="shop-status" id="shopStatusBanner">
+            <p>
+                🔐 Données fournies par <strong>fortnite-api.com</strong> · endpoint privé caché via notre backend Render.
+                Temps réel avec cache contrôlé pour éviter les limites.
+            </p>
+        </section>
+
+        <section class="shop-controls" aria-label="Filtres de la boutique">
+            <div class="control search-control">
+                <label for="shopSearch">Rechercher</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔎</span>
+                    <input type="search" id="shopSearch" placeholder="Tenue, emote, série, type…">
+                </div>
+            </div>
+            <div class="control select-control">
+                <label for="shopFilterRarity">Rareté</label>
+                <select id="shopFilterRarity">
+                    <option value="all">Toutes</option>
+                </select>
+            </div>
+            <div class="control select-control">
+                <label for="shopFilterType">Type</label>
+                <select id="shopFilterType">
+                    <option value="all">Tous les types</option>
+                </select>
+            </div>
+            <div class="control select-control">
+                <label for="shopFilterSort">Tri</label>
+                <select id="shopFilterSort">
+                    <option value="featured">Ordre officiel</option>
+                    <option value="price-asc">Prix croissant</option>
+                    <option value="price-desc">Prix décroissant</option>
+                    <option value="name">Nom (A→Z)</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="shop-tip">
+            <p>💡 Astuce : ajoute ton pack V-Bucks au panier, puis mentionne le nom de l'objet souhaité lors de la validation WhatsApp.</p>
+        </section>
+
+        <section id="shopSections" class="shop-sections" aria-live="polite">
+            <div class="shop-skeletons" id="shopSkeletonWrapper">
+                <div class="shop-skeleton-card"></div>
+                <div class="shop-skeleton-card"></div>
+                <div class="shop-skeleton-card"></div>
+                <div class="shop-skeleton-card"></div>
+                <div class="shop-skeleton-card"></div>
+                <div class="shop-skeleton-card"></div>
+            </div>
+        </section>
+
+        <div class="shop-empty" id="shopEmptyState" hidden>
+            <h3>Aucun objet trouvé</h3>
+            <p>Essaie d'autres filtres ou relance la synchronisation.</p>
+            <button type="button" class="ghost-button" id="shopResetFilters">Réinitialiser les filtres</button>
+        </div>
+
+        <section class="shop-disclaimer">
+            <h3>Comment fonctionne la livraison ?</h3>
+            <p>
+                Nous utilisons un compte secondaire Epic Games correspondant aux offres du jour. Après ta commande, tu reçois les identifiants par email + WhatsApp. Tu ajoutes notre compte en ami, tu offres le skin désiré, puis tu te déconnectes : 100% conforme aux CGU Fortnite.
+            </p>
+            <ul>
+                 <li>✅ Paiements: Mobile Money, Crypto, carte bancaire</li>
+                <li>✅ Livraison moyenne: 15 à 45 minutes (selon flux)</li>
+                <li>✅ Support humain 24/7 directement sur WhatsApp</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- WhatsApp Support Button -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/22965623691" class="whatsapp-float-btn" target="_blank" rel="noopener"
+           data-whatsapp-message="Bonjour, je souhaite acheter un skin depuis la boutique FortniteItems."
+           aria-label="Support WhatsApp">
+            <span class="button-icon">💬</span>
+            <span class="button-text">Support WhatsApp</span>
+            <span class="whatsapp-pulse"></span>
+        </a>
+    </div>
+
+    <!-- Modal de préparation de commande -->
+    <div id="shopOrderModal" class="shop-order-modal" aria-hidden="true">
+        <div class="shop-order-dialog" role="dialog" aria-modal="true">
+            <button type="button" class="modal-close" id="shopOrderClose" aria-label="Fermer">&times;</button>
+            <p class="modal-eyebrow">Préparer ma commande</p>
+            <h3 id="shopOrderItemName">Boutique Fortnite</h3>
+            <p id="shopOrderItemPrice" class="modal-price">--</p>
+            <div class="modal-field">
+                <label for="shopPackSelect">Choisis le pack à recharger</label>
+                <select id="shopPackSelect"></select>
+            </div>
+            <div class="modal-field">
+                <label for="shopOrderNote">Note pour le support</label>
+                <textarea id="shopOrderNote" rows="3"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="ghost-button" id="shopOrderViewCart">Voir mon panier</button>
+                <button type="button" class="cta-button" id="shopOrderAddBtn">
+                    <span>Ajouter au panier</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cart.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="shop.js" defer></script>
+</body>
+</html>

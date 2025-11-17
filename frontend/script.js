@@ -1,4 +1,24 @@
 // ===========================
+// MOTION PREFERENCES HELPERS
+// ===========================
+
+const motionMediaQuery = typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : { matches: false, addEventListener: () => {}, addListener: () => {} };
+
+const shouldReduceMotion = () => {
+    const prefersReduced = motionMediaQuery.matches;
+    const isSmallScreen = typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
+    return prefersReduced || isSmallScreen;
+};
+
+function updateBodyMotionPreference(shouldReduce) {
+    if (typeof document !== 'undefined' && document.body) {
+        document.body.classList.toggle('prefers-reduced-motion', shouldReduce);
+    }
+}
+
+// ===========================
 // PARTICLE SYSTEM
 // ===========================
 
@@ -155,7 +175,7 @@ class SmoothScroll {
                     const offsetTop = target.offsetTop - 80;
                     window.scrollTo({
                         top: offsetTop,
-                        behavior: 'smooth'
+                        behavior: shouldReduceMotion() ? 'auto' : 'smooth'
                     });
                 }
             });
@@ -224,13 +244,15 @@ class ProductCards {
             
             // Add click animation
             const button = card.querySelector('.product-button');
-            button.addEventListener('click', () => {
-                button.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    button.style.transform = 'scale(1)';
-                    this.showNotification('Added to cart! ✨');
-                }, 150);
-            });
+            if (button && button.dataset.disableProductAnimation !== 'true') {
+                button.addEventListener('click', () => {
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = 'scale(1)';
+                        this.showNotification('Added to cart! ✨');
+                    }, 150);
+                });
+            }
         });
     }
     
@@ -269,11 +291,14 @@ class ProductCards {
 
 class WhatsAppIntegration {
     constructor() {
-        this.whatsappNumber = '229XXXXXXXX'; // Replace with actual number
+        this.whatsappNumber = '22965623691';
+        this.prefilledButtons = document.querySelectorAll('[data-whatsapp-message]');
         this.init();
     }
     
     init() {
+        this.updatePrefilledButtons();
+        
         // Track clicks on WhatsApp buttons
         const whatsappButtons = document.querySelectorAll('a[href*="wa.me"]');
         whatsappButtons.forEach(button => {
@@ -283,10 +308,24 @@ class WhatsAppIntegration {
         });
     }
     
+    updatePrefilledButtons() {
+        if (!this.prefilledButtons.length) return;
+        
+        this.prefilledButtons.forEach(button => {
+            const message = button.getAttribute('data-whatsapp-message') || "Bonjour, j'ai besoin d'aide avec ma commande FortniteItems.";
+            button.setAttribute('href', this.generateWhatsAppLink(message));
+            if (!button.getAttribute('target')) {
+                button.setAttribute('target', '_blank');
+            }
+            button.setAttribute('rel', 'noopener');
+        });
+    }
+    
     // Helper to generate WhatsApp links
-    generateWhatsAppLink(message) {
+    generateWhatsAppLink(message = '') {
+        const sanitizedNumber = this.whatsappNumber.replace(/\D/g, '');
         const encodedMessage = encodeURIComponent(message);
-        return `https://wa.me/${this.whatsappNumber}?text=${encodedMessage}`;
+        return `https://wa.me/${sanitizedNumber}?text=${encodedMessage}`;
     }
 }
 
@@ -584,6 +623,136 @@ class MobileMenu {
 }
 
 // ===========================
+// NAVIGATION LINK NORMALIZER
+// ===========================
+
+class NavLinkRouter {
+    constructor() {
+        this.links = document.querySelectorAll('[data-nav-target]');
+        this.init();
+    }
+
+    init() {
+        if (!this.links.length) return;
+        const isIndexPage = this.isIndexPage();
+
+        this.links.forEach((link) => {
+            const target = link.getAttribute('data-nav-target');
+            if (!target) return;
+
+            const normalized = target.startsWith('#') ? target : `#${target}`;
+            if (isIndexPage) {
+                link.setAttribute('href', normalized);
+            } else {
+                link.setAttribute('href', `index.html${normalized}`);
+            }
+        });
+    }
+
+    isIndexPage() {
+        const path = window.location.pathname || '';
+        return path.endsWith('/') || path.endsWith('/index.html');
+    }
+}
+
+// ===========================
+// SHOP PREVIEW (HOMEPAGE)
+// ===========================
+
+class ShopPreview {
+    constructor() {
+        this.grid = document.getElementById('shopPreviewGrid');
+        if (!this.grid) return;
+        this.apiBaseUrl = this.resolveBackendBaseUrl();
+        this.loadPreview();
+    }
+
+    resolveBackendBaseUrl() {
+        if (window.FORTNITE_ITEMS_BACKEND) {
+            return window.FORTNITE_ITEMS_BACKEND;
+        }
+        const host = window.location.hostname;
+        const isLocalhost = ['localhost', '127.0.0.1'].includes(host);
+        return isLocalhost ? 'http://localhost:5000' : 'https://fortniteitems-backend.onrender.com';
+    }
+
+    async loadPreview() {
+        try {
+            const response = await fetch(`${this.apiBaseUrl}/api/shop`);
+            if (!response.ok) throw new Error('API shop preview error');
+            const payload = await response.json();
+            const items = this.pickPreviewItems(payload?.data?.entries || []);
+            if (!items.length) throw new Error('No items available');
+            this.render(items);
+        } catch (error) {
+            console.warn('Shop preview unavailable:', error);
+            this.renderError();
+        }
+    }
+
+    pickPreviewItems(entries) {
+        const picked = [];
+        entries.forEach((entry) => {
+            if (picked.length >= 6) return;
+            const brItem = Array.isArray(entry.brItems) ? entry.brItems[0] || {} : {};
+            picked.push({
+                name: brItem.name || entry.devName || 'Skin Fortnite',
+                description: brItem.description || 'Disponible aujourd\'hui',
+                price: entry.finalPrice ?? entry.price?.finalPrice ?? 0,
+                rarity: brItem.rarity?.displayValue || 'Classique',
+                image: entry.newDisplayAsset?.renderImages?.[0]?.image
+                    || brItem.images?.featured
+                    || brItem.images?.icon
+                    || 'assets/5000vbucks.png'
+            });
+        });
+        return picked.slice(0, 4);
+    }
+
+    render(items) {
+        const markup = items.map((item) => this.createCard(item)).join('');
+        this.grid.innerHTML = markup;
+    }
+
+    createCard(item) {
+        const price = this.formatPrice(item.price);
+        return `
+            <article class="shop-preview-card">
+                <div class="preview-media" style="background-image:url('${item.image}')"></div>
+                <div class="preview-content">
+                    <h3>${this.escapeHtml(item.name)}</h3>
+                    <p>${this.escapeHtml(item.description)}</p>
+                    <div class="preview-price">
+                        <img src="assets/icon.png" alt="V-Bucks" width="24" height="24">
+                        <span>${price}</span>
+                    </div>
+                </div>
+            </article>
+        `;
+    }
+
+    renderError() {
+        this.grid.innerHTML = `
+            <article class="shop-preview-card">
+                <h3>Boutique indisponible</h3>
+                <p>Impossible de charger la boutique live pour le moment. Réessaie dans quelques minutes.</p>
+            </article>
+        `;
+    }
+
+    formatPrice(value) {
+        if (!Number.isFinite(value)) return '--';
+        return `${Math.round(value).toLocaleString('fr-FR')} V-Bucks`;
+    }
+
+    escapeHtml(value) {
+        const div = document.createElement('div');
+        div.textContent = value ?? '';
+        return div.innerHTML;
+    }
+}
+
+// ===========================
 // SMOOTH SCROLL FOR MENU LINKS
 // ===========================
 
@@ -611,7 +780,7 @@ function initSmoothScrollMenu() {
                 
                 // Smooth scroll to target
                 targetElement.scrollIntoView({
-                    behavior: 'smooth',
+                    behavior: shouldReduceMotion() ? 'auto' : 'smooth',
                     block: 'start'
                 });
             }
@@ -624,30 +793,55 @@ function initSmoothScrollMenu() {
 // ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
+    let reduceMotion = shouldReduceMotion();
+    updateBodyMotionPreference(reduceMotion);
+
+    const handleMotionPreferenceChange = () => {
+        const nextPreference = shouldReduceMotion();
+        if (nextPreference !== reduceMotion) {
+            reduceMotion = nextPreference;
+            updateBodyMotionPreference(reduceMotion);
+        }
+    };
+
+    if (typeof motionMediaQuery.addEventListener === 'function') {
+        motionMediaQuery.addEventListener('change', handleMotionPreferenceChange);
+    } else if (typeof motionMediaQuery.addListener === 'function') {
+        motionMediaQuery.addListener(handleMotionPreferenceChange);
+    }
+
+    window.addEventListener('resize', handleMotionPreferenceChange);
+
     // Initialize particle system (only if canvas exists - index page)
     const canvas = document.getElementById('particleCanvas');
     if (canvas) {
-        const particleSystem = new ParticleSystem(canvas);
-        particleSystem.animate();
+        if (reduceMotion) {
+            canvas.remove();
+        } else {
+            const particleSystem = new ParticleSystem(canvas);
+            particleSystem.animate();
+        }
     }
     
     // Initialize mobile menu (all pages)
     new MobileMenu();
+    new NavLinkRouter();
+    new ShopPreview();
     
     // Initialize smooth scroll for menu (all pages)
     initSmoothScrollMenu();
     
     // Initialize other features (only if they exist on the page)
     if (typeof ScrollAnimations !== 'undefined') new ScrollAnimations();
-    if (typeof SmoothScroll !== 'undefined') new SmoothScroll();
+    if (!reduceMotion && typeof SmoothScroll !== 'undefined') new SmoothScroll();
     if (typeof NavbarEffects !== 'undefined') new NavbarEffects();
-    if (typeof ProductCards !== 'undefined') new ProductCards();
+    if (!reduceMotion && typeof ProductCards !== 'undefined') new ProductCards();
     if (typeof WhatsAppIntegration !== 'undefined') new WhatsAppIntegration();
-    if (typeof CursorTrail !== 'undefined') new CursorTrail();
+    if (!reduceMotion && typeof CursorTrail !== 'undefined') new CursorTrail();
     if (typeof TextEffects !== 'undefined') new TextEffects();
     if (typeof StatsCounter !== 'undefined') new StatsCounter();
-    if (typeof ParallaxEffect !== 'undefined') new ParallaxEffect();
-    if (typeof LoadingAnimation !== 'undefined') new LoadingAnimation();
+    if (!reduceMotion && typeof ParallaxEffect !== 'undefined') new ParallaxEffect();
+    if (!reduceMotion && typeof LoadingAnimation !== 'undefined') new LoadingAnimation();
     
     console.log('🎮 FortniteItems - Site chargé avec succès!');
 });

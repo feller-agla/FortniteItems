@@ -59,11 +59,12 @@
                 </a>
             </div>
             <div class="nav-links" id="navLinks">
-                <a href="#home">Accueil</a>
-                <a href="#products">Produits</a>
+                <a href="#home" data-nav-target="#home" class="active">Accueil</a>
+                <a href="#products" data-nav-target="#products">Offres V-Bucks</a>
+                <a href="shop.html">Boutique Fortnite</a>
                 <a href="guide.html">📖 Guide</a>
-                <a href="#features">Avantages</a>
-                <a href="#faq">FAQ</a>
+                <a href="#features" data-nav-target="#features">Avantages</a>
+                <a href="#faq" data-nav-target="#faq">FAQ</a>
             </div>
             <div class="nav-cart">
                 <a href="cart.html" class="cart-button">
@@ -80,22 +81,29 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
-                        <span class="title-line">V-Bucks & Fortnite Crew</span>
-                        <span class="title-highlight">Jusqu'à -42%</span>
+                        <span class="title-line">FortniteItems</span>
+                        <span class="title-highlight">Boutique Live + Packs V-Bucks</span>
                         <span class="lightning">⚡</span>
                     </h1>
-                    <p class="hero-subtitle">Identifiants par email | Mobile Money & Crypto | Service mondial</p>
-                    <a href="#products" class="cta-button glow-button">
-                        <span>Voir les Offres</span>
-                        <div class="button-glow"></div>
-                    </a>
+                    <p class="hero-subtitle">
+                        Parcours les skins du jour synchronisés avec Fortnite-API ou recharge ton solde V-Bucks jusqu'à -42%. Paiements Mobile Money, carte bancaire, Crypto.
+                    </p>
+                    <div class="hero-action-group">
+                        <a href="shop.html" class="cta-button glow-button">
+                            <span>Voir la Boutique Live</span>
+                            <div class="button-glow"></div>
+                        </a>
+                        <a href="#products" class="ghost-button ghost-button--inline">
+                            Commander des V-Bucks
+                        </a>
+                    </div>
                     <div class="hero-stats">
                         <div class="stat-item">
                             <div class="stat-number">10K+</div>
                             <div class="stat-label">Clients Satisfaits</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">Instantané</div>
+                            <div class="stat-number">15-45 min</div>
                             <div class="stat-label">Livraison</div>
                         </div>
                         <div class="stat-item">
@@ -106,6 +114,7 @@
                     <div class="payment-badges">
                         <div class="badge">📱 Mobile Money</div>
                         <div class="badge">₿ Crypto</div>
+                        <div class="badge">💳 Carte bancaire</div>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -117,6 +126,62 @@
             </div>
         </div>
         <div class="hero-wave"></div>
+    </section>
+
+    <section id="commerceFlows" class="commerce-flows">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Deux façons de commander</h2>
+                <p class="section-subtitle">Choisis ton style : skins du jour ou recharges V-Bucks</p>
+            </div>
+            <div class="flow-grid">
+                <article class="flow-card live-shop">
+                    <div class="flow-eyebrow">Boutique Live</div>
+                    <h3>Skins, emotes et bundles</h3>
+                    <p>On synchronise automatiquement la boutique officielle via Fortnite-API. Repère l'article qui t'intéresse, on le réserve pour toi.</p>
+                    <ul>
+                        <li>🔄 Mise à jour toutes les 15 min</li>
+                        <li>✍️ Notes envoyées à notre support WhatsApp</li>
+                        <li>🎁 Cadeaux possibles grâce aux comptes secondaires</li>
+                    </ul>
+                    <a href="shop.html" class="cta-button">
+                        <span>Explorer la boutique</span>
+                    </a>
+                </article>
+                <article class="flow-card vbucks">
+                    <div class="flow-eyebrow">Recharge V-Bucks</div>
+                    <h3>Packs sécurisés jusqu'à -42%</h3>
+                    <p>Reçois par email un compte rempli de V-Bucks, ajoute-le en ami, patiente 48h puis offre-toi tout ce que tu veux depuis ton compte principal.</p>
+                    <ul>
+                        <li>⚡ Livraison 15-45 minutes</li>
+                        <li>🛡️ Process 100% conforme aux CGU Epic</li>
+                        <li>📦 Packs 1 000 à 13 500 V-Bucks + Crew</li>
+                    </ul>
+                    <a href="#products" class="ghost-button">
+                        Voir les packs
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="shopPreview" class="shop-preview-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Extraits de la boutique du jour</h2>
+                <p class="section-subtitle">Données en direct depuis notre backend sécurisé</p>
+            </div>
+            <div class="shop-preview-grid" id="shopPreviewGrid">
+                <div class="shop-preview-card skeleton"></div>
+                <div class="shop-preview-card skeleton"></div>
+                <div class="shop-preview-card skeleton"></div>
+            </div>
+            <div class="preview-actions">
+                <a href="shop.html" class="cta-button">
+                    <span>Accéder à la boutique complète</span>
+                </a>
+            </div>
+        </div>
     </section>
 
     <!-- Products Section -->
@@ -134,7 +199,7 @@
                     <a href="product.html?id=1" class="card-link">
                         <div class="card-icon vbucks-icon">
                             <div class="vbucks-card-image">
-                                <img src="/assets/1000vbucks.png" alt="1000 V-Bucks" class="vbucks-img">
+                                <img src="assets/1000vbucks.png" alt="1000 V-Bucks" class="vbucks-img">
                                 <div class="card-overlay">
                                     <div class="overlay-quantity">1000 V-Bucks</div>
                                     <div class="overlay-price">3 500 F</div>
@@ -156,7 +221,7 @@
                     <a href="product.html?id=2" class="card-link">
                         <div class="card-icon lootbox-icon">
                             <div class="vbucks-card-image">
-                                <img src="/assets/2800vbucks.png" alt="2800 V-Bucks" class="vbucks-img">
+                                <img src="assets/2800vbucks.png" alt="2800 V-Bucks" class="vbucks-img">
                                 <div class="card-overlay">
                                     <div class="overlay-quantity">2800 V-Bucks</div>
                                     <div class="overlay-price">9 000 F</div>
@@ -178,7 +243,7 @@
                     <a href="product.html?id=3" class="card-link">
                         <div class="card-icon exclusive-icon">
                             <div class="vbucks-card-image">
-                                <img src="/assets/5000vbucks.png" alt="5000 V-Bucks" class="vbucks-img">
+                                <img src="assets/5000vbucks.png" alt="5000 V-Bucks" class="vbucks-img">
                                 <div class="card-overlay">
                                     <div class="overlay-quantity">5000 V-Bucks</div>
                                     <div class="overlay-price">16 000 F</div>
@@ -200,7 +265,7 @@
                     <a href="product.html?id=4" class="card-link">
                         <div class="card-icon exclusive-icon">
                             <div class="vbucks-card-image">
-                                <img src="/assets/13500vbucks.png" alt="13500 V-Bucks" class="vbucks-img">
+                                <img src="assets/13500vbucks.png" alt="13500 V-Bucks" class="vbucks-img">
                                 <div class="card-overlay">
                                     <div class="overlay-quantity">13500 V-Bucks</div>
                                     <div class="overlay-price">38 000 F</div>
@@ -222,7 +287,7 @@
                     <a href="product.html?id=5" class="card-link">
                         <div class="card-icon crew-icon">
                             <div class="crew-image">
-                                <img src="/assets/crew.png" alt="Fortnite Crew" class="crew-img">
+                                <img src="assets/crew.png" alt="Fortnite Crew" class="crew-img">
                                 <div class="card-overlay">
                                     <div class="overlay-quantity">Fortnite Crew</div>
                                     <div class="overlay-price">4 500 F</div>
@@ -503,7 +568,10 @@
                 <div class="footer-column">
                     <h4>Support</h4>
                     <a href="guide.html">Guide d'Utilisation</a>
-                    <a href="https://wa.me/22965623691" target="_blank">💬 WhatsApp Support</a>
+                          <a href="https://wa.me/22965623691"
+                              target="_blank"
+                              rel="noopener"
+                              data-whatsapp-message="Bonjour, j'ai besoin d'aide avec ma commande FortniteItems.">💬 WhatsApp Support</a>
                     <a href="#faq">FAQ</a>
                     <a href="#">Conditions d'Utilisation</a>
                 </div>
@@ -533,10 +601,12 @@
     </div>
 
     <!-- WhatsApp Support Button (Floating) -->
-    <a href="https://wa.me/22965623691?text=Bonjour,%20j'ai%20besoin%20d'aide" 
-       class="whatsapp-float" 
-       target="_blank"
-       aria-label="Support WhatsApp">
+     <a href="https://wa.me/22965623691"
+         class="whatsapp-float"
+         target="_blank"
+         rel="noopener"
+         data-whatsapp-message="Bonjour, j'ai besoin d'aide avec ma commande FortniteItems."
+         aria-label="Support WhatsApp">
         <svg viewBox="0 0 32 32" fill="currentColor" width="28" height="28">
             <path d="M16.002 0C7.164 0 0 7.164 0 16.002c0 2.827.736 5.482 2.023 7.787L.057 31.972l8.355-2.193c2.215 1.203 4.76 1.893 7.59 1.893 8.838 0 16.002-7.164 16.002-16.002S24.84 0 16.002 0zm9.388 22.594c-.392.976-1.943 1.794-2.827 1.91-.758.098-1.747.139-2.817-.176-1.066-.315-2.433-.732-4.197-1.432-7.368-2.926-12.17-10.336-12.54-10.814-.37-.478-3.02-4.016-3.02-7.66 0-3.644 1.91-5.433 2.588-6.168.678-.735 1.479-.92 1.972-.92.493 0 .986.004 1.418.026.455.022.987-.174 1.543 1.18.556 1.354 1.899 4.622 2.065 4.958.166.336.277.728.055 1.173-.222.445-.333.723-.666 1.113-.333.39-.699.87-1 1.173-.333.336-.678.698-.291 1.37.387.672 1.722 2.84 3.696 4.603 2.54 2.27 4.68 2.976 5.348 3.311.668.335 1.056.28 1.443-.166.387-.446 1.66-1.937 2.103-2.605.443-.668.887-.557 1.494-.335.607.222 3.851 1.816 4.519 2.15.668.335 1.112.502 1.279.777.167.276.167 1.602-.225 2.578z"/>
         </svg>
