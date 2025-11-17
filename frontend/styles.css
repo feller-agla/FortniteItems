@@ -5225,6 +5225,29 @@ body.prefers-reduced-motion .hero-visual {
 
         .hero-card-footer .product-button {
             width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            font-size: 15px;
+            min-height: 48px;
+        }
+
+        .shop-hero {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .hero-card-footer {
+            gap: 12px;
+        }
+
+        .hero-price {
+            font-size: 18px;
+        }
+
+        .vbuck-icon {
+            width: 24px;
+            height: 24px;
         }
 
         .modal-actions {
