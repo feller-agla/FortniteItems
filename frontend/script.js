@@ -673,7 +673,7 @@ class ShopPreview {
         }
         const host = window.location.hostname;
         const isLocalhost = ['localhost', '127.0.0.1'].includes(host);
-        return isLocalhost ? 'http://localhost:5000' : 'https://fortniteitems-backend.onrender.com';
+        return isLocalhost ? 'http://localhost:5000' : 'https://fortniteitems.onrender.com';
     }
 
     async loadPreview() {

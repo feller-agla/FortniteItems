@@ -209,7 +209,7 @@
                 return 'http://localhost:5000';
             }
 
-            return 'https://fortniteitems-backend.onrender.com';
+            return 'https://fortniteitems.onrender.com';
         }
 
         bindEvents() {
