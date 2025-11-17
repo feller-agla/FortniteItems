@@ -292,13 +292,12 @@
                 this.state.sections = this.normalizeSections(payload.data);
                 this.state.totalItems = this.state.sections.reduce((sum, section) => sum + section.items.length, 0);
                 this.populateFilterOptions();
-                this.render();
             } catch (error) {
                 console.error('❌ Impossible de charger la boutique Fortnite', error);
                 this.state.error = error.message;
-                this.renderError();
             } finally {
                 this.setLoading(false);
+                this.render();
             }
         }
 

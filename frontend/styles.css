@@ -4617,70 +4617,6 @@ body.prefers-reduced-motion .hero-visual {
     }
 }
 
-/* ===========================
-   WHATSAPP FLOATING BUTTON
-   =========================== */
-
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 30px;
-    right: 30px;
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    color: #FFF;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    animation: whatsappPulse 2s ease-in-out infinite;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
-    animation: none;
-}
-
-.whatsapp-float svg {
-    width: 28px;
-    height: 28px;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@keyframes whatsappPulse {
-    0%, 100% {
-        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-    }
-    50% {
-        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7), 0 0 0 15px rgba(37, 211, 102, 0.1);
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-    }
-    
-    .whatsapp-float svg {
-        width: 24px;
-        height: 24px;
-    }
-}
-
     /* ===========================
        LIVE SHOP PAGE (shop.html)
        =========================== */
@@ -4937,8 +4873,8 @@ body.prefers-reduced-motion .hero-visual {
 
     .shop-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 28px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
     }
 
     .shop-skeletons {
@@ -4950,7 +4886,7 @@ body.prefers-reduced-motion .hero-visual {
     .shop-card {
         background: rgba(255, 255, 255, 0.02);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
+        border-radius: 20px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -4959,8 +4895,8 @@ body.prefers-reduced-motion .hero-visual {
 
     .shop-card-media {
         position: relative;
-        padding-top: 72%;
-        background-size: contain;
+        padding-top: 68%;
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;
         background-color: rgba(5, 8, 25, 0.8);
@@ -5000,7 +4936,7 @@ body.prefers-reduced-motion .hero-visual {
     }
 
     .shop-card-body {
-        padding: 22px;
+        padding: 20px;
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -5066,6 +5002,13 @@ body.prefers-reduced-motion .hero-visual {
         flex-wrap: wrap;
         gap: 12px;
         margin-top: 8px;
+    }
+
+    .shop-card-actions .product-button,
+    .shop-card-actions .ghost-button {
+        flex: 1 1 140px;
+        justify-content: center;
+        text-align: center;
     }
 
     .shop-card-hint {
@@ -5217,6 +5160,10 @@ body.prefers-reduced-motion .hero-visual {
             align-items: stretch;
         }
 
+        .shop-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
         .shop-card-body {
             padding: 18px;
         }
@@ -5228,6 +5175,11 @@ body.prefers-reduced-motion .hero-visual {
 
         .shop-card-actions {
             flex-direction: column;
+        }
+
+        .shop-card-actions .product-button,
+        .shop-card-actions .ghost-button {
+            width: 100%;
         }
 
         .modal-actions {
