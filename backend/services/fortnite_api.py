@@ -52,15 +52,24 @@ class FortniteAPIClient:
     # Public API
     # ------------------------------------------------------------------
     def get_shop(self, force_refresh: bool = False) -> Dict[str, Any]:
-        """Retourne les données shop (cache -> API)."""
-        if not force_refresh:
-            cached = self._load_cache()
-            if cached and not self._is_cache_expired(cached.get("last_updated")):
-                return cached
+        """Retourne les données shop (cache -> API) avec fallback si l'API est KO."""
+        cached = self._load_cache()
 
-        data = self._fetch_shop_from_api()
-        self._save_cache(data)
-        return data
+        if not force_refresh and cached and not self._is_cache_expired(cached.get("last_updated")):
+            return cached
+
+        try:
+            data = self._fetch_shop_from_api()
+            self._save_cache(data)
+            return data
+        except Exception as exc:
+            if cached:
+                logger.warning(
+                    "Fortnite API indisponible (%s). Retour des données cache malgré expiration.",
+                    exc,
+                )
+                return cached
+            raise
 
     def refresh_shop(self) -> Dict[str, Any]:
         """Force un refresh (ignorer le cache)."""

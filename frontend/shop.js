@@ -2,6 +2,28 @@
     const root = document.getElementById('shopApp');
     if (!root) return;
 
+    // Helper: conversion V-Bucks -> USD -> FCFA
+    // Formula requested: (vbucks * 0.00357) * 1.5 = prix en USD (après marge)
+    // Ensuite conversion en FCFA via taux USD->XOF configurable globalement.
+    const DEFAULT_USD_TO_XOF = Number(window.FORTNITE_ITEMS_USD_TO_XOF) || 610;
+    function vbuckToUsd(vbucks) {
+        return Number(vbucks) * 0.00357 * 1.5;
+    }
+    function vbuckToFcfaRaw(vbucks) {
+        const usd = vbuckToUsd(vbucks);
+        const rate = Number(window.FORTNITE_ITEMS_USD_TO_XOF) || DEFAULT_USD_TO_XOF;
+        return usd * rate;
+    }
+    function vbuckToFcfaRounded(vbucks) {
+        const raw = vbuckToFcfaRaw(vbucks);
+        // Arrondir au centaine la plus proche (ex: 3331 -> 3300, 4080 -> 4100)
+        return Math.round(raw / 100) * 100;
+    }
+    function formatFcfaLabel(vbucks) {
+        const amount = vbuckToFcfaRounded(vbucks);
+        return `${amount.toLocaleString('fr-FR')} FCFA`;
+    }
+
     class ShopOrderBridge {
         constructor(packOptions = []) {
             this.packOptions = Array.isArray(packOptions) ? packOptions : [];
@@ -68,7 +90,7 @@
             }
             if (this.itemPriceEl) {
                 if (Number.isFinite(this.currentItem.price)) {
-                    this.itemPriceEl.textContent = `${Math.round(this.currentItem.price).toLocaleString('fr-FR')} V-Bucks`;
+                    this.itemPriceEl.textContent = formatFcfaLabel(this.currentItem.price);
                 } else {
                     this.itemPriceEl.textContent = '--';
                 }
@@ -202,6 +224,7 @@
                     vbuckIcon: null
                 }
             };
+            this.handleVideoPreviewClick = this.handleVideoPreviewClick.bind(this);
 
             this.elements = {
                 sections: document.getElementById('shopSections'),
@@ -267,6 +290,29 @@
                     this.loadShopData();
                 }
             });
+
+            // Gestionnaire global des aperçus vidéo (document-level pour couvrir tous les éléments dynamiques)
+            document.addEventListener('click', this.handleVideoPreviewClick);
+            console.log('🎬 Gestionnaire vidéo enregistré (document-level)');
+        }
+
+        handleVideoPreviewClick(event) {
+            const rawTarget = event.target;
+            if (!(rawTarget instanceof Element)) return;
+            const videoBtn = rawTarget.closest('[data-video-preview]');
+            if (!videoBtn || !this.root.contains(videoBtn)) return;
+
+            event.preventDefault();
+            event.stopPropagation();
+            const url = videoBtn.getAttribute('href');
+            if (!url) return;
+
+            console.log('🎬 Ouverture vidéo:', url);
+            const newTab = window.open(url, '_blank', 'noopener,noreferrer');
+            if (!newTab) {
+                // Popup bloqué : on redirige dans le même onglet comme fallback
+                window.location.href = url;
+            }
         }
 
         renderSkeletons() {
@@ -378,6 +424,23 @@
                 || 'assets/5000vbucks.png';
 
             const expiresAt = entry.outDate || null;
+            
+            // Extraire l'URL vidéo depuis plusieurs sources possibles
+            let videoUrl = null;
+            if (brItem.showcaseVideo) {
+                videoUrl = `https://www.youtube.com/watch?v=${brItem.showcaseVideo}`;
+                console.log('📹 Vidéo trouvée (brItem.showcaseVideo):', videoUrl, 'pour', brItem.name);
+            } else if (entry.showcaseVideo) {
+                videoUrl = `https://www.youtube.com/watch?v=${entry.showcaseVideo}`;
+                console.log('📹 Vidéo trouvée (entry.showcaseVideo):', videoUrl);
+            } else if (brItem.video) {
+                videoUrl = brItem.video;
+                console.log('📹 Vidéo trouvée (brItem.video):', videoUrl);
+            } else if (entry.video) {
+                videoUrl = entry.video;
+                console.log('📹 Vidéo trouvée (entry.video):', videoUrl);
+            }
+            
             const tags = [];
             if (entry.giftable) tags.push('🎁 Cadeau autorisé');
             if (entry.refundable) tags.push('↩️ Remboursable');
@@ -396,7 +459,7 @@
                 rarity: { name: rarityName, slug: raritySlug },
                 type: { name: typeName, slug: typeSlug },
                 image: primaryImage,
-                video: brItem.showcaseVideo ? `https://www.youtube.com/watch?v=${brItem.showcaseVideo}` : null,
+                video: videoUrl,
                 tags,
                 giftable: Boolean(entry.giftable),
                 refundable: Boolean(entry.refundable),
@@ -683,7 +746,7 @@
                         <p class="shop-card-meta-line">${this.escapeHtml(metaLine || '')}</p>
                         <div class="shop-card-meta">
                             <div class="price-tag">
-                                <img src="${icon}" alt="V-Bucks" loading="lazy">
+                                <img src="${icon}" alt="" loading="lazy">
                                 <span>${this.formatPrice(item.price)}</span>
                             </div>
                             <div class="availability-flags">
@@ -703,7 +766,7 @@
                                 data-disable-product-animation="true">
                                 Préparer ma commande
                             </button>
-                            ${item.video ? `<a class="ghost-button" href="${item.video}" target="_blank" rel="noopener">▶️ Aperçu</a>` : ''}
+                            ${item.video ? `<a class="ghost-button" data-video-preview="true" href="${this.escapeHtml(item.video)}" target="_blank" rel="noopener noreferrer">▶️ Aperçu</a>` : ''}
                         </div>
                     </div>
                 </article>
@@ -774,7 +837,8 @@
 
         formatPrice(value) {
             if (!Number.isFinite(value)) return '—';
-            return `${Math.round(value).toLocaleString('fr-FR')} V-Bucks`;
+            // Affiche le prix converti en FCFA selon la formule demandée
+            return formatFcfaLabel(value);
         }
 
         formatRelativeTime(dateString) {

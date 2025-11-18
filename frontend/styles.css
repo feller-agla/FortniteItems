@@ -4648,6 +4648,13 @@ body.prefers-reduced-motion .hero-visual {
         align-items: stretch;
     }
 
+    @media (max-width: 768px) {
+        .shop-hero {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    }
+
     .shop-hero-content,
     .hero-card {
         background: rgba(12, 0, 25, 0.85);
@@ -4656,6 +4663,14 @@ body.prefers-reduced-motion .hero-visual {
         padding: 32px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(12px);
+    }
+
+    @media (max-width: 768px) {
+        .shop-hero-content,
+        .hero-card {
+            padding: 20px;
+            border-radius: 24px;
+        }
     }
 
     .shop-hero-content h1 {
@@ -4733,6 +4748,14 @@ body.prefers-reduced-motion .hero-visual {
         flex-wrap: wrap;
     }
 
+    @media (max-width: 768px) {
+        .hero-card-footer {
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+    }
+
     .hero-price {
         display: inline-flex;
         align-items: center;
@@ -4742,9 +4765,51 @@ body.prefers-reduced-motion .hero-visual {
         white-space: nowrap;
     }
 
+    @media (max-width: 768px) {
+        .hero-price {
+            font-size: 18px;
+            gap: 8px;
+        }
+    }
+
     .hero-card-footer .product-button {
         flex: 1 1 200px;
         min-height: 56px;
+    }
+
+    @media (max-width: 768px) {
+        .hero-card-footer .product-button {
+            flex: 0 0 auto;
+            padding: 9px 14px;
+            font-size: 13px;
+            min-height: 40px;
+            white-space: nowrap;
+            align-self: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-card-footer .product-button {
+            padding: 8px 12px;
+            font-size: 12px;
+            min-height: 38px;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .hero-card-footer .product-button {
+            padding: 7px 10px;
+            font-size: 11px;
+            min-height: 36px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .hero-card-footer .product-button {
+            padding: 6px 8px;
+            font-size: 10px;
+            min-height: 34px;
+        }
     }
 
     .hero-card-badge {
@@ -4761,6 +4826,13 @@ body.prefers-reduced-motion .hero-visual {
     .vbuck-icon {
         width: 32px;
         height: 32px;
+    }
+
+    @media (max-width: 768px) {
+        .vbuck-icon {
+            width: 24px;
+            height: 24px;
+        }
     }
 
     .ghost-button {
@@ -4924,6 +4996,24 @@ body.prefers-reduced-motion .hero-visual {
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    @media (max-width: 768px) {
+        .shop-card-media {
+            padding-top: 62%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .shop-card-media {
+            padding-top: 58%;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .shop-card-media {
+            padding-top: 55%;
+        }
+    }
+
     .shop-card-media .rarity-pill {
         position: absolute;
         top: 16px;
@@ -5037,6 +5127,12 @@ body.prefers-reduced-motion .hero-visual {
         font-size: 13px;
         color: rgba(255, 255, 255, 0.65);
         margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .shop-card-hint {
+            font-size: 11px;
+        }
     }
 
     .shop-order-modal {
@@ -5182,11 +5278,24 @@ body.prefers-reduced-motion .hero-visual {
         }
 
         .shop-grid {
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: 1fr;
+            gap: 16px;
         }
 
         .shop-card-body {
-            padding: 18px;
+            padding: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .shop-card-body {
+                padding: 14px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .shop-card-body {
+                padding: 12px;
+            }
         }
 
         .shop-card-meta {
@@ -5201,6 +5310,27 @@ body.prefers-reduced-motion .hero-visual {
         .shop-card-actions .product-button,
         .shop-card-actions .ghost-button {
             width: 100%;
+            padding: 10px 14px;
+            font-size: 14px;
+            min-height: 42px;
+        }
+
+        @media (max-width: 480px) {
+            .shop-card-actions .product-button,
+            .shop-card-actions .ghost-button {
+                padding: 9px 12px;
+                font-size: 13px;
+                min-height: 40px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .shop-card-actions .product-button,
+            .shop-card-actions .ghost-button {
+                padding: 8px 10px;
+                font-size: 12px;
+                min-height: 38px;
+            }
         }
 
         .hero-actions {
@@ -5221,33 +5351,6 @@ body.prefers-reduced-motion .hero-visual {
         .hero-card-footer .hero-price {
             width: 100%;
             justify-content: center;
-        }
-
-        .hero-card-footer .product-button {
-            width: 100%;
-            max-width: 280px;
-            margin: 0 auto;
-            padding: 12px 20px;
-            font-size: 15px;
-            min-height: 48px;
-        }
-
-        .shop-hero {
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .hero-card-footer {
-            gap: 12px;
-        }
-
-        .hero-price {
-            font-size: 18px;
-        }
-
-        .vbuck-icon {
-            width: 24px;
-            height: 24px;
         }
 
         .modal-actions {
