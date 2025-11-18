@@ -7,6 +7,7 @@ from typing import Any, Dict, Optional
 import requests
 from requests.adapters import HTTPAdapter, Retry
 
+from .fortnite_shop_scraper import FortniteShopScraper
 
 logger = logging.getLogger(__name__)
 
@@ -36,17 +37,8 @@ class FortniteAPIClient:
         )
         self.cache_path = cache_path or os.path.abspath(default_cache_path)
 
-        # Session HTTP avec retry
-        self.session = requests.Session()
-        retries = Retry(
-            total=3,
-            backoff_factor=0.5,
-            status_forcelist=[429, 500, 502, 503, 504],
-            allowed_methods=("GET", "POST"),
-        )
-        adapter = HTTPAdapter(max_retries=retries)
-        self.session.mount("https://", adapter)
-        self.session.mount("http://", adapter)
+        # Initialiser le scraper
+        self.scraper = FortniteShopScraper(api_key=api_key)
 
     # ------------------------------------------------------------------
     # Public API
@@ -81,20 +73,24 @@ class FortniteAPIClient:
     # Internal helpers
     # ------------------------------------------------------------------
     def _fetch_shop_from_api(self) -> Dict[str, Any]:
-        url = f"{self.BASE_URL}/shop"
-        logger.info("Fetching Fortnite shop from %s", url)
-
-        headers = {"Authorization": self.api_key}
-        resp = self.session.get(url, headers=headers, timeout=10)
-
-        if resp.status_code != 200:
-            raise FortniteAPIError(
-                f"Fortnite API error {resp.status_code}: {resp.text[:200]}"
-            )
-
-        payload = resp.json()
-        payload["last_updated"] = datetime.now(timezone.utc).isoformat()
-        return payload
+        """
+        Récupère et parse les données de la boutique Fortnite en temps réel.
+        Utilise le scraper fortnite_shop_scraper.py
+        Retourne exactement le format que le scraper retourne
+        """
+        logger.info("Fetching Fortnite shop using FortniteShopScraper")
+        
+        # Utiliser le scraper pour récupérer les données
+        shop_data = self.scraper.get_shop(language="fr")
+        
+        if not shop_data:
+            raise FortniteAPIError("Impossible de récupérer les données de la boutique")
+        
+        # Retourner exactement ce que le scraper retourne, en ajoutant juste last_updated
+        # Le scraper retourne déjà le format exact de fortnite_shop.json
+        shop_data['last_updated'] = datetime.now(timezone.utc).isoformat()
+        
+        return shop_data
 
     def _load_cache(self) -> Optional[Dict[str, Any]]:
         if not os.path.exists(self.cache_path):

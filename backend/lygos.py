@@ -32,7 +32,9 @@ app = Flask(__name__)
 ALLOWED_ORIGINS = [
     "https://fortniteitems.netlify.app",
     "http://localhost:8000",
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
 ]
 CORS(app, origins=ALLOWED_ORIGINS)
 
@@ -392,22 +394,20 @@ def get_all_orders():
 def get_fortnite_shop():
     """Retourner la boutique Fortnite (cache + option refresh)."""
     if fortnite_client is None:
+        # Retourner 200 avec success: false pour éviter les erreurs dans les logs
+        # Le frontend gère déjà ce cas avec try/catch
         return jsonify({
             "success": False,
-            "error": "FORTNITE_API_KEY non configurée sur le backend"
-        }), 503
+            "error": "FORTNITE_API_KEY non configurée - endpoint désactivé",
+            "message": "Pour activer cet endpoint, configurez FORTNITE_API_KEY dans .env"
+        }), 200
 
     force_refresh = request.args.get('refresh', '0') == '1'
 
     try:
         payload = fortnite_client.get_shop(force_refresh=force_refresh)
-        return jsonify({
-            "success": True,
-            "last_updated": payload.get('last_updated'),
-            "source_status": payload.get('status'),
-            "data": payload.get('data'),
-            "ttl_seconds": FORTNITE_SHOP_TTL
-        }), 200
+        # Retourner exactement le format que le scraper retourne
+        return jsonify(payload), 200
     except FortniteAPIError as e:
         return jsonify({
             "success": False,

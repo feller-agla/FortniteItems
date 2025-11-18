@@ -681,12 +681,30 @@ class ShopPreview {
             const response = await fetch(`${this.apiBaseUrl}/api/shop`);
             if (!response.ok) throw new Error('API shop preview error');
             const payload = await response.json();
+            
+            // Vérifier si l'API est disponible (success: false = FORTNITE_API_KEY non configurée)
+            if (!payload.success) {
+                console.info('Shop preview désactivé:', payload.error || payload.message);
+                // Cacher complètement la section si l'API n'est pas disponible
+                this.hideSection();
+                return;
+            }
+            
             const items = this.pickPreviewItems(payload?.data?.entries || []);
             if (!items.length) throw new Error('No items available');
             this.render(items);
         } catch (error) {
             console.warn('Shop preview unavailable:', error);
-            this.renderError();
+            // Cacher la section en cas d'erreur
+            this.hideSection();
+        }
+    }
+    
+    hideSection() {
+        // Cacher toute la section shop preview si l'API n'est pas disponible
+        const section = document.getElementById('shopPreview');
+        if (section) {
+            section.style.display = 'none';
         }
     }
 

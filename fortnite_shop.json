@@ -1,0 +1,2761 @@
+{
+  "date": "2025-11-18T00:00:00Z",
+  "total_items": 145,
+  "items": [
+    {
+      "section": "Shop",
+      "name": "Cabot",
+      "description": "Avec lui, c'est toutou rien.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1800,
+      "regular_price": 2000,
+      "id": "CID_419_Athena_Commando_M_Pug",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_419_athena_commando_m_pug/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_419_athena_commando_m_pug/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_419_athena_commando_m_pug/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Gamelle vide",
+      "description": "Demandez les restes.",
+      "type": "Accessoire de dos",
+      "rarity": "Épique",
+      "vbucks": 1800,
+      "regular_price": 2000,
+      "id": "BID_276_Pug",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_276_pug/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_276_pug/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "CHROMA",
+      "description": "Atterrissage !",
+      "type": "Traînée",
+      "rarity": "Série Icônes",
+      "vbucks": 600,
+      "regular_price": 600,
+      "id": "Contrail_CanineCronut",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/contrail_caninecronut/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/contrail_caninecronut/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/contrail_caninecronut/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Élytre",
+      "description": "Battez des ailes.",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "CID_450_Athena_Commando_F_Butterfly",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_450_athena_commando_f_butterfly/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_450_athena_commando_f_butterfly/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_450_athena_commando_f_butterfly/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Papillonneuses",
+      "description": "Volez avec grâce.",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "BID_290_Butterfly",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_290_butterfly/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_290_butterfly/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Nounours ailé",
+      "description": "Il est tout doux !",
+      "type": "Planeur",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Glider_ID_012_TeddyBear",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_012_teddybear/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/glider_id_012_teddybear/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_012_teddybear/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Dance Monkey",
+      "description": "Une danse discrète pour le combat.",
+      "type": "Emote",
+      "rarity": "Série Icônes",
+      "vbucks": 300,
+      "regular_price": 300,
+      "id": "EID_Tonal_51QI9",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_tonal_51qi9/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_tonal_51qi9/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_tonal_51qi9/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Haie de repli",
+      "description": "Vous ne m'avez jamais vu.",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 300,
+      "regular_price": 300,
+      "id": "EID_GraftGlint",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_graftglint/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_graftglint/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_graftglint/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Mouchard",
+      "description": "Il entend absolument tout.",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "CID_724_Athena_Commando_M_SpyTech",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_724_athena_commando_m_spytech/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_724_athena_commando_m_spytech/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_724_athena_commando_m_spytech/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Sac d'indic",
+      "description": "Faites la lumière sur les conspirations.",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "BID_500_SpyTech",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_500_spytech/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_500_spytech/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Sandwich glacé",
+      "description": "Fondez sur vos proies.",
+      "type": "Planeur",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Glider_ID_120_IceCream",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_120_icecream/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/glider_id_120_icecream/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_120_icecream/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "C'est trop bon",
+      "description": "Miam !",
+      "type": "Emote",
+      "rarity": "Rare",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_Chilled",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_chilled/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_chilled/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_chilled/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Téléphone de Moe",
+      "description": "Est-ce que Rick Hochet est là ?",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Pickaxe_DuckCoast",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-22T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_duckcoast/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_duckcoast/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_duckcoast/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Agent anarchique",
+      "description": "Allez contre l'ordre établi.",
+      "type": "Tenue",
+      "rarity": "Atypique",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "CID_470_Athena_Commando_M_Anarchy",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_470_athena_commando_m_anarchy/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_470_athena_commando_m_anarchy/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_470_athena_commando_m_anarchy/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Star du synthé",
+      "description": "Jamais une fausse note.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "CID_205_Athena_Commando_F_GarageBand",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_205_athena_commando_f_garageband/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_205_athena_commando_f_garageband/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_205_athena_commando_f_garageband/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Keytar",
+      "description": "Plus d'une corde à son arpège.",
+      "type": "Accessoire de dos",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "BID_107_GarageBandFemale",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_107_garagebandfemale/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_107_garagebandfemale/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Crampon d'or",
+      "description": "Sortez-les du terrain !",
+      "type": "Pioche",
+      "rarity": "Atypique",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "Pickaxe_ID_062_Soccer",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_062_soccer/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_062_soccer/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_062_soccer/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "ROSE GOLF",
+      "description": "Affichez votre style.",
+      "type": "Revêtement",
+      "rarity": "Série Icônes",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "Wrap_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Dominatrice abyssale",
+      "description": "Avec elle, on touche le fond.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "CID_319_Athena_Commando_F_Nautilus",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_319_athena_commando_f_nautilus/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_319_athena_commando_f_nautilus/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_319_athena_commando_f_nautilus/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Céphalo-Pod",
+      "description": "Avec lui, on ne se fait jamais un sang d'encre.",
+      "type": "Accessoire de dos",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "BID_177_NautilusFemale",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_177_nautilusfemale/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_177_nautilusfemale/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Réveil Krusty",
+      "description": "Avec son réservoir d'acide défectueux !",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Pickaxe_QueenTruth_Rind",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-02T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_queentruth_rind/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_queentruth_rind/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_queentruth_rind/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Danse du taco",
+      "description": "Montrez-les avec fierté.",
+      "type": "Emote",
+      "rarity": "Rare",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_TacoTimeDance",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_tacotimedance/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_tacotimedance/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_tacotimedance/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "CHROMA VOX",
+      "description": "Qu'est-ce qu'il y a ?",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Backpack_CanineCronut_Mic",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronut_mic/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronut_mic/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Lisa Simpson",
+      "description": "Dans ses godasses rutilantes, il y a des chaussettes bien sales.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 2000,
+      "regular_price": 3500,
+      "id": "Character_FrostGalore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_frostgalore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_frostgalore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_frostgalore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Nécessaire de Lisa",
+      "description": "Avec Malibu Stacy et son nouveau chapeau symbole d'émancipation !",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 2000,
+      "regular_price": 3500,
+      "id": "Backpack_FrostGalore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_frostgalore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_frostgalore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_frostgalore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Saxsaxophone de Lisa",
+      "description": "Pour les enfants surdoués.",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 2000,
+      "regular_price": 3500,
+      "id": "Pickaxe_FrostGalore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_frostgalore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_frostgalore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_frostgalore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Solo de saxo",
+      "description": "Daaaa da da dadaaaa da da dadadadada...",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 2000,
+      "regular_price": 3500,
+      "id": "EID_FrostGalore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_frostgalore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_frostgalore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_frostgalore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Surplace",
+      "description": "Le plaisir simple des petits sauts.",
+      "type": "Emote",
+      "rarity": "Série Icônes",
+      "vbucks": 400,
+      "regular_price": 400,
+      "id": "EID_Prance",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_prance/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_prance/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_prance/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Poisson frais",
+      "description": "Comment ça, il est pas frais ?!",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Pickaxe_ID_373_TeriyakiFishAssassin1H",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_373_teriyakifishassassin1h/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_373_teriyakifishassassin1h/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_373_teriyakifishassassin1h/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Gaga de platine",
+      "description": "La protectrice de platine des Kindness Punks.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Character_DerbySwarm",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_derbyswarm/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_derbyswarm/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Keytar Chromatica de platine",
+      "description": "Une machine à danser plaquée platine.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Backpack_DerbySwarm_Keytar",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_derbyswarm_keytar/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_derbyswarm_keytar/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Tyler, The Creator",
+      "description": "Accomplissez la vision.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Character_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Mini Tyler",
+      "description": "Il est de retour.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Backpack_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Vans Knu Skool Blue Flame",
+      "description": "Vise mes pompes.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Shoes_VaneFetaWater",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_vanefetawater/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/shoes_vanefetawater/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_vanefetawater/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Saff",
+      "description": "Puisque la vie est un jeu, autant le gagner.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Character_CataclysmTower",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_cataclysmtower/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_cataclysmtower/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_cataclysmtower/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Dynamite, le démolisseur",
+      "description": "Allumez la mèche.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 300,
+      "regular_price": 300,
+      "id": "Backpack_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Capitaine Gâthomme",
+      "description": "Il ne fait jamais dans la dentelle.",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1500,
+      "regular_price": 2000,
+      "id": "CID_A_412_Athena_Commando_M_FlappyGreen",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_a_412_athena_commando_m_flappygreen/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_a_412_athena_commando_m_flappygreen/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_a_412_athena_commando_m_flappygreen/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Fer à gaufres",
+      "description": "Faites des gaufres pendant que vos ennemis font un four.",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 1500,
+      "regular_price": 2000,
+      "id": "BID_A_008_Flappy_Green",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_a_008_flappy_green/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_a_008_flappy_green/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Fourchette gourmande",
+      "description": "Remettez le couvert.",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 1500,
+      "regular_price": 2000,
+      "id": "Pickaxe_ID_803_FlappyGreenMale",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_803_flappygreenmale/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_803_flappygreenmale/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Pile d'amour",
+      "description": "Exprimez-vous sur le champ de bataille.",
+      "type": "Émoticône",
+      "rarity": "Atypique",
+      "vbucks": 1500,
+      "regular_price": 2000,
+      "id": "Emoji_S21_Flappy",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": null,
+        "featured": "https://fortnite-api.com/images/cosmetics/br/emoji_s21_flappy/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/emoji_s21_flappy/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Dégoulinant !",
+      "description": "Laissez votre empreinte.",
+      "type": "Aérosol",
+      "rarity": "Atypique",
+      "vbucks": 1500,
+      "regular_price": 2000,
+      "id": "SPID_428_FlappyGreen",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/spid_428_flappygreen/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/spid_428_flappygreen/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Air Jordan 3 Retro Seoul",
+      "description": "Montrez-les.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 1000,
+      "regular_price": 1000,
+      "id": "Shoes_GarageRainPlaster",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_garagerainplaster/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_garagerainplaster/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "adidas Ultraboost 1.0 x Fortnite Victory Crown Black",
+      "description": "Montrez-les.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 1000,
+      "regular_price": 1000,
+      "id": "Shoes_EnergyBuryCayenne",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_energyburycayenne/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/shoes_energyburycayenne/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_energyburycayenne/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Facette",
+      "description": "La polyvalence incarnée.",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "CID_481_Athena_Commando_F_Geode",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_481_athena_commando_f_geode/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_481_athena_commando_f_geode/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_481_athena_commando_f_geode/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Géode",
+      "description": "Dur comme la pierre.",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "BID_314_Geode",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_314_geode/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_314_geode/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Lisa Simpson",
+      "description": "Dans ses godasses rutilantes, il y a des chaussettes bien sales.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Character_FrostGalore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_frostgalore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_frostgalore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_frostgalore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Saxsaxophone de Lisa",
+      "description": "Pour les enfants surdoués.",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Pickaxe_FrostGalore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_frostgalore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_frostgalore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_frostgalore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Mini-voiturette de golf",
+      "description": "VOITURETTE DE GOLF",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Crotteur",
+      "description": "Le brave petit cochon de la famille Simpson.",
+      "type": "Mascotte",
+      "rarity": "Atypique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Companion_ZestySilo",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/companion_zestysilo/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/companion_zestysilo/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_zestysilo/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Crocs Echo Marbled Clog Black Sand/Multi",
+      "description": "Montrez-les.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Shoes_WhiskerCaesarFleet",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_whiskercaesarfleet/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/shoes_whiskercaesarfleet/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_whiskercaesarfleet/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Bleuvage flambé",
+      "description": "Un délice radioactif.",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 400,
+      "regular_price": 400,
+      "id": "EID_DuckCoast",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-22T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_duckcoast/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_duckcoast/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_duckcoast/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Cabot",
+      "description": "Avec lui, c'est toutou rien.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "CID_419_Athena_Commando_M_Pug",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_419_athena_commando_m_pug/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_419_athena_commando_m_pug/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_419_athena_commando_m_pug/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Gamelle vide",
+      "description": "Demandez les restes.",
+      "type": "Accessoire de dos",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "BID_276_Pug",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_276_pug/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_276_pug/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Trotte-dindes",
+      "description": "Vise mes pompes.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 600,
+      "regular_price": 600,
+      "id": "Shoes_PeekTwine",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_peektwine/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/shoes_peektwine/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_peektwine/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Whiplash",
+      "description": "Forcez-les à faire un temps d'arrêt.",
+      "type": "Emote",
+      "rarity": "Série Icônes",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_CarCrash",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_carcrash/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_carcrash/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_carcrash/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Get Griddy",
+      "description": "Gardez l'œil sur la zone d'en-but.",
+      "type": "Emote",
+      "rarity": "Série Icônes",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_Griddles",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_griddles/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_griddles/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_griddles/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Corail volant",
+      "description": "Emportez votre bout de récif.",
+      "type": "Planeur",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Glider_ID_110_TeriyakiFish",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_110_teriyakifish/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/glider_id_110_teriyakifish/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_110_teriyakifish/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "VERT CHROMATIQUE",
+      "description": "Affichez votre style.",
+      "type": "Revêtement",
+      "rarity": "Série Icônes",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "Wrap_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Karol G de platine",
+      "description": "Une superstar Bichota de platine.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Character_SourWire",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_sourwire/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_sourwire/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Basse Bichota de platine",
+      "description": "Son éclat platine amplifie les basses.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Backpack_SourWire_Bass",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_sourwire_bass/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_sourwire_bass/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Skate de Bart",
+      "description": "Plus rapide et dangereux que jamais.",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 300,
+      "regular_price": 300,
+      "id": "Backpack_QueenTruth_Rind",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-02T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_queentruth_rind/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_queentruth_rind/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_queentruth_rind/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Moe Szyslak",
+      "description": "Pas de funérailles.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 2400,
+      "id": "Character_DuckCoast",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-22T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_duckcoast/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_duckcoast/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_duckcoast/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Téléphone de Moe",
+      "description": "Est-ce que Rick Hochet est là ?",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 1500,
+      "regular_price": 2400,
+      "id": "Pickaxe_DuckCoast",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-22T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_duckcoast/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_duckcoast/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_duckcoast/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Bleuvage flambé",
+      "description": "Un délice radioactif.",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 1500,
+      "regular_price": 2400,
+      "id": "EID_DuckCoast",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-22T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_duckcoast/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_duckcoast/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_duckcoast/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Vertex",
+      "description": "Il a dépassé depuis longtemps le point de non-retour.",
+      "type": "Tenue",
+      "rarity": "Légendaire",
+      "vbucks": 2000,
+      "regular_price": 2000,
+      "id": "CID_160_Athena_Commando_M_SpeedyRed",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_160_athena_commando_m_speedyred/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_160_athena_commando_m_speedyred/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_160_athena_commando_m_speedyred/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Déflecteur",
+      "description": "Changez le cours de la bataille.",
+      "type": "Accessoire de dos",
+      "rarity": "Légendaire",
+      "vbucks": 2000,
+      "regular_price": 2000,
+      "id": "BID_066_SpeedyRed",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_066_speedyred/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_066_speedyred/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Soldapillon d'élite",
+      "description": "Je prédis une attaque provenant des cieux...",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Character_BugBandit",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_bugbandit/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_bugbandit/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_bugbandit/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Aigle",
+      "description": "Un animal majestueux.",
+      "type": "Emote",
+      "rarity": "Rare",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_KEagle",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_keagle/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_keagle/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Guaco",
+      "description": "Résistez à l'envie de le mordre à pleines dents.",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "CID_538_Athena_Commando_M_Taco",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_538_athena_commando_m_taco/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_538_athena_commando_m_taco/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_538_athena_commando_m_taco/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "The Weeknd de platine",
+      "description": "Littéralement en platine.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Character_TofuResort",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_tofuresort/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_tofuresort/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Hache XO de platine",
+      "description": "Pour une musique qui tranche toujours plus.",
+      "type": "Pioche",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Pickaxe_TofuResort",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_tofuresort/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_tofuresort/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "XO de platine",
+      "description": "Une icône de la musique qui bat tous les records.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Backpack_TofuResort",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_tofuresort/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_tofuresort/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Prince des percus",
+      "description": "Faites trembler les murs.",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "CID_A_163_Athena_Commando_M_Stands",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_a_163_athena_commando_m_stands/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_a_163_athena_commando_m_stands/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_a_163_athena_commando_m_stands/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Bart Simpson",
+      "description": "Va te faire shampouiner !",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Character_QueenTruth_Rind",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-02T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_queentruth_rind/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_queentruth_rind/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_queentruth_rind/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Pulsantes ultraviolettes",
+      "description": "Montrez-les.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 1000,
+      "regular_price": 1000,
+      "id": "Shoes_GroovyGlow",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_groovyglow/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_groovyglow/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Bart Simpson",
+      "description": "Va te faire shampouiner !",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 2000,
+      "regular_price": 3600,
+      "id": "Character_QueenTruth_Rind",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-02T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_queentruth_rind/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_queentruth_rind/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_queentruth_rind/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Skate de Bart",
+      "description": "Plus rapide et dangereux que jamais.",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 2000,
+      "regular_price": 3600,
+      "id": "Backpack_QueenTruth_Rind",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-02T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_queentruth_rind/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_queentruth_rind/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_queentruth_rind/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Réveil Krusty",
+      "description": "Avec son réservoir d'acide défectueux !",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 2000,
+      "regular_price": 3600,
+      "id": "Pickaxe_QueenTruth_Rind",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-02T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_queentruth_rind/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_queentruth_rind/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_queentruth_rind/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Planche Fruitshee",
+      "description": "Ay, caramba !",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 2000,
+      "regular_price": 3600,
+      "id": "EID_QueenTruth",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-02T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_queentruth/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_queentruth/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_queentruth/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Just a Girl",
+      "description": "Vous êtes plus que ce que les gens pensent.",
+      "type": "Emote",
+      "rarity": "Série Icônes",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_SundaySpider",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_sundayspider/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_sundayspider/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_sundayspider/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "The Weeknd de platine",
+      "description": "Littéralement en platine.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Character_TofuResort",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_tofuresort/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_tofuresort/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "XO de platine",
+      "description": "Une icône de la musique qui bat tous les records.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Backpack_TofuResort",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_tofuresort/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_tofuresort/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Hache XO de platine",
+      "description": "Pour une musique qui tranche toujours plus.",
+      "type": "Pioche",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Pickaxe_TofuResort",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_tofuresort/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_tofuresort/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Gaga de platine",
+      "description": "La protectrice de platine des Kindness Punks.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Character_DerbySwarm",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_derbyswarm/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_derbyswarm/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Karol G de platine",
+      "description": "Une superstar Bichota de platine.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Character_SourWire",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_sourwire/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_sourwire/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Billie Eilish de platine",
+      "description": "Vous en voulez encore ?",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Character_TuckBeetle",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_tuckbeetle/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_tuckbeetle/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Basse Bichota de platine",
+      "description": "Son éclat platine amplifie les basses.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Backpack_SourWire_Bass",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_sourwire_bass/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_sourwire_bass/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Charlestons enflammées de platine",
+      "description": "Encore un tube de platine.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Backpack_TuckBeetle_Drum",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_tuckbeetle_drum/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_tuckbeetle_drum/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Keytar Chromatica de platine",
+      "description": "Une machine à danser plaquée platine.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 3800,
+      "regular_price": 7200,
+      "id": "Backpack_DerbySwarm_Keytar",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_derbyswarm_keytar/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_derbyswarm_keytar/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Drone d'élite",
+      "description": "Un outil de reconnaissance dernier cri.",
+      "type": "Planeur",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Glider_ID_194_Agent",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_194_agent/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/glider_id_194_agent/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_194_agent/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Trembloreille",
+      "description": "Kit de précision CHROMA.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Backpack_CanineCronut_DrumStick",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronut_drumstick/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronut_drumstick/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Planche Fruitshee",
+      "description": "Ay, caramba !",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_QueenTruth",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-02T00:00:00Z",
+      "outDate": "2025-11-28T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_queentruth/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_queentruth/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_queentruth/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Air Jordan 4 Retro SE What The",
+      "description": "Montrez-les.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Shoes_ChoreNoodlePebble",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_chorenoodlepebble/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/shoes_chorenoodlepebble/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_chorenoodlepebble/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Nécessaire de Lisa",
+      "description": "Avec Malibu Stacy et son nouveau chapeau symbole d'émancipation !",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 300,
+      "regular_price": 300,
+      "id": "Backpack_FrostGalore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_frostgalore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_frostgalore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_frostgalore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Don't Start Now",
+      "description": "C'est mieux de l'autre côté.",
+      "type": "Emote",
+      "rarity": "Série Icônes",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_LetsBegin",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_letsbegin/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_letsbegin/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_letsbegin/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Converse Chuck 70 Cherry Bomb by GOLF WANG",
+      "description": "Vise mes pompes.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 1000,
+      "regular_price": 1000,
+      "id": "Shoes_VoyageDartBroil",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_voyagedartbroil/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/shoes_voyagedartbroil/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_voyagedartbroil/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Enrobage",
+      "description": "Affichez votre style.",
+      "type": "Revêtement",
+      "rarity": "Atypique",
+      "vbucks": 300,
+      "regular_price": 300,
+      "id": "Wrap_014_IceCream",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/wrap_014_icecream/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/wrap_014_icecream/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/wrap_014_icecream/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Faux hyaline",
+      "description": "Déclenchez vous-même l'effet papillon.",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Pickaxe_ID_224_Butterfly",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_224_butterfly/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_224_butterfly/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_224_butterfly/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Homme-phalène Jr.",
+      "description": "Menaçant à souhait.",
+      "type": "Mascotte",
+      "rarity": "Atypique",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "Companion_DustyWing",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/companion_dustywing/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/companion_dustywing/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_dustywing/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Billie Eilish de platine",
+      "description": "Vous en voulez encore ?",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Character_TuckBeetle",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_tuckbeetle/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_tuckbeetle/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Charlestons enflammées de platine",
+      "description": "Encore un tube de platine.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 1800,
+      "regular_price": 1800,
+      "id": "Backpack_TuckBeetle_Drum",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_tuckbeetle_drum/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_tuckbeetle_drum/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Moe Szyslak",
+      "description": "Pas de funérailles.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "Character_DuckCoast",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-22T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_duckcoast/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_duckcoast/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_duckcoast/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "À moi",
+      "description": "La plus belle façon d'embrasser.",
+      "type": "Emote",
+      "rarity": "Série Icônes",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_Melody",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_melody/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_melody/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_melody/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Coup de pied sauté",
+      "description": "Pensez à vous échauffer avant.",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 200,
+      "regular_price": 200,
+      "id": "EID_Bass_ShootKickJump",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_bass_shootkickjump/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_bass_shootkickjump/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_bass_shootkickjump/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "CHROMAKOPIEN",
+      "description": "Un regard en arrière. Dix pas en avant.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Character_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Dynamite, le démolisseur",
+      "description": "Allumez la mèche.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Backpack_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Vans Sk8-Hi Racing Red",
+      "description": "Vise mes pompes.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Shoes_VaneFetaSalt",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_vanefetasalt/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/shoes_vanefetasalt/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_vanefetasalt/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Pyrale",
+      "description": "Le conflit est encore larvé.",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "CID_451_Athena_Commando_M_Caterpillar",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_451_athena_commando_m_caterpillar/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_451_athena_commando_m_caterpillar/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_451_athena_commando_m_caterpillar/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Carapace",
+      "description": "Une protection totalement naturelle.",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "BID_291_Caterpillar",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_291_caterpillar/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_291_caterpillar/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Glace à l'eau",
+      "description": "Non mais à l'eau, quoi.",
+      "type": "Pioche",
+      "rarity": "Rare",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "Pickaxe_ID_160_IceCream",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_160_icecream/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_160_icecream/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_160_icecream/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Belle forme",
+      "description": "Célébrez les formes.",
+      "type": "Emote",
+      "rarity": "Série Icônes",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_FightNight",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-20T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_fightnight/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_fightnight/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_fightnight/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Fanfaronnade",
+      "description": "Faites place à l'incarnation de la classe.",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 300,
+      "regular_price": 300,
+      "id": "EID_Pompous",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-18T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_pompous/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_pompous/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_pompous/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "P'tit Cornet",
+      "description": "Il adore se regarder dans la glace.",
+      "type": "Tenue",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "CID_344_Athena_Commando_M_IceCream",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_344_athena_commando_m_icecream/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_344_athena_commando_m_icecream/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_344_athena_commando_m_icecream/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Canigoût",
+      "description": "C'est la gla-glace à son chien-chien.",
+      "type": "Accessoire de dos",
+      "rarity": "Épique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "BID_213_IceCream",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_213_icecream/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_213_icecream/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Chalutier insondable",
+      "description": "Les profondeurs marines cachent bien des curiosités...",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "CID_773_Athena_Commando_M_Beacon",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_773_athena_commando_m_beacon/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_773_athena_commando_m_beacon/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_773_athena_commando_m_beacon/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Ancre à jas",
+      "description": "N'ayez pas peur de toucher le fond.",
+      "type": "Accessoire de dos",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "BID_536_Beacon",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_536_beacon/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_536_beacon/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Dard du silence",
+      "description": "Abattez tout ce qui vous distrait.",
+      "type": "Pioche",
+      "rarity": "Atypique",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "Pickaxe_NoiseLess",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_noiseless/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_noiseless/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Lada",
+      "description": "C'est sûr, ça va piquer.",
+      "type": "Tenue",
+      "rarity": "Atypique",
+      "vbucks": 800,
+      "regular_price": 800,
+      "id": "CID_797_Athena_Commando_F_Taco",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-16T00:00:00Z",
+      "outDate": "2025-11-18T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_797_athena_commando_f_taco/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_797_athena_commando_f_taco/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_797_athena_commando_f_taco/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Thought I Was Dead",
+      "description": "Pas cette fois.",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 500,
+      "regular_price": 500,
+      "id": "EID_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Baudruche",
+      "description": "À fond les ballons.",
+      "type": "Tenue",
+      "rarity": "Rare",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "CID_432_Athena_Commando_M_BalloonHead",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_432_athena_commando_m_balloonhead/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_432_athena_commando_m_balloonhead/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_432_athena_commando_m_balloonhead/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "CHROMAKOPIEN",
+      "description": "Un regard en arrière. Dix pas en avant.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Character_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Dynamite, le démolisseur",
+      "description": "Allumez la mèche.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Backpack_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Tyler, The Creator",
+      "description": "Accomplissez la vision.",
+      "type": "Tenue",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Character_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Mini Tyler",
+      "description": "Il est de retour.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Backpack_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Mini-voiturette de golf",
+      "description": "VOITURETTE DE GOLF",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "EID_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Thought I Was Dead",
+      "description": "Pas cette fois.",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "EID_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "CHROMA",
+      "description": "Atterrissage !",
+      "type": "Traînée",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Contrail_CanineCronut",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/contrail_caninecronut/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/contrail_caninecronut/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/contrail_caninecronut/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "ROSE GOLF",
+      "description": "Affichez votre style.",
+      "type": "Revêtement",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Wrap_CanineCronutDig",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutdig/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutdig/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutdig/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "VERT CHROMATIQUE",
+      "description": "Affichez votre style.",
+      "type": "Revêtement",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Wrap_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/wrap_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "CHROMA VOX",
+      "description": "Qu'est-ce qu'il y a ?",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Backpack_CanineCronut_Mic",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronut_mic/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronut_mic/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Trembloreille",
+      "description": "Kit de précision CHROMA.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 3200,
+      "regular_price": 7700,
+      "id": "Backpack_CanineCronut_DrumStick",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronut_drumstick/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronut_drumstick/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Solo de saxo",
+      "description": "Daaaa da da dadaaaa da da dadadadada...",
+      "type": "Emote",
+      "rarity": "Atypique",
+      "vbucks": 400,
+      "regular_price": 400,
+      "id": "EID_FrostGalore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-14T00:00:00Z",
+      "outDate": "2025-11-25T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_frostgalore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/eid_frostgalore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_frostgalore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Mini Tyler",
+      "description": "Il est de retour.",
+      "type": "Accessoire de dos",
+      "rarity": "Série Icônes",
+      "vbucks": 400,
+      "regular_price": 400,
+      "id": "Backpack_CanineCronutMix",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-15T00:00:00Z",
+      "outDate": "2025-11-30T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_caninecronutmix/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Vertex",
+      "description": "Il a dépassé depuis longtemps le point de non-retour.",
+      "type": "Tenue",
+      "rarity": "Légendaire",
+      "vbucks": 2300,
+      "regular_price": 4800,
+      "id": "CID_160_Athena_Commando_M_SpeedyRed",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/cid_160_athena_commando_m_speedyred/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/cid_160_athena_commando_m_speedyred/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/cid_160_athena_commando_m_speedyred/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Déflecteur",
+      "description": "Changez le cours de la bataille.",
+      "type": "Accessoire de dos",
+      "rarity": "Légendaire",
+      "vbucks": 2300,
+      "regular_price": 4800,
+      "id": "BID_066_SpeedyRed",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/bid_066_speedyred/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/bid_066_speedyred/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Aigle",
+      "description": "Un animal majestueux.",
+      "type": "Emote",
+      "rarity": "Rare",
+      "vbucks": 2300,
+      "regular_price": 4800,
+      "id": "EID_KEagle",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/eid_keagle/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_keagle/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Pulsantes ultraviolettes",
+      "description": "Montrez-les.",
+      "type": "Chaussures",
+      "rarity": "Atypique",
+      "vbucks": 2300,
+      "regular_price": 4800,
+      "id": "Shoes_GroovyGlow",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/shoes_groovyglow/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/shoes_groovyglow/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Dard du silence",
+      "description": "Abattez tout ce qui vous distrait.",
+      "type": "Pioche",
+      "rarity": "Atypique",
+      "vbucks": 2300,
+      "regular_price": 4800,
+      "id": "Pickaxe_NoiseLess",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_noiseless/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_noiseless/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Corail volant",
+      "description": "Emportez votre bout de récif.",
+      "type": "Planeur",
+      "rarity": "Rare",
+      "vbucks": 2300,
+      "regular_price": 4800,
+      "id": "Glider_ID_110_TeriyakiFish",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-17T00:00:00Z",
+      "outDate": "2025-11-19T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_110_teriyakifish/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/glider_id_110_teriyakifish/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/glider_id_110_teriyakifish/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Argos",
+      "description": "Il aboie beaucoup, mais il mord peu.",
+      "type": "Mascotte",
+      "rarity": "Atypique",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "Companion_DoveSlide",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-08T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/companion_doveslide/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/companion_doveslide/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_doveslide/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Cabot junior",
+      "description": "C'est un bon chien-chien, ça !",
+      "type": "Mascotte",
+      "rarity": "Atypique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Companion_WideSnore",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-08T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/companion_widesnore/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/companion_widesnore/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_widesnore/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "P'tit Raptor",
+      "description": "Un carnivore forcément futé.",
+      "type": "Mascotte",
+      "rarity": "Atypique",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "Companion_CrescentNail",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-08T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/companion_crescentnail/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/companion_crescentnail/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_crescentnail/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "P'tiscaille",
+      "description": "Un petit poisson qui n'a pas peur de se mouiller.",
+      "type": "Mascotte",
+      "rarity": "Atypique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Companion_FinFlake",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-08T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/companion_finflake/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/companion_finflake/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_finflake/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Nonoss",
+      "description": "Un gentil chien friand d'aventure.",
+      "type": "Mascotte",
+      "rarity": "Atypique",
+      "vbucks": 1200,
+      "regular_price": 1200,
+      "id": "Companion_SitPlant",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-08T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/companion_sitplant/icon.png",
+        "featured": "https://fortnite-api.com/images/cosmetics/br/companion_sitplant/featured.png",
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_sitplant/smallicon.png"
+      }
+    },
+    {
+      "section": "Shop",
+      "name": "Câlineuse junior",
+      "description": "Un petit corps qui fait de gros câlins.",
+      "type": "Mascotte",
+      "rarity": "Atypique",
+      "vbucks": 1500,
+      "regular_price": 1500,
+      "id": "Companion_RoseBruin",
+      "giftable": true,
+      "refundable": true,
+      "inDate": "2025-11-08T00:00:00Z",
+      "outDate": "2025-11-21T23:59:59.999Z",
+      "images": {
+        "icon": "https://fortnite-api.com/images/cosmetics/br/companion_rosebruin/icon.png",
+        "featured": null,
+        "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_rosebruin/smallicon.png"
+      }
+    }
+  ]
+}

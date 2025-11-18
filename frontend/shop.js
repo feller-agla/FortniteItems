@@ -5,7 +5,7 @@
     // Helper: conversion V-Bucks -> USD -> FCFA
     // Formula requested: (vbucks * 0.00357) * 1.5 = prix en USD (après marge)
     // Ensuite conversion en FCFA via taux USD->XOF configurable globalement.
-    const DEFAULT_USD_TO_XOF = Number(window.FORTNITE_ITEMS_USD_TO_XOF) || 610;
+    const DEFAULT_USD_TO_XOF = 580;
     function vbuckToUsd(vbucks) {
         return Number(vbucks) * 0.00357 * 1.5;
     }
@@ -291,26 +291,69 @@
                 }
             });
 
-            // Gestionnaire global des aperçus vidéo (document-level pour couvrir tous les éléments dynamiques)
-            document.addEventListener('click', this.handleVideoPreviewClick);
-            console.log('🎬 Gestionnaire vidéo enregistré (document-level)');
+            // Gestionnaire des aperçus vidéo directement sur root pour éviter les conflits
+            if (this.root) {
+                this.root.addEventListener('click', this.handleVideoPreviewClick);
+                console.log('🎬 Gestionnaire vidéo enregistré sur root:', this.root.id);
+            } else {
+                console.error('❌ this.root non défini, impossible d\'enregistrer le gestionnaire vidéo');
+            }
         }
 
         handleVideoPreviewClick(event) {
             const rawTarget = event.target;
-            if (!(rawTarget instanceof Element)) return;
+            console.log('🖱️ Clic détecté sur:', rawTarget);
+            
+            if (!(rawTarget instanceof Element)) {
+                console.log('❌ Target n\'est pas un Element');
+                return;
+            }
+            
+            // Chercher le bouton d'aperçu dans la hiérarchie
             const videoBtn = rawTarget.closest('[data-video-preview]');
-            if (!videoBtn || !this.root.contains(videoBtn)) return;
+            console.log('🔍 Bouton vidéo trouvé:', videoBtn);
+            
+            if (!videoBtn) {
+                // Pas un bouton d'aperçu, on ignore
+                return;
+            }
+            
+            // Vérifier que le bouton est bien dans notre application shop
+            if (this.root && !this.root.contains(videoBtn)) {
+                console.warn('⚠️ Bouton en dehors de root');
+                return;
+            }
 
             event.preventDefault();
             event.stopPropagation();
-            const url = videoBtn.getAttribute('href');
-            if (!url) return;
+            
+            // Récupérer l'URL depuis data-video-url (nouveau) ou href (ancien pour compatibilité)
+            const url = videoBtn.getAttribute('data-video-url') || videoBtn.getAttribute('href');
+            console.log('🔗 URL récupérée:', url);
+            
+            if (!url) {
+                console.error('❌ Bouton aperçu sans URL:', videoBtn);
+                console.log('Attributs du bouton:', {
+                    'data-video-url': videoBtn.getAttribute('data-video-url'),
+                    'href': videoBtn.getAttribute('href'),
+                    'outerHTML': videoBtn.outerHTML
+                });
+                return;
+            }
 
             console.log('🎬 Ouverture vidéo:', url);
-            const newTab = window.open(url, '_blank', 'noopener,noreferrer');
-            if (!newTab) {
-                // Popup bloqué : on redirige dans le même onglet comme fallback
+            try {
+                const newTab = window.open(url, '_blank', 'noopener,noreferrer');
+                if (!newTab) {
+                    // Popup bloqué : on redirige dans le même onglet comme fallback
+                    console.warn('⚠️ Popup bloquée, redirection dans le même onglet');
+                    window.location.href = url;
+                } else {
+                    console.log('✅ Nouvel onglet ouvert avec succès');
+                }
+            } catch (error) {
+                console.error('❌ Erreur lors de l\'ouverture:', error);
+                // Fallback : redirection directe
                 window.location.href = url;
             }
         }
@@ -364,15 +407,42 @@
 
                 const payload = await response.json();
 
-                if (!payload.success) {
+                // Nouveau format: { date, total_items, items, vbuckIcon, last_updated }
+                // Ancien format: { success, data: { entries, sections }, ... }
+                
+                console.log('📦 Payload reçu:', payload);
+                console.log('📦 payload.items:', payload.items);
+                console.log('📦 payload.items est array?', Array.isArray(payload.items));
+                
+                if (payload.success === false) {
                     throw new Error(payload.error || 'Impossible de récupérer la boutique Fortnite');
                 }
 
-                this.state.meta.lastUpdated = payload.last_updated;
-                this.state.meta.ttlSeconds = payload.ttl_seconds || this.state.meta.ttlSeconds;
-                this.state.meta.vbuckIcon = payload.data?.vbuckIcon || null;
-                this.state.sections = this.normalizeSections(payload.data);
-                this.state.totalItems = this.state.sections.reduce((sum, section) => sum + section.items.length, 0);
+                // Adapter au nouveau format
+                if (payload.items && Array.isArray(payload.items)) {
+                    // Format fortnite_shop.json
+                    console.log('✅ Format détecté: fortnite_shop.json (items array)');
+                    console.log('📊 Nombre d\'items:', payload.items.length);
+                    this.state.meta.lastUpdated = payload.last_updated || payload.date;
+                    this.state.meta.ttlSeconds = 900; // 15 minutes par défaut
+                    this.state.meta.vbuckIcon = payload.vbuckIcon || null;
+                    this.state.sections = this.normalizeSectionsFromItems(payload.items);
+                    console.log('📋 Sections normalisées:', this.state.sections);
+                    console.log('📋 Nombre de sections:', this.state.sections.length);
+                    this.state.totalItems = payload.total_items || payload.items.length;
+                } else if (payload.data) {
+                    // Ancien format (compatibilité)
+                    console.log('✅ Format détecté: ancien format (data.entries)');
+                    this.state.meta.lastUpdated = payload.last_updated;
+                    this.state.meta.ttlSeconds = payload.ttl_seconds || 900;
+                    this.state.meta.vbuckIcon = payload.data?.vbuckIcon || null;
+                    this.state.sections = this.normalizeSections(payload.data);
+                    this.state.totalItems = this.state.sections.reduce((sum, section) => sum + section.items.length, 0);
+                } else {
+                    console.error('❌ Format de données inattendu:', payload);
+                    throw new Error('Format de données inattendu');
+                }
+                
                 this.populateFilterOptions();
             } catch (error) {
                 console.error('❌ Impossible de charger la boutique Fortnite', error);
@@ -381,6 +451,98 @@
                 this.setLoading(false);
                 this.render();
             }
+        }
+
+        normalizeSectionsFromItems(items) {
+            // Format fortnite_shop.json: liste d'items avec section, name, type, rarity, etc.
+            console.log('🔄 Normalisation de', items.length, 'items');
+            const sectionsMap = new Map();
+
+            items.forEach((item, index) => {
+                if (!item) {
+                    console.warn('⚠️ Item null ou undefined à l\'index', index);
+                    return;
+                }
+                
+                const sectionName = item.section || 'Boutique Fortnite';
+                const sectionId = sectionName.toLowerCase().replace(/\s+/g, '-');
+
+                if (!sectionsMap.has(sectionId)) {
+                    sectionsMap.set(sectionId, {
+                        id: sectionId,
+                        title: sectionName,
+                        subtitle: '',
+                        index: sectionsMap.size,
+                        items: []
+                    });
+                }
+
+                const section = sectionsMap.get(sectionId);
+                const normalizedItem = this.normalizeItemFromScraper(item, index);
+                if (normalizedItem) {
+                    console.log('✅ Item normalisé:', normalizedItem.name, '→ Section:', sectionName);
+                    section.items.push(normalizedItem);
+                } else {
+                    console.warn('⚠️ Item non normalisé à l\'index', index, item);
+                }
+            });
+
+            const sections = Array.from(sectionsMap.values()).sort((a, b) => (a.index ?? 999) - (b.index ?? 999));
+            console.log('📋 Sections créées:', sections.length);
+            sections.forEach(section => {
+                console.log(`  - ${section.title}: ${section.items.length} items`);
+            });
+            return sections;
+        }
+
+        normalizeItemFromScraper(item, fallbackIndex = 0) {
+            // Convertir un item du format scraper au format frontend
+            if (!item) {
+                console.error('❌ Item null dans normalizeItemFromScraper');
+                return null;
+            }
+            
+            const rarityName = item.rarity || 'Classique';
+            const raritySlug = this.slugify(rarityName || 'standard');
+            const typeName = item.type || 'Objet';
+            const typeSlug = this.slugify(typeName || 'item');
+            const price = item.vbucks || 0;
+
+            const primaryImage = item.images?.featured 
+                || item.images?.icon 
+                || 'assets/5000vbucks.png';
+
+            const expiresAt = item.outDate || null;
+            
+            // Extraire la vidéo depuis entry si disponible
+            let videoUrl = null;
+            if (item.entry?.brItems?.[0]?.showcaseVideo) {
+                videoUrl = `https://www.youtube.com/watch?v=${item.entry.brItems[0].showcaseVideo}`;
+            }
+
+            const tags = [];
+            if (item.giftable) tags.push('');
+            if (item.refundable) tags.push('');
+            if (expiresAt && this.computeHoursLeft(expiresAt) <= 2) {
+                tags.push('');
+            }
+
+            const normalized = {
+                id: item.id || `item-${fallbackIndex}`,
+                name: item.name || 'Objet Fortnite',
+                description: item.description || 'Disponible aujourd\'hui dans la boutique.',
+                price,
+                rarity: { name: rarityName, slug: raritySlug },
+                type: { name: typeName, slug: typeSlug },
+                image: primaryImage,
+                video: videoUrl,
+                tags,
+                giftable: Boolean(item.giftable),
+                refundable: Boolean(item.refundable),
+                expiresAt
+            };
+            
+            return normalized;
         }
 
         normalizeSections(data) {
@@ -442,10 +604,10 @@
             }
             
             const tags = [];
-            if (entry.giftable) tags.push('🎁 Cadeau autorisé');
-            if (entry.refundable) tags.push('↩️ Remboursable');
+            if (entry.giftable) tags.push('');
+            if (entry.refundable) tags.push('');
             if (expiresAt && this.computeHoursLeft(expiresAt) <= 2) {
-                tags.push('⏰ Quitte bientôt');
+                tags.push('');
             }
             if (brItem.series?.value) {
                 tags.push(brItem.series.value);
@@ -639,20 +801,22 @@
             const type = filters.type;
 
             let filtered = items.filter((item) => {
+                if (!item) return false;
+                
                 const description = (item.description || '').toLowerCase();
-                const series = (item.meta.series || '').toLowerCase();
-                const setName = (item.meta.set || '').toLowerCase();
-                const tags = item.tags.join(' ').toLowerCase();
+                const series = (item.meta?.series || '').toLowerCase();
+                const setName = (item.meta?.set || '').toLowerCase();
+                const tags = (item.tags || []).join(' ').toLowerCase();
 
                 const matchesSearch = !search
-                    || item.name.toLowerCase().includes(search)
+                    || (item.name || '').toLowerCase().includes(search)
                     || description.includes(search)
                     || series.includes(search)
                     || setName.includes(search)
                     || tags.includes(search);
 
-                const matchesRarity = rarity === 'all' || item.rarity.slug === rarity;
-                const matchesType = type === 'all' || item.type.slug === type;
+                const matchesRarity = rarity === 'all' || (item.rarity?.slug || '') === rarity;
+                const matchesType = type === 'all' || (item.type?.slug || '') === type;
 
                 return matchesSearch && matchesRarity && matchesType;
             });
@@ -728,8 +892,6 @@
             const tags = item.tags.length
                 ? `<div class="media-tags">${item.tags.map((tag) => `<span class="item-tag">${this.escapeHtml(tag)}</span>`).join('')}</div>`
                 : '';
-            const metaLine = item.meta.introduction || sectionTitle;
-            const orderHint = `Note "${item.name}" dans ton message de confirmation.`;
 
             return `
                 <article class="shop-card product-card rarity-${item.rarity.slug}">
@@ -743,20 +905,16 @@
                             <span class="item-type">${this.escapeHtml(item.type.name)}</span>
                         </div>
                         <p class="shop-card-description">${this.escapeHtml(item.description)}</p>
-                        <p class="shop-card-meta-line">${this.escapeHtml(metaLine || '')}</p>
                         <div class="shop-card-meta">
                             <div class="price-tag">
                                 <img src="${icon}" alt="" loading="lazy">
                                 <span>${this.formatPrice(item.price)}</span>
                             </div>
                             <div class="availability-flags">
-                                ${item.giftable ? '<span class="flag">🎁 Cadeau</span>' : ''}
-                                ${item.refundable ? '<span class="flag">↩️ Refund</span>' : ''}
                                 ${item.expiresAt ? `<span class="flag">⏳ ${this.formatExpiry(item.expiresAt)}</span>` : ''}
                             </div>
                         </div>
                         <div class="shop-card-actions">
-                            <p class="shop-card-hint">${this.escapeHtml(orderHint)}</p>
                             <button type="button"
                                 class="product-button cart-flow-cta"
                                 data-item-id="${this.escapeHtml(item.id || '')}"
@@ -766,7 +924,7 @@
                                 data-disable-product-animation="true">
                                 Préparer ma commande
                             </button>
-                            ${item.video ? `<a class="ghost-button" data-video-preview="true" href="${this.escapeHtml(item.video)}" target="_blank" rel="noopener noreferrer">▶️ Aperçu</a>` : ''}
+                            ${item.video ? `<button type="button" class="ghost-button shop-preview-btn" onclick="window.open('${this.escapeHtml(item.video)}', '_blank', 'noopener,noreferrer')">▶️ Aperçu</button>` : ''}
                         </div>
                     </div>
                 </article>
@@ -819,12 +977,15 @@
             if (Number.isNaN(timestamp)) return 'Quitte bientôt';
             const diffMs = timestamp - Date.now();
             if (diffMs <= 0) return 'Expire maintenant';
-            const hours = Math.floor(diffMs / 3_600_000);
-            const minutes = Math.floor((diffMs % 3_600_000) / 60_000);
-            if (hours > 0) {
-                return `${hours}h ${minutes.toString().padStart(2, '0')}m`;
-            }
-            return `${minutes} min`;
+            
+            // Afficher seulement la date (sans l'heure)
+            const date = new Date(timestamp);
+            const day = date.getDate();
+            const month = date.toLocaleDateString('fr-FR', { month: 'short' });
+            const year = date.getFullYear();
+            
+            // Format: "15 Nov 2024"
+            return `${day} ${month} ${year}`;
         }
 
         isDataOutdated() {
