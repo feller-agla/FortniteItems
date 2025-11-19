@@ -92,14 +92,23 @@
                 this.itemNameEl.textContent = this.currentItem.name || 'Boutique Fortnite';
             }
             if (this.itemPriceEl) {
-                // Utiliser le prix en FCFA si disponible, sinon convertir depuis V-Bucks
-                let priceToDisplay = this.currentItem.price;
-                if (this.currentItem.vbucks && !Number.isFinite(priceToDisplay)) {
-                    priceToDisplay = vbuckToFcfaRounded(this.currentItem.vbucks);
+                // Toujours convertir depuis V-Bucks vers FCFA
+                // currentItem.price est en V-Bucks (depuis normalizeItemFromScraper)
+                const vbucks = this.currentItem.vbucks || this.currentItem.price || 0;
+                let priceInFcfa;
+                
+                // Si currentItem.price est déjà en FCFA (valeur > 10000), l'utiliser directement
+                // Sinon, c'est en V-Bucks, donc convertir
+                if (this.currentItem.price && this.currentItem.price > 10000 && !this.currentItem.vbucks) {
+                    // Probablement déjà en FCFA
+                    priceInFcfa = this.currentItem.price;
+                } else {
+                    // Convertir V-Bucks en FCFA
+                    priceInFcfa = vbuckToFcfaRounded(vbucks);
                 }
-                if (Number.isFinite(priceToDisplay)) {
-                    // priceToDisplay est déjà en FCFA, juste formater
-                    this.itemPriceEl.textContent = `${priceToDisplay.toLocaleString('fr-FR')} FCFA`;
+                
+                if (Number.isFinite(priceInFcfa) && priceInFcfa > 0) {
+                    this.itemPriceEl.textContent = `${priceInFcfa.toLocaleString('fr-FR')} FCFA`;
                 } else {
                     this.itemPriceEl.textContent = '--';
                 }

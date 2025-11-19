@@ -23,7 +23,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -53,7 +53,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -280,7 +280,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -300,7 +300,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -394,7 +394,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -414,7 +414,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -512,7 +512,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -532,7 +532,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -627,7 +627,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -647,7 +647,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -790,7 +790,7 @@
       "layout": {
         "id": "VictoryVibes1117",
         "name": "Esprit de victoire",
-        "index": 5,
+        "index": 1,
         "rank": 194,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -810,7 +810,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -898,15 +898,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/eid_graftglint/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_graftglint/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 300,
         "finalPrice": 300,
@@ -918,15 +910,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.95",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -1000,7 +983,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -1020,7 +1003,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -1115,7 +1098,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -1135,7 +1118,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -1227,15 +1210,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_duckcoast/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_duckcoast/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 800,
         "finalPrice": 800,
@@ -1247,15 +1222,6 @@
         "refundable": true,
         "sortPriority": -3,
         "layoutId": "SimpsonsBartLisaMoe.98",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -1334,7 +1300,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -1354,7 +1320,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -1445,15 +1411,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_queentruth_rind/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_queentruth_rind/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 800,
         "finalPrice": 800,
@@ -1465,15 +1423,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.94",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -1552,7 +1501,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -1572,7 +1521,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -1695,15 +1644,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/newdisplayassets/06827712e5aba607/renderimage_0.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/newdisplayassets/06827712e5aba607/renderimage_0.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 3500,
         "finalPrice": 2000,
@@ -1725,15 +1666,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.97",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -1999,7 +1931,7 @@
       "layout": {
         "id": "VictoryVibes1117",
         "name": "Esprit de victoire",
-        "index": 5,
+        "index": 1,
         "rank": 194,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -2019,7 +1951,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -2110,7 +2042,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -2130,7 +2062,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -2209,7 +2141,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -2229,7 +2161,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -2315,7 +2247,7 @@
         "id": "PlatinumSeries",
         "name": "Icônes de platine",
         "category": "Icônes",
-        "index": 18,
+        "index": 6,
         "rank": 186,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -2341,7 +2273,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -2567,7 +2499,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -2597,7 +2529,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -2824,7 +2756,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -2844,7 +2776,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -2928,7 +2860,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -2948,7 +2880,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -3042,7 +2974,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -3062,7 +2994,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -3144,7 +3076,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -3164,7 +3096,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -3244,15 +3176,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/character_frostgalore/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_frostgalore/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 1500,
         "finalPrice": 1500,
@@ -3264,15 +3188,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.96",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -3362,7 +3277,7 @@
         "name": "Tesla Cybertruck",
         "category": "Faites vrombir les moteurs",
         "index": 8,
-        "rank": 187,
+        "rank": 189,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -3392,7 +3307,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -3637,7 +3552,7 @@
         "name": "Tesla Cybertruck",
         "category": "Faites vrombir les moteurs",
         "index": 8,
-        "rank": 187,
+        "rank": 189,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -3667,7 +3582,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -3912,7 +3827,7 @@
         "name": "Tesla Cybertruck",
         "category": "Faites vrombir les moteurs",
         "index": 8,
-        "rank": 187,
+        "rank": 189,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -3942,7 +3857,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -4187,7 +4102,7 @@
         "name": "Tesla Cybertruck",
         "category": "Faites vrombir les moteurs",
         "index": 8,
-        "rank": 187,
+        "rank": 189,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -4217,7 +4132,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -4462,7 +4377,7 @@
         "name": "Tesla Cybertruck",
         "category": "Faites vrombir les moteurs",
         "index": 8,
-        "rank": 187,
+        "rank": 189,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -4492,7 +4407,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -4737,7 +4652,7 @@
         "name": "Tesla Cybertruck",
         "category": "Faites vrombir les moteurs",
         "index": 8,
-        "rank": 187,
+        "rank": 189,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -4767,7 +4682,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -5007,15 +4922,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_frostgalore/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_frostgalore/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 800,
         "finalPrice": 800,
@@ -5027,15 +4934,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.97",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -5117,7 +5015,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -5142,7 +5040,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -5360,7 +5258,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -5380,7 +5278,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -5457,7 +5355,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -5477,7 +5375,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -5563,7 +5461,7 @@
         "name": "Tesla Cybertruck",
         "category": "Faites vrombir les moteurs",
         "index": 8,
-        "rank": 187,
+        "rank": 189,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -5589,7 +5487,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -5669,15 +5567,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/companion_zestysilo/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/companion_zestysilo/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 1500,
         "finalPrice": 1500,
@@ -5693,15 +5583,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.95",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -5785,7 +5666,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -5805,7 +5686,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -5911,7 +5792,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -5931,7 +5812,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -6026,7 +5907,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -6046,7 +5927,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -6224,15 +6105,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/eid_duckcoast/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_duckcoast/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 400,
         "finalPrice": 400,
@@ -6244,15 +6117,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.98",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -6326,7 +6190,7 @@
       "layout": {
         "id": "VictoryVibes1117",
         "name": "Esprit de victoire",
-        "index": 5,
+        "index": 1,
         "rank": 194,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -6346,7 +6210,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -6436,7 +6300,7 @@
       "layout": {
         "id": "VictoryVibes1117",
         "name": "Esprit de victoire",
-        "index": 5,
+        "index": 1,
         "rank": 194,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -6456,7 +6320,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -6547,7 +6411,7 @@
       "layout": {
         "id": "HJDooganLocker",
         "name": "Casier de HJDoogan",
-        "index": 13,
+        "index": 17,
         "rank": 193,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -6567,7 +6431,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -6651,7 +6515,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -6671,7 +6535,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -6765,7 +6629,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -6785,7 +6649,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -6881,7 +6745,7 @@
         "id": "PlatinumSeries",
         "name": "Icônes de platine",
         "category": "Icônes",
-        "index": 18,
+        "index": 6,
         "rank": 186,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -6907,7 +6771,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -7130,7 +6994,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -7150,7 +7014,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -7266,15 +7130,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_queentruth_rind/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_queentruth_rind/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 300,
         "finalPrice": 300,
@@ -7286,15 +7142,6 @@
         "refundable": true,
         "sortPriority": -4,
         "layoutId": "SimpsonsBartLisaMoe.94",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -7393,77 +7240,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/newdisplayassets/9339bb173abdabf7/renderimage_0.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/newdisplayassets/9339bb173abdabf7/renderimage_0.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "billboard",
-        "textureMetadata": [
-          {
-            "key": "background",
-            "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_BG-bd744161.png"
-          },
-          {
-            "key": "foreground",
-            "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_Character-459b5f79.png"
-          },
-          {
-            "key": "banner",
-            "value": "https://cdn2.unrealengine.com/sk-Billboard_Ch6MS2_Logo-b0887a60.png"
-          },
-          {
-            "key": "foreground_juno",
-            "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_Figure-0c43753a.png"
-          },
-          {
-            "key": "bodyImage",
-            "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_ItemStack-293f3a7c.png"
-          }
-        ],
-        "stringMetadata": [
-          {
-            "key": "alignment",
-            "value": "left"
-          },
-          {
-            "key": "highlightEnabled",
-            "value": "true"
-          },
-          {
-            "key": "parallaxEnabled",
-            "value": "true"
-          },
-          {
-            "key": "titleColorA",
-            "value": "FFFFFF"
-          },
-          {
-            "key": "titleColorB",
-            "value": "FFFFFF"
-          },
-          {
-            "key": "billboardExperiment",
-            "value": "allowshopbillboardoffergroups_126"
-          }
-        ],
-        "textMetadata": [
-          {
-            "key": "cta",
-            "value": "Voir l'offre"
-          },
-          {
-            "key": "subtitle",
-            "value": "Pack de 4 objets"
-          },
-          {
-            "key": "title",
-            "value": "Moe Szyslak"
-          }
-        ]
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 2400,
         "finalPrice": 1500,
@@ -7485,77 +7262,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.99",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "billboard",
-          "textureMetadata": [
-            {
-              "key": "background",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_BG-bd744161.png"
-            },
-            {
-              "key": "foreground",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_Character-459b5f79.png"
-            },
-            {
-              "key": "banner",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_Ch6MS2_Logo-b0887a60.png"
-            },
-            {
-              "key": "foreground_juno",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_Figure-0c43753a.png"
-            },
-            {
-              "key": "bodyImage",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_ItemStack-293f3a7c.png"
-            }
-          ],
-          "stringMetadata": [
-            {
-              "key": "alignment",
-              "value": "left"
-            },
-            {
-              "key": "highlightEnabled",
-              "value": "true"
-            },
-            {
-              "key": "parallaxEnabled",
-              "value": "true"
-            },
-            {
-              "key": "titleColorA",
-              "value": "FFFFFF"
-            },
-            {
-              "key": "titleColorB",
-              "value": "FFFFFF"
-            },
-            {
-              "key": "billboardExperiment",
-              "value": "allowshopbillboardoffergroups_126"
-            }
-          ],
-          "textMetadata": [
-            {
-              "key": "cta",
-              "value": "Voir l'offre"
-            },
-            {
-              "key": "subtitle",
-              "value": "Pack de 4 objets"
-            },
-            {
-              "key": "title",
-              "value": "Moe Szyslak"
-            }
-          ]
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -7752,7 +7458,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -7772,7 +7478,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -7865,7 +7571,7 @@
       "layout": {
         "id": "HJDooganLocker",
         "name": "Casier de HJDoogan",
-        "index": 13,
+        "index": 17,
         "rank": 193,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -7885,7 +7591,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -8028,7 +7734,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -8048,7 +7754,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -8133,7 +7839,7 @@
       "layout": {
         "id": "HJDooganLocker",
         "name": "Casier de HJDoogan",
-        "index": 13,
+        "index": 17,
         "rank": 193,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -8153,7 +7859,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -8230,7 +7936,7 @@
         "id": "PlatinumSeries",
         "name": "Icônes de platine",
         "category": "Icônes",
-        "index": 18,
+        "index": 6,
         "rank": 186,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -8256,7 +7962,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -8552,7 +8258,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -8582,7 +8288,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -8827,15 +8533,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/character_queentruth_rind/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_queentruth_rind/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 1500,
         "finalPrice": 1500,
@@ -8847,15 +8545,6 @@
         "refundable": true,
         "sortPriority": -4,
         "layoutId": "SimpsonsBartLisaMoe.95",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -8943,7 +8632,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -8963,7 +8652,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -9147,7 +8836,7 @@
       "layout": {
         "id": "HJDooganLocker",
         "name": "Casier de HJDoogan",
-        "index": 13,
+        "index": 17,
         "rank": 193,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -9176,7 +8865,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -9271,15 +8960,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/newdisplayassets/161f9868b55b319d/renderimage_0.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/newdisplayassets/161f9868b55b319d/renderimage_0.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 3600,
         "finalPrice": 2000,
@@ -9301,15 +8982,6 @@
         "refundable": true,
         "sortPriority": -3,
         "layoutId": "SimpsonsBartLisaMoe.95",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -9601,7 +9273,7 @@
       "layout": {
         "id": "VictoryVibes1117",
         "name": "Esprit de victoire",
-        "index": 5,
+        "index": 1,
         "rank": 194,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -9621,7 +9293,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -9708,7 +9380,7 @@
         "id": "PlatinumSeries",
         "name": "Icônes de platine",
         "category": "Icônes",
-        "index": 18,
+        "index": 6,
         "rank": 186,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -9739,7 +9411,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -10548,7 +10220,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -10568,7 +10240,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -10691,15 +10363,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/eid_queentruth/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_queentruth/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 500,
         "finalPrice": 500,
@@ -10711,15 +10375,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.94",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -10797,7 +10452,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -10817,7 +10472,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -10900,7 +10555,7 @@
       "layout": {
         "id": "PsychoBandit",
         "name": "Désordre",
-        "index": 9,
+        "index": 12,
         "rank": 198,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -10920,7 +10575,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -11012,15 +10667,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/backpack_frostgalore/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/backpack_frostgalore/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 300,
         "finalPrice": 300,
@@ -11032,15 +10679,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.96",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -11119,7 +10757,7 @@
       "layout": {
         "id": "VictoryVibes1117",
         "name": "Esprit de victoire",
-        "index": 5,
+        "index": 1,
         "rank": 194,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -11139,7 +10777,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -11230,7 +10868,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -11250,7 +10888,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -11332,7 +10970,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -11352,7 +10990,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -11437,7 +11075,7 @@
       "layout": {
         "id": "SideKicks1115",
         "name": "Mascottes",
-        "index": 7,
+        "index": 5,
         "rank": 195,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -11466,7 +11104,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -11561,7 +11199,7 @@
         "id": "PlatinumSeries",
         "name": "Icônes de platine",
         "category": "Icônes",
-        "index": 18,
+        "index": 6,
         "rank": 186,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -11587,7 +11225,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -11831,7 +11469,7 @@
       "layout": {
         "id": "VictoryVibes1117",
         "name": "Esprit de victoire",
-        "index": 5,
+        "index": 1,
         "rank": 194,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -11851,7 +11489,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -11938,15 +11576,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/character_duckcoast/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/character_duckcoast/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 1200,
         "finalPrice": 1200,
@@ -11958,15 +11588,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.98",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -12054,7 +11675,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -12078,7 +11699,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -12441,7 +12062,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -12465,7 +12086,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -12631,7 +12252,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -12651,7 +12272,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -12784,7 +12405,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -12814,7 +12435,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -13041,7 +12662,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -13061,7 +12682,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -13145,7 +12766,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -13165,7 +12786,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -13242,7 +12863,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -13262,7 +12883,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -13428,7 +13049,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -13453,7 +13074,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -13598,7 +13219,7 @@
       "layout": {
         "id": "VictoryVibes1117",
         "name": "Esprit de victoire",
-        "index": 5,
+        "index": 1,
         "rank": 194,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -13618,7 +13239,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -13709,7 +13330,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -13733,7 +13354,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -13880,7 +13501,7 @@
       "layout": {
         "id": "HJDooganLocker",
         "name": "Casier de HJDoogan",
-        "index": 13,
+        "index": 17,
         "rank": 193,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -13900,7 +13521,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -13982,7 +13603,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -14002,7 +13623,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -14079,7 +13700,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -14099,7 +13720,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -14193,7 +13814,7 @@
         "id": "WerewolfCar",
         "name": "Loup-garou",
         "category": "Faites vrombir les moteurs",
-        "index": 1,
+        "index": 2,
         "rank": 190,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
@@ -14223,7 +13844,7 @@
           "id": "WerewolfCar",
           "name": "Loup-garou",
           "category": "Faites vrombir les moteurs",
-          "index": 1,
+          "index": 2,
           "rank": 190,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
@@ -14401,7 +14022,7 @@
         "id": "WerewolfCar",
         "name": "Loup-garou",
         "category": "Faites vrombir les moteurs",
-        "index": 1,
+        "index": 2,
         "rank": 190,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
@@ -14431,7 +14052,7 @@
           "id": "WerewolfCar",
           "name": "Loup-garou",
           "category": "Faites vrombir les moteurs",
-          "index": 1,
+          "index": 2,
           "rank": 190,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
@@ -14609,7 +14230,7 @@
         "id": "WerewolfCar",
         "name": "Loup-garou",
         "category": "Faites vrombir les moteurs",
-        "index": 1,
+        "index": 2,
         "rank": 190,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
@@ -14639,7 +14260,7 @@
           "id": "WerewolfCar",
           "name": "Loup-garou",
           "category": "Faites vrombir les moteurs",
-          "index": 1,
+          "index": 2,
           "rank": 190,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
@@ -14817,7 +14438,7 @@
         "id": "WerewolfCar",
         "name": "Loup-garou",
         "category": "Faites vrombir les moteurs",
-        "index": 1,
+        "index": 2,
         "rank": 190,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
@@ -14847,7 +14468,7 @@
           "id": "WerewolfCar",
           "name": "Loup-garou",
           "category": "Faites vrombir les moteurs",
-          "index": 1,
+          "index": 2,
           "rank": 190,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
@@ -15025,7 +14646,7 @@
         "id": "WerewolfCar",
         "name": "Loup-garou",
         "category": "Faites vrombir les moteurs",
-        "index": 1,
+        "index": 2,
         "rank": 190,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
@@ -15055,7 +14676,7 @@
           "id": "WerewolfCar",
           "name": "Loup-garou",
           "category": "Faites vrombir les moteurs",
-          "index": 1,
+          "index": 2,
           "rank": 190,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
@@ -15233,7 +14854,7 @@
         "id": "WerewolfCar",
         "name": "Loup-garou",
         "category": "Faites vrombir les moteurs",
-        "index": 1,
+        "index": 2,
         "rank": 190,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
@@ -15263,7 +14884,7 @@
           "id": "WerewolfCar",
           "name": "Loup-garou",
           "category": "Faites vrombir les moteurs",
-          "index": 1,
+          "index": 2,
           "rank": 190,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
@@ -15440,7 +15061,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -15524,7 +15145,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -16406,7 +16027,7 @@
       "layout": {
         "id": "BR1119",
         "name": "Prêt à en découdre",
-        "index": 15,
+        "index": 18,
         "rank": 192,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -16426,7 +16047,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -16505,7 +16126,7 @@
       "layout": {
         "id": "TylerCreator",
         "name": "Tyler, The Creator",
-        "index": 4,
+        "index": 13,
         "rank": 197,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -16525,7 +16146,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -16616,15 +16237,7 @@
         "featured": "https://fortnite-api.com/images/cosmetics/br/eid_frostgalore/featured.png",
         "small_icon": "https://fortnite-api.com/images/cosmetics/br/eid_frostgalore/smallicon.png"
       },
-      "layout": {
-        "id": "SimpsonsBartLisaMoe",
-        "name": "Les Simpson",
-        "index": 11,
-        "rank": 196,
-        "showIneligibleOffers": "always",
-        "useWidePreview": false,
-        "displayType": "tileGrid"
-      },
+      "layout": {},
       "entry": {
         "regularPrice": 400,
         "finalPrice": 400,
@@ -16636,15 +16249,6 @@
         "refundable": true,
         "sortPriority": -3,
         "layoutId": "SimpsonsBartLisaMoe.96",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -16718,7 +16322,7 @@
       "layout": {
         "id": "HJDooganLocker",
         "name": "Casier de HJDoogan",
-        "index": 13,
+        "index": 17,
         "rank": 193,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -16748,7 +16352,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -17107,8 +16711,8 @@
         "id": "MercedesAMG",
         "name": "Mercedes-AMG GT 63",
         "category": "Faites vrombir les moteurs",
-        "index": 12,
-        "rank": 189,
+        "index": 14,
+        "rank": 188,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -17137,8 +16741,8 @@
           "id": "MercedesAMG",
           "name": "Mercedes-AMG GT 63",
           "category": "Faites vrombir les moteurs",
-          "index": 12,
-          "rank": 189,
+          "index": 14,
+          "rank": 188,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -17329,8 +16933,8 @@
         "id": "MercedesAMG",
         "name": "Mercedes-AMG GT 63",
         "category": "Faites vrombir les moteurs",
-        "index": 12,
-        "rank": 189,
+        "index": 14,
+        "rank": 188,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -17359,8 +16963,8 @@
           "id": "MercedesAMG",
           "name": "Mercedes-AMG GT 63",
           "category": "Faites vrombir les moteurs",
-          "index": 12,
-          "rank": 189,
+          "index": 14,
+          "rank": 188,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -17551,8 +17155,8 @@
         "id": "MercedesAMG",
         "name": "Mercedes-AMG GT 63",
         "category": "Faites vrombir les moteurs",
-        "index": 12,
-        "rank": 189,
+        "index": 14,
+        "rank": 188,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -17581,8 +17185,8 @@
           "id": "MercedesAMG",
           "name": "Mercedes-AMG GT 63",
           "category": "Faites vrombir les moteurs",
-          "index": 12,
-          "rank": 189,
+          "index": 14,
+          "rank": 188,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -17773,8 +17377,8 @@
         "id": "MercedesAMG",
         "name": "Mercedes-AMG GT 63",
         "category": "Faites vrombir les moteurs",
-        "index": 12,
-        "rank": 189,
+        "index": 14,
+        "rank": 188,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -17803,8 +17407,8 @@
           "id": "MercedesAMG",
           "name": "Mercedes-AMG GT 63",
           "category": "Faites vrombir les moteurs",
-          "index": 12,
-          "rank": 189,
+          "index": 14,
+          "rank": 188,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -17995,8 +17599,8 @@
         "id": "MercedesAMG",
         "name": "Mercedes-AMG GT 63",
         "category": "Faites vrombir les moteurs",
-        "index": 12,
-        "rank": 189,
+        "index": 14,
+        "rank": 188,
         "showIneligibleOffers": "always",
         "useWidePreview": true,
         "displayType": "tileGrid"
@@ -18025,8 +17629,8 @@
           "id": "MercedesAMG",
           "name": "Mercedes-AMG GT 63",
           "category": "Faites vrombir les moteurs",
-          "index": 12,
-          "rank": 189,
+          "index": 14,
+          "rank": 188,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -18216,7 +17820,7 @@
       "layout": {
         "id": "SideKicks1115",
         "name": "Mascottes",
-        "index": 7,
+        "index": 5,
         "rank": 195,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -18245,7 +17849,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -18352,7 +17956,7 @@
       "layout": {
         "id": "SideKicks1115",
         "name": "Mascottes",
-        "index": 7,
+        "index": 5,
         "rank": 195,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -18381,7 +17985,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -18488,7 +18092,7 @@
       "layout": {
         "id": "SideKicks1115",
         "name": "Mascottes",
-        "index": 7,
+        "index": 5,
         "rank": 195,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -18517,7 +18121,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -18624,7 +18228,7 @@
       "layout": {
         "id": "SideKicks1115",
         "name": "Mascottes",
-        "index": 7,
+        "index": 5,
         "rank": 195,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -18653,7 +18257,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -18765,7 +18369,7 @@
       "layout": {
         "id": "SideKicks1115",
         "name": "Mascottes",
-        "index": 7,
+        "index": 5,
         "rank": 195,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -18794,7 +18398,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -18901,7 +18505,7 @@
       "layout": {
         "id": "SideKicks1115",
         "name": "Mascottes",
-        "index": 7,
+        "index": 5,
         "rank": 195,
         "showIneligibleOffers": "always",
         "useWidePreview": false,
@@ -18930,7 +18534,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19036,7 +18640,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19096,7 +18700,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19276,7 +18880,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19362,7 +18966,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19452,7 +19056,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19539,7 +19143,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19660,7 +19264,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19740,15 +19344,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.95",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -19818,7 +19413,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19866,7 +19461,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19921,7 +19516,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -19966,15 +19561,6 @@
         "refundable": true,
         "sortPriority": -3,
         "layoutId": "SimpsonsBartLisaMoe.94",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -20019,7 +19605,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20110,7 +19696,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20162,7 +19748,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20210,7 +19796,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20258,7 +19844,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20302,7 +19888,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20386,15 +19972,6 @@
         "refundable": true,
         "sortPriority": -3,
         "layoutId": "SimpsonsBartLisaMoe.98",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -20465,7 +20042,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20555,7 +20132,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20596,15 +20173,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.94",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -20675,7 +20243,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -20800,15 +20368,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.97",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -21006,7 +20565,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21089,7 +20648,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21164,7 +20723,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21213,7 +20772,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21267,7 +20826,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21315,7 +20874,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21397,7 +20956,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21457,7 +21016,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21655,7 +21214,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21842,7 +21401,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21922,7 +21481,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -21966,7 +21525,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22056,7 +21615,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22100,7 +21659,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22178,7 +21737,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22222,7 +21781,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22302,7 +21861,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22353,15 +21912,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.96",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -22445,7 +21995,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22493,7 +22043,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22548,7 +22098,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -22779,15 +22329,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.97",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -22865,7 +22406,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -22914,7 +22455,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23086,7 +22627,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23159,7 +22700,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23207,7 +22748,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23251,7 +22792,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23334,7 +22875,7 @@
           "name": "Tesla Cybertruck",
           "category": "Faites vrombir les moteurs",
           "index": 8,
-          "rank": 187,
+          "rank": 189,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -23409,15 +22950,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.95",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -23493,7 +23025,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23591,7 +23123,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23678,7 +23210,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23834,15 +23366,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.98",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -23913,7 +23436,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -23967,7 +23490,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24011,7 +23534,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24093,7 +23616,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24176,7 +23699,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24252,7 +23775,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24338,7 +23861,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24429,7 +23952,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24483,7 +24006,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24672,7 +24195,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24716,7 +24239,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -24824,15 +24347,6 @@
         "refundable": true,
         "sortPriority": -4,
         "layoutId": "SimpsonsBartLisaMoe.94",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -24933,77 +24447,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.99",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "billboard",
-          "textureMetadata": [
-            {
-              "key": "background",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_BG-bd744161.png"
-            },
-            {
-              "key": "foreground",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_Character-459b5f79.png"
-            },
-            {
-              "key": "banner",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_Ch6MS2_Logo-b0887a60.png"
-            },
-            {
-              "key": "foreground_juno",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_Figure-0c43753a.png"
-            },
-            {
-              "key": "bodyImage",
-              "value": "https://cdn2.unrealengine.com/sk-Billboard_DuckCoast_ItemStack-293f3a7c.png"
-            }
-          ],
-          "stringMetadata": [
-            {
-              "key": "alignment",
-              "value": "left"
-            },
-            {
-              "key": "highlightEnabled",
-              "value": "true"
-            },
-            {
-              "key": "parallaxEnabled",
-              "value": "true"
-            },
-            {
-              "key": "titleColorA",
-              "value": "FFFFFF"
-            },
-            {
-              "key": "titleColorB",
-              "value": "FFFFFF"
-            },
-            {
-              "key": "billboardExperiment",
-              "value": "allowshopbillboardoffergroups_126"
-            }
-          ],
-          "textMetadata": [
-            {
-              "key": "cta",
-              "value": "Voir l'offre"
-            },
-            {
-              "key": "subtitle",
-              "value": "Pack de 4 objets"
-            },
-            {
-              "key": "title",
-              "value": "Moe Szyslak"
-            }
-          ]
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -25144,7 +24587,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -25229,7 +24672,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -25354,7 +24797,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -25398,7 +24841,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -25475,7 +24918,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -25549,7 +24992,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -25810,7 +25253,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -26003,15 +25446,6 @@
         "refundable": true,
         "sortPriority": -4,
         "layoutId": "SimpsonsBartLisaMoe.95",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -26091,7 +25525,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -26257,7 +25691,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -26310,7 +25744,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -26407,15 +25841,6 @@
         "refundable": true,
         "sortPriority": -3,
         "layoutId": "SimpsonsBartLisaMoe.95",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -26643,7 +26068,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -26691,7 +26116,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -26739,7 +26164,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -26783,7 +26208,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -26872,7 +26297,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -27558,7 +26983,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -27606,7 +27031,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -27654,7 +27079,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -27769,15 +27194,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.94",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -27847,7 +27263,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -27922,7 +27338,7 @@
         "layout": {
           "id": "PsychoBandit",
           "name": "Désordre",
-          "index": 9,
+          "index": 12,
           "rank": 198,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28006,15 +27422,6 @@
         "refundable": true,
         "sortPriority": -2,
         "layoutId": "SimpsonsBartLisaMoe.96",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -28085,7 +27492,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28172,7 +27579,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28220,7 +27627,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28299,7 +27706,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28353,7 +27760,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28398,7 +27805,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28479,7 +27886,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28531,7 +27938,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28584,7 +27991,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28675,7 +28082,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28735,7 +28142,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -28941,7 +28348,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29020,15 +28427,6 @@
         "refundable": true,
         "sortPriority": -1,
         "layoutId": "SimpsonsBartLisaMoe.98",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -29113,7 +28511,7 @@
           "id": "PlatinumSeries",
           "name": "Icônes de platine",
           "category": "Icônes",
-          "index": 18,
+          "index": 6,
           "rank": 186,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29167,7 +28565,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29526,7 +28924,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29670,7 +29068,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29785,7 +29183,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29833,7 +29231,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29881,7 +29279,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29933,7 +29331,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -29985,7 +29383,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30039,7 +29437,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30230,7 +29628,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30274,7 +29672,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30354,7 +29752,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30398,7 +29796,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30467,7 +29865,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30612,15 +30010,6 @@
         "refundable": true,
         "sortPriority": -4,
         "layoutId": "SimpsonsBartLisaMoe.96",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -30670,7 +30059,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30807,7 +30196,7 @@
         "layout": {
           "id": "VictoryVibes1117",
           "name": "Esprit de victoire",
-          "index": 5,
+          "index": 1,
           "rank": 194,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -30894,7 +30283,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -31023,7 +30412,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -31071,7 +30460,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -31115,7 +30504,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -31193,7 +30582,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -31237,7 +30626,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -31306,7 +30695,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -31395,7 +30784,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -31449,7 +30838,7 @@
           "id": "WerewolfCar",
           "name": "Loup-garou",
           "category": "Faites vrombir les moteurs",
-          "index": 1,
+          "index": 2,
           "rank": 190,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
@@ -31627,7 +31016,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -32363,7 +31752,7 @@
         "layout": {
           "id": "BR1119",
           "name": "Prêt à en découdre",
-          "index": 15,
+          "index": 18,
           "rank": 192,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -32434,7 +31823,7 @@
         "layout": {
           "id": "TylerCreator",
           "name": "Tyler, The Creator",
-          "index": 4,
+          "index": 13,
           "rank": 197,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -32517,15 +31906,6 @@
         "refundable": true,
         "sortPriority": -3,
         "layoutId": "SimpsonsBartLisaMoe.96",
-        "layout": {
-          "id": "SimpsonsBartLisaMoe",
-          "name": "Les Simpson",
-          "index": 11,
-          "rank": 196,
-          "showIneligibleOffers": "always",
-          "useWidePreview": false,
-          "displayType": "tileGrid"
-        },
         "colors": {
           "color1": "eda2f4ff",
           "color3": "8f6397ff",
@@ -32595,7 +31975,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -32646,7 +32026,7 @@
         "layout": {
           "id": "Jamtracks11193910",
           "name": "Pistes musicales",
-          "index": 16,
+          "index": 7,
           "rank": 191,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -32700,7 +32080,7 @@
         "layout": {
           "id": "HJDooganLocker",
           "name": "Casier de HJDoogan",
-          "index": 13,
+          "index": 17,
           "rank": 193,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -32976,8 +32356,8 @@
           "id": "MercedesAMG",
           "name": "Mercedes-AMG GT 63",
           "category": "Faites vrombir les moteurs",
-          "index": 12,
-          "rank": 189,
+          "index": 14,
+          "rank": 188,
           "showIneligibleOffers": "always",
           "useWidePreview": true,
           "displayType": "tileGrid"
@@ -33167,7 +32547,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -33275,7 +32655,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -33383,7 +32763,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -33491,7 +32871,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -33604,7 +32984,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -33712,7 +33092,7 @@
         "layout": {
           "id": "SideKicks1115",
           "name": "Mascottes",
-          "index": 7,
+          "index": 5,
           "rank": 195,
           "showIneligibleOffers": "always",
           "useWidePreview": false,
@@ -33793,5 +33173,5 @@
       }
     ]
   },
-  "last_updated": "2025-11-19T09:33:15.134371+00:00"
+  "last_updated": "2025-11-19T15:35:18.666129+00:00"
 }
