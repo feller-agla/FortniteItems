@@ -230,12 +230,12 @@ class CheckoutManager {
         // Vider le panier
         cart.clearCart();
         
-        // Rediriger vers WhatsApp
+        // Rediriger vers WhatsApp dans un nouvel onglet
         window.open(whatsappURL, '_blank');
         
-        // Afficher un message de confirmation
+        // Rediriger vers la page de confirmation
         setTimeout(() => {
-            alert('Votre commande a ete envoyee sur WhatsApp !\n\nVous allez etre redirige pour finaliser le paiement avec notre equipe.');
+            window.location.href = 'order-sent.html';
         }, 500);
     }
 

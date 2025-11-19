@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande Envoyée - FortniteItems</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicnon.png">
+    <link rel="apple-touch-icon" href="assets/favicnon.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FortniteItems</span>
+                    <span class="logo-subtext">SHOP</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#products">Offres V-Bucks</a>
+                <a href="shop.html">Boutique Fortnite</a>
+                <a href="guide.html">📖 Guide</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Confirmation Page -->
+    <section class="success-page" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 4rem 0;">
+        <div class="container">
+            <div class="success-content" style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <div class="success-animation">
+                    <div class="success-circle" style="width: 120px; height: 120px; margin: 0 auto 2rem; border-radius: 50%; background: linear-gradient(135deg, var(--electric-blue), var(--neon-pink)); display: flex; align-items: center; justify-content: center; animation: scaleIn 0.5s ease-out;">
+                        <div class="success-checkmark" style="font-size: 4rem; color: white; font-weight: bold;">✓</div>
+                    </div>
+                </div>
+                
+                <h1 class="success-title" style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--electric-blue), var(--neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">✅ Commande Envoyée !</h1>
+                <p class="success-subtitle" style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">
+                    Ta commande a été envoyée sur WhatsApp avec succès !
+                </p>
+                
+                <div class="delivery-info" style="background: rgba(123, 104, 238, 0.1); border-radius: 12px; padding: 2rem; margin: 2rem 0; border: 2px solid rgba(123, 104, 238, 0.3);">
+                    <div class="info-box" style="text-align: left; margin-bottom: 1.5rem;">
+                        <span class="info-icon" style="font-size: 2rem; margin-right: 1rem;">💬</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.5rem 0; color: var(--electric-blue);">Prochaine étape</h4>
+                            <p style="margin: 0; color: rgba(255, 255, 255, 0.9);">
+                                Vérifie WhatsApp et finalise le paiement avec notre équipe. Ils te guideront pour recevoir ton item !
+                            </p>
+                        </div>
+                    </div>
+                    <div class="info-box" style="text-align: left;">
+                        <span class="info-icon" style="font-size: 2rem; margin-right: 1rem;">⏱️</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.5rem 0; color: var(--electric-blue);">Rappel important</h4>
+                            <p style="margin: 0; color: rgba(255, 255, 255, 0.9);">
+                                Le skin n'est pas reçu immédiatement. Tu devras ajouter un compte en ami, attendre 48h, et le compte t'offrira le skin selon les règles de Fortnite.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                    <a href="index.html" class="cta-button" style="padding: 1rem 2rem; text-decoration: none; display: inline-block;">
+                        <span>🏠 Retour à l'accueil</span>
+                    </a>
+                    <a href="shop.html" class="ghost-button" style="padding: 1rem 2rem; text-decoration: none; display: inline-block;">
+                        <span>🛍️ Continuer mes achats</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Animation au chargement
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const circle = document.querySelector('.success-circle');
+                if (circle) {
+                    circle.classList.add('animate');
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>
+
