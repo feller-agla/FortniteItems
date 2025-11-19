@@ -10,10 +10,9 @@
         }
 
         resolveBackendBaseUrl() {
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                return 'http://localhost:5000';
-            }
-            return '';
+            const hostname = window.location.hostname;
+            const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+            return isLocalhost ? 'http://localhost:5000' : 'https://fortniteitems.onrender.com';
         }
 
         getItemIdFromUrl() {
