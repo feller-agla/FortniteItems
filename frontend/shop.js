@@ -504,8 +504,11 @@
             
             const rarityName = item.rarity || 'Classique';
             const raritySlug = this.slugify(rarityName || 'standard');
-            const typeName = item.type || 'Objet';
-            const typeSlug = this.slugify(typeName || 'item');
+            // Si le type est manquant ou invalide, utiliser "Autres"
+            const typeName = (item.type && item.type !== 'N/A' && item.type.trim() !== '') 
+                ? item.type 
+                : 'Autres';
+            const typeSlug = this.slugify(typeName || 'autres');
             const price = item.vbucks || 0;
 
             const primaryImage = item.images?.featured 
@@ -515,8 +518,11 @@
             const expiresAt = item.outDate || null;
             
             // Extraire la vidéo depuis entry si disponible
+            // Pour les items du pack, chercher dans br_item d'abord, sinon dans entry.brItems
             let videoUrl = null;
-            if (item.entry?.brItems?.[0]?.showcaseVideo) {
+            if (item.br_item?.showcaseVideo) {
+                videoUrl = `https://www.youtube.com/watch?v=${item.br_item.showcaseVideo}`;
+            } else if (item.entry?.brItems?.[0]?.showcaseVideo) {
                 videoUrl = `https://www.youtube.com/watch?v=${item.entry.brItems[0].showcaseVideo}`;
             }
 
@@ -539,7 +545,18 @@
                 tags,
                 giftable: Boolean(item.giftable),
                 refundable: Boolean(item.refundable),
-                expiresAt
+                expiresAt,
+                // Préserver les données du pack si c'est un bundle
+                is_bundle: Boolean(item.is_bundle),
+                bundle_items: item.bundle_items || null,
+                // Préserver les items secondaires (tenue + accessoire)
+                has_related_items: Boolean(item.has_related_items),
+                related_items: item.related_items || null,
+                banner: item.banner || null,
+                entry: item.entry || null,
+                section: item.section || 'Shop',
+                vbucks: item.vbucks || price,
+                regular_price: item.regular_price || price
             };
             
             return normalized;
@@ -725,7 +742,7 @@
             this.elements.statusBanner.classList.remove('is-error');
             const relativeTime = this.formatRelativeTime(this.state.meta.lastUpdated);
             this.elements.statusBanner.innerHTML = `
-                <p>✅ Boutique synchronisée ${relativeTime}. Source: <strong>fortnite-api.com</strong> · Cache ${Math.round((this.state.meta.ttlSeconds || 900) / 60)} min.</p>`;
+                <p>✅ Boutique synchronisée ${relativeTime} · Cache ${Math.round((this.state.meta.ttlSeconds || 900) / 60)} min.</p>`;
         }
 
         updateHero() {
@@ -915,6 +932,11 @@
                             </div>
                         </div>
                         <div class="shop-card-actions">
+                            <a href="shop-item.html?id=${encodeURIComponent(item.id)}" 
+                               class="product-button"
+                               style="text-decoration: none; display: block; text-align: center;">
+                                Voir détails
+                            </a>
                             <button type="button"
                                 class="product-button cart-flow-cta"
                                 data-item-id="${this.escapeHtml(item.id || '')}"
@@ -924,7 +946,6 @@
                                 data-disable-product-animation="true">
                                 Préparer ma commande
                             </button>
-                            ${item.video ? `<button type="button" class="ghost-button shop-preview-btn" onclick="window.open('${this.escapeHtml(item.video)}', '_blank', 'noopener,noreferrer')">▶️ Aperçu</button>` : ''}
                         </div>
                     </div>
                 </article>

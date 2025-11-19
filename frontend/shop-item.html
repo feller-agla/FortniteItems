@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Détails de l'article - Fortnite Shop</title>
+    
+    <link rel="icon" type="image/png" href="assets/favicnon.png">
+    <link rel="apple-touch-icon" href="assets/favicnon.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FortniteItems</span>
+                    <span class="logo-subtext">SHOP</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#products">Offres V-Bucks</a>
+                <a href="shop.html">Boutique Fortnite</a>
+                <a href="guide.html">📖 Guide</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="product-page" id="shopItemPage">
+        <div class="container">
+            <a href="shop.html" class="back-link">← Retour à la boutique</a>
+            
+            <div id="shopItemLoading" class="loading-state">
+                <div class="spinner"></div>
+                <p>Chargement des détails...</p>
+            </div>
+
+            <div id="shopItemError" class="error-state" style="display: none;">
+                <p>❌ Impossible de charger les détails de l'article</p>
+                <a href="shop.html" class="product-button">Retour à la boutique</a>
+            </div>
+
+            <div id="shopItemContent" style="display: none;">
+                <div class="product-visual">
+                    <div class="product-image-wrapper">
+                        <img id="shopItemImage" src="" alt="" class="product-image">
+                    </div>
+                    <!-- Bouton vidéo en bas -->
+                    <div id="shopItemVideo" class="product-video-button" style="display: none;">
+                        <a id="shopItemVideoLink" href="" target="_blank" class="product-button video-btn">
+                            ▶️ Voir l'aperçu vidéo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h1 id="shopItemName" class="product-title"></h1>
+                    <p id="shopItemDescription" class="product-description"></p>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Type:</span>
+                            <span id="shopItemType" class="meta-value"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Rareté:</span>
+                            <span id="shopItemRarityText" class="meta-value"></span>
+                        </div>
+                        <div id="shopItemExpiry" class="meta-item" style="display: none;">
+                            <span class="meta-label">Expire le:</span>
+                            <span id="shopItemExpiryDate" class="meta-value"></span>
+                        </div>
+                    </div>
+
+                    <!-- Bundle Items (si c'est un pack) -->
+                    <div id="shopItemBundle" style="display: none;">
+                        <h3>Contenu du pack:</h3>
+                        <div id="shopItemBundleItems" class="bundle-items-grid"></div>
+                    </div>
+
+                    <div class="product-actions-large">
+                        <div class="price-display">
+                            <img src="assets/icon.png" alt="V-Bucks" class="vbuck-icon">
+                            <span id="shopItemPrice" class="price-amount"></span>
+                        </div>
+                        <button id="shopItemAddToCart" class="add-to-cart-large product-button">
+                            Préparer ma commande
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="shop-item.js"></script>
+</body>
+</html>
+
