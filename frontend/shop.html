@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boutique Fortnite en direct | FortniteItems</title>
-    <meta name="description" content="Parcours toutes les offres Fortnite du jour : skins, emotes, bundles et promotions officielles synchronisées en temps réel.">
+    <meta name="description" content="Parcours toutes les offres Fortnite du jour : skins, emotes, bundles et promotions officielles.">
     <link rel="icon" type="image/png" href="assets/favicnon.png">
     <link rel="apple-touch-icon" href="assets/favicnon.png">
 
@@ -74,16 +74,12 @@
                 </div>
                 <div class="hero-metrics">
                     <div class="metric">
-                        <span class="metric-label">Dernière synchro</span>
+                        <span class="metric-label">Dernière mise à jour</span>
                         <strong id="shopLastUpdate">--</strong>
                     </div>
                     <div class="metric">
                         <span class="metric-label">Articles suivis</span>
                         <strong id="shopItemsCount">0</strong>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">Cache TTL</span>
-                        <strong id="shopTtl">15 min</strong>
                     </div>
                 </div>
             </div>
@@ -111,7 +107,7 @@
 
         <section class="shop-status" id="shopStatusBanner">
             <p>
-                🔐 Données synchronisées en temps réel depuis la boutique officielle.
+                ✅ Boutique officielle mise à jour
             </p>
         </section>
 
@@ -163,7 +159,7 @@
 
         <div class="shop-empty" id="shopEmptyState" hidden>
             <h3>Aucun objet trouvé</h3>
-            <p>Essaie d'autres filtres ou relance la synchronisation.</p>
+            <p>Essaie d'autres filtres ou actualise la page.</p>
             <button type="button" class="ghost-button" id="shopResetFilters">Réinitialiser les filtres</button>
         </div>
 
@@ -201,6 +197,9 @@
             <div class="modal-field">
                 <label for="shopOrderNote">Note pour le support (optionnel)</label>
                 <textarea id="shopOrderNote" rows="3" placeholder="Ex: Je souhaite recevoir cet item rapidement"></textarea>
+            </div>
+            <div class="modal-note" style="margin-top: 1rem; padding: 1rem; background: rgba(123, 104, 238, 0.1); border-left: 3px solid var(--electric-blue); border-radius: 4px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
+                <strong>NB:</strong> Le skin n'est pas reçu immédiatement. Tu devras ajouter un compte en ami, attendre 48h, et le compte t'offrira le skin selon les règles de Fortnite.
             </div>
             <div class="modal-actions">
                 <button type="button" class="ghost-button" id="shopOrderViewCart">Voir mon panier</button>

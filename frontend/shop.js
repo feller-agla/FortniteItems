@@ -782,7 +782,7 @@
             this.elements.statusBanner.classList.remove('is-error');
             const relativeTime = this.formatRelativeTime(this.state.meta.lastUpdated);
             this.elements.statusBanner.innerHTML = `
-                <p>✅ Boutique synchronisée ${relativeTime} · Cache ${Math.round((this.state.meta.ttlSeconds || 900) / 60)} min.</p>`;
+                <p>✅ Boutique mise à jour ${relativeTime}</p>`;
         }
 
         updateHero() {

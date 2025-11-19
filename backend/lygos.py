@@ -31,6 +31,10 @@ app = Flask(__name__)
 # Configuration CORS - Permettre les requêtes depuis votre frontend
 ALLOWED_ORIGINS = [
     "https://fortniteitems.netlify.app",
+    "https://fortniteitems.shop",
+    "https://www.fortniteitems.shop",
+    "http://fortniteitems.shop",
+    "http://www.fortniteitems.shop",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     "http://localhost:3000",

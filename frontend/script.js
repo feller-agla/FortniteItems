@@ -682,36 +682,51 @@ class ShopPreview {
             if (!response.ok) throw new Error('API shop preview error');
             const payload = await response.json();
             
-            // Vérifier si l'API est disponible (success: false = FORTNITE_API_KEY non configurée)
-            if (!payload.success) {
-                console.info('Shop preview désactivé:', payload.error || payload.message);
-                // Cacher complètement la section si l'API n'est pas disponible
+            console.log('📦 ShopPreview - Payload reçu:', payload);
+            
+            // Si l'API renvoie explicitement success:false (ex: clé manquante), masquer la section
+            if (payload && payload.success === false) {
+                console.info('Shop preview désactivé:', payload.error || payload.message || 'API non disponible');
                 this.hideSection();
                 return;
             }
             
-            const items = this.pickPreviewItems(payload?.data?.entries || []);
-            if (!items.length) throw new Error('No items available');
-            this.render(items);
+            // Si le payload a des items, les utiliser
+            const previewItems = this.preparePreviewItems(payload);
+            console.log('📦 ShopPreview - Items préparés:', previewItems);
+            
+            if (!previewItems.length) {
+                console.warn('ShopPreview - Aucun item disponible après préparation');
+                this.hideSection();
+                return;
+            }
+            
+            this.render(previewItems);
         } catch (error) {
             console.warn('Shop preview unavailable:', error);
-            // Cacher la section en cas d'erreur
             this.hideSection();
         }
     }
     
     hideSection() {
-        // Cacher toute la section shop preview si l'API n'est pas disponible
         const section = document.getElementById('shopPreview');
         if (section) {
             section.style.display = 'none';
         }
     }
 
+    preparePreviewItems(payload = {}) {
+        if (Array.isArray(payload.items) && payload.items.length) {
+            return this.pickFromNormalizedItems(payload.items);
+        }
+        const entries = payload?.entries || payload?.data?.entries || [];
+        return this.pickPreviewItems(entries);
+    }
+
     pickPreviewItems(entries) {
         const picked = [];
         entries.forEach((entry) => {
-            if (picked.length >= 6) return;
+            if (picked.length >= 3) return;
             const brItem = Array.isArray(entry.brItems) ? entry.brItems[0] || {} : {};
             picked.push({
                 name: brItem.name || entry.devName || 'Skin Fortnite',
@@ -724,7 +739,26 @@ class ShopPreview {
                     || 'assets/5000vbucks.png'
             });
         });
-        return picked.slice(0, 4);
+        return picked.slice(0, 3);
+    }
+
+    pickFromNormalizedItems(items) {
+        const cleaned = [];
+        items.some((item) => {
+            if (cleaned.length >= 3) return true;
+            cleaned.push({
+                name: item.name || item.devName || 'Skin Fortnite',
+                description: item.description || item.section || 'Disponible aujourd\'hui',
+                price: item.vbucks ?? item.price ?? 0,
+                rarity: item.rarity || 'Classique',
+                image: item.images?.featured
+                    || item.images?.icon
+                    || item.images?.smallIcon
+                    || 'assets/5000vbucks.png'
+            });
+            return false;
+        });
+        return cleaned.slice(0, 3);
     }
 
     render(items) {
@@ -741,7 +775,6 @@ class ShopPreview {
                     <h3>${this.escapeHtml(item.name)}</h3>
                     <p>${this.escapeHtml(item.description)}</p>
                     <div class="preview-price">
-                        <img src="assets/icon.png" alt="V-Bucks" width="24" height="24">
                         <span>${price}</span>
                     </div>
                 </div>
@@ -758,9 +791,15 @@ class ShopPreview {
         `;
     }
 
-    formatPrice(value) {
-        if (!Number.isFinite(value)) return '--';
-        return `${Math.round(value).toLocaleString('fr-FR')} V-Bucks`;
+    formatPrice(vbucks) {
+        if (!Number.isFinite(vbucks)) return '--';
+        // Conversion V-Bucks -> USD -> FCFA (même formule que shop.js)
+        const DEFAULT_USD_TO_XOF = 580;
+        const usd = vbucks * 0.00357 * 1.5;
+        const rate = Number(window.FORTNITE_ITEMS_USD_TO_XOF) || DEFAULT_USD_TO_XOF;
+        const fcfa = usd * rate;
+        const rounded = Math.round(fcfa / 100) * 100; // Arrondir à la centaine
+        return `${rounded.toLocaleString('fr-FR')} FCFA`;
     }
 
     escapeHtml(value) {
@@ -939,4 +978,5 @@ function activateEasterEgg() {
     
     setTimeout(() => message.remove(), 3000);
 }
+
 
