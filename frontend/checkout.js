@@ -149,7 +149,7 @@ class CheckoutManager {
         // Stocker les données communes
         this.orderData.fullName = fullName;
         this.orderData.contactEmail = contactEmail;
-        this.orderData.productType = this.hasCrewProduct ? 'crew' : 'vbucks';
+        this.orderData.productType = this.hasCrewProduct ? 'crew' : 'fortnite_item';
 
         if (this.hasCrewProduct) {
             // Validation des champs Fortnite Crew
@@ -211,13 +211,11 @@ class CheckoutManager {
         
         if (this.hasCrewProduct) {
             // Informations Fortnite Crew
-            message += `- Type: Fortnite Crew\n`;
             message += `- Pseudo Epic: ${customer.epicUsername}\n`;
             message += `- Email Epic: ${customer.epicLoginEmail}\n`;
             message += `- WhatsApp: ${customer.whatsappNumber}\n`;
         } else {
-            // Informations V-Bucks
-            message += `- Type: V-Bucks\n`;
+            // Informations items Fortnite (skins, emotes, etc.)
             message += `- Plateforme: ${customer.platform}\n`;
         }
         

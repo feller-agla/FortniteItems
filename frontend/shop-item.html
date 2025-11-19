@@ -117,7 +117,29 @@
         </div>
     </main>
 
+    <!-- Modal de commande -->
+    <div id="shopOrderModal" class="shop-order-modal" aria-hidden="true">
+        <div class="shop-order-dialog" role="dialog" aria-modal="true">
+            <button type="button" class="modal-close" id="shopOrderClose" aria-label="Fermer">&times;</button>
+            <p class="modal-eyebrow">Préparer ma commande</p>
+            <h3 id="shopOrderItemName">Boutique Fortnite</h3>
+            <p id="shopOrderItemPrice" class="modal-price">--</p>
+            <div class="modal-field">
+                <label for="shopOrderNote">Note pour le support (optionnel)</label>
+                <textarea id="shopOrderNote" rows="3" placeholder="Ex: Je souhaite recevoir cet item rapidement"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="ghost-button" id="shopOrderViewCart">Voir mon panier</button>
+                <button type="button" class="cta-button" id="shopOrderAddBtn">
+                    <span>Ajouter au panier</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="cart.js" defer></script>
+    <script src="shop.js"></script>
     <script src="shop-item.js"></script>
 </body>
 </html>

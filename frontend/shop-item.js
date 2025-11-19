@@ -6,6 +6,7 @@
             this.apiBaseUrl = this.resolveBackendBaseUrl();
             this.itemId = this.getItemIdFromUrl();
             this.itemData = null;
+            this.orderBridge = null;
             this.init();
         }
 
@@ -24,6 +25,11 @@
             if (!this.itemId) {
                 this.showError('Aucun ID d\'article spécifié');
                 return;
+            }
+
+            // Initialiser ShopOrderBridge si disponible (défini dans shop.js)
+            if (typeof window.ShopOrderBridge !== 'undefined') {
+                this.orderBridge = new window.ShopOrderBridge([]);
             }
 
             await this.loadItemData();
@@ -277,26 +283,59 @@
         addToCart() {
             if (!this.itemData) return;
 
+            // Convertir le prix V-Bucks en FCFA
+            const vbucks = this.itemData.vbucks || 0;
+            const priceInFcfa = this.vbuckToFcfaRounded(vbucks);
+
             const item = {
                 id: this.itemData.id || '',
                 name: this.itemData.name || 'Article Fortnite',
-                price: this.itemData.vbucks || 0,
-                section: this.itemData.section || 'Boutique'
+                price: priceInFcfa, // Prix en FCFA, pas en V-Bucks
+                vbucks: vbucks, // Garder les V-Bucks pour référence
+                section: this.itemData.section || 'Boutique Fortnite'
             };
 
-            // Utiliser le système de panier existant
-            if (window.orderBridge) {
-                window.orderBridge.addToCart(item);
-                window.location.href = 'cart.html';
+            // Utiliser ShopOrderBridge pour ouvrir la modale
+            if (this.orderBridge && this.orderBridge.isReady) {
+                this.orderBridge.openWithItem(item);
+            } else if (typeof window.ShopOrderBridge !== 'undefined') {
+                // Fallback: créer une nouvelle instance si nécessaire
+                const bridge = new window.ShopOrderBridge([]);
+                if (bridge.isReady) {
+                    bridge.openWithItem(item);
+                } else {
+                    // Dernier recours: redirection vers le panier
+                    console.warn('⚠️ Modale non disponible, redirection vers le panier');
+                    if (typeof cart !== 'undefined' && typeof cart.addItem === 'function') {
+                        cart.addItem(item.id, item.name, item.price, 1, {
+                            baseId: item.id,
+                            section: item.section,
+                            vbucks: item.vbucks
+                        });
+                    }
+                    window.location.href = 'cart.html';
+                }
             } else {
-                // Fallback: redirection vers le panier avec les paramètres
-                const params = new URLSearchParams({
-                    id: item.id,
-                    name: item.name,
-                    price: item.price
-                });
-                window.location.href = `cart.html?${params.toString()}`;
+                // Dernier recours: redirection vers le panier
+                console.warn('⚠️ ShopOrderBridge non disponible, redirection vers le panier');
+                if (typeof cart !== 'undefined' && typeof cart.addItem === 'function') {
+                    cart.addItem(item.id, item.name, item.price, 1, {
+                        baseId: item.id,
+                        section: item.section,
+                        vbucks: item.vbucks
+                    });
+                }
+                window.location.href = 'cart.html';
             }
+        }
+        
+        vbuckToFcfaRounded(vbucks) {
+            // Même formule que formatPrice() pour cohérence
+            const DEFAULT_USD_TO_XOF = 580;
+            const usd = vbucks * 0.00357 * 1.5;
+            const rate = Number(window.FORTNITE_ITEMS_USD_TO_XOF) || DEFAULT_USD_TO_XOF;
+            const fcfa = usd * rate;
+            return Math.round(fcfa / 100) * 100; // Arrondir à la centaine
         }
 
         showError(message) {

@@ -30,13 +30,13 @@
             this.modal = document.getElementById('shopOrderModal');
             this.itemNameEl = document.getElementById('shopOrderItemName');
             this.itemPriceEl = document.getElementById('shopOrderItemPrice');
-            this.packSelect = document.getElementById('shopPackSelect');
+            this.packSelect = document.getElementById('shopPackSelect'); // Peut être null maintenant
             this.noteInput = document.getElementById('shopOrderNote');
             this.addBtn = document.getElementById('shopOrderAddBtn');
             this.viewCartBtn = document.getElementById('shopOrderViewCart');
             this.closeBtn = document.getElementById('shopOrderClose');
             this.currentItem = null;
-            this.isReady = Boolean(this.modal && this.packSelect && this.addBtn);
+            this.isReady = Boolean(this.modal && this.addBtn);
             this.handleBackdrop = (event) => {
                 if (event.target === this.modal) {
                     this.closeModal();
@@ -48,7 +48,10 @@
                 }
             };
             if (this.isReady) {
-                this.renderPackOptions();
+                // Ne rendre les options de pack que si le champ existe (pour compatibilité)
+                if (this.packSelect) {
+                    this.renderPackOptions();
+                }
                 this.bindModalEvents();
             }
         }
@@ -89,15 +92,21 @@
                 this.itemNameEl.textContent = this.currentItem.name || 'Boutique Fortnite';
             }
             if (this.itemPriceEl) {
-                if (Number.isFinite(this.currentItem.price)) {
-                    this.itemPriceEl.textContent = formatFcfaLabel(this.currentItem.price);
+                // Utiliser le prix en FCFA si disponible, sinon convertir depuis V-Bucks
+                let priceToDisplay = this.currentItem.price;
+                if (this.currentItem.vbucks && !Number.isFinite(priceToDisplay)) {
+                    priceToDisplay = vbuckToFcfaRounded(this.currentItem.vbucks);
+                }
+                if (Number.isFinite(priceToDisplay)) {
+                    // priceToDisplay est déjà en FCFA, juste formater
+                    this.itemPriceEl.textContent = `${priceToDisplay.toLocaleString('fr-FR')} FCFA`;
                 } else {
                     this.itemPriceEl.textContent = '--';
                 }
             }
             if (this.noteInput) {
                 this.noteInput.value = this.currentItem.name
-                    ? `Skin souhaité: ${this.currentItem.name}`
+                    ? `Item souhaité: ${this.currentItem.name}`
                     : '';
             }
             this.openModal();
@@ -119,21 +128,52 @@
 
         handleAddToCart() {
             if (typeof cart === 'undefined' || typeof cart.addItem !== 'function') {
-                console.warn('🛒 Cart non disponible, impossible d’ajouter le pack');
+                console.warn('🛒 Cart non disponible, impossible d\'ajouter l\'item');
                 return;
             }
-            const pack = this.getSelectedPack();
-            if (!pack) return;
-            const suffix = this.currentItem?.name ? ` · ${this.currentItem.name}` : '';
-            const lineName = `${pack.name}${suffix}`;
-            const cartId = this.buildCartItemId(pack, this.currentItem);
-            const metadata = this.buildMetadata(this.currentItem);
-            cart.addItem(cartId, lineName, pack.price, 1, {
-                baseId: pack.id,
-                metadata
-            });
-            this.persistNote();
-            this.closeModal();
+            
+            // Pour les items Fortnite (skins, emotes, etc.), ajouter directement l'item
+            if (this.currentItem && this.currentItem.id) {
+                // Le prix dans currentItem.price est en V-Bucks, le convertir en FCFA
+                const vbucks = this.currentItem.price || this.currentItem.vbucks || 0;
+                const priceInFcfa = vbuckToFcfaRounded(vbucks);
+                
+                const itemName = this.currentItem.name || 'Article Fortnite';
+                const itemId = this.currentItem.id;
+                const metadata = this.buildMetadata(this.currentItem);
+                
+                cart.addItem(itemId, itemName, priceInFcfa, 1, {
+                    baseId: itemId,
+                    metadata,
+                    section: this.currentItem.section || 'Boutique Fortnite',
+                    vbucks: vbucks
+                });
+                this.persistNote();
+                this.closeModal();
+                return;
+            }
+            
+            // Fallback pour les packs V-Bucks (si packSelect existe et qu'on a des packOptions)
+            if (this.packOptions.length > 0) {
+                const pack = this.getSelectedPack();
+                if (!pack) {
+                    console.warn('⚠️ Aucun pack sélectionné');
+                    return;
+                }
+                const suffix = this.currentItem?.name ? ` · ${this.currentItem.name}` : '';
+                const lineName = `${pack.name}${suffix}`;
+                const cartId = this.buildCartItemId(pack, this.currentItem);
+                const metadata = this.buildMetadata(this.currentItem);
+                cart.addItem(cartId, lineName, pack.price, 1, {
+                    baseId: pack.id,
+                    metadata
+                });
+                this.persistNote();
+                this.closeModal();
+                return;
+            }
+            
+            console.warn('⚠️ Aucun item valide à ajouter au panier');
         }
 
         handleViewCart() {
@@ -1062,6 +1102,9 @@
             return slug || fallback;
         }
     }
+
+    // Exposer ShopOrderBridge globalement pour utilisation dans shop-item.js
+    window.ShopOrderBridge = ShopOrderBridge;
 
     new FortniteShopPage(root);
 })();
