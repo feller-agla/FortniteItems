@@ -181,21 +181,60 @@
                 });
             }
             
-            // Vidéo - chercher dans l'item principal ou les items du pack
-            let currentVideoId = null;
-            if (this.itemData.br_item?.showcaseVideo) {
-                currentVideoId = this.itemData.br_item.showcaseVideo;
-            } else if (this.itemData.entry?.brItems?.[0]?.showcaseVideo) {
-                currentVideoId = this.itemData.entry.brItems[0].showcaseVideo;
+            // Vidéo - chercher dans plusieurs sources possibles (format scraper brut ou normalisé)
+            let videoUrl = null;
+            
+            // 1. Vérifier si la vidéo est directement dans itemData.video (format normalisé)
+            if (this.itemData.video) {
+                videoUrl = this.itemData.video;
+            }
+            // 2. Vérifier dans br_item.showcaseVideo (format scraper)
+            else if (this.itemData.br_item?.showcaseVideo) {
+                videoUrl = `https://www.youtube.com/watch?v=${this.itemData.br_item.showcaseVideo}`;
+            }
+            // 3. Vérifier dans brItems[0].showcaseVideo (format scraper direct)
+            else if (this.itemData.brItems?.[0]?.showcaseVideo) {
+                videoUrl = `https://www.youtube.com/watch?v=${this.itemData.brItems[0].showcaseVideo}`;
+            }
+            // 4. Vérifier dans entry.brItems[0].showcaseVideo
+            else if (this.itemData.entry?.brItems?.[0]?.showcaseVideo) {
+                videoUrl = `https://www.youtube.com/watch?v=${this.itemData.entry.brItems[0].showcaseVideo}`;
+            }
+            // 5. Vérifier dans entry.showcaseVideo
+            else if (this.itemData.entry?.showcaseVideo) {
+                videoUrl = `https://www.youtube.com/watch?v=${this.itemData.entry.showcaseVideo}`;
+            }
+            // 6. Vérifier dans entry.video (format alternatif)
+            else if (this.itemData.entry?.video) {
+                videoUrl = this.itemData.entry.video;
+            }
+            // 7. Vérifier dans br_item.video (format alternatif)
+            else if (this.itemData.br_item?.video) {
+                videoUrl = this.itemData.br_item.video;
+            }
+            // 8. Vérifier dans les items du pack (si c'est un pack)
+            else if (this.itemData.bundle_items && this.itemData.bundle_items.length > 0) {
+                for (const bundleItem of this.itemData.bundle_items) {
+                    if (bundleItem.video) {
+                        videoUrl = bundleItem.video;
+                        break;
+                    } else if (bundleItem.br_item?.showcaseVideo) {
+                        videoUrl = `https://www.youtube.com/watch?v=${bundleItem.br_item.showcaseVideo}`;
+                        break;
+                    }
+                }
             }
             
             // Afficher le bouton vidéo en bas si disponible
-            if (currentVideoId) {
-                const videoEl = document.getElementById('shopItemVideo');
-                const videoLinkEl = document.getElementById('shopItemVideoLink');
-                if (videoEl) videoEl.style.display = 'block';
-                if (videoLinkEl) {
-                    videoLinkEl.href = `https://www.youtube.com/watch?v=${currentVideoId}`;
+            const videoEl = document.getElementById('shopItemVideo');
+            const videoLinkEl = document.getElementById('shopItemVideoLink');
+            
+            if (videoEl && videoLinkEl) {
+                if (videoUrl) {
+                    videoEl.style.display = 'block';
+                    videoLinkEl.href = videoUrl;
+                } else {
+                    videoEl.style.display = 'none';
                 }
             }
 
