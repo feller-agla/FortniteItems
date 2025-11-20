@@ -1041,16 +1041,33 @@
         }
 
         formatExpiry(dateString) {
-            const timestamp = Date.parse(dateString);
-            if (Number.isNaN(timestamp)) return 'Quitte bientôt';
-            const diffMs = timestamp - Date.now();
+            if (!dateString) return 'Quitte bientôt';
+            
+            // Parser la date en UTC pour éviter les problèmes de fuseau horaire
+            let date;
+            if (dateString.includes('T')) {
+                // Format ISO avec heure (ex: "2025-11-23T00:00:00Z")
+                date = new Date(dateString);
+            } else {
+                // Format date simple (ex: "2025-11-23")
+                const parts = dateString.split('-');
+                if (parts.length === 3) {
+                    // Créer la date en UTC pour éviter le décalage
+                    date = new Date(Date.UTC(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2])));
+                } else {
+                    date = new Date(dateString);
+                }
+            }
+            
+            if (Number.isNaN(date.getTime())) return 'Quitte bientôt';
+            
+            const diffMs = date.getTime() - Date.now();
             if (diffMs <= 0) return 'Expire maintenant';
             
-            // Afficher seulement la date (sans l'heure)
-            const date = new Date(timestamp);
-            const day = date.getDate();
-            const month = date.toLocaleDateString('fr-FR', { month: 'short' });
-            const year = date.getFullYear();
+            // Utiliser UTC pour extraire le jour, mois, année (évite le décalage de fuseau horaire)
+            const day = date.getUTCDate();
+            const month = date.toLocaleDateString('fr-FR', { month: 'short', timeZone: 'UTC' });
+            const year = date.getUTCFullYear();
             
             // Format: "15 Nov 2024"
             return `${day} ${month} ${year}`;
