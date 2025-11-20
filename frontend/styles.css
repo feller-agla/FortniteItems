@@ -5053,8 +5053,7 @@ body.prefers-reduced-motion .hero-visual {
 .shop-card-media {
     position: relative;
     width: 100%;
-    min-height: 300px;
-    padding-top: 180%;
+    padding-top: 100%;
     background-color: rgba(5, 8, 25, 0.8);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     overflow: hidden;
@@ -5075,22 +5074,19 @@ body.prefers-reduced-motion .hero-visual {
 
     @media (max-width: 768px) {
         .shop-card-media {
-            min-height: 250px;
-            padding-top: 180%;
+            padding-top: 100%;
         }
     }
 
     @media (max-width: 480px) {
         .shop-card-media {
-            min-height: 220px;
-            padding-top: 180%;
+            padding-top: 100%;
         }
     }
 
     @media (max-width: 375px) {
         .shop-card-media {
-            min-height: 200px;
-            padding-top: 180%;
+            padding-top: 100%;
         }
     }
 
@@ -5152,6 +5148,13 @@ body.prefers-reduced-motion .hero-visual {
         font-size: 14px;
         line-height: 1.6;
         margin: 0;
+    }
+
+    .shop-card-price {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--electric-blue);
+        margin: 8px 0;
     }
 
     .shop-card-meta-line {
