@@ -224,6 +224,38 @@ class CheckoutManager {
         // Encoder le message pour URL
         const whatsappURL = `https://wa.me/22965623691?text=${encodeURIComponent(message)}`;
         
+        // Générer un ID de commande unique
+        const orderId = 'FN' + Date.now() + Math.floor(Math.random() * 1000);
+        
+        // Sauvegarder la commande dans l'historique
+        const order = {
+            id: orderId,
+            date: new Date().toISOString(),
+            status: 'pending', // pending, received, not_received
+            items: cartItems.map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity
+            })),
+            total: total,
+            customer: {
+                fullName: customer.fullName,
+                contactEmail: customer.contactEmail,
+                platform: customer.platform,
+                epicUsername: customer.epicUsername,
+                epicLoginEmail: customer.epicLoginEmail,
+                whatsappNumber: customer.whatsappNumber
+            },
+            hasCrewProduct: this.hasCrewProduct,
+            review: null // null, ou { rating: 1-5, comment: string, date: string }
+        };
+        
+        // Sauvegarder dans localStorage
+        const orders = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+        orders.unshift(order); // Ajouter au début
+        localStorage.setItem('fortniteshop_orders', JSON.stringify(orders));
+        
         // Fermer le modal
         this.closeModal();
         

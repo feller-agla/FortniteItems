@@ -961,7 +961,8 @@
 
             return `
                 <article class="shop-card product-card rarity-${item.rarity.slug}">
-                    <div class="shop-card-media" style="background-image:url('${item.image}')">
+                    <div class="shop-card-media">
+                        <img src="${item.image}" alt="${this.escapeHtml(item.name)}" class="shop-card-image">
                         <span class="rarity-pill">${this.escapeHtml(item.rarity.name)}</span>
                         ${tags}
                     </div>
@@ -971,30 +972,12 @@
                             <span class="item-type">${this.escapeHtml(item.type.name)}</span>
                         </div>
                         <p class="shop-card-description">${this.escapeHtml(item.description)}</p>
-                        <div class="shop-card-meta">
-                            <div class="price-tag">
-                                <img src="${icon}" alt="" loading="lazy">
-                                <span>${this.formatPrice(item.price)}</span>
-                            </div>
-                            <div class="availability-flags">
-                                ${item.expiresAt ? `<span class="flag">⏳ ${this.formatExpiry(item.expiresAt)}</span>` : ''}
-                            </div>
-                        </div>
                         <div class="shop-card-actions">
                             <a href="shop-item.html?id=${encodeURIComponent(item.id)}" 
                                class="product-button"
                                style="text-decoration: none; display: block; text-align: center;">
                                 Voir détails
                             </a>
-                            <button type="button"
-                                class="product-button cart-flow-cta"
-                                data-item-id="${this.escapeHtml(item.id || '')}"
-                                data-item-name="${this.escapeHtml(item.name)}"
-                                data-item-price="${item.price}"
-                                data-item-section="${this.escapeHtml(sectionTitle)}"
-                                data-disable-product-animation="true">
-                                Préparer ma commande
-                            </button>
                         </div>
                     </div>
                 </article>

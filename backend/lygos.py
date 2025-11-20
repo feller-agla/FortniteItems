@@ -30,7 +30,6 @@ app = Flask(__name__)
 
 # Configuration CORS - Permettre les requêtes depuis votre frontend
 ALLOWED_ORIGINS = [
-    "https://fortniteitems.netlify.app",
     "https://fortniteitems.shop",
     "https://www.fortniteitems.shop",
     "http://fortniteitems.shop",
@@ -61,7 +60,7 @@ FORTNITE_API_KEY = os.getenv("FORTNITE_API_KEY")
 FORTNITE_SHOP_TTL = int(os.getenv("FORTNITE_SHOP_TTL", "900"))
 
 # URLs de base - Utiliser variable d'environnement en production
-BASE_URL = os.getenv("BASE_URL", "https://fortniteitems.netlify.app")
+BASE_URL = os.getenv("BASE_URL", "https://fortniteitems.shop")
 SUCCESS_URL = f"{BASE_URL}/success.html"
 FAILURE_URL = f"{BASE_URL}/payment-failed.html"
 

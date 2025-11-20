@@ -729,6 +729,7 @@ class ShopPreview {
             if (picked.length >= 3) return;
             const brItem = Array.isArray(entry.brItems) ? entry.brItems[0] || {} : {};
             picked.push({
+                itemId: brItem.id || entry.offerId || entry.id,
                 name: brItem.name || entry.devName || 'Skin Fortnite',
                 description: brItem.description || 'Disponible aujourd\'hui',
                 price: entry.finalPrice ?? entry.price?.finalPrice ?? 0,
@@ -747,6 +748,7 @@ class ShopPreview {
         items.some((item) => {
             if (cleaned.length >= 3) return true;
             cleaned.push({
+                itemId: item.id || item.itemId,
                 name: item.name || item.devName || 'Skin Fortnite',
                 description: item.description || item.section || 'Disponible aujourd\'hui',
                 price: item.vbucks ?? item.price ?? 0,
@@ -767,16 +769,15 @@ class ShopPreview {
     }
 
     createCard(item) {
-        const price = this.formatPrice(item.price);
         return `
             <article class="shop-preview-card">
                 <div class="preview-media" style="background-image:url('${item.image}')"></div>
                 <div class="preview-content">
                     <h3>${this.escapeHtml(item.name)}</h3>
                     <p>${this.escapeHtml(item.description)}</p>
-                    <div class="preview-price">
-                        <span>${price}</span>
-                    </div>
+                    <a href="shop-item.html?name=${encodeURIComponent(item.name)}" class="preview-button">
+                        Voir détails
+                    </a>
                 </div>
             </article>
         `;
@@ -896,12 +897,66 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof WhatsAppIntegration !== 'undefined') new WhatsAppIntegration();
     if (!reduceMotion && typeof CursorTrail !== 'undefined') new CursorTrail();
     if (typeof TextEffects !== 'undefined') new TextEffects();
-    if (typeof StatsCounter !== 'undefined') new StatsCounter();
-    if (!reduceMotion && typeof ParallaxEffect !== 'undefined') new ParallaxEffect();
-    if (!reduceMotion && typeof LoadingAnimation !== 'undefined') new LoadingAnimation();
     
-    console.log('🎮 FortniteItems - Site chargé avec succès!');
+    // Load and display reviews from localStorage
+    loadReviews();
 });
+
+// ===========================
+// REVIEWS LOADER
+// ===========================
+
+function loadReviews() {
+    const grid = document.getElementById('testimonialsGrid');
+    if (!grid) return;
+
+    try {
+        const reviews = JSON.parse(localStorage.getItem('fortniteshop_reviews') || '[]');
+        if (reviews.length === 0) return;
+
+        // Prendre les 3 avis les plus récents
+        const recentReviews = reviews
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 3);
+
+        // Générer les cartes d'avis
+        const reviewCards = recentReviews.map(review => {
+            const avatars = ['🎮', '⚔️', '🏆', '🎯', '💎', '🔥', '⭐', '🌟'];
+            const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+            const stars = '⭐'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+            const name = review.customerName.split(' ')[0] + ' ' + (review.customerName.split(' ')[1]?.[0] || '') + '.';
+            
+            return `
+                <div class="testimonial-card">
+                    <div class="chat-bubble">
+                        <div class="bubble-header">
+                            <div class="user-avatar">${randomAvatar}</div>
+                            <div class="user-info">
+                                <div class="user-name">${escapeHtml(name)}</div>
+                                <div class="user-level">Client vérifié</div>
+                            </div>
+                        </div>
+                        <div class="bubble-message">
+                            ${escapeHtml(review.comment || 'Excellent service !')}
+                        </div>
+                        <div class="bubble-rating">${stars}</div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        // Ajouter les avis au début de la grille (avant les avis statiques)
+        grid.insertAdjacentHTML('afterbegin', reviewCards);
+    } catch (error) {
+        console.warn('Erreur lors du chargement des avis:', error);
+    }
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
 
 // ===========================
 // EASTER EGG: KONAMI CODE

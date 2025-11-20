@@ -12,7 +12,7 @@ services:
       - key: LYGOS_API_KEY
         sync: false
       - key: BASE_URL
-        value: https://fortniteitems.netlify.app
+        value: https://fortniteitems.shop
       - key: FLASK_ENV
         value: production
     healthCheckPath: /health

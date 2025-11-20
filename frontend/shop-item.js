@@ -18,7 +18,7 @@
 
         getItemIdFromUrl() {
             const params = new URLSearchParams(window.location.search);
-            return params.get('id');
+            return params.get('id') || params.get('name');
         }
 
         async init() {
@@ -51,7 +51,12 @@
                 // Trouver l'item dans les données
                 let item = null;
                 if (payload.items && Array.isArray(payload.items)) {
-                    item = payload.items.find(i => i.id === this.itemId || i.entry?.offerId === this.itemId);
+                    item = payload.items.find(i => 
+                        i.id === this.itemId || 
+                        i.entry?.offerId === this.itemId ||
+                        i.name === this.itemId ||
+                        i.devName === this.itemId
+                    );
                 }
 
                 if (!item) {

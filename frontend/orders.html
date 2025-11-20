@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Commandes - FortniteItems</title>
+    
+    <link rel="icon" type="image/png" href="assets/favicnon.png">
+    <link rel="apple-touch-icon" href="assets/favicnon.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-brand">
+                <a href="index.html">
+                    <span class="logo-text">FortniteItems</span>
+                    <span class="logo-subtext">SHOP</span>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#products">Offres V-Bucks</a>
+                <a href="shop.html">Boutique Fortnite</a>
+                <a href="orders.html" class="active">Mes Commandes</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="nav-cart">
+                <a href="cart.html" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Orders History -->
+    <main class="orders-page" style="padding-top: 140px;">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">📦 Mes Commandes</h1>
+                <p class="section-subtitle">Suis l'état de tes commandes et donne ton avis</p>
+            </div>
+
+            <div id="ordersList" class="orders-list">
+                <!-- Les commandes seront injectées ici par JavaScript -->
+            </div>
+
+            <div id="emptyOrders" class="empty-state" style="text-align: center; padding: 4rem 2rem; display: none;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">📭</div>
+                <h2 style="margin-bottom: 1rem;">Aucune commande</h2>
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
+                    Tu n'as pas encore passé de commande. Parcours notre boutique pour trouver ce qui te plaît !
+                </p>
+                <a href="shop.html" class="cta-button">
+                    <span>🛍️ Voir la boutique</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="shop-order-modal" aria-hidden="true" style="display: none;">
+        <div class="shop-order-dialog" role="dialog" aria-modal="true" style="max-width: 500px;">
+            <button type="button" class="modal-close" id="reviewModalClose" aria-label="Fermer">&times;</button>
+            <p class="modal-eyebrow">Donner ton avis</p>
+            <h3 id="reviewOrderName">Commande #FN123</h3>
+            
+            <div class="modal-field">
+                <label>Note (sur 5 étoiles)</label>
+                <div class="rating-input" style="display: flex; gap: 0.5rem; justify-content: center; margin: 1rem 0;">
+                    <button type="button" class="star-btn" data-rating="1">⭐</button>
+                    <button type="button" class="star-btn" data-rating="2">⭐</button>
+                    <button type="button" class="star-btn" data-rating="3">⭐</button>
+                    <button type="button" class="star-btn" data-rating="4">⭐</button>
+                    <button type="button" class="star-btn" data-rating="5">⭐</button>
+                </div>
+                <input type="hidden" id="reviewRating" value="0">
+            </div>
+            
+            <div class="modal-field">
+                <label for="reviewComment">Ton avis (optionnel)</label>
+                <textarea id="reviewComment" rows="4" placeholder="Partage ton expérience avec notre service..."></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button type="button" class="ghost-button" id="reviewCancelBtn">Annuler</button>
+                <button type="button" class="cta-button" id="reviewSubmitBtn">
+                    <span>Envoyer l'avis</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="orders.js"></script>
+</body>
+</html>
+
