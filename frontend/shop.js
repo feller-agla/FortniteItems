@@ -976,9 +976,7 @@
                                 <img src="${icon}" alt="" loading="lazy">
                                 <span>${this.formatPrice(item.price)}</span>
                             </div>
-                            <div class="availability-flags">
-                                ${item.expiresAt ? `<span class="flag">⏳ ${this.formatExpiry(item.expiresAt)}</span>` : ''}
-                            </div>
+                            ${item.expiresAt ? `<span class="flag">⏳ ${this.formatExpiry(item.expiresAt)}</span>` : ''}
                         </div>
                         <div class="shop-card-actions">
                             <a href="shop-item.html?id=${encodeURIComponent(item.id)}" 

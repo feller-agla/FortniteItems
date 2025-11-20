@@ -5062,6 +5062,24 @@ body.prefers-reduced-motion .hero-visual {
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+    .shop-card-media {
+        padding-top: 55% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .shop-card-media {
+        padding-top: 50% !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .shop-card-media {
+        padding-top: 45% !important;
+    }
+}
+
 .shop-card-image {
     position: absolute;
     top: 0;
@@ -5072,23 +5090,6 @@ body.prefers-reduced-motion .hero-visual {
     object-position: center center;
 }
 
-    @media (max-width: 768px) {
-        .shop-card-media {
-            padding-top: 62%;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .shop-card-media {
-            padding-top: 58%;
-        }
-    }
-
-    @media (max-width: 375px) {
-        .shop-card-media {
-            padding-top: 55%;
-        }
-    }
 
     .shop-card-media .rarity-pill {
         position: absolute;
@@ -5165,10 +5166,22 @@ body.prefers-reduced-motion .hero-visual {
     }
 
     .shop-card-meta {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 12px;
+        flex-wrap: nowrap;
+    }
+    
+    .shop-card-meta .flag {
+        margin: 0;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .shop-card-meta .price-tag {
+        flex-shrink: 0;
     }
 
     .price-tag {
@@ -5426,9 +5439,28 @@ body.prefers-reduced-motion .hero-visual {
         }
 
         .shop-card-meta {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 8px !important;
+            justify-content: space-between !important;
+            flex-wrap: nowrap !important;
+        }
+        
+        .shop-card-meta .price-tag {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .shop-card-meta .price-tag img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .shop-card-meta .flag {
+            font-size: 11px;
+            padding: 3px 8px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .shop-card-actions {
