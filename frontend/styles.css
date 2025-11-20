@@ -5053,13 +5053,13 @@ body.prefers-reduced-motion .hero-visual {
 .shop-card-media {
     position: relative;
     width: 100%;
-    padding-top: 100%;
+    padding-top: 68%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
     background-color: rgba(5, 8, 25, 0.8);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .shop-card-image {
@@ -5074,19 +5074,19 @@ body.prefers-reduced-motion .hero-visual {
 
     @media (max-width: 768px) {
         .shop-card-media {
-            padding-top: 100%;
+            padding-top: 62%;
         }
     }
 
     @media (max-width: 480px) {
         .shop-card-media {
-            padding-top: 100%;
+            padding-top: 58%;
         }
     }
 
     @media (max-width: 375px) {
         .shop-card-media {
-            padding-top: 100%;
+            padding-top: 55%;
         }
     }
 

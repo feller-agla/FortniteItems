@@ -347,29 +347,6 @@
             } else {
                 console.error('❌ this.root non défini, impossible d\'enregistrer le gestionnaire vidéo');
             }
-
-            // Gestionnaire pour les boutons "Préparer ma commande"
-            if (this.root) {
-                this.root.addEventListener('click', (event) => {
-                    const button = event.target.closest('.shop-prepare-order');
-                    if (button && button.dataset.itemId) {
-                        event.preventDefault();
-                        const itemId = decodeURIComponent(button.dataset.itemId);
-                        const item = this.findItemById(itemId);
-                        if (item) {
-                            this.orderBridge.openWithItem(item);
-                        }
-                    }
-                });
-            }
-        }
-
-        findItemById(itemId) {
-            for (const section of this.state.sections) {
-                const item = section.items.find(i => i.id === itemId);
-                if (item) return item;
-            }
-            return null;
         }
 
         handleVideoPreviewClick(event) {
@@ -982,13 +959,9 @@
                 ? `<div class="media-tags">${item.tags.map((tag) => `<span class="item-tag">${this.escapeHtml(tag)}</span>`).join('')}</div>`
                 : '';
 
-            const price = item.price ? this.formatPrice(item.price) : '—';
-            const itemId = encodeURIComponent(item.id);
-            
             return `
                 <article class="shop-card product-card rarity-${item.rarity.slug}">
-                    <div class="shop-card-media">
-                        <img src="${item.image}" alt="${this.escapeHtml(item.name)}" class="shop-card-image">
+                    <div class="shop-card-media" style="background-image:url('${item.image}')">
                         <span class="rarity-pill">${this.escapeHtml(item.rarity.name)}</span>
                         ${tags}
                     </div>
@@ -998,19 +971,30 @@
                             <span class="item-type">${this.escapeHtml(item.type.name)}</span>
                         </div>
                         <p class="shop-card-description">${this.escapeHtml(item.description)}</p>
-                        <div class="shop-card-price">${price}</div>
+                        <div class="shop-card-meta">
+                            <div class="price-tag">
+                                <img src="${icon}" alt="" loading="lazy">
+                                <span>${this.formatPrice(item.price)}</span>
+                            </div>
+                            <div class="availability-flags">
+                                ${item.expiresAt ? `<span class="flag">⏳ ${this.formatExpiry(item.expiresAt)}</span>` : ''}
+                            </div>
+                        </div>
                         <div class="shop-card-actions">
-                            <button type="button" 
-                                    class="product-button shop-prepare-order" 
-                                    data-item-id="${itemId}"
-                                    style="text-decoration: none; display: block; text-align: center; width: 100%;">
-                                Préparer ma commande
-                            </button>
-                            <a href="shop-item.html?id=${itemId}" 
-                               class="ghost-button"
+                            <a href="shop-item.html?id=${encodeURIComponent(item.id)}" 
+                               class="product-button"
                                style="text-decoration: none; display: block; text-align: center;">
                                 Voir détails
                             </a>
+                            <button type="button"
+                                class="product-button cart-flow-cta"
+                                data-item-id="${this.escapeHtml(item.id || '')}"
+                                data-item-name="${this.escapeHtml(item.name)}"
+                                data-item-price="${item.price}"
+                                data-item-section="${this.escapeHtml(sectionTitle)}"
+                                data-disable-product-animation="true">
+                                Préparer ma commande
+                            </button>
                         </div>
                     </div>
                 </article>
