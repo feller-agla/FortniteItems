@@ -196,6 +196,12 @@ class NavbarEffects {
     
     init() {
         window.addEventListener('scroll', () => {
+            // Lazy load navbar element if not found initially (due to async loading)
+            if (!this.navbar) {
+                this.navbar = document.querySelector('.navbar');
+                if (!this.navbar) return;
+            }
+
             const currentScroll = window.pageYOffset;
             
             if (currentScroll > 100) {

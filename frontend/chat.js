@@ -177,13 +177,35 @@ class OrderChat {
                 console.warn(`Commande ${this.orderId} introuvable. Arrêt du polling.`);
                 this.stopPolling();
                 
-                // Show system message if possible
+                // Show system message
                 if (this.messages.length === 0 && this.messagesArea) {
                      const msgDiv = document.createElement('div');
                      msgDiv.className = 'message system';
-                     msgDiv.innerHTML = '<div class="message-content" style="opacity:0.7;">🚫 Cette commande est introuvable sur le serveur.</div>';
+                     msgDiv.innerHTML = '<div class="message-content" style="opacity:0.7;">🚫 Cette commande est introuvable sur le serveur.<br>Suppression automatique...</div>';
                      this.messagesArea.appendChild(msgDiv);
                 }
+                
+                // AUTO-CLEANUP: Remove ghost order from LocalStorage
+                try {
+                    const raw = localStorage.getItem('fortniteshop_orders');
+                    if(raw) {
+                        const orders = JSON.parse(raw);
+                        const newOrders = orders.filter(o => (o.order_id || o.orderNumber) !== this.orderId);
+                        
+                        if(newOrders.length < orders.length) {
+                             console.log(`🧹 Commande fantôme ${this.orderId} supprimée du cache.`);
+                             localStorage.setItem('fortniteshop_orders', JSON.stringify(newOrders));
+                             
+                             // Refresh to update the list (delayed so user sees the message)
+                             setTimeout(() => {
+                                 if(window.location.pathname.includes('messages.html')) {
+                                     window.location.reload();
+                                 }
+                             }, 2000);
+                        }
+                    }
+                } catch(e) { console.warn("Cleanup error", e); }
+                
                 return;
             }
 

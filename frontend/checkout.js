@@ -521,11 +521,18 @@ async function redirectToLygosPayment() {
     
     try {
         // Appeler l'API backend pour créer le paiement
+        const token = localStorage.getItem('auth_token');
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
         const response = await fetch(`${API_URL}/api/create-payment`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: headers,
             body: JSON.stringify(paymentData)
         });
         

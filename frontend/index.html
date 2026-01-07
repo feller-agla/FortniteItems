@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="assets/favicnon.png">
     <link rel="apple-touch-icon" href="assets/favicnon.png">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2.9">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -45,64 +45,65 @@
     <canvas id="particleCanvas"></canvas>
 
     <!-- Navigation -->
-    <!-- Navigation -->
     <div id="navbar-container"></div>
     <script src="js/navbar-loader.js"></script>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
+    <!-- Hero Section (Redesign) -->
+    <section id="home" class="hero-redesign">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        <span class="title-line">FortniteItems</span>
-                        <span class="title-highlight">Boutique Live + Packs V-Bucks</span>
-                        <span class="lightning">⚡</span>
+            <div class="hero-grid">
+                <!-- Text Column -->
+                <div class="hero-text-col">
+                    <div class="hero-badge">
+                        <span>⚡</span> STORE EN LIVE
+                    </div>
+                    
+                    <h1 class="hero-glitch-title">
+                        <span>BOUTIQUE</span>
+                        <span class="text-gradient">FORTNITE</span>
                     </h1>
+
                     <p class="hero-subtitle">
-                        Parcours les skins du jour ou recharge ton solde V-Bucks jusqu'à -42%. Paiements Mobile Money, Crypto.
+                        Obtiens tes <strong>V-Bucks à -40%</strong> et les skins exclusifs moins chers. 
+                        Livraison instantanée. 100% Sécurisé & Légal.
                     </p>
-                    <div class="hero-action-group">
-                        <a href="shop.html" class="cta-button glow-button">
-                            <span>Voir la Boutique d'objet</span>
-                            <div class="button-glow"></div>
+
+                    <div class="hero-ctas">
+                        <a href="#products" class="cta-mega">
+                            ACHETER V-BUCKS
                         </a>
-                        <a href="#products" class="ghost-button ghost-button--inline">
-                            Commander des V-Bucks
+                        <a href="shop.html" class="cta-glass">
+                            Voir la boutique
                         </a>
                     </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">100+</div>
-                            <div class="stat-label">Clients Satisfaits</div>
+
+                    <div class="trust-badges">
+                        <div class="trust-item">
+                            ✅ 800+ Clients
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15-45 min</div>
-                            <div class="stat-label">Livraison</div>
+                        <div class="trust-item">
+                            ⭐ 4.9/5 Avis
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support</div>
+                        <div class="trust-item">
+                            🚀 Livraison 15min - 45min
                         </div>
-                    </div>
-                    <div class="payment-badges">
-                        <div class="badge">📱 Mobile Money</div>
-                        <div class="badge">₿ Crypto</div>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="floating-character"></div>
-                    <div class="energy-ring ring-1"></div>
-                    <div class="energy-ring ring-2"></div>
-                    <div class="energy-ring ring-3"></div>
+
+                <!-- Visual Column -->
+                <div class="hero-visual-col">
+                    <div class="hero-glow-bg"></div>
+                    <div class="hero-image-wrapper">
+                        <!-- Using the biggest V-Bucks pack for maximum impact -->
+                        <img src="assets/13500vbucks.png" alt="13500 V-Bucks Fortnite" class="hero-main-img">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="hero-wave"></div>
     </section>
 
-    <section id="commerceFlows" class="commerce-flows">
-        <div class="container">
+    <!-- <section id="commerceFlows" class="commerce-flows"> -->
+        <!-- <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Deux façons de commander</h2>
                 <p class="section-subtitle">Choisis ton style : skins du jour ou recharges V-Bucks</p>
@@ -124,11 +125,11 @@
                 <article class="flow-card vbucks">
                     <div class="flow-eyebrow">Recharge V-Bucks</div>
                     <h3>Packs sécurisés jusqu'à -42%</h3>
-                    <p>Reçois par email ou directement par WhatsApp les informations d'un compte rempli de V-Bucks, ajoute-le en ami, patiente 48h puis offre-toi tout ce que tu veux depuis ton compte principal.</p>
+                    <p>Reçois tes V-Bucks directement sur ton compte principal. Plus besoin d'attendre, c'est immédiat et sécurisé.</p>
                     <ul>
-                        <li>⚡ Livraison 15-45 minutes</li>
-                        <li>🛡️ Process 100% conforme aux CGU Epic</li>
-                        <li>📦 Packs 1 000 à 13 500 V-Bucks ou  Crew</li>
+                        <li>⚡ Livraison Immédiate</li>
+                        <li>🛡️ 100% Sécurisé & Légal</li>
+                        <li>📦 Packs 1 000 à 13 500 V-Bucks ou Crew</li>
                     </ul>
                     <a href="#products" class="ghost-button">
                         Voir les packs
@@ -136,7 +137,7 @@
                 </article>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="shopPreview" class="shop-preview-section">
         <div class="container">
@@ -453,7 +454,7 @@
                         <h3>Comment fonctionne la livraison ?</h3>
                     </div>
                     <div class="faq-answer">
-                        Tu reçois par email les identifiants d'un compte Epic Games avec les V-Bucks. Ajoute-le en ami, attends 48h, puis offre-toi ce que tu veux !
+                        Les V-Bucks sont crédités directement sur ton compte. Tu recevras une notification par email dès que c'est fait (10-30 min).
                     </div>
                 </div>
 
@@ -473,7 +474,7 @@
                         <h3>Pourquoi attendre 48 heures ?</h3>
                     </div>
                     <div class="faq-answer">
-                        C'est une règle d'Epic Games : il faut être ami pendant 48h avant de pouvoir s'offrir des cadeaux. Après, tu pourras t'offrir ce que tu veux !
+                        Plus besoin d'attendre ! Grâce à notre nouvelle méthode de livraison directe, tu peux utiliser tes V-Bucks immédiatement après réception.
                     </div>
                 </div>
 

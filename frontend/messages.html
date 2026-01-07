@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="assets/favicnon.png">
     <link rel="apple-touch-icon" href="assets/favicnon.png">
     
-    <link rel="stylesheet" href="styles.css?v=2.2">
+    <link rel="stylesheet" href="styles.css?v=2.5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -106,8 +106,42 @@
             : 'https://fortniteitems.onrender.com';
 
         document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
             loadConversations();
         });
+
+        // AUTH GUARD
+        function checkAuth() {
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                // Not logged in -> Show Login Prompt
+                const grid = document.querySelector('.success-grid');
+                if(grid) grid.style.display = 'none'; // Hide content
+                
+                const container = document.querySelector('.container');
+                const loginPrompt = document.createElement('div');
+                loginPrompt.className = 'empty-state';
+                loginPrompt.style.textAlign = 'center';
+                loginPrompt.style.padding = '4rem 2rem';
+                loginPrompt.innerHTML = `
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🔒</div>
+                    <h2 style="margin-bottom: 1rem;">Connexion requise</h2>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
+                        Vous devez être connecté pour accéder à vos discussions et au support.
+                    </p>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <a href="login.html" class="cta-button">
+                            <span>Se Connecter</span>
+                        </a>
+                        <a href="login.html?mode=register" class="ghost-button">
+                            Créer un compte
+                        </a>
+                    </div>
+                `;
+                container.appendChild(loginPrompt);
+                return;
+            }
+        }
 
         // Mobile Switch Logic
         function closeMobileChat() {
@@ -121,65 +155,71 @@
             }
         }
 
-        function loadConversations() {
+        async function loadConversations() {
             const listContainer = document.getElementById('conversationsList');
-            const ordersStr = localStorage.getItem('fortniteshop_orders');
+            listContainer.innerHTML = '<div class="loading-spinner"></div>';
             
-            if (!ordersStr) {
-                listContainer.innerHTML = `
-                    <div class="status-item active" style="padding: 20px; opacity: 0.7;">
-                        <div class="status-text">
-                            <strong>Aucune commande récente</strong>
-                            <small>Passez une commande pour discuter avec le support.</small>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
+            let orders = [];
+            
+            // 1. Fetch from Server if Logged In
+            const token = localStorage.getItem('auth_token');
+            if (token) {
+                try {
+                    const res = await fetch(`${API_URL}/api/user/orders`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    const data = await res.json();
+                    console.log("📥 API Response:", data); // DEBUG
 
-            let orders = JSON.parse(ordersStr);
+                    if (data.success && Array.isArray(data.orders)) {
+                        orders = data.orders.map(o => ({
+                            ...o,
+                            orderNumber: o.order_id, // Normalize for display
+                            date: o.created_at,
+                            items: o.items || [] 
+                        }));
+                        
+                        console.log("✅ Parsed Orders:", orders); // DEBUG
+                        
+                        // STRICT MODE: If logged in, ONLY use server orders.
+                        console.log("🔒 Mode Connecté: Affichage unique des commandes serveur.");
+                    } else {
+                        console.warn("⚠️ API returned success=false or no orders array");
+                    }
+                } catch (e) {
+                    console.error("❌ Error fetching/parsing:", e);
+                    // Fallback to local only on error
+                    orders = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+                }
+            } else {
+                 // 2. Guest Mode: Fetch from LocalStorage
+                 orders = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+            }
             
-            // SANITIZATION: Remove corrupt entries
-            const validOrders = orders.filter(o => {
+            // Deduplicate (Sanity check)
+             const validOrders = orders.filter(o => {
                 const id = o.order_id || o.orderNumber;
                 return id && id !== 'undefined' && id !== 'null';
             });
-            
-            if (validOrders.length < orders.length) {
-                console.warn("⚠️ Nettoyage de l'historique : Entrées corrompues supprimées.");
-                orders = validOrders;
-                localStorage.setItem('fortniteshop_orders', JSON.stringify(orders));
-            }
-            
-            // Deduplicate by ID
-            const uniqueOrders = [];
-            const seenIds = new Set();
-            orders.forEach(o => {
-                const id = o.order_id || o.orderNumber;
-                if(!seenIds.has(id)) {
-                    seenIds.add(id);
-                    uniqueOrders.push(o);
-                }
-            });
-            orders = uniqueOrders;
+            orders = validOrders;
 
-            // Sort by date desc (Robust)
+            // Sort by date desc
             orders.sort((a, b) => {
                 const dateA = new Date(a.date || a.timestamp || 0);
                 const dateB = new Date(b.date || b.timestamp || 0);
                 return dateB - dateA;
             });
             
-            console.log("📂 Ordres chargés:", orders);
+            console.log("📂 Discussions chargées:", orders);
 
-            listContainer.innerHTML = ''; // Clear loading
-
+            listContainer.innerHTML = '';
+            
             if (orders.length === 0) {
-                 listContainer.innerHTML = `
+                listContainer.innerHTML = `
                     <div class="status-item active" style="padding: 20px; opacity: 0.7;">
                         <div class="status-text">
-                            <strong>Aucune commande récente</strong>
-                            <small>Passez une commande pour discuter avec le support.</small>
+                            <strong>Aucune discussion</strong>
+                            <small>Vos commandes et discussions apparaîtront ici.</small>
                         </div>
                     </div>
                 `;
@@ -196,30 +236,30 @@
                 item.style.borderRadius = '12px';
                 item.style.transition = 'all 0.2s';
                 
-                // Highlight first item or specific item logic could go here
-                
-                const date = new Date(order.date).toLocaleDateString();
+                const dateObj = new Date(order.date || order.timestamp);
+                const dateStr = isNaN(dateObj) ? 'Date inconnue' : dateObj.toLocaleDateString();
                 const itemCount = order.items ? order.items.length : 0;
+                const status = order.status || 'pending';
+                const statusIcon = status === 'completed' || status === 'delivered' ? '✅' : '⏳';
                 
                 item.innerHTML = `
                     <div class="status-icon" style="background: rgba(0, 212, 255, 0.1);">💬</div>
                     <div class="status-text" style="flex: 1;">
                         <div style="display:flex; justify-content:space-between;">
-                            <strong>Commande #${order.orderNumber || order.order_id || 'Inconnue'}</strong>
-                            <span style="font-size:12px; opacity:0.6;">${date}</span>
+                            <strong>${statusIcon} Commande #${order.orderNumber || order.order_id}</strong>
+                            <span style="font-size:12px; opacity:0.6;">${dateStr}</span>
                         </div>
-                        <small>${itemCount} article(s) • Connecter au chat</small>
+                        <small>${itemCount} article(s) • ${status.toUpperCase()}</small>
                     </div>
                 `;
 
-                item.onclick = () => loadChat(order.orderNumber || order.order_id, item);
+                const orderId = order.orderNumber || order.order_id;
+                item.onclick = () => loadChat(orderId, item);
                 listContainer.appendChild(item);
 
-                // Auto load most recent
-                // removed auto-load for mobile logic? No, keep it but maybe it shouldn't trigger mobile view automatically on load.
-                // We'll see.
+                // Auto load most recent on desktop
                 if(index === 0 && window.innerWidth > 900) { 
-                    loadChat(order.orderNumber || order.order_id, item, false); // false = don't switch view
+                    loadChat(orderId, item, false);
                 }
             });
         }

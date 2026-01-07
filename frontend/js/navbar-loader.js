@@ -64,6 +64,31 @@ function initializeNavbar() {
             countSpan.textContent = count;
         }
     }
+
+    // 4. AUTHENTICATION LOGIC
+    const authLink = document.getElementById('authLink');
+    const token = localStorage.getItem('auth_token');
+    const user = JSON.parse(localStorage.getItem('user_info') || '{}');
+
+    if (authLink) {
+        if (token && user) {
+            // Logged In
+            authLink.innerHTML = `👤 ${user.name || 'Compte'}`;
+            authLink.href = "#";
+            authLink.onclick = (e) => {
+                e.preventDefault();
+                if(confirm('Se déconnecter ?')) {
+                    localStorage.removeItem('auth_token');
+                    localStorage.removeItem('user_info');
+                    window.location.reload();
+                }
+            };
+            authLink.classList.add('logged-in');
+        } else {
+            // Guest (Default HTML is correct, just ensure active state)
+            if (activePage === 'login') authLink.classList.add('active');
+        }
+    }
 }
 
 // Load automatically

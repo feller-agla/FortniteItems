@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="assets/favicnon.png">
     <link rel="apple-touch-icon" href="assets/favicnon.png">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2.5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
     <script src="js/navbar-loader.js"></script>
 
     <!-- Orders History -->
-    <main class="orders-page" style="padding-top: 140px;">
+    <main class="orders-page page-padding">
         <div class="container">
             <div class="section-header">
                 <h1 class="section-title">📦 Mes Commandes</h1>
@@ -36,6 +36,41 @@
             <div id="ordersList" class="orders-list">
                 <!-- Les commandes seront injectées ici par JavaScript -->
             </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const token = localStorage.getItem('auth_token');
+                    if (!token) {
+                        document.getElementById('ordersList').style.display = 'none';
+                        document.getElementById('emptyOrders').style.display = 'none'; // Hide default empty
+                        
+                        const container = document.querySelector('.container');
+                        const loginPrompt = document.createElement('div');
+                        loginPrompt.className = 'empty-state';
+                        loginPrompt.style.textAlign = 'center';
+                        loginPrompt.style.padding = '4rem 2rem';
+                        loginPrompt.innerHTML = `
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🔒</div>
+                            <h2 style="margin-bottom: 1rem;">Connexion requise</h2>
+                            <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
+                                Connectez-vous pour voir l'historique de vos commandes.
+                            </p>
+                            <div style="display: flex; gap: 1rem; justify-content: center;">
+                                <a href="login.html" class="cta-button">
+                                    <span>Se Connecter</span>
+                                </a>
+                                <a href="login.html?mode=register" class="ghost-button">
+                                    Créer un compte
+                                </a>
+                            </div>
+                        `;
+                        container.appendChild(loginPrompt);
+                        
+                        // Stop orders.js from doing anything (hacky but works if script loads after)
+                        window.stopOrdersLoad = true;
+                    }
+                });
+            </script>
 
             <div id="emptyOrders" class="empty-state" style="text-align: center; padding: 4rem 2rem; display: none;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">📭</div>

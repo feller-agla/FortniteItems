@@ -6,185 +6,13 @@
     <title>Connexion | FortniteItems Shop</title>
     <link rel="icon" type="image/png" href="assets/favicnon.png">
     
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2.5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Google Sign-In -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    
-    <style>
-        .login-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 1rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .auth-card {
-            background: rgba(18, 18, 24, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            width: 100%;
-            max-width: 480px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            animation: slideUp 0.6s ease-out;
-        }
-
-        .auth-tabs {
-            display: flex;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .auth-tab {
-            flex: 1;
-            padding: 1.5rem;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.02);
-            color: #888;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            outline: none;
-        }
-
-        .auth-tab.active {
-            background: transparent;
-            color: #fff;
-            border-bottom: 2px solid #00d9ff;
-        }
-
-        .auth-content {
-            padding: 2.5rem;
-        }
-
-        .form-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: #fff;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .form-subtitle {
-            color: #666;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .input-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .input-field {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1rem 1rem 1rem 3rem;
-            color: #fff;
-            font-size: 1rem;
-            font-family: 'Rajdhani', sans-serif;
-            transition: all 0.3s;
-        }
-
-        .input-field:focus {
-            border-color: #00d9ff;
-            background: rgba(0, 217, 255, 0.05);
-            outline: none;
-            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-            font-size: 1.2rem;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(135deg, #00d9ff, #0066ff);
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 217, 255, 0.3);
-        }
-
-        .btn-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            background: #333;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 2rem 0;
-            color: #666;
-            font-size: 0.8rem;
-        }
-
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .divider span {
-            padding: 0 1rem;
-        }
-
-        /* Google Btn Customization */
-        .google-btn-container {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        
-        /* Spinner */
-        .loader {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #fff;
-            border-bottom-color: transparent;
-            border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
-        }
-
-        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-        .hidden { display: none; }
-        .error-msg { color: #ff3366; text-align: center; margin-bottom: 1rem; font-size: 0.9rem; display: none; }
-    </style>
 </head>
 <body class="shop-page-body">
     <!-- Animated Background -->
@@ -193,12 +21,24 @@
         <div class="gradient-orb orb-2"></div>
         <div class="gradient-orb orb-3"></div>
     </div>
+    
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
 
     <!-- Navigation -->
     <div id="navbar-container"></div>
     <script src="js/navbar-loader.js"></script>
 
-    <main class="login-container">
+    <main class="login-page page-padding">
+        <!-- Google Sign-In Configuration (Global) -->
+        <div id="g_id_onload"
+             data-client_id="484496567670-pt3d9ujqrfpvd08nldt5k5u1qn0hcuca.apps.googleusercontent.com"
+             data-context="signin"
+             data-ux_mode="popup"
+             data-callback="handleGoogleCallback"
+             data-auto_prompt="false">
+        </div>
+
         <div class="auth-card">
             <div class="auth-tabs">
                 <button class="auth-tab active" onclick="switchTab('login')">CONNEXION</button>
@@ -229,13 +69,7 @@
                 <div class="divider"><span>OU CONTINUER AVEC</span></div>
 
                 <div class="google-btn-container">
-                    <div id="g_id_onload"
-                         data-client_id="YOUR_GOOGLE_CLIENT_ID_PLACEHOLDER"
-                         data-context="signin"
-                         data-ux_mode="popup"
-                         data-callback="handleGoogleCallback"
-                         data-auto_prompt="false">
-                    </div>
+
                     <div class="g_id_signin"
                          data-type="standard"
                          data-shape="pill"
@@ -271,9 +105,32 @@
                         S'INSCRIRE
                     </button>
                 </form>
+
+                <div class="divider"><span>OU S'INSCRIRE AVEC</span></div>
+
+                <div class="google-btn-container">
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="pill"
+                         data-theme="outline"
+                         data-text="signup_with"
+                         data-size="large"
+                         data-logo_alignment="left">
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+
+    <script>
+        // Check for particles in global script, or init here if needed.
+        // Usually script.js handles particleCanvas if included.
+        // But script.js is typically large. Let's see if we need to include it or just the canvas logic.
+        // For now, let's include the basic particle logic inline or try to load script.js if it's safe.
+        // Actually, index.html includes `script.js` too? No, it's not in the head. It's usually at the end body.
+        // Let's check if the user wants full script.js features. Usually yes.
+    </script>
+    <script src="script.js"></script> <!-- Assuming script.js handles particles -->
 
     <script>
         // API Base URL - Dynamically Detect

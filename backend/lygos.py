@@ -17,6 +17,11 @@ from functools import wraps
 import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
+import sys
+
+# Ajouter le répertoire courant au path pour permettre les imports relatifs
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from services.fortnite_api import FortniteAPIClient, FortniteAPIError
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
@@ -215,7 +220,7 @@ def send_order_email(order):
         return False
 
 
-def create_lygos_payment(amount, order_data):
+def create_lygos_payment(amount, order_data, user_id=None):
     """
     Crée une session de paiement Lygos et retourne le lien de paiement
     """
@@ -247,9 +252,11 @@ def create_lygos_payment(amount, order_data):
         response_data = response.json()
         
         if response.status_code == 200 and response_data.get("link"):
+            print(f"💾 Saving Order {order_id} with User ID: {user_id}")
             # Enregistrer en DB
             new_order = Order(
                 id=order_id,
+                user_id=user_id, # Link to User
                 amount=amount,
                 status="pending",
                 customer_data=order_data.get('customer', {}),
@@ -294,7 +301,20 @@ def create_payment():
             "customer": data.get('customer', {}),
         }
         
-        result = create_lygos_payment(amount, order_data)
+        # Check for User Token (Optional)
+        user_id = None
+        if 'Authorization' in request.headers:
+            try:
+                auth_header = request.headers['Authorization']
+                if auth_header.startswith('Bearer '):
+                    token = auth_header.split(" ")[1]
+                    decoded = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+                    user_id = decoded['user_id']
+                    print(f"✅ Commande liée à l'utilisateur ID: {user_id}")
+            except Exception as e:
+                print(f"⚠️ Token invalide lors du paiement: {e}")
+
+        result = create_lygos_payment(amount, order_data, user_id)
         
         if result['success']:
             return jsonify(result), 200
@@ -584,8 +604,49 @@ def get_user_orders(current_user):
     # Also fetch orders that might match email even if not linked by ID (legacy support)? 
     # For now, simplistic approach: Orders by ID
     
-    user_orders = Order.query.filter_by(user_id=current_user.id).order_by(Order.created_at.desc()).all()
-    orders_data = [o.to_dict() for o in user_orders]
+    print(f"🔍 Fetching orders for USER ID: {current_user.id} ({current_user.email})")
+    
+    # 1. Fetch by User ID
+    orders_by_id = Order.query.filter_by(user_id=current_user.id).all()
+    
+    # 2. Fetch by Email (Legacy/Guest support)
+    # Note: JSON querying depends on DB type (Postgres vs SQLite). 
+    # For robust compat in this hybrid setup, we fetch recent orders and filter in Python 
+    # (assuming volume is low <1000 active orders). 
+    # Ideally, use a proper SQL query on JSON field.
+    
+    # Fetch orders with no User ID to potentially claim them
+    guest_orders = Order.query.filter(Order.user_id == None).order_by(Order.created_at.desc()).limit(100).all()
+    orders_by_email = []
+    
+    for o in guest_orders:
+        try:
+            # Handle potential string or dict customer_data
+            c_data = o.customer_data
+            if isinstance(c_data, str):
+                import json
+                c_data = json.loads(c_data)
+            
+            if c_data and c_data.get('contactEmail') == current_user.email:
+                orders_by_email.append(o)
+                # Auto-link it for future
+                o.user_id = current_user.id
+                print(f"🔗 Auto-linking guest order {o.id} to user {current_user.id}")
+        except:
+            continue
+            
+    # Combine and Deduplicate
+    all_orders = list({o.id: o for o in (orders_by_id + orders_by_email)}.values())
+    
+    # Sort
+    all_orders.sort(key=lambda x: x.created_at, reverse=True)
+    
+    print(f"📂 Found {len(all_orders)} orders (Linked: {len(orders_by_id)}, Email-matched: {len(orders_by_email)})")
+    
+    if len(orders_by_email) > 0:
+        db.session.commit() # Save the auto-links
+        
+    orders_data = [o.to_dict() for o in all_orders]
     
     return jsonify({
         'success': True,
@@ -634,7 +695,8 @@ def google_auth():
         id_info = id_token.verify_oauth2_token(
             token, 
             google_requests.Request(), 
-            client_id # If None, it skips Audience check (Dev mode, but risky for Prod)
+            client_id, # If None, it skips Audience check (Dev mode, but risky for Prod)
+            clock_skew_in_seconds=60 # Allow 1m clock drift (fixes "Token used too early")
         )
 
         email = id_info['email']
@@ -672,6 +734,8 @@ def google_auth():
         }), 200
 
     except ValueError as e:
+        print(f"❌ GOOGLE AUTH ERROR: {e}")
+        print(f"❌ VERIFYING AGAINST CLIENT_ID: '{client_id}'")
         return jsonify({'message': 'Token Google invalide', 'success': False, 'error': str(e)}), 401
     except Exception as e:
         return jsonify({'message': 'Erreur Google Auth', 'success': False, 'error': str(e)}), 500

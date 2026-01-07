@@ -15,12 +15,12 @@ const products = {
         icon: 'V',
         iconStyle: 'background: var(--gradient-primary);',
         image: 'assets/1000vbucks.png',
-        description: 'Pack parfait pour commencer ton aventure Fortnite. Reçois un compte secondaire avec 1000 V-Bucks, ajoute-le en ami et offre-toi ce que tu veux après 48h.',
+        description: 'Pack parfait pour commencer ton aventure Fortnite. Reçois tes 1000 V-Bucks directement sur ton compte principal. Plus besoin d\'attendre !',
         features: [
-            'Identifiants d\'un compte avec 1000 V-Bucks',
-            'Livrés par email en 15-45 minutes',
-            'Ajoute le compte en ami pendant 48h',
-            'Offre-toi ensuite ce que tu veux',
+            '1000 V-Bucks ajoutés sur ton compte',
+            'Livraison ultra-rapide (10-30 min)',
+            'Aucun lien d\'amitié requis',
+            'Profite de tes V-Bucks immédiatement',
             'Garantie satisfait ou remboursé',
             'Support client 24/7'
         ]
@@ -37,14 +37,14 @@ const products = {
         iconStyle: 'background: var(--gradient-secondary);',
         image: 'assets/2800vbucks.png',
         paymentLink: 'https://pay.lygosapp.com/link/93049047-a2b4-4920-a708-b0547b39b585',
-        description: 'Le pack le plus populaire parmi nos clients ! Reçois un compte avec 2800 V-Bucks, ajoute-le en ami, attends 48h et achète Battle Pass, skins ou emotes.',
+        description: 'Le pack le plus populaire ! Reçois 2800 V-Bucks directement sur ton compte. Idéal pour le Battle Pass et quelques skins.',
         features: [
-            'Compte avec 2800 V-Bucks',
-            'Économie de 5 500 F par rapport au prix normal',
-            'Assez pour Battle Pass + extras',
-            'Livraison par email en 15-45 min',
-            'Méthode 100% sécurisée via système d\'amis',
-            'Attends 48h puis offre-toi ce que tu veux'
+            '2800 V-Bucks sur ton compte principal',
+            'Économie de 5 500 F',
+            'Parfait pour Battle Pass + Skins',
+            'Livraison directe en 10-30 min',
+            'Méthode 100% sécurisée et légale',
+            'Utilisation immédiate des crédits'
         ]
     },
     '3': {
@@ -59,14 +59,14 @@ const products = {
         iconStyle: 'background: var(--gradient-secondary);',
         image: 'assets/5000vbucks.png',
         paymentLink: 'https://pay.lygosapp.com/link/ecc76f1a-3aa7-4397-ae55-4aa76dc86a70',
-        description: 'Notre meilleur rapport qualité-prix ! Reçois un compte avec 5000 V-Bucks par email, ajoute-le en ami, et après 48h offre-toi les meilleurs skins et emotes.',
+        description: 'Notre meilleur rapport qualité-prix ! 5000 V-Bucks chargés directement sur ton compte. Fais-toi plaisir sans limites.',
         features: [
-            'Compte avec 5000 V-Bucks',
+            '5000 V-Bucks livrés directement',
             'Économie massive de 10 000 F',
-            'Battle Pass + plusieurs skins légendaires',
-            'Pack le plus vendu de notre boutique',
-            'Livraison par email en 15-45 min',
-            'Système d\'offres entre amis 100% sûr'
+            'Débloque des tonnes de skins',
+            'Plus d\'attente de 48h',
+            'Livraison prioritaire',
+            'Système sécurisé anti-ban'
         ]
     },
     '4': {
@@ -81,14 +81,14 @@ const products = {
         iconStyle: 'background: linear-gradient(135deg, #FFD700, #FFA500);',
         image: 'assets/13500vbucks.png',
         paymentLink: 'https://pay.lygosapp.com/link/dfc40c75-1d83-44c2-9c9b-469a83d62408',
-        description: 'Pour les vrais gamers ! Reçois un compte avec 13500 V-Bucks par email. Ajoute-le en ami, attends 48h, puis offre-toi tout ce que tu veux pendant des mois.',
+        description: 'Pour les vrais gamers ! 13500 V-Bucks crédités sur ton compte. L\'offre ultime pour dominer la boutique pendant des mois.',
         features: [
-            'Compte avec 13500 V-Bucks - Pack premium',
+            '13500 V-Bucks sur ton compte',
             'Économie exceptionnelle de 27 000 F',
             'Équivalent à plusieurs Battle Pass',
-            'Collection complète de skins possibles',
-            'Livraison par email en 15-45 min',
-            'Support prioritaire pour ce pack'
+            'Accès immédiat à tout le catalogue',
+            'Livraison VIP ultra-rapide',
+            'Support dédié pour ce pack'
         ]
     },
     '5': {
@@ -103,12 +103,12 @@ const products = {
         iconStyle: 'background: var(--gradient-primary);',
         image: 'assets/crew.png',
         paymentLink: 'https://pay.lygosapp.com/link/ba797d68-7f79-4798-9edb-11f13559d802',
-        description: 'Abonnement mensuel qui inclut 1000 V-Bucks PLUS un skin exclusif Crew PLUS le Battle Pass de la saison actuelle. Meilleure valeur pour les joueurs réguliers !',
+        description: 'Abonnement mensuel activé directement sur ton compte. Inclut 1000 V-Bucks + Skin exclusif + Battle Pass. Le top !',
         features: [
             '1000 V-Bucks chaque mois',
-            'Skin Fortnite Crew exclusif mensuel',
-            'Battle Pass de la saison inclus',
-            'Accès aux sauvegardes Fortnite',
+            'Skin Crew exclusif mensuel',
+            'Battle Pass actif inclus',
+            'Activation directe sur ton compte',
             'Annulable à tout moment'
         ]
     }
