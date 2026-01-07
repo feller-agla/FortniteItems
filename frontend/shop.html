@@ -43,35 +43,8 @@
     <canvas id="particleCanvas"></canvas>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-brand">
-                <a href="index.html">
-                    <span class="logo-text">FortniteItems</span>
-                    <span class="logo-subtext">SHOP</span>
-                </a>
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#home" data-nav-target="#home">Accueil</a>
-                <a href="#products" data-nav-target="#products">Offres V-Bucks</a>
-                <a href="shop.html" class="active">Boutique Fortnite</a>
-                <a href="accounts.html">Comptes Rares</a>
-                <a href="orders.html">Mes Commandes</a>
-                <a href="#faq" data-nav-target="#faq">FAQ</a>
-            </div>
-            <div class="nav-cart">
-                <a href="cart.html" class="cart-button">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-count" id="cartCount">0</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-container"></div>
+    <script src="js/navbar-loader.js"></script>
 
     <main id="shopApp" class="shop-app">
         <section class="shop-hero" id="shopHero">

@@ -41,34 +41,8 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-brand">
-                <a href="index.html">
-                    <span class="logo-text">FortniteItems</span>
-                    <span class="logo-subtext">SHOP</span>
-                </a>
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#home" data-nav-target="#home">Accueil</a>
-                <a href="#products" data-nav-target="#products">Offres V-Bucks</a>
-                <a href="shop.html">Boutique Fortnite</a>
-                <a href="orders.html">Mes Commandes</a>
-                <a href="#faq" data-nav-target="#faq">FAQ</a>
-            </div>
-            <div class="nav-cart">
-                <a href="cart.html" class="cart-button active">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-count" id="cartCount">0</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-container"></div>
+    <script src="js/navbar-loader.js"></script>
 
     <!-- Cart Page -->
     <section class="cart-page">
@@ -209,17 +183,50 @@
                             </div>
                         </div>
                         
-                        <button type="button" class="next-btn" id="step1NextBtn">Finaliser sur WhatsApp 💬</button>
+                        <button type="button" class="next-btn" id="step1NextBtn">Continuer vers le Paiement ➡️</button>
                     </form>
                 </div>
 
-                <!-- Step 2: Processing (optionnel, peut être supprimé) -->
+                <!-- Step 2: Payment Method -->
                 <div class="checkout-step" id="step2">
+                    <h3>💳 Moyen de Paiement</h3>
+                    
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="mobile" checked>
+                            <div class="payment-content">
+                                <div class="payment-icon">📱</div>
+                                <div class="payment-details">
+                                    <span class="payment-name">Mobile Money (MTN/Moov/Orange)</span>
+                                    <span class="payment-desc">Paiement instantané via Lygos</span>
+                                </div>
+                            </div>
+                        </label>
+                        
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="crypto">
+                            <div class="payment-content">
+                                <div class="payment-icon">₿</div>
+                                <div class="payment-details">
+                                    <span class="payment-name">Crypto-monnaie (USDT/BTC)</span>
+                                    <span class="payment-desc">Coming Soon 🚀</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <button type="button" class="pay-btn" id="payBtn">
+                        Payer Maintenant 🔒
+                    </button>
+                </div>
+
+                <!-- Step 3: Processing -->
+                <div class="checkout-step" id="step3">
                     <div class="processing">
                         <div class="spinner"></div>
-                        <h3>Redirection vers WhatsApp...</h3>
-                        <p class="processing-status">
-                            Préparation de votre commande
+                        <h3 id="processingStatus">Initialisation du paiement...</h3>
+                        <p class="processing-status" id="processingHint">
+                            Veuillez patienter, nous sécurisons votre transaction.
                         </p>
                     </div>
                 </div>

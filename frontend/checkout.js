@@ -184,8 +184,8 @@ class CheckoutManager {
             this.orderData.platform = platform;
         }
 
-        // Redirection directe vers WhatsApp
-        this.redirectToWhatsApp();
+        // Passer à l'étape suivante (Paiement)
+        this.nextStep(2);
         return true;
     }
     
@@ -667,14 +667,20 @@ setTimeout(function() {
     if (step1NextBtn) {
         step1NextBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log('🔘 Bouton Finaliser sur WhatsApp cliqué');
+            console.log('🔘 Bouton Suivant (étape 1) cliqué');
             if (checkout.validateStep1()) {
-                // La méthode validateStep1 appelle déjà redirectToWhatsApp
-                console.log('✅ Redirection vers WhatsApp');
+                console.log('✅ Validation étape 1 OK -> Vers Paiement');
             }
         });
-        console.log('✅ Bouton Finaliser sur WhatsApp (étape 1) connecté');
-    } else {
-        console.warn('⚠️ Bouton step1NextBtn non trouvé');
+    }
+
+    // Bouton Payer (étape 2)
+    const payBtn = document.getElementById('payBtn');
+    if (payBtn) {
+        payBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('🔘 Bouton Payer cliqué');
+            processPayment();
+        });
     }
 }, 100);

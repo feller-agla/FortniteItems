@@ -15,5 +15,7 @@ services:
         value: https://fortniteitems.shop
       - key: FLASK_ENV
         value: production
+      - key: DATABASE_URL
+        sync: false
     healthCheckPath: /health
     autoDeploy: true

@@ -1,0 +1,57 @@
+from datetime import datetime, timezone
+from database import db
+from sqlalchemy.dialects.postgresql import JSON
+
+class Order(db.Model):
+    __tablename__ = 'orders'
+
+    id = db.Column(db.String(100), primary_key=True)  # Order ID (UUID ou format FN...)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    
+    amount = db.Column(db.Float, nullable=False)
+    status = db.Column(db.String(50), default='pending')  # pending, paid, delivered, cancelled
+    
+    # Données JSON pour stocker la flexibilité des items et clients sans structure rigide
+    # En SQLite, JSON est stocké comme TEXT, en Postgres c'est du vrai JSONB
+    customer_data = db.Column(db.JSON) 
+    items_data = db.Column(db.JSON)
+    
+    lygos_link = db.Column(db.String(500))
+    lygos_ref = db.Column(db.String(100))
+    
+    # Relation avec les messages
+    messages = db.relationship('Message', backref='order', lazy=True, cascade="all, delete-orphan")
+
+    def to_dict(self):
+        return {
+            'order_id': self.id,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat(),
+            'amount': self.amount,
+            'status': self.status,
+            'customer_data': self.customer_data,
+            'items': self.items_data,
+            'lygos_link': self.lygos_link
+        }
+
+class Message(db.Model):
+    __tablename__ = 'messages'
+
+    id = db.Column(db.Integer, primary_key=True)
+    order_id = db.Column(db.String(100), db.ForeignKey('orders.id'), nullable=False)
+    
+    sender_type = db.Column(db.String(20), nullable=False)  # 'user' or 'admin'
+    content = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    is_read = db.Column(db.Boolean, default=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'order_id': self.order_id,
+            'sender': self.sender_type,
+            'content': self.content,
+            'timestamp': self.timestamp.isoformat(),
+            'is_read': self.is_read
+        }

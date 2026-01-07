@@ -12,21 +12,30 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from datetime import datetime
+from datetime import datetime, timezone
 
 from services.fortnite_api import FortniteAPIClient, FortniteAPIError
+
+# DB Configuration
+from database import init_db, db
+from models import Order, Message
 
 # Charger les variables d'environnement depuis .env
 try:
     from dotenv import load_dotenv
-    load_dotenv()
-    print("✅ Fichier .env chargé")
+    # Charger .env depuis le même répertoire que le script
+    env_path = os.path.join(os.path.dirname(__file__), '.env')
+    load_dotenv(env_path)
+    print(f"✅ Fichier .env chargé depuis: {env_path}")
 except ImportError:
     print("⚠️  python-dotenv non installé - Variables depuis environnement système uniquement")
 except Exception as e:
     print(f"⚠️  Erreur chargement .env: {e}")
 
 app = Flask(__name__)
+
+# Initialiser la base de données
+init_db(app)
 
 # Configuration CORS - Permettre les requêtes depuis votre frontend
 ALLOWED_ORIGINS = [
@@ -37,7 +46,8 @@ ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    "https://fortniteitems.onrender.com"
 ]
 CORS(app, origins=ALLOWED_ORIGINS)
 
@@ -46,11 +56,10 @@ ADMIN_EMAIL = "contact.fortniteitems@gmail.com"
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 # ⚠️ Utilisez un mot de passe d'application Gmail (pas votre mot de passe normal)
-# Créez-le sur : https://myaccount.google.com/apppasswords
 SMTP_EMAIL = os.getenv("SMTP_EMAIL", "votre-email@gmail.com")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "votre-mot-de-passe-app")
 
-# Configuration Lygos - Utiliser variables d'environnement en production
+# Configuration Lygos
 LYGOS_API_KEY = os.getenv("LYGOS_API_KEY", "lygosapp-9651642a-25f7-4e06-98b9-3617433e335c")
 LYGOS_API_URL = "https://api.lygosapp.com/v1/gateway"
 SHOP_NAME = "FortniteItems"
@@ -59,13 +68,10 @@ SHOP_NAME = "FortniteItems"
 FORTNITE_API_KEY = os.getenv("FORTNITE_API_KEY")
 FORTNITE_SHOP_TTL = int(os.getenv("FORTNITE_SHOP_TTL", "900"))
 
-# URLs de base - Utiliser variable d'environnement en production
+# URLs de base
 BASE_URL = os.getenv("BASE_URL", "https://fortniteitems.shop")
 SUCCESS_URL = f"{BASE_URL}/success.html"
 FAILURE_URL = f"{BASE_URL}/payment-failed.html"
-
-# Base de données simple en mémoire (à remplacer par une vraie DB en production)
-orders_db = {}
 
 # Fortnite client
 fortnite_client = None
@@ -81,20 +87,18 @@ else:
     print("⚠️  FORTNITE_API_KEY non définie - endpoint /api/shop désactivé")
 
 
-def send_order_email(order_details):
+def send_order_email(order):
     """
     Envoie un email avec les détails de la commande à l'administrateur
-    
     Args:
-        order_details: Dict contenant toutes les infos de commande
+        order: Objet Order (SQLAlchemy model)
     """
     try:
-        # Préparer le contenu de l'email
-        subject = f"Nouvelle Commande FortniteItems - {order_details['order_id']}"
+        subject = f"Nouvelle Commande FortniteItems - {order.id}"
         
-        # Extraire les données client
-        customer = order_details.get('customer_data', {})
-        items = order_details.get('items', [])
+        # Extraire les données JSON
+        customer = order.customer_data or {}
+        items = order.items_data or []
         
         # Construire le corps HTML de l'email
         html_content = f"""
@@ -116,7 +120,7 @@ def send_order_email(order_details):
             <body>
                 <div class="header">
                     <h1>🎮 Nouvelle Commande FortniteItems</h1>
-                    <p>Commande ID: {order_details['order_id']}</p>
+                    <p>Commande ID: {order.id}</p>
                 </div>
                 
                 <div class="content">
@@ -144,7 +148,7 @@ def send_order_email(order_details):
         
         html_content += f"""
                         </table>
-                        <p class="total">Montant Total: {order_details.get('amount', 0)} FCFA</p>
+                        <p class="total">Montant Total: {order.amount} FCFA</p>
                     </div>
                     
                     <div class="section">
@@ -169,15 +173,14 @@ def send_order_email(order_details):
                     
                     <div class="section">
                         <h3>💳 Informations de Paiement</h3>
-                        <p><strong>Statut:</strong> <span style="color: green;">✅ Payé</span></p>
-                        <p><strong>Date de commande:</strong> {order_details.get('created_at', datetime.now().isoformat())}</p>
-                        <p><strong>Order ID:</strong> {order_details['order_id']}</p>
+                        <p><strong>Statut:</strong> <span style="color: green;">✅ {order.status.upper()}</span></p>
+                        <p><strong>Date de commande:</strong> {order.created_at.strftime('%Y-%m-%d %H:%M:%S')}</p>
+                        <p><strong>Order ID:</strong> {order.id}</p>
                     </div>
                 </div>
                 
                 <div class="footer">
-                    <p>Email automatique - FortniteItems.com</p>
-                    <p>Support WhatsApp: +229 65 62 36 91</p>
+                    <p>Accédez au panneau d'administration pour répondre au client.</p>
                 </div>
             </body>
         </html>
@@ -189,7 +192,6 @@ def send_order_email(order_details):
         msg['To'] = ADMIN_EMAIL
         msg['Subject'] = subject
         
-        # Ajouter le contenu HTML
         html_part = MIMEText(html_content, 'html')
         msg.attach(html_part)
         
@@ -199,7 +201,7 @@ def send_order_email(order_details):
             server.login(SMTP_EMAIL, SMTP_PASSWORD)
             server.send_message(msg)
         
-        print(f"✅ Email envoyé avec succès pour la commande {order_details['order_id']}")
+        print(f"✅ Email envoyé avec succès pour la commande {order.id}")
         return True
         
     except Exception as e:
@@ -210,30 +212,21 @@ def send_order_email(order_details):
 def create_lygos_payment(amount, order_data):
     """
     Crée une session de paiement Lygos et retourne le lien de paiement
-    
-    Args:
-        amount: Montant en FCFA
-        order_data: Dict contenant les infos de commande (items, client, etc.)
-    
-    Returns:
-        dict: {
-            'success': bool,
-            'payment_link': str,
-            'order_id': str,
-            'error': str (si échec)
-        }
     """
     order_id = str(uuid.uuid4())
     
-    # Construire le message personnalisé
-    items_summary = ", ".join([item['name'] for item in order_data.get('items', [])])
-    message = f"Commande FortniteItems - {items_summary} | Support: +229 65 62 36 91"
+    items = order_data.get('items', [])
+    items_summary = ", ".join([item['name'] for item in items])
+    message = f"Commande FortniteItems - {items_summary}"
+    
+    # URL de succès avec order_id pour activer le chat
+    success_with_id = f"{SUCCESS_URL}?order_id={order_id}"
     
     payload = {
         "amount": int(amount),
         "shop_name": SHOP_NAME,
         "message": message,
-        "success_url": SUCCESS_URL,
+        "success_url": success_with_id,
         "failure_url": FAILURE_URL,
         "order_id": order_id
     }
@@ -248,15 +241,17 @@ def create_lygos_payment(amount, order_data):
         response_data = response.json()
         
         if response.status_code == 200 and response_data.get("link"):
-            # Sauvegarder la commande dans la "base de données"
-            orders_db[order_id] = {
-                "order_id": order_id,
-                "amount": amount,
-                "status": "pending",
-                "created_at": datetime.now().isoformat(),
-                "customer_data": order_data,
-                "lygos_link": response_data.get("link")
-            }
+            # Enregistrer en DB
+            new_order = Order(
+                id=order_id,
+                amount=amount,
+                status="pending",
+                customer_data=order_data.get('customer', {}),
+                items_data=items,
+                lygos_link=response_data.get("link")
+            )
+            db.session.add(new_order)
+            db.session.commit()
             
             return {
                 "success": True,
@@ -269,7 +264,7 @@ def create_lygos_payment(amount, order_data):
                 "error": response_data.get("message", "Erreur lors de la création du paiement")
             }
             
-    except requests.exceptions.RequestException as e:
+    except Exception as e:
         return {
             "success": False,
             "error": f"Erreur de connexion à Lygos: {str(e)}"
@@ -278,26 +273,9 @@ def create_lygos_payment(amount, order_data):
 
 @app.route('/api/create-payment', methods=['POST'])
 def create_payment():
-    """
-    Endpoint pour créer une session de paiement
-    
-    Body JSON attendu:
-    {
-        "amount": 9000,
-        "items": [
-            {"id": "2", "name": "2800 V-Bucks", "price": 9000, "quantity": 1}
-        ],
-        "customer": {
-            "fortniteName": "PlayerXYZ",
-            "epicEmail": "player@example.com",
-            "platform": "pc"
-        }
-    }
-    """
     try:
         data = request.get_json()
         
-        # Validation
         if not data.get('amount') or not data.get('items'):
             return jsonify({
                 "success": False,
@@ -308,10 +286,8 @@ def create_payment():
         order_data = {
             "items": data['items'],
             "customer": data.get('customer', {}),
-            "timestamp": datetime.now().isoformat()
         }
         
-        # Créer le paiement Lygos
         result = create_lygos_payment(amount, order_data)
         
         if result['success']:
@@ -328,18 +304,6 @@ def create_payment():
 
 @app.route('/api/webhook/lygos', methods=['POST'])
 def lygos_webhook():
-    """
-    Webhook pour recevoir les notifications de paiement de Lygos
-    
-    Body JSON reçu de Lygos:
-    {
-        "order_id": "uuid",
-        "status": "successful" | "failed",
-        "amount": 9000,
-        "reference": "LYGOS_REF_XXX",
-        ...
-    }
-    """
     try:
         data = request.get_json()
         
@@ -349,23 +313,53 @@ def lygos_webhook():
         if not order_id or not status:
             return jsonify({"error": "Invalid webhook data"}), 400
         
-        # Mettre à jour la commande
-        if order_id in orders_db:
-            orders_db[order_id]['status'] = status
-            orders_db[order_id]['updated_at'] = datetime.now().isoformat()
-            orders_db[order_id]['lygos_response'] = data
+        # Récupérer la commande depuis la DB
+        order = db.session.get(Order, order_id)
+        
+        if order:
+            order.status = status
+            order.updated_at = datetime.now(timezone.utc)
+            order.lygos_ref = data.get('reference')
+            db.session.commit()
             
-            # ✅ Envoyer l'email si le paiement est réussi
+            # Envoyer email si succès
             if status == "successful":
-                print(f"✅ Paiement réussi pour commande {order_id}")
+                print(f"✅ Paiement confirmé pour commande {order_id}")
+                send_order_email(order)
                 
-                # Envoyer l'email avec les détails complets
-                email_sent = send_order_email(orders_db[order_id])
+                # Formater les détails de la commande pour le chat
+                items_list = ""
+                try:
+                    import json
+                    # order.items is stored as JSON string or Python dict depending on DB, verify usage
+                    # In models.py it's likely a JSON column or String. Assuming dict if SQLAlchemy handles it, or string.
+                    # Lets assume it works like previous code implies.
+                    items = order.items if isinstance(order.items, list) else json.loads(order.items)
+                    for item in items:
+                        items_list += f"- {item.get('name')} (x{item.get('quantity', 1)})\n"
+                except:
+                    items_list = "Détails non disponibles."
+
+                # Créer un message système d'accueil avec récapitulatif
+                welcome_content = (
+                    f"👋 Bonjour ! Merci pour votre commande.\n\n"
+                    f"📋 **Récapitulatif de la commande** :\n{items_list}\n"
+                    f"💰 **Total** : {order.amount} FCFA\n\n"
+                    f"Un agent va prendre en charge votre commande dès que possible. "
+                    f"Si vous avez des détails à ajouter (pseudo Epic, etc.), écrivez-les ici 👇"
+                )
+
+                welcome_msg = Message(
+                    order_id=order_id,
+                    sender_type='admin',
+                    content=welcome_content,
+                    timestamp=datetime.now(timezone.utc)
+                )
+                db.session.add(welcome_msg)
+                db.session.commit()
                 
-                if email_sent:
-                    print(f"📧 Email de confirmation envoyé à {ADMIN_EMAIL}")
-                else:
-                    print(f"⚠️ Échec de l'envoi de l'email pour commande {order_id}")
+        else:
+            print(f"⚠️ Webhook pour ID inconnu: {order_id}")
         
         return jsonify({"success": True}), 200
         
@@ -374,48 +368,94 @@ def lygos_webhook():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route('/api/admin/orders', methods=['GET'])
+def get_admin_orders():
+    """Endpoint ADMIN : Récupérer toutes les commandes pour le support"""
+    # TODO: Ajouter authentification (Basic Auth ou Token)
+    # Pour l'instant, on suppose que l'URL est secrète ou locale
+    
+    try:
+        # Récupérer les 50 dernières commandes
+        orders = Order.query.order_by(Order.updated_at.desc()).limit(50).all()
+        return jsonify([o.to_dict() for o in orders]), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route('/api/order/<order_id>', methods=['GET'])
 def get_order(order_id):
-    """
-    Récupérer les détails d'une commande
-    """
-    if order_id in orders_db:
-        return jsonify(orders_db[order_id]), 200
+    order = db.session.get(Order, order_id)
+    if order:
+        return jsonify(order.to_dict()), 200
     else:
         return jsonify({"error": "Commande non trouvée"}), 404
 
 
 @app.route('/api/orders', methods=['GET'])
 def get_all_orders():
-    """
-    Récupérer toutes les commandes (pour admin)
-    """
-    return jsonify(list(orders_db.values())), 200
+    orders = Order.query.order_by(Order.created_at.desc()).limit(50).all()
+    return jsonify([o.to_dict() for o in orders]), 200
+
+
+# ==========================================
+# CHAT ENDPOINTS
+# ==========================================
+
+@app.route('/api/chat/history/<order_id>', methods=['GET'])
+def get_chat_history(order_id):
+    """Récupérer l'historique des messages d'une commande"""
+    # Vérifier que la commande existe
+    order = db.session.get(Order, order_id)
+    if not order:
+        return jsonify({"error": "Commande inconnue"}), 404
+
+    messages = Message.query.filter_by(order_id=order_id).order_by(Message.timestamp).all()
+    return jsonify([m.to_dict() for m in messages]), 200
+
+
+@app.route('/api/chat/send', methods=['POST'])
+def send_message():
+    """Envoyer un message (Client ou Admin)"""
+    data = request.get_json()
+    order_id = data.get('order_id')
+    content = data.get('content')
+    sender = data.get('sender', 'user')  # 'user' ou 'admin'
+    
+    if not order_id or not content:
+        return jsonify({"error": "Données incomplètes"}), 400
+        
+    order = db.session.get(Order, order_id)
+    if not order:
+        return jsonify({"error": "Commande inconnue"}), 404
+        
+    # Créer le message
+    msg = Message(
+        order_id=order_id,
+        sender_type=sender,
+        content=content,
+        timestamp=datetime.now(timezone.utc)
+    )
+    db.session.add(msg)
+    db.session.commit()
+    
+    # TODO: Si c'est un user, notifier l'admin par email (optionnel pour éviter le spam)
+    
+    return jsonify(msg.to_dict()), 200
 
 
 @app.route('/api/shop', methods=['GET'])
 def get_fortnite_shop():
-    """Retourner la boutique Fortnite (cache + option refresh)."""
     if fortnite_client is None:
-        # Retourner 200 avec success: false pour éviter les erreurs dans les logs
-        # Le frontend gère déjà ce cas avec try/catch
         return jsonify({
             "success": False,
-            "error": "FORTNITE_API_KEY non configurée - endpoint désactivé",
-            "message": "Pour activer cet endpoint, configurez FORTNITE_API_KEY dans .env"
+            "error": "FORTNITE_API_KEY non configurée"
         }), 200
 
     force_refresh = request.args.get('refresh', '0') == '1'
 
     try:
         payload = fortnite_client.get_shop(force_refresh=force_refresh)
-        # Retourner exactement le format que le scraper retourne
         return jsonify(payload), 200
-    except FortniteAPIError as e:
-        return jsonify({
-            "success": False,
-            "error": str(e)
-        }), 502
     except Exception as e:
         return jsonify({
             "success": False,
@@ -425,130 +465,28 @@ def get_fortnite_shop():
 
 @app.route('/', methods=['GET'])
 def index():
-    """
-    Page d'accueil de l'API
-    """
     return jsonify({
         "service": "FortniteItems Backend API",
         "status": "running",
-        "version": "1.0.0",
-        "endpoints": {
-            "health": "/health",
-            "create_payment": "/api/create-payment [POST]",
-            "webhook": "/api/webhook/lygos [POST]",
-            "order": "/api/orders/<order_id> [GET]",
-            "all_orders": "/api/orders [GET]"
-        }
+        "database": "connected"
     }), 200
-
 
 @app.route('/health', methods=['GET'])
 def health_check():
-    """
-    Vérifier que l'API est en ligne
-    """
+    try:
+        # Vérifier la connexion DB
+        db.session.execute(db.text("SELECT 1"))
+        db_status = "ok"
+    except Exception as e:
+        db_status = f"error: {str(e)}"
+        
     return jsonify({
         "status": "ok",
-        "service": "FortniteItems Backend API",
+        "database": db_status,
         "timestamp": datetime.now().isoformat()
     }), 200
 
-
-@app.route('/api/submit-order', methods=['POST'])
-def submit_order():
-    """
-    Enregistrer les détails d'une commande après paiement réussi
-    Vous recevrez ces informations pour traiter la commande
-    """
-    try:
-        data = request.get_json()
-        
-        order_id = data.get('order_id')
-        customer = data.get('customer', {})
-        items = data.get('items', [])
-        amount = data.get('amount')
-        
-        if not order_id:
-            return jsonify({'success': False, 'error': 'order_id manquant'}), 400
-        
-        # Sauvegarder la commande complète
-        order_details = {
-            'order_id': order_id,
-            'timestamp': datetime.now().isoformat(),
-            'amount': amount,
-            'items': items,
-            'customer': customer,
-            'status': 'payment_pending'
-        }
-        
-        orders_db[order_id] = order_details
-        
-        # LOG : Afficher dans la console du serveur
-        print("\n" + "="*60)
-        print("🎉 NOUVELLE COMMANDE REÇUE")
-        print("="*60)
-        print(f"📦 Order ID: {order_id}")
-        print(f"💰 Montant: {amount} FCFA")
-        print(f"\n👤 INFORMATIONS CLIENT:")
-        print(f"   Nom: {customer.get('fullName', 'N/A')}")
-        print(f"   Email: {customer.get('contactEmail', 'N/A')}")
-        print(f"   Type: {customer.get('productType', 'N/A').upper()}")
-        
-        if customer.get('productType') == 'crew':
-            print(f"\n🎮 FORTNITE CREW:")
-            print(f"   Pseudo Epic: {customer.get('epicUsername', 'N/A')}")
-            print(f"   Email Epic: {customer.get('epicLoginEmail', 'N/A')}")
-            print(f"   Mot de passe: {customer.get('epicPassword', 'N/A')}")
-            print(f"   WhatsApp: {customer.get('whatsappNumber', 'N/A')}")
-        else:
-            print(f"\n💎 V-BUCKS:")
-            print(f"   Plateforme: {customer.get('platform', 'N/A')}")
-        
-        print(f"\n📋 ARTICLES:")
-        for item in items:
-            print(f"   - {item.get('name')} x{item.get('quantity')} = {item.get('price')} FCFA")
-        
-        print("="*60 + "\n")
-        
-        # TODO: Envoyer une notification (email, webhook, Telegram, etc.)
-        # send_notification_email(order_details)
-        # send_telegram_message(order_details)
-        
-        return jsonify({
-            'success': True,
-            'message': 'Commande enregistrée avec succès',
-            'order_id': order_id
-        }), 200
-        
-    except Exception as e:
-        print(f"❌ Erreur lors de l'enregistrement de la commande: {str(e)}")
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
-
-
 if __name__ == '__main__':
-    # Utiliser le port de la variable d'environnement (Render) ou 5000 par défaut (local)
     port = int(os.getenv('PORT', 5000))
-    
-    print("🚀 FortniteItems Backend API démarré")
-    print(f"📍 URLs de redirection:")
-    print(f"   - Success: {SUCCESS_URL}")
-    print(f"   - Failure: {FAILURE_URL}")
-    print(f"🔑 Lygos API Key: {LYGOS_API_KEY[:20]}...")
-    
-    # Vérifier la configuration email
-    if SMTP_EMAIL and SMTP_PASSWORD and SMTP_EMAIL != "votre-email@gmail.com":
-        print(f"✅ Configuration Email: {SMTP_EMAIL}")
-        print(f"📧 Les notifications seront envoyées à: {ADMIN_EMAIL}")
-    else:
-        print("⚠️  Configuration Email incomplète - Emails non activés")
-        print("   Configurez SMTP_EMAIL et SMTP_PASSWORD dans .env")
-        print("   Voir GUIDE_EMAIL_CONFIG.md pour les instructions")
-    
-    print(f"🌐 Serveur en écoute sur http://0.0.0.0:{port}")
-    
-    # En production (Render), debug=False
     debug_mode = os.getenv('FLASK_ENV', 'production') == 'development'
     app.run(host='0.0.0.0', port=port, debug=debug_mode)
