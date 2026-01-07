@@ -295,35 +295,61 @@
                         document.getElementById('customerNameDisplay').textContent = customer.fullName || customer.epicUsername || 'Challenger';
 
                         // Save to history since it's confirmed
-                         try {
-                            const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
-                            const exists = history.find(o => o.order_id === activeOrderId);
-                            
-                            if (!exists) {
-                                 const newHistoryItem = {
-                                    orderNumber: backendId,
-                                    order_id: backendId,
-                                    date: order.created_at || new Date().toISOString(),
-                                    items: order.items_data || [],
-                                    amount: order.amount,
-                                    status: order.status
-                                };
-                                history.push(newHistoryItem);
-                                localStorage.setItem('fortniteshop_orders', JSON.stringify(history));
-                                console.log('✅ Commande backend récupérée et sauvegardée localement.');
-                            }
-                        } catch(err) {
-                            console.error("Erreur sauvegarde historique récupéré:", err);
+                        const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+                        const exists = history.find(o => o.order_id === activeOrderId);
+                        
+                        if (!exists) {
+                                const newHistoryItem = {
+                                orderNumber: backendId,
+                                order_id: backendId,
+                                date: order.created_at || new Date().toISOString(),
+                                items: order.items_data || [],
+                                amount: order.amount,
+                                status: order.status
+                            };
+                            history.push(newHistoryItem);
+                            localStorage.setItem('fortniteshop_orders', JSON.stringify(history));
+                            console.log('✅ Commande backend récupérée et sauvegardée localement.');
                         }
                     } else {
-                         document.getElementById('orderNumber').textContent = activeOrderId;
-                         console.warn("Impossible de récupérer les détails (404/500)");
+                         console.warn("Impossible de récupérer les détails (404/500). Sauvegarde minimale.");
+                         // FALLBACK SAVE: Save with ID only so chat works
+                         saveToHistory({
+                            orderNumber: activeOrderId,
+                            order_id: activeOrderId,
+                            date: new Date().toISOString(),
+                            items: [],
+                            amount: '?',
+                            status: 'En attente'
+                         });
                     }
                 } catch(e) {
                     console.error("Erreur fetch order:", e);
+                    // FALLBACK SAVE ON ERROR
+                     saveToHistory({
+                        orderNumber: activeOrderId,
+                        order_id: activeOrderId,
+                        date: new Date().toISOString(),
+                        items: [],
+                        amount: '?',
+                        status: 'Erreur Réseau'
+                     });
                 }
             } else {
                 document.getElementById('orderNumber').textContent = 'Inconnue';
+            }
+
+            // Helper for saving
+            function saveToHistory(item) {
+                try {
+                    const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+                    const exists = history.find(o => o.order_id === item.order_id);
+                    if (!exists) {
+                        history.push(item);
+                        localStorage.setItem('fortniteshop_orders', JSON.stringify(history));
+                        console.log('✅ Commande (Minimale) sauvegardée.');
+                    }
+                } catch(err) { console.error(err); }
             }
 
             // Animation succès
