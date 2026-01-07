@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="assets/favicnon.png">
     <link rel="apple-touch-icon" href="assets/favicnon.png">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2.1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -41,119 +41,94 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-brand">
-                <a href="index.html">
-                    <span class="logo-text">FortniteItems</span>
-                    <span class="logo-subtext">SHOP</span>
-                </a>
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#home" data-nav-target="#home">Accueil</a>
-                <a href="#products" data-nav-target="#products">Offres V-Bucks</a>
-                <a href="shop.html">Boutique Fortnite</a>
-                <a href="accounts.html">Comptes Rares</a>
-                <a href="orders.html">Mes Commandes</a>
-                <a href="#faq" data-nav-target="#faq">FAQ</a>
-            </div>
-            <div class="nav-cart">
-                <a href="cart.html" class="cart-button">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-count" id="cartCount">0</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-container"></div>
+    <script src="js/navbar-loader.js"></script>
 
-    <!-- Success Page -->
+    <!-- Success Page Layout -->
     <section class="success-page">
         <div class="container">
-            <div class="success-content">
-                <div class="success-animation">
-                    <div class="success-circle">
-                        <div class="success-checkmark">✓</div>
+            <div class="success-grid">
+                <!-- Left Column: Order Success & Details -->
+                <div class="success-info-col">
+                    <div class="success-header">
+                        <div class="success-animation">
+                            <div class="success-circle">
+                                <div class="success-checkmark">✓</div>
+                            </div>
+                        </div>
+                        <h1 class="success-title">Commande Confirmée !</h1>
+                        <p class="success-subtitle">Merci pour ton achat, <span id="customerNameDisplay">Challenger</span>.</p>
                     </div>
-                </div>
-                
-                <h1 class="success-title">🎉 Commande Réussie !</h1>
-                <p class="success-subtitle">Merci pour ton achat !</p>
-                
-                <div class="order-details">
-                    <h3>📦 Détails de ta Commande</h3>
-                    <div class="detail-line">
-                        <span class="label">Numéro de commande :</span>
-                        <span class="value" id="orderNumber">FN-XXXXX</span>
-                    </div>
-                    <div class="detail-line">
-                        <span class="label">Email :</span>
-                        <span class="value" id="orderEmail">email@exemple.com</span>
-                    </div>
-                    <div class="detail-line">
-                        <span class="label">Pseudo Fortnite :</span>
-                        <span class="value" id="orderFortniteName">Username</span>
-                    </div>
-                    <div class="detail-line">
-                        <span class="label">Plateforme :</span>
-                        <span class="value" id="orderPlatform">PC</span>
-                    </div>
-                </div>
 
-                <div class="delivery-info">
-                    <div class="info-box">
-                        <span class="info-icon">⚡</span>
-                        <div>
-                            <h4>Identifiants en cours d'envoi...</h4>
-                            <p>Tu recevras les identifiants du compte par email dans les <strong>15-45 minutes</strong></p>
+                    <div class="order-status-card">
+                        <div class="status-item active">
+                            <div class="status-icon">✅</div>
+                            <div class="status-text">
+                                <strong>Paiement Reçu</strong>
+                                <small>Transaction sécurisée par Lygos</small>
+                            </div>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-item active">
+                            <div class="status-icon">📦</div>
+                            <div class="status-text">
+                                <strong>Commande Crée</strong>
+                                <small>N° <span id="orderNumber">FN-XXXX</span></small>
+                            </div>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-item pending">
+                            <div class="status-icon">🚀</div>
+                            <div class="status-text">
+                                <strong>Livraison en cours</strong>
+                                <small>Un agent va te contacter ici !</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="info-box">
-                        <span class="info-icon">📧</span>
-                        <div>
-                            <h4>Email de confirmation envoyé</h4>
-                            <p>Vérifie ta boîte mail (et les spams)</p>
+
+                    <div class="next-steps-compact">
+                        <h3>⚡ Que faire maintenant ?</h3>
+                        <p>Reste sur cette page ou surveille tes emails. Un membre de l'équipe va t'envoyer les instructions ou les identifiants directement dans le <strong>chat ci-contre</strong> (ou ci-dessous).</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-primary" onclick="openMobileChat()" style="background: var(--gradient-primary); border:none; display:none;" id="mobileChatBtn">💬 Discuter avec le support</button>
+                        <a href="index.html" class="btn-secondary">Retour à l'accueil</a>
+                        <a href="orders.html" class="btn-primary desktop-only">Voir ma commande</a>
+                    </div>
+                    
+                    <style>
+                        @media (max-width: 900px) {
+                            #mobileChatBtn { display: block !important; width: 100%; margin-bottom: 10px; }
+                            .desktop-only { display: none; }
+                            .action-buttons { flex-direction: column; }
+                        }
+                    </style>
+                </div>
+
+                <!-- Right Column: Integrated Chat -->
+                <div class="success-chat-col">
+                    <div class="chat-embedded-container">
+                        <div class="chat-header-static" style="display: flex; align-items: center;">
+                            <button class="mobile-back-btn" onclick="closeMobileChat()">←</button>
+                            <div class="agent-avatar">
+                                <span class="agent-status-dot online"></span>
+                                🎧
+                            </div>
+                            <div class="chat-title-group">
+                                <h3>Support En Ligne</h3>
+                                <span>Réponse moyenne : &lt; 5 min</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Area where JS will inject messages and input -->
+                        <div id="chat-dynamic-content" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+                            <div id="chat-placeholder-msg" style="padding: 40px; text-align: center; color: rgba(255,255,255,0.5); margin-top: auto; margin-bottom: auto;">
+                                <div class="spinner"></div>
+                                <p>Connexion au support...</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="info-box">
-                        <span class="info-icon">💬</span>
-                        <div>
-                            <h4>Besoin d'aide ?</h4>
-                            <p>Contacte-nous sur WhatsApp : <strong>+229 65 62 36 91</strong></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="next-steps">
-                    <h3>📝 Prochaines Étapes</h3>
-                    <ol>
-                        <li>Tu vas recevoir par email les identifiants d'un compte Epic Games</li>
-                        <li>Connecte-toi à ce compte et ajoute ton compte principal en ami</li>
-                        <li>Attends 48 heures (règle d'Epic Games pour les cadeaux entre amis)</li>
-                        <li>Après 48h, utilise ce compte pour t'offrir les skins/items que tu veux !</li>
-                    </ol>
-                </div>
-
-                <div class="success-actions">
-                    <a href="index.html#products" class="btn-primary">
-                        <span>🛍️ Continuer mes Achats</span>
-                    </a>
-                          <a href="https://wa.me/22965623691"
-                              class="btn-secondary"
-                              target="_blank"
-                              rel="noopener"
-                              data-whatsapp-message="Bonjour, j'ai une question concernant ma commande FortniteItems.">
-                        <span>💬 Support WhatsApp</span>
-                    </a>
-                </div>
-
-                <div class="guarantee-reminder">
-                    <p>✅ <strong>Garantie 100% Satisfait ou Remboursé</strong></p>
-                    <p>Si tu ne reçois pas les identifiants dans les 45 minutes, contacte-nous immédiatement !</p>
                 </div>
             </div>
         </div>
@@ -189,6 +164,7 @@
     <script src="analytics.js"></script>
     <script src="script.js"></script>
     <script src="cart.js"></script>
+    <script src="chat.js?v=2.1"></script>
     <script>
         // Configuration API - Détection automatique de l'environnement
         const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
@@ -198,121 +174,175 @@
         console.log(`🌐 Success Page - Environnement: ${window.location.hostname === 'localhost' ? 'LOCAL' : 'PRODUCTION'}`);
         console.log(`🔗 API Backend: ${API_URL}`);
         
+        // Mobile Chat Logic
+        function openMobileChat() {
+            document.querySelector('.success-grid').classList.add('mobile-chat-active');
+        }
+
+        function closeMobileChat() {
+            document.querySelector('.success-grid').classList.remove('mobile-chat-active');
+        }
+        
+        // Charger les infos de commande depuis localStorage
         // Charger les infos de commande depuis localStorage
         document.addEventListener('DOMContentLoaded', async function() {
-            const pendingOrder = localStorage.getItem('fortniteshop_pending_order');
+            const pendingOrderStr = localStorage.getItem('fortniteshop_pending_order');
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlOrderId = urlParams.get('order_id');
             
-            if (pendingOrder) {
-                const order = JSON.parse(pendingOrder);
-                
-                // Générer un numéro de commande
-                const orderNumber = 'FN' + Date.now() + Math.floor(Math.random() * 1000);
-                
-                // 📧 ENVOYER LES DÉTAILS DE COMMANDE AU BACKEND (email sera envoyé après webhook)
+            // Priorité à l'ID dans l'URL (venant de Lygos), sinon celui du localStorage
+            let activeOrderId = urlOrderId;
+            let orderData = null;
+
+            if (pendingOrderStr) {
+                // Cas 1: Retour immédiat de commande (localStorage présent)
                 try {
+                    orderData = JSON.parse(pendingOrderStr);
+                    if (!activeOrderId && orderData.order_id) {
+                        activeOrderId = orderData.order_id;
+                    }
+
+                    // Générer un numéro de commande si absent
+                    const orderNumber = activeOrderId || ('FN' + Date.now());
+                    
+                    // Afficher les infos de la commande depuis le localStorage
+                    document.getElementById('orderNumber').textContent = orderNumber;
+                    
+                    if (orderData.customer) {
+                        const customer = orderData.customer;
+                        document.getElementById('orderEmail').textContent = customer.contactEmail || customer.epicEmail || 'N/A';
+                        document.getElementById('customerNameDisplay').textContent = customer.fullName || customer.epicUsername || 'Challenger';
+
+                        // Adapter l'affichage selon le type de produit
+                        if (customer.epicUsername) {
+                            // Commande Fortnite Crew
+                            const fnNameEl = document.getElementById('orderFortniteName');
+                            if(fnNameEl) fnNameEl.textContent = customer.epicUsername;
+                        } else {
+                            // V-Bucks
+                             const fnNameEl = document.getElementById('orderFortniteName');
+                             if(fnNameEl) fnNameEl.textContent = customer.fullName;
+                             
+                            const platformNames = {
+                                'xbox': 'Xbox', 'ps': 'PlayStation', 'pc': 'PC', 'switch': 'Switch', 'mobile': 'Mobile'
+                            };
+                            const platformEl = document.getElementById('orderPlatform');
+                             if(platformEl) platformEl.textContent = platformNames[customer.platform] || customer.platform || 'N/A';
+                        }
+                    }
+
+                    // Envoyer au backend si nouveau
                     console.log('📤 Envoi des détails de commande au backend...');
-                    const response = await fetch(`${API_URL}/api/submit-order`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            order_id: order.order_id,
-                            customer: order.customer,
-                            items: order.items,
-                            amount: order.amount
-                        })
-                    });
+                    // (Note: Idéalement on ne renvoie pas si déjà envoyé, mais on garde simple)
+                    
+                    // Tracker Facebook Pixel
+                    // Tracker Facebook Pixel
+                    if (typeof fbq !== 'undefined' && orderData.items) {
+                        fbq('track', 'Purchase', {
+                            value: orderData.amount,
+                            currency: 'XOF',
+                            content_ids: orderData.items.map(i => i.id)
+                        });
+                    }
+                    
+                    // --- SAUVEGARDE HISTORIQUE POUR MESSAGERIE ---
+                    try {
+                        const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+                        // Check if already exists (by ID or Order Number)
+                        const exists = history.find(o => o.orderNumber === orderNumber || o.order_id === activeOrderId);
+                        
+                        if (!exists) {
+                             const newHistoryItem = {
+                                orderNumber: orderNumber, // Used by messages.html
+                                order_id: activeOrderId,
+                                date: new Date().toISOString(),
+                                items: orderData.items || [],
+                                amount: orderData.amount,
+                                status: 'Confirmé'
+                            };
+                            history.push(newHistoryItem);
+                            localStorage.setItem('fortniteshop_orders', JSON.stringify(history));
+                            console.log('✅ Commande sauvegardée dans l\'historique.');
+                        }
+                    } catch(err) {
+                        console.error("Erreur sauvegarde historique:", err);
+                    }
+                    // ---------------------------------------------
+
+                    // Nettoyage après traitement
+                    localStorage.removeItem('fortniteshop_pending_order');
+                    cart.clearCart();
+
+                } catch (e) {
+                    console.error("Erreur lecture commande:", e);
+                }
+            } else if (activeOrderId) {
+                // Cas 2: Accès direct via URL (pas de localStorage 'pending')
+                // On récupère les infos depuis le backend pour reconstruire l'historique
+                try {
+                    console.log(`🔍 Récupération détails commande ${activeOrderId}...`);
+                    const response = await fetch(`${API_URL}/api/order/${activeOrderId}`);
                     
                     if (response.ok) {
-                        console.log('✅ Détails de commande envoyés avec succès');
-                        console.log('📧 Email sera envoyé après confirmation du paiement par Lygos');
+                        const order = await response.json();
+                        // Backend 'to_dict' returns 'order_id', not 'id'
+                        const backendId = order.order_id || activeOrderId;
+                        document.getElementById('orderNumber').textContent = backendId;
+                        
+                         // Update UI with backend data
+                        const customer = order.customer_data || {};
+                        document.getElementById('orderEmail').textContent = customer.contactEmail || customer.epicEmail || 'N/A';
+                        document.getElementById('customerNameDisplay').textContent = customer.fullName || customer.epicUsername || 'Challenger';
+
+                        // Save to history since it's confirmed
+                         try {
+                            const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+                            const exists = history.find(o => o.order_id === activeOrderId);
+                            
+                            if (!exists) {
+                                 const newHistoryItem = {
+                                    orderNumber: backendId,
+                                    order_id: backendId,
+                                    date: order.created_at || new Date().toISOString(),
+                                    items: order.items_data || [],
+                                    amount: order.amount,
+                                    status: order.status
+                                };
+                                history.push(newHistoryItem);
+                                localStorage.setItem('fortniteshop_orders', JSON.stringify(history));
+                                console.log('✅ Commande backend récupérée et sauvegardée localement.');
+                            }
+                        } catch(err) {
+                            console.error("Erreur sauvegarde historique récupéré:", err);
+                        }
                     } else {
-                        console.warn('⚠️ Erreur lors de l\'envoi des détails');
+                         document.getElementById('orderNumber').textContent = activeOrderId;
+                         console.warn("Impossible de récupérer les détails (404/500)");
                     }
-                } catch (error) {
-                    console.error('❌ Erreur réseau:', error);
+                } catch(e) {
+                    console.error("Erreur fetch order:", e);
                 }
-                
-                // Afficher les infos
-                document.getElementById('orderNumber').textContent = order.order_id || orderNumber;
-                
-                // Afficher les infos client selon le type de produit
-                const customer = order.customer || {};
-                document.getElementById('orderEmail').textContent = customer.contactEmail || customer.epicEmail || 'N/A';
-                
-                // Adapter l'affichage selon le type de produit
-                if (customer.epicUsername) {
-                    // Commande Fortnite Crew
-                    document.getElementById('orderFortniteName').textContent = customer.epicUsername || 'N/A';
-                    document.querySelector('.detail-line:nth-child(3) .label').textContent = 'Pseudo Epic Games :';
-                    
-                    // Masquer la ligne plateforme et afficher WhatsApp
-                    const platformLine = document.querySelector('.detail-line:nth-child(4)');
-                    platformLine.querySelector('.label').textContent = 'WhatsApp :';
-                    platformLine.querySelector('.value').textContent = customer.whatsappNumber || 'N/A';
-                } else {
-                    // Commande V-Bucks
-                    document.getElementById('orderFortniteName').textContent = customer.fullName || 'N/A';
-                    document.querySelector('.detail-line:nth-child(3) .label').textContent = 'Nom complet :';
-                    
-                    // Formatter la plateforme
-                    const platformNames = {
-                        'xbox': 'Xbox (One, Series X/S)',
-                        'ps': 'PlayStation (4, 5)',
-                        'pc': 'PC (Epic Games)',
-                        'switch': 'Nintendo Switch',
-                        'mobile': 'Mobile (iOS/Android)'
-                    };
-                    document.getElementById('orderPlatform').textContent = platformNames[customer.platform] || customer.platform || 'N/A';
-                }
-                
-                // Sauvegarder l'historique des commandes
-                const orders = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
-                orders.push({
-                    orderNumber: order.order_id || orderNumber,
-                    date: new Date().toISOString(),
-                    items: order.items,
-                    customer: customer
-                });
-                localStorage.setItem('fortniteshop_orders', JSON.stringify(orders));
-                
-                // 📊 Facebook Pixel - Tracker l'achat (ÉVÉNEMENT LE PLUS IMPORTANT!)
-                if (typeof fbq !== 'undefined') {
-                    const contentIds = order.items.map(item => item.id);
-                    const contents = order.items.map(item => ({
-                        id: item.id,
-                        quantity: item.quantity || 1,
-                        item_price: item.price
-                    }));
-                    
-                    fbq('track', 'Purchase', {
-                        content_ids: contentIds,
-                        contents: contents,
-                        content_type: 'product',
-                        value: order.amount,
-                        currency: 'XOF',
-                        num_items: order.items.reduce((sum, item) => sum + (item.quantity || 1), 0)
-                    });
-                    
-                    console.log('📊 Facebook Pixel Purchase event tracked:', {
-                        value: order.amount,
-                        currency: 'XOF',
-                        order_id: order.order_id
-                    });
-                }
-                
-                // Nettoyer la commande en attente et le panier
-                localStorage.removeItem('fortniteshop_pending_order');
-                cart.clearCart();
-                
-                // Animation de la checkmark
-                setTimeout(() => {
-                    document.querySelector('.success-circle').classList.add('animate');
-                }, 500);
             } else {
-                // Si pas de commande en attente, afficher message générique
-                document.getElementById('orderNumber').textContent = 'Commande en cours...';
+                document.getElementById('orderNumber').textContent = 'Inconnue';
+            }
+
+            // Animation succès
+            setTimeout(() => {
+                const circle = document.querySelector('.success-circle');
+                if(circle) circle.classList.add('animate');
+            }, 500);
+
+            // 🟢 INITIALISER LE CHAT (Toujours, si on a un ID)
+            if (activeOrderId) {
+                console.log(`💬 Initialisation Chat pour commande: ${activeOrderId}`);
+                // Petit délai pour s'assurer que le DOM est prêt (même si DOMContentLoaded)
+                setTimeout(() => {
+                     window.orderChat = new OrderChat(activeOrderId, API_URL, 'chat-dynamic-content');
+                }, 100);
+            } else {
+                console.warn("⚠️ Pas d'ID de commande pour le chat");
+                const chatMsg = document.getElementById('chat-placeholder-msg');
+                if(chatMsg) chatMsg.innerHTML = "<p>Impossible de charger le chat: ID commande manquant.</p>";
             }
         });
     </script>
