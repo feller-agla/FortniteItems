@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | FortniteItems Shop</title>
+    <link rel="icon" type="image/png" href="assets/favicnon.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 1rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-card {
+            background: rgba(18, 18, 24, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 480px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 1.5rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            color: #888;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            outline: none;
+        }
+
+        .auth-tab.active {
+            background: transparent;
+            color: #fff;
+            border-bottom: 2px solid #00d9ff;
+        }
+
+        .auth-content {
+            padding: 2.5rem;
+        }
+
+        .form-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1rem 1rem 3rem;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #00d9ff;
+            background: rgba(0, 217, 255, 0.05);
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #00d9ff, #0066ff);
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            background: #333;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            padding: 0 1rem;
+        }
+
+        /* Google Btn Customization */
+        .google-btn-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        /* Spinner */
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        .hidden { display: none; }
+        .error-msg { color: #ff3366; text-align: center; margin-bottom: 1rem; font-size: 0.9rem; display: none; }
+    </style>
+</head>
+<body class="shop-page-body">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+    <script src="js/navbar-loader.js"></script>
+
+    <main class="login-container">
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchTab('login')">CONNEXION</button>
+                <button class="auth-tab" onclick="switchTab('register')">INSCRIPTION</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-content" class="auth-content">
+                <div class="form-title">Bon retour</div>
+                <div class="form-subtitle">Accède à tes commandes et ton historique</div>
+                
+                <div class="error-msg" id="login-error"></div>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="input-group">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="login-email" class="input-field" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="login-password" class="input-field" placeholder="Mot de passe" required>
+                    </div>
+                    <button type="submit" class="btn-submit" id="login-btn">
+                        SE CONNECTER
+                    </button>
+                </form>
+
+                <div class="divider"><span>OU CONTINUER AVEC</span></div>
+
+                <div class="google-btn-container">
+                    <div id="g_id_onload"
+                         data-client_id="YOUR_GOOGLE_CLIENT_ID_PLACEHOLDER"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleGoogleCallback"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="pill"
+                         data-theme="outline"
+                         data-text="continue_with"
+                         data-size="large"
+                         data-logo_alignment="left">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-content" class="auth-content hidden">
+                <div class="form-title">Créer un compte</div>
+                <div class="form-subtitle">Rejoins l'élite des joueurs Fortnite</div>
+
+                <div class="error-msg" id="register-error"></div>
+
+                <form onsubmit="handleRegister(event)">
+                    <div class="input-group">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="reg-name" class="input-field" placeholder="Pseudo (Optionnel)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="reg-email" class="input-field" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="reg-password" class="input-field" placeholder="Mot de passe" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn-submit" id="reg-btn">
+                        S'INSCRIRE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // API Base URL - Dynamically Detect
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000'
+            : 'https://fortniteitems.onrender.com';
+
+        // Tab Switching
+        function switchTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-content').forEach(c => c.classList.add('hidden'));
+            
+            if(tab === 'login') {
+                document.querySelector('button[onclick="switchTab(\'login\')"]').classList.add('active');
+                document.getElementById('login-content').classList.remove('hidden');
+            } else {
+                document.querySelector('button[onclick="switchTab(\'register\')"]').classList.add('active');
+                document.getElementById('register-content').classList.remove('hidden');
+            }
+        }
+
+        // Login Logic
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('login-btn');
+            const errorDiv = document.getElementById('login-error');
+            
+            btn.innerHTML = '<span class="loader"></span>';
+            btn.disabled = true;
+            errorDiv.style.display = 'none';
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            try {
+                const res = await fetch(`${API_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if(data.success) {
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('user_info', JSON.stringify(data.user));
+                    window.location.href = 'index.html';
+                } else {
+                    throw new Error(data.message || 'Erreur de connexion');
+                }
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.style.display = 'block';
+                btn.innerHTML = 'SE CONNECTER';
+                btn.disabled = false;
+            }
+        }
+
+        // Register Logic
+        async function handleRegister(e) {
+            e.preventDefault();
+            const btn = document.getElementById('reg-btn');
+            const errorDiv = document.getElementById('register-error');
+            
+            btn.innerHTML = '<span class="loader"></span>';
+            btn.disabled = true;
+            errorDiv.style.display = 'none';
+
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const name = document.getElementById('reg-name').value;
+
+            try {
+                const res = await fetch(`${API_URL}/api/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, name })
+                });
+                const data = await res.json();
+
+                if(data.success) {
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('user_info', JSON.stringify(data.user));
+                    window.location.href = 'index.html';
+                } else {
+                    throw new Error(data.message || 'Erreur d\'inscription');
+                }
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.style.display = 'block';
+                btn.innerHTML = 'S\'INSCRIRE';
+                btn.disabled = false;
+            }
+        }
+
+        // Google Callback
+        async function handleGoogleCallback(response) {
+            try {
+                const res = await fetch(`${API_URL}/api/auth/google`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: response.credential })
+                });
+                const data = await res.json();
+
+                if(data.success) {
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('user_info', JSON.stringify(data.user));
+                    window.location.href = 'index.html';
+                } else {
+                   console.error('Google Auth Failed', data);
+                   alert('Erreur Google: ' + (data.message || 'Inconnue'));
+                }
+            } catch(e) {
+                console.error(e);
+                alert("Erreur de connexion Google");
+            }
+        }
+    </script>
+</body>
+</html>

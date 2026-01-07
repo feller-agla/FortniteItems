@@ -20,12 +20,16 @@ class Order(db.Model):
     lygos_link = db.Column(db.String(500))
     lygos_ref = db.Column(db.String(100))
     
+    # Relation avec utilisateur (Auth)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    
     # Relation avec les messages
     messages = db.relationship('Message', backref='order', lazy=True, cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
             'order_id': self.id,
+            'user_id': self.user_id,
             'created_at': self.created_at.isoformat(),
             'updated_at': self.updated_at.isoformat(),
             'amount': self.amount,
@@ -33,6 +37,27 @@ class Order(db.Model):
             'customer_data': self.customer_data,
             'items': self.items_data,
             'lygos_link': self.lygos_link
+        }
+
+class User(db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(256), nullable=True) # Nullable si Google Auth uniquement
+    name = db.Column(db.String(100))
+    google_id = db.Column(db.String(100), unique=True, nullable=True)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    
+    # Relation
+    orders = db.relationship('Order', backref='user', lazy=True)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'name': self.name,
+            'google_connected': bool(self.google_id)
         }
 
 class Message(db.Model):

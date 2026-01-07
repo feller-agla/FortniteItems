@@ -12,13 +12,18 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+from functools import wraps
+import jwt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from services.fortnite_api import FortniteAPIClient, FortniteAPIError
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests
 
 # DB Configuration
 from database import init_db, db
-from models import Order, Message
+from models import Order, Message, User
 
 # Charger les variables d'environnement depuis .env
 try:
@@ -33,6 +38,7 @@ except Exception as e:
     print(f"⚠️  Erreur chargement .env: {e}")
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-super-secret-key-fortnite-items-2026')
 
 # Initialiser la base de données
 init_db(app)
@@ -485,6 +491,191 @@ def health_check():
         "database": db_status,
         "timestamp": datetime.now().isoformat()
     }), 200
+
+# --- AUTHENTICATION ---
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        if 'Authorization' in request.headers:
+            auth_header = request.headers['Authorization']
+            if auth_header.startswith('Bearer '):
+                token = auth_header.split(" ")[1]
+        
+        if not token:
+            return jsonify({'message': 'Token manquant', 'success': False}), 401
+        
+        try:
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+            current_user = db.session.get(User, data['user_id'])
+            if not current_user:
+                 return jsonify({'message': 'Utilisateur introuvable', 'success': False}), 401
+        except Exception as e:
+            return jsonify({'message': 'Token invalide', 'success': False, 'error': str(e)}), 401
+            
+        return f(current_user, *args, **kwargs)
+    return decorated
+
+@app.route('/api/auth/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    name = data.get('name')
+    
+    if not email or not password:
+        return jsonify({'message': 'Email et mot de passe requis', 'success': False}), 400
+        
+    if User.query.filter_by(email=email).first():
+        return jsonify({'message': 'Email déjà utilisé', 'success': False}), 409
+        
+    hashed_pw = generate_password_hash(password)
+    new_user = User(email=email, password_hash=hashed_pw, name=name)
+    
+    try:
+        db.session.add(new_user)
+        db.session.commit()
+        
+        # Auto-login
+        token = jwt.encode({
+            'user_id': new_user.id,
+            'exp': datetime.now(timezone.utc) + timedelta(days=30)
+        }, app.config['SECRET_KEY'])
+        
+        return jsonify({
+            'success': True,
+            'message': 'Compte créé',
+            'token': token,
+            'user': new_user.to_dict()
+        }), 201
+    except Exception as e:
+        return jsonify({'message': str(e), 'success': False}), 500
+
+@app.route('/api/auth/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    
+    user = User.query.filter_by(email=email).first()
+    
+    if not user or not user.password_hash:
+        return jsonify({'message': 'Email ou mot de passe incorrect', 'success': False}), 401
+        
+    if check_password_hash(user.password_hash, password):
+        token = jwt.encode({
+            'user_id': user.id,
+            'exp': datetime.now(timezone.utc) + timedelta(days=30)
+        }, app.config['SECRET_KEY'])
+        
+        return jsonify({
+            'success': True,
+            'token': token,
+            'user': user.to_dict()
+        }), 200
+        
+    return jsonify({'message': 'Email ou mot de passe incorrect', 'success': False}), 401
+
+@app.route('/api/user/orders', methods=['GET'])
+@token_required
+def get_user_orders(current_user):
+    # Fetch orders linked to this user
+    # Also fetch orders that might match email even if not linked by ID (legacy support)? 
+    # For now, simplistic approach: Orders by ID
+    
+    user_orders = Order.query.filter_by(user_id=current_user.id).order_by(Order.created_at.desc()).all()
+    orders_data = [o.to_dict() for o in user_orders]
+    
+    return jsonify({
+        'success': True,
+        'orders': orders_data
+    }), 200
+
+# Endpoint pour lier une commande existante (guest) au compte
+@app.route('/api/user/link-order', methods=['POST'])
+@token_required
+def link_order_to_user(current_user):
+    data = request.get_json()
+    order_id = data.get('order_id')
+    
+    order = db.session.get(Order, order_id)
+    if not order:
+        return jsonify({'success': False, 'message': 'Commande introuvable'}), 404
+        
+    if order.user_id:
+         if order.user_id == current_user.id:
+             return jsonify({'success': True, 'message': 'Déjà lié'}), 200
+         return jsonify({'success': False, 'message': 'Commande déjà liée à un autre compte'}), 403
+         
+    # Check if user owns order (e.g. email match or loose verification?)
+    # For now, we trust the client if they have the Order ID (implies they completed it)
+    # Ideally we check email but Guest orders might not have email saved correctly in backend yet
+    order.user_id = current_user.id
+    db.session.commit()
+    
+    return jsonify({'success': True, 'message': 'Commande liée avec succès'}), 200
+
+
+# --- GOOGLE AUTH ---
+@app.route('/api/auth/google', methods=['POST'])
+def google_auth():
+    data = request.get_json()
+    token = data.get('token')
+    
+    if not token:
+        return jsonify({'message': 'Token Google manquant', 'success': False}), 400
+        
+    try:
+        # Verify Google Token
+        # NOTE: You must add GOOGLE_CLIENT_ID=... to .env for production security
+        client_id = os.getenv('GOOGLE_CLIENT_ID') 
+        
+        id_info = id_token.verify_oauth2_token(
+            token, 
+            google_requests.Request(), 
+            client_id # If None, it skips Audience check (Dev mode, but risky for Prod)
+        )
+
+        email = id_info['email']
+        google_id = id_info['sub']
+        name = id_info.get('name')
+        
+        # Check if user exists
+        user = User.query.filter_by(email=email).first()
+        
+        if not user:
+            # Create new user via Google
+            user = User(
+                email=email,
+                name=name,
+                google_id=google_id
+            )
+            db.session.add(user)
+            db.session.commit()
+        else:
+            # Link Google ID if not present
+            if not user.google_id:
+                user.google_id = google_id
+                db.session.commit()
+                
+        # Generate JWT
+        jwt_token = jwt.encode({
+            'user_id': user.id,
+            'exp': datetime.now(timezone.utc) + timedelta(days=30)
+        }, app.config['SECRET_KEY'])
+        
+        return jsonify({
+            'success': True,
+            'token': jwt_token,
+            'user': user.to_dict()
+        }), 200
+
+    except ValueError as e:
+        return jsonify({'message': 'Token Google invalide', 'success': False, 'error': str(e)}), 401
+    except Exception as e:
+        return jsonify({'message': 'Erreur Google Auth', 'success': False, 'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
