@@ -194,6 +194,9 @@
             let activeOrderId = urlOrderId;
             let orderData = null;
 
+            // STOCKAGE DES DÉTAILS POUR LE CHAT
+            let chatOrderDetails = "Détails non disponibles";
+
             if (pendingOrderStr) {
                 // Cas 1: Retour immédiat de commande (localStorage présent)
                 try {
@@ -209,17 +212,16 @@
                     document.getElementById('orderNumber').textContent = orderNumber;
                     
                     if (orderData.customer) {
+                        // ... existing UI code ...
                         const customer = orderData.customer;
                         document.getElementById('orderEmail').textContent = customer.contactEmail || customer.epicEmail || 'N/A';
                         document.getElementById('customerNameDisplay').textContent = customer.fullName || customer.epicUsername || 'Challenger';
 
-                        // Adapter l'affichage selon le type de produit
+                         // Adapter l'affichage selon le type de produit
                         if (customer.epicUsername) {
-                            // Commande Fortnite Crew
-                            const fnNameEl = document.getElementById('orderFortniteName');
-                            if(fnNameEl) fnNameEl.textContent = customer.epicUsername;
+                             const fnNameEl = document.getElementById('orderFortniteName');
+                             if(fnNameEl) fnNameEl.textContent = customer.epicUsername;
                         } else {
-                            // V-Bucks
                              const fnNameEl = document.getElementById('orderFortniteName');
                              if(fnNameEl) fnNameEl.textContent = customer.fullName;
                              
@@ -231,11 +233,19 @@
                         }
                     }
 
+                    // PREPARE DETAILS FOR CHAT
+                    const itemsNames = (orderData.items || []).map(i => `${i.name} (x${i.quantity || 1})`).join(', ');
+                    chatOrderDetails = `
+Nom: ${orderData.customer?.fullName || orderData.customer?.epicUsername || 'Client'}
+Montant: ${orderData.amount} FCFA
+Articles: ${itemsNames}
+ID: ${activeOrderId}
+`.trim();
+
                     // Envoyer au backend si nouveau
                     console.log('📤 Envoi des détails de commande au backend...');
-                    // (Note: Idéalement on ne renvoie pas si déjà envoyé, mais on garde simple)
+                    // ... existing backend analytics code ...
                     
-                    // Tracker Facebook Pixel
                     // Tracker Facebook Pixel
                     if (typeof fbq !== 'undefined' && orderData.items) {
                         fbq('track', 'Purchase', {
@@ -245,7 +255,8 @@
                         });
                     }
                     
-                    // --- SAUVEGARDE HISTORIQUE POUR MESSAGERIE ---
+                    // ... existing save history code ...
+                     // --- SAUVEGARDE HISTORIQUE POUR MESSAGERIE ---
                     try {
                         const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
                         // Check if already exists (by ID or Order Number)
@@ -277,22 +288,28 @@
                     console.error("Erreur lecture commande:", e);
                 }
             } else if (activeOrderId) {
-                // Cas 2: Accès direct via URL (pas de localStorage 'pending')
-                // On récupère les infos depuis le backend pour reconstruire l'historique
+                // Cas 2: Accès direct via URL
                 try {
                     console.log(`🔍 Récupération détails commande ${activeOrderId}...`);
                     const response = await fetch(`${API_URL}/api/order/${activeOrderId}`);
                     
                     if (response.ok) {
                         const order = await response.json();
-                        // Backend 'to_dict' returns 'order_id', not 'id'
                         const backendId = order.order_id || activeOrderId;
                         document.getElementById('orderNumber').textContent = backendId;
                         
-                         // Update UI with backend data
                         const customer = order.customer_data || {};
                         document.getElementById('orderEmail').textContent = customer.contactEmail || customer.epicEmail || 'N/A';
                         document.getElementById('customerNameDisplay').textContent = customer.fullName || customer.epicUsername || 'Challenger';
+
+                         // PREPARE DETAILS FOR CHAT
+                        const itemsNames = (order.items_data || []).map(i => `${i.name} (x${i.quantity || 1})`).join(', ');
+                        chatOrderDetails = `
+Nom: ${customer.fullName || customer.epicUsername || 'Client'}
+Montant: ${order.amount} FCFA
+Articles: ${itemsNames}
+ID: ${backendId}
+`.trim();
 
                         // Save to history since it's confirmed
                         const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
@@ -323,9 +340,18 @@
                             status: 'En attente'
                          });
                     }
+
+                    // 🧹 IMPORTANT: Vider le panier car la commande est réussie (accès URL)
+                    if (typeof cart !== 'undefined') {
+                        cart.clearCart();
+                        console.log('🧹 Panier vidé après succès (URL).');
+                    } else {
+                        localStorage.removeItem('fortniteshop_cart');
+                    }
+
                 } catch(e) {
+                    // ... error handling ...
                     console.error("Erreur fetch order:", e);
-                    // FALLBACK SAVE ON ERROR
                      saveToHistory({
                         orderNumber: activeOrderId,
                         order_id: activeOrderId,
@@ -361,10 +387,65 @@
             // 🟢 INITIALISER LE CHAT (Toujours, si on a un ID)
             if (activeOrderId) {
                 console.log(`💬 Initialisation Chat pour commande: ${activeOrderId}`);
-                // Petit délai pour s'assurer que le DOM est prêt (même si DOMContentLoaded)
-                setTimeout(() => {
+                
+                // Petit délai pour s'assurer que le DOM est prêt
+                setTimeout(async () => {
                      window.orderChat = new OrderChat(activeOrderId, API_URL, 'chat-dynamic-content');
-                }, 100);
+                     
+                     // AUTO-OPEN CHAT ON MOBILE
+                     if (window.innerWidth <= 900) {
+                         console.log("📱 Mobile détecté : Ouverture automatique du chat");
+                         openMobileChat();
+                     }
+
+                     // AUTO-SEND CLIENT GREETING (Si pas encore fait)
+                     setTimeout(async () => {
+                         const hasUserMessage = window.orderChat.messages.some(m => m.sender === 'user');
+                         
+                         if (!hasUserMessage) {
+                             console.log("👋 Envoi du message de salutation automatique...");
+                             
+                             // 🛠️ FALLBACK : Si les détails ne sont pas prêts en mémoire, on regarde le localStorage ou le DOM
+                             if (chatOrderDetails.includes("non disponibles")) {
+                                 try {
+                                     // Tentative 1: LocalStorage (Historique)
+                                     const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
+                                     const savedOrder = history.find(o => o.order_id === activeOrderId || o.orderNumber === activeOrderId);
+                                     
+                                     if (savedOrder) {
+                                         const itemsList = (savedOrder.items || []).map(i => `${i.name} (x${i.quantity || 1})`).join(', ');
+                                         chatOrderDetails = `
+Nom: Client (Retrouvé)
+Montant: ${savedOrder.amount} FCFA
+Articles: ${itemsList}
+ID: ${savedOrder.order_id}
+`.trim();
+                                     } 
+                                     // Tentative 2: DOM (Ce qui est affiché à l'écran)
+                                     else {
+                                         const domId = document.getElementById('orderNumber')?.textContent || activeOrderId;
+                                         const domName = document.getElementById('customerNameDisplay')?.textContent || 'Client';
+                                         chatOrderDetails = `
+Nom: ${domName}
+ID: ${domId}
+(Détails complets en cours de chargement...)
+`.trim();
+                                     }
+                                 } catch(e) { console.error("Fallback error", e); }
+                             }
+
+                             // Construire le message riche
+                             const greeting = `Bonjour, je viens de passer commande !\n\n${chatOrderDetails}`;
+                             
+                             if(window.orderChat.inputArea) {
+                                 window.orderChat.inputArea.value = greeting;
+                                 await window.orderChat.sendMessage(); // Envoie le message
+                                 console.log("✅ Salutation détaillée envoyée !");
+                             }
+                         }
+                     }, 2500); // Légèrement augmenté à 2.5s pour être sûr
+
+                }, 500);
             } else {
                 console.warn("⚠️ Pas d'ID de commande pour le chat");
                 const chatMsg = document.getElementById('chat-placeholder-msg');

@@ -59,7 +59,7 @@ function initializeNavbar() {
         // Fallback if cart not loaded yet
         const countSpan = document.getElementById('cartCount');
         if(countSpan) {
-            const savedCart = JSON.parse(localStorage.getItem('fortnite_cart') || '[]');
+            const savedCart = JSON.parse(localStorage.getItem('fortniteshop_cart') || '[]');
             const count = savedCart.reduce((sum, item) => sum + item.quantity, 0);
             countSpan.textContent = count;
         }
