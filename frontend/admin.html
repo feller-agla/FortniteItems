@@ -129,6 +129,139 @@
             background: rgba(255,255,255,0.05);
             padding: 2rem; border-radius: 12px; text-align: center;
         }
+        
+        /* Responsive Order Cards (Replacing Table) */
+        .admin-order-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .admin-order-card {
+            background: rgba(20, 0, 40, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-order-card.expanded {
+            border-color: var(--electric-blue);
+            background: rgba(30, 10, 50, 0.8);
+        }
+
+        .card-header {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .card-header:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .header-main {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-id {
+            font-family: 'Orbitron';
+            font-weight: bold;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .header-client {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .header-amount {
+            font-family: 'Orbitron';
+            color: var(--electric-blue);
+            font-weight: bold;
+        }
+        
+        .card-chevron {
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+
+        .admin-order-card.expanded .card-chevron {
+            transform: rotate(180deg);
+            opacity: 1;
+            color: var(--electric-blue);
+        }
+
+        .card-body {
+            display: none; /* Accordion hidden by default */
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.1);
+        }
+
+        .body-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-group h4 {
+            margin: 0 0 5px 0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+        
+        .item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .item-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Mobile Tweaks */
+        @media (max-width: 600px) {
+            .header-main {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            .card-actions {
+                flex-direction: column;
+            }
+            .action-btn {
+                width: 100%;
+                padding: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -145,12 +278,30 @@
     <div class="admin-container" id="dashboardContent" style="display:none;">
         <div class="admin-header">
             <div>
-                <h1 class="admin-title">ADMIN DASHBOARD</h1>
-                <p>Gestion des commandes en temps réel</p>
+                <h1 class="admin-title">ADMIN</h1>
             </div>
-            <div>
-                <button onclick="location.reload()" class="action-btn btn-chat">🔄 Actualiser</button>
-                <a href="index.html" class="action-btn btn-chat" style="text-decoration:none">🏠 Site</a>
+            <div style="display:flex; gap:10px;">
+                <button onclick="switchAdminTab('orders')" class="action-btn btn-chat active-tab" id="tab-orders">📦</button>
+                <button onclick="switchAdminTab('messages')" class="action-btn btn-chat" id="tab-messages">💬</button>
+                <button onclick="location.reload()" class="action-btn btn-chat">🔄</button>
+            </div>
+        </div>
+
+        <style>
+            .active-tab { background: var(--electric-blue) !important; color: black !important; }
+            .msg-row { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px; cursor: pointer; transition: background 0.2s; display: flex; justify-content: space-between; align-items: center; }
+            .msg-row:hover { background: rgba(255,255,255,0.05); }
+            .msg-preview { font-size: 0.9rem; color: #aaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px; }
+            .unread-dot { width: 10px; height: 10px; background: #00ff88; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        </style>
+
+        <!-- Messages View (Hidden by default) -->
+        <div id="messages-view" style="display:none;">
+            <div class="orders-table-container">
+                 <h3 style="padding:1rem; margin:0; border-bottom:1px solid rgba(255,255,255,0.1);">Conversations Actives</h3>
+                 <div id="conversations-list">
+                     <!-- JS render -->
+                 </div>
             </div>
         </div>
 
@@ -170,23 +321,10 @@
             </div>
         </div>
 
-        <div class="orders-table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>ID / Client</th>
-                        <th>Articles</th>
-                        <th>Montant</th>
-                        <th>Statut</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="admin-orders-list">
-                    <!-- JS injection -->
-                    <tr><td colspan="6" style="text-align:center; padding:2rem;">Chargement...</td></tr>
-                </tbody>
-            </table>
+        <!-- NEW: Responsive Cards Container -->
+        <div id="orders-view-wrapper" class="admin-order-cards">
+            <!-- JS Injection here -->
+            <div style="text-align:center; padding:2rem;">Chargement...</div>
         </div>
     </div>
 
@@ -198,31 +336,99 @@
         // Simple client-side auth for now
         function checkAdmin() {
             const pass = document.getElementById('adminPass').value;
-            if(pass === 'u1opps_060206') { // Temporary Hardcoded Password
+            if(pass === 'u1opps_060206') { 
                 document.getElementById('authOverlay').style.display = 'none';
                 document.getElementById('dashboardContent').style.display = 'block';
                 loadAdminOrders();
-                // Auto refresh every 30s
-                setInterval(loadAdminOrders, 30000);
+                
+                // Dynamic Polling Loop
+                const pollLoop = () => {
+                   const delay = currentTab === 'messages' ? 3000 : 20000; // 3s for chat reactivity, 20s for orders
+                   setTimeout(() => {
+                       if(document.getElementById('dashboardContent').style.display === 'block') {
+                           loadAdminOrders().then(pollLoop);
+                       }
+                   }, delay);
+                };
+                pollLoop();
             } else {
                 alert('Accès refusé');
             }
+        }
+
+        let currentTab = 'orders';
+
+        function switchAdminTab(tab) {
+            currentTab = tab;
+            // Update Buttons
+            document.querySelectorAll('.action-btn').forEach(b => b.classList.remove('active-tab'));
+            document.getElementById(`tab-${tab}`).classList.add('active-tab');
+
+            // Toggle Views
+            if (tab === 'orders') {
+                document.querySelector('.stats-grid').style.display = 'grid';
+                document.getElementById('orders-view-wrapper').style.display = 'flex'; // Flex for cards
+                document.getElementById('messages-view').style.display = 'none';
+            } else {
+                document.querySelector('.stats-grid').style.display = 'none'; // Hide stats for cleaner msg view
+                document.getElementById('orders-view-wrapper').style.display = 'none';
+                document.getElementById('messages-view').style.display = 'block';
+            }
+            loadAdminOrders(); // Refresh data
         }
 
         async function loadAdminOrders() {
             try {
                 const res = await fetch(`${API_URL}/api/admin/orders`);
                 const orders = await res.json();
-                renderTable(orders);
-                updateStats(orders);
+                
+                if (currentTab === 'orders') {
+                    renderOrderCards(orders); // NEW function name
+                    updateStats(orders);
+                } else {
+                    renderConversations(orders);
+                }
+                
             } catch (e) {
                 console.error(e);
-                document.getElementById('admin-orders-list').innerHTML = `
-                    <tr><td colspan="6" style="color:red;text-align:center">
-                        Erreur connexion API. Vérifiez que le backend tourne sur le port 5000.<br>
-                        ${e}
-                    </td></tr>`;
             }
+        }
+
+        function renderConversations(orders) {
+            const container = document.getElementById('conversations-list');
+            // Filter orders with messages
+            const chattingOrders = orders.filter(o => o.message_count > 0);
+            
+            if (chattingOrders.length === 0) {
+                container.innerHTML = '<div style="padding:2rem; text-align:center; opacity:0.5;">Aucune conversation active.</div>';
+                return;
+            }
+
+            container.innerHTML = chattingOrders.map(order => {
+                const lastMsg = order.last_message || { content: '...', timestamp: order.created_at };
+                const isUserLast = lastMsg.sender === 'user';
+                const date = new Date(lastMsg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                const clientName = order.customer_data?.fullName || order.customer_data?.epicUsername || 'Client';
+                
+                return `
+                    <div class="msg-row" onclick="openAdminChat('${order.order_id}', '${clientName}')">
+                        <div style="flex:1">
+                            <div style="font-weight:bold; margin-bottom:5px;">
+                                ${isUserLast ? '<span class="unread-dot"></span>' : ''}
+                                ${clientName} <span style="font-weight:normal; opacity:0.5; font-size:0.8rem;">#${order.order_id.substring(0,6)}</span>
+                            </div>
+                            <div class="msg-preview">
+                                <span style="color:${isUserLast ? '#fff' : 'var(--electric-blue)'}">${isUserLast ? '👤' : 'You:'}</span> 
+                                ${lastMsg.content}
+                            </div>
+                        </div>
+                        <div style="text-align:right; font-size:0.8rem; opacity:0.5;">
+                            ${date} <br>
+                            <span class="badge ${order.status}" style="font-size:0.7rem; padding:2px 5px;">${order.status}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
         function updateStats(orders) {
@@ -235,66 +441,97 @@
             document.getElementById('count-delivered').innerText = delivered;
         }
 
-        function renderTable(orders) {
-            const tbody = document.getElementById('admin-orders-list');
+        // NEW: Render Cards instead of Table
+        function renderOrderCards(orders) {
+            const container = document.getElementById('orders-view-wrapper');
             if(orders.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">Aucune commande.</td></tr>';
+                container.innerHTML = '<div style="text-align:center; width:100%; padding:2rem;">Aucune commande.</div>';
                 return;
             }
 
-            tbody.innerHTML = orders.map(order => {
+            container.innerHTML = orders.map(order => {
                 const date = new Date(order.created_at).toLocaleDateString('fr-FR', {
                     day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'
                 });
                 
-                let itemsText = 'N/A';
+                // Parse items safely
+                let itemsListHtml = '';
                 if(order.items && Array.isArray(order.items)) {
-                    itemsText = order.items.map(i => `${i.name} (x${i.quantity})`).join(', ');
+                    itemsListHtml = order.items.map(i => `<li><span>${i.name}</span> <span>x${i.quantity}</span></li>`).join('');
+                } else {
+                    itemsListHtml = '<li>Non spécifié</li>';
                 }
                 
                 const client = order.customer_data ? 
                     (order.customer_data.email || order.customer_data.contactEmail || 'Guest') : 'Guest';
                 
+                const fullClientDetails = order.customer_data ? Object.entries(order.customer_data).map(([k,v]) => `<div><b style="opacity:0.5">${k}:</b> ${v}</div>`).join('') : 'N/A';
+                
                 let actions = '';
-                
-                // Logic Flow: Pending -> Paid (Validated) -> Processing (Optional middle step) -> Delivered
-                
                 if (order.status === 'pending') {
-                    // Manually confirm payment -> Moves to "Livraison en cours" visual
                     actions += `<button class="action-btn btn-validate" onclick="updateStatus('${order.order_id}', 'paid')">✅ Valider Paiement</button>`;
                 }
-                
-                if (order.status === 'paid') {
-                    // Assuming Paid = Processing for visual simplification
-                    actions += `<button class="action-btn btn-deliver" onclick="updateStatus('${order.order_id}', 'delivered')">🏁 Terminer Commande</button>`;
+                if (order.status === 'paid' || order.status === 'processing') {
+                    actions += `<button class="action-btn btn-deliver" onclick="updateStatus('${order.order_id}', 'delivered')">🏁 Confirmer Livraison</button>`;
                 }
                 
-                if (order.status === 'processing') {
-                     actions += `<button class="action-btn btn-deliver" onclick="updateStatus('${order.order_id}', 'delivered')">🏁 Terminer Commande</button>`;
-                }
-
-                if (order.status === 'delivered' || order.status === 'received') {
-                    actions += `<span style="opacity:0.5; font-size:0.8rem;">Clôturée</span>`;
-                }
-
-                // Chat button
-                actions += `<button class="action-btn btn-chat" onclick="openAdminChat('${order.order_id}', '${client}')">💬</button>`;
+                // Chat button always
+                actions += `<button class="action-btn btn-chat" onclick="openAdminChat('${order.order_id}', '${client}')">💬 Ouvrir Chat</button>`;
 
                 return `
-                    <tr>
-                        <td style="opacity:0.7">${date}</td>
-                        <td>
-                            <div style="font-weight:bold; font-size:0.9rem;">#${order.order_id.substring(0,8)}...</div>
-                            <div style="font-size:0.8rem; opacity:0.6;">${client}</div>
-                        </td>
-                        <td><div class="items-summary">${itemsText}</div></td>
-                        <td style="color:var(--electric-blue); font-weight:bold;">${typeof order.amount === 'number' ? order.amount.toLocaleString() : order.amount} FCFA</td>
-                        <td><span class="badge ${order.status}">${order.status}</span></td>
-                        <td><div style="display:flex; align-items:center;">${actions}</div></td>
-                    </tr>
+                <div class="admin-order-card" id="card-${order.order_id}">
+                    <div class="card-header" onclick="toggleCard('${order.order_id}')">
+                        <div class="header-main">
+                            <span class="badge ${order.status}">${order.status}</span>
+                            <span class="header-id">#${order.order_id.substring(0,8)}</span>
+                            <span class="header-amount">${typeof order.amount === 'number' ? order.amount.toLocaleString() : order.amount} FCFA</span>
+                        </div>
+                        <div class="header-right" style="display:flex; align-items:center; gap:10px;">
+                            <span class="header-client">${client}</span>
+                            <span class="card-chevron">▼</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body" id="body-${order.order_id}">
+                        <div class="body-grid">
+                            <div class="info-group">
+                                <h4>Date</h4>
+                                <div>${date}</div>
+                            </div>
+                            <div class="info-group">
+                                <h4>Client Détails</h4>
+                                <div style="font-size:0.9rem;">${fullClientDetails}</div>
+                            </div>
+                            <div class="info-group">
+                                <h4>Articles</h4>
+                                <ul class="item-list">${itemsListHtml}</ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            ${actions}
+                        </div>
+                    </div>
+                </div>
                 `;
             }).join('');
         }
+        
+        // Toggle Logic
+        window.toggleCard = function(id) {
+            const body = document.getElementById(`body-${id}`);
+            const card = document.getElementById(`card-${id}`);
+            
+            // Close others? Optional. Keep simple for now.
+            
+            if (body.style.display === 'none' || !body.style.display) {
+                body.style.display = 'block';
+                card.classList.add('expanded');
+            } else {
+                body.style.display = 'none';
+                card.classList.remove('expanded');
+            }
+        };
 
         async function updateStatus(id, status) {
             let confirmMsg = "";

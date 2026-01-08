@@ -160,7 +160,8 @@ class OrderChat {
     
     async startPolling() {
         await this.fetchMessages(); // Premier fetch immédiat
-        this.pollInterval = setInterval(() => this.fetchMessages(), 5000); // Poll toutes les 5s
+        await this.fetchMessages(); // Premier fetch immédiat
+        this.pollInterval = setInterval(() => this.fetchMessages(), 1000); // Poll toutes les 1s (Réactivité max)
     }
 
     stopPolling() {
@@ -212,11 +213,14 @@ class OrderChat {
             if (response.ok) {
                 const newMessages = await response.json();
                 
-                // Vérifier s'il y a de nouveaux messages
-                if (newMessages.length > this.messages.length) {
+                if (newMessages.length > 0) {
                     const oldLength = this.messages.length;
+                    
+                    // On met à jour la liste locale
                     this.messages = newMessages;
-                    this.renderMessages(oldLength);
+                    
+                    // On appelle render sans index, pour qu'il vérifie tout (ID check)
+                    this.renderMessages();
                     
                     // Notification sonore ou visuelle si chat fermé
                     if (!this.isOpen && oldLength > 0) {
@@ -230,14 +234,25 @@ class OrderChat {
     }
     
     renderMessages(startIndex = 0) {
-        // Ajouter seulement les nouveaux messages
-        const newMsgs = this.messages.slice(startIndex);
+        // Enlèvement des messages temporaires UNIQUEMENT si on a reçu le nôtre (check content match ou juste refresh global)
+        // Pour faire simple : on nettoie les temp et on laisse le serveur combler
+        // Amélioration : on pourrait vérifier si le dernier message du serveur correspond au temp
         
-        newMsgs.forEach(msg => {
+        const tempMsgs = this.messagesArea.querySelectorAll('.temp-message');
+        tempMsgs.forEach(el => el.remove());
+
+        // ID-Based Deduplication (Robust)
+        this.messages.forEach(msg => {
+             // Check if already rendered
+             if (this.messagesArea.querySelector(`.message[data-id="${msg.id}"]`)) {
+                 return; // Skip duplicate
+             }
+
             const msgDiv = document.createElement('div');
             // Check if message is from ME (sent) or OTHER (received)
             const isMe = msg.sender === this.currentUserType;
             msgDiv.className = `message ${isMe ? 'sent' : 'received'}`;
+            msgDiv.setAttribute('data-id', msg.id); // Tag with ID
             
             // Formater l'heure
             const time = new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -296,8 +311,19 @@ class OrderChat {
     
     renderOptimistic(msg) {
         // Affiche le message immédiatement sans attendre le serveur
-        // En réalité on attend le prochain poll pour confirmer, mais pour l'ux c'est mieux
-        // Ici on ne fait rien car le poll va arriver vite, ou on pourrait l'ajouter temporairement
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message sent temp-message`; // Add temp class for styling if needed (e.g. opacity)
+        msgDiv.style.opacity = '0.7';
+        
+        const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        
+        msgDiv.innerHTML = `
+            <div class="message-content">${this.escapeHtml(msg.content)}</div>
+            <div class="message-time">${time} • Envoi...</div>
+        `;
+        
+        this.messagesArea.appendChild(msgDiv);
+        this.scrollToBottom();
     }
     
     notifyNewMessage(count) {

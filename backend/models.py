@@ -27,6 +27,23 @@ class Order(db.Model):
     messages = db.relationship('Message', backref='order', lazy=True, cascade="all, delete-orphan")
 
     def to_dict(self):
+        # Fetch last message for preview
+        last_msg = None
+        msg_count = 0
+        
+        # Note: messages is a list (eager) or query (lazy) depending on relationship config. 
+        # In this hybrid setup without complex migrations, we assume .messages access triggers lazy load.
+        # But here 'messages' is defined as lazy=True. So accessing self.messages returns a list.
+        # For performance on large sets, this might be slow, but fine for <50 orders.
+        
+        if self.messages:
+            msg_count = len(self.messages)
+            # Sort manually if needed, or rely on DB order if sorted there. 
+            # Ideally sort by timestamp descending
+            sorted_msgs = sorted(self.messages, key=lambda m: m.timestamp, reverse=True)
+            if sorted_msgs:
+                last_msg = sorted_msgs[0].to_dict()
+
         return {
             'order_id': self.id,
             'user_id': self.user_id,
@@ -36,7 +53,9 @@ class Order(db.Model):
             'status': self.status,
             'customer_data': self.customer_data,
             'items': self.items_data,
-            'lygos_link': self.lygos_link
+            'lygos_link': self.lygos_link,
+            'message_count': msg_count,
+            'last_message': last_msg
         }
 
 class User(db.Model):

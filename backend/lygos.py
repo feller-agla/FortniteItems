@@ -501,6 +501,10 @@ def send_message():
         timestamp=datetime.now(timezone.utc)
     )
     db.session.add(msg)
+    
+    # Update Order Timestamp to bump it in list
+    order.updated_at = datetime.now(timezone.utc)
+    
     db.session.commit()
     
     # Notifier par email
