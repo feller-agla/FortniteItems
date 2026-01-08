@@ -80,7 +80,11 @@ FORTNITE_API_KEY = os.getenv("FORTNITE_API_KEY")
 FORTNITE_SHOP_TTL = int(os.getenv("FORTNITE_SHOP_TTL", "900"))
 
 # URLs de base
-BASE_URL = os.getenv("BASE_URL", "https://fortniteitems.shop")
+# ⚠️ FORCE PRODUCTION URL pour éviter les redirections vers Netlify
+BASE_URL = "https://fortniteitems.shop"
+# Fallback si besoin de tester en local, décommenter :
+# BASE_URL = os.getenv("BASE_URL", "https://fortniteitems.shop")
+
 SUCCESS_URL = f"{BASE_URL}/success.html"
 FAILURE_URL = f"{BASE_URL}/payment-failed.html"
 

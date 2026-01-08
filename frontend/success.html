@@ -197,6 +197,54 @@
             // STOCKAGE DES DÉTAILS POUR LE CHAT
             let chatOrderDetails = "Détails non disponibles";
 
+            // 📨 FONCTION D'ENVOI DU MESSAGE AUTO
+            async function triggerAutoGreeting(detailsStr) {
+                // Vérifier si déjà envoyé pour éviter les doublons
+                if (localStorage.getItem(`greeting_sent_${activeOrderId}`)) {
+                    console.log("⚠️ Salutation déjà envoyée pour cette commande.");
+                    return;
+                }
+
+                console.log("⏳ Tentative d'envoi du greeting...");
+                
+                // Attendre que le chat soit prêt (Polling léger)
+                const checkChatReady = async (attempts = 0) => {
+                    if (window.orderChat && window.orderChat.inputArea && window.orderChat.sendMessage) {
+                        try {
+                             // Attendre 1s supplémentaire pour la connexion socket stable
+                             await new Promise(r => setTimeout(r, 1000));
+
+                             // Vérifier une dernière fois l'historique
+                             const hasUserMessage = window.orderChat.messages && window.orderChat.messages.some(m => m.sender === 'user');
+                             if (hasUserMessage) {
+                                  console.log("⚠️ Message utilisateur déjà présent. Annulation greeting.");
+                                  localStorage.setItem(`greeting_sent_${activeOrderId}`, 'true'); 
+                                  return;
+                             }
+
+                             const greeting = `Bonjour, je viens de passer commande !\n\n${detailsStr}`;
+                             
+                             if (window.orderChat.inputArea) {
+                                window.orderChat.inputArea.value = greeting;
+                                await window.orderChat.sendMessage();
+                                console.log("✅ Salutation détaillée envoyée avec SUCCÈS !");
+                                localStorage.setItem(`greeting_sent_${activeOrderId}`, 'true');
+                             }
+                        } catch(e) { console.error("Erreur envoi greeting:", e); }
+                    } else {
+                        if (attempts < 20) { // Max 10 secondes
+                             // Petit log de debug
+                             console.log(`⏳ En attente du chat... (${attempts}/20)`);
+                            setTimeout(() => checkChatReady(attempts + 1), 500);
+                        } else {
+                            console.error("❌ Chat non prêt après 10s. Abandon.");
+                        }
+                    }
+                };
+                
+                checkChatReady();
+            }
+
             if (pendingOrderStr) {
                 // Cas 1: Retour immédiat de commande (localStorage présent)
                 try {
@@ -242,8 +290,11 @@ Articles: ${itemsNames}
 ID: ${activeOrderId}
 `.trim();
 
+                    // TRIGGER GREETING IMMEDIATELY
+                    triggerAutoGreeting(chatOrderDetails);
+
                     // Envoyer au backend si nouveau
-                    console.log('📤 Envoi des détails de commande au backend...');
+                     console.log('📤 Envoi des détails de commande au backend...');
                     // ... existing backend analytics code ...
                     
                     // Tracker Facebook Pixel
@@ -310,6 +361,9 @@ Montant: ${order.amount} FCFA
 Articles: ${itemsNames}
 ID: ${backendId}
 `.trim();
+
+                        // TRIGGER GREETING IMMEDIATELY
+                        triggerAutoGreeting(chatOrderDetails);
 
                         // Save to history since it's confirmed
                         const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
@@ -397,54 +451,6 @@ ID: ${backendId}
                          console.log("📱 Mobile détecté : Ouverture automatique du chat");
                          openMobileChat();
                      }
-
-                     // AUTO-SEND CLIENT GREETING (Si pas encore fait)
-                     setTimeout(async () => {
-                         const hasUserMessage = window.orderChat.messages.some(m => m.sender === 'user');
-                         
-                         if (!hasUserMessage) {
-                             console.log("👋 Envoi du message de salutation automatique...");
-                             
-                             // 🛠️ FALLBACK : Si les détails ne sont pas prêts en mémoire, on regarde le localStorage ou le DOM
-                             if (chatOrderDetails.includes("non disponibles")) {
-                                 try {
-                                     // Tentative 1: LocalStorage (Historique)
-                                     const history = JSON.parse(localStorage.getItem('fortniteshop_orders') || '[]');
-                                     const savedOrder = history.find(o => o.order_id === activeOrderId || o.orderNumber === activeOrderId);
-                                     
-                                     if (savedOrder) {
-                                         const itemsList = (savedOrder.items || []).map(i => `${i.name} (x${i.quantity || 1})`).join(', ');
-                                         chatOrderDetails = `
-Nom: Client (Retrouvé)
-Montant: ${savedOrder.amount} FCFA
-Articles: ${itemsList}
-ID: ${savedOrder.order_id}
-`.trim();
-                                     } 
-                                     // Tentative 2: DOM (Ce qui est affiché à l'écran)
-                                     else {
-                                         const domId = document.getElementById('orderNumber')?.textContent || activeOrderId;
-                                         const domName = document.getElementById('customerNameDisplay')?.textContent || 'Client';
-                                         chatOrderDetails = `
-Nom: ${domName}
-ID: ${domId}
-(Détails complets en cours de chargement...)
-`.trim();
-                                     }
-                                 } catch(e) { console.error("Fallback error", e); }
-                             }
-
-                             // Construire le message riche
-                             const greeting = `Bonjour, je viens de passer commande !\n\n${chatOrderDetails}`;
-                             
-                             if(window.orderChat.inputArea) {
-                                 window.orderChat.inputArea.value = greeting;
-                                 await window.orderChat.sendMessage(); // Envoie le message
-                                 console.log("✅ Salutation détaillée envoyée !");
-                             }
-                         }
-                     }, 2500); // Légèrement augmenté à 2.5s pour être sûr
-
                 }, 500);
             } else {
                 console.warn("⚠️ Pas d'ID de commande pour le chat");
