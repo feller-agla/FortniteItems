@@ -3,184 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMIN DASHBOARD - FortniteItems</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/favicnon.png">
-    
-    <link rel="stylesheet" href="styles.css?v=2.2">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Admin Dashboard - FortniteItems</title>
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
     <style>
-        .admin-badge {
-            background: #ff0055;
+        body {
+            background-color: #0d0c18;
             color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-left: 5px;
+            padding-top: 80px;
         }
-        .status-dot.online { background: #00ff00; }
-        .success-info-col { border-color: #ff0055 !important; }
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+        }
+        .admin-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--electric-blue);
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: 'Orbitron';
+        }
+        .stat-label {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Order Table */
+        .orders-table-container {
+            background: rgba(20, 0, 40, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        th {
+            background: rgba(0,0,0,0.3);
+            color: var(--electric-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: 'Rajdhani';
+        }
+        tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* Status Badges */
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge.pending { background: rgba(255, 193, 7, 0.2); color: #FFC107; }
+        .badge.paid { background: rgba(0, 212, 255, 0.2); color: var(--electric-blue); }
+        .badge.processing { background: rgba(156, 39, 176, 0.2); color: #E040FB; }
+        .badge.delivered, .badge.received { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+        .badge.cancelled { background: rgba(244, 67, 54, 0.2); color: #F44336; }
+
+        /* Actions */
+        .action-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            transition: all 0.2s;
+            color: white;
+            font-weight: 600;
+        }
+        .btn-validate { background: var(--electric-blue); color: black; }
+        .btn-deliver { background: #00ff88; color: black; }
+        .btn-cancel { background: rgba(244, 67, 54, 0.2); border: 1px solid #F44336; color: #F44336; }
+        .btn-chat { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+        
+        .action-btn:hover { opacity: 0.8; transform: translateY(-1px); }
+
+        .items-summary {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            max-width: 250px;
+        }
+
+        .auth-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0d0c18; z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .auth-box {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem; border-radius: 12px; text-align: center;
+        }
     </style>
 </head>
 <body>
-    
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <span class="logo-text" style="color: #ff0055;">ADMIN ZONE</span>
+
+    <!-- Simple Password Protect -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-box">
+            <h2 class="admin-title">ACCÈS ADMINISTRATEUR</h2>
+            <input type="password" id="adminPass" placeholder="Mot de passe" style="padding:10px; border-radius:4px; border:none; margin-bottom:1rem; width:200px; display:block; background:rgba(0,0,0,0.3); color:white;">
+            <button onclick="checkAdmin()" class="action-btn btn-validate" style="width:100%">Entrer</button>
+        </div>
+    </div>
+
+    <div class="admin-container" id="dashboardContent" style="display:none;">
+        <div class="admin-header">
+            <div>
+                <h1 class="admin-title">ADMIN DASHBOARD</h1>
+                <p>Gestion des commandes en temps réel</p>
             </div>
-            <div class="nav-links">
-                <a href="index.html">Retour Site</a>
+            <div>
+                <button onclick="location.reload()" class="action-btn btn-chat">🔄 Actualiser</button>
+                <a href="index.html" class="action-btn btn-chat" style="text-decoration:none">🏠 Site</a>
             </div>
         </div>
-    </nav>
 
-    <section class="success-page">
-        <div class="container">
-            <div class="success-grid">
-                <!-- Left Column: All Orders -->
-                <div class="success-info-col" style="height: 700px; display: flex; flex-direction: column;">
-                    <div class="success-header" style="text-align: left; margin-bottom: 20px;">
-                        <button onclick="loadAdminOrders()" style="float:right; padding: 5px 10px; cursor:pointer;">🔄</button>
-                        <h1 class="success-title" style="font-size: 32px;">Commandes Clients</h1>
-                        <p class="success-subtitle">Sélectionnez un ticket pour répondre</p>
-                    </div>
-
-                    <div class="conversations-list" id="adminOrderList" style="flex: 1; overflow-y: auto; padding-right: 10px;">
-                        <div class="loading-spinner"></div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Admin Chat Interface -->
-                <div class="success-chat-col">
-                    <div class="chat-embedded-container">
-                            <div class="chat-header-static" style="background: linear-gradient(90deg, #360b1d, #4e1b2d); display: flex; align-items: center;">
-                            <button class="mobile-back-btn" onclick="closeMobileChat()">←</button>
-                            <div class="agent-avatar" style="background: #ff0055;">
-                                🛡️
-                            </div>
-                            <!-- ... -->
-                            <div class="chat-title-group">
-                                <h3>Mode Administrateur</h3>
-                                <span id="chatActiveOrder">Aucune sélection</span>
-                            </div>
-                        </div>
-                        
-                        <div id="chat-dynamic-content" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
-                            <div id="chat-placeholder-msg" style="padding: 40px; text-align: center; color: rgba(255,255,255,0.5); margin-top: auto; margin-bottom: auto;">
-                                <p>Sélectionnez une commande à gauche.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- KPI -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="count-pending">0</div>
+                <div class="stat-label">En attente</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-processing" style="color:var(--electric-blue)">0</div>
+                <div class="stat-label">À Livrer</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="count-delivered" style="color:#00ff88">0</div>
+                <div class="stat-label">Terminées</div>
             </div>
         </div>
-    </section>
 
-    <script src="chat.js?v=2.2"></script>
+        <div class="orders-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>ID / Client</th>
+                        <th>Articles</th>
+                        <th>Montant</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-orders-list">
+                    <!-- JS injection -->
+                    <tr><td colspan="6" style="text-align:center; padding:2rem;">Chargement...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <script>
-        // Override global API URL for component but here we define it clearly
         const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:5000'
             : 'https://fortniteitems.onrender.com';
 
-        document.addEventListener('DOMContentLoaded', loadAdminOrders);
-
-        // Mobile toggle logic
-        function closeMobileChat() {
-            document.querySelector('.success-grid').classList.remove('mobile-chat-active');
-             // Optionally clear selection visual
+        // Simple client-side auth for now
+        function checkAdmin() {
+            const pass = document.getElementById('adminPass').value;
+            if(pass === 'u1opps_060206') { // Temporary Hardcoded Password
+                document.getElementById('authOverlay').style.display = 'none';
+                document.getElementById('dashboardContent').style.display = 'block';
+                loadAdminOrders();
+                // Auto refresh every 30s
+                setInterval(loadAdminOrders, 30000);
+            } else {
+                alert('Accès refusé');
+            }
         }
 
         async function loadAdminOrders() {
-            // ... (keep existing loadAdminOrders implementation)
-            const listContainer = document.getElementById('adminOrderList');
-            listContainer.innerHTML = '<div class="spinner"></div>';
-            
             try {
-                const response = await fetch(`${API_URL}/api/admin/orders`);
-                const orders = await response.json();
-                
-                listContainer.innerHTML = '';
-                
-                if (orders.length === 0) {
-                     listContainer.innerHTML = '<p style="text-align:center; opacity:0.6;">Aucune commande trouvée.</p>';
-                     return;
-                }
-
-                orders.forEach(order => {
-                    const item = document.createElement('div');
-                    item.className = 'status-item active conversation-item';
-                    item.style.cursor = 'pointer';
-                    item.style.marginBottom = '15px';
-                    item.style.padding = '15px';
-                    item.style.background = 'rgba(255,255,255,0.05)';
-                    item.style.borderRadius = '12px';
-                    
-                    const date = new Date(order.created_at).toLocaleString();
-                    const customer = order.customer_data || {};
-                    const customerName = customer.fullName || customer.epicUsername || 'Client';
-                    
-                    item.innerHTML = `
-                        <div class="status-icon" style="background: rgba(255, 0, 85, 0.2); font-size: 16px;">👤</div>
-                        <div class="status-text" style="flex: 1;">
-                            <div style="display:flex; justify-content:space-between;">
-                                <strong>${customerName}</strong>
-                                <span class="admin-badge">${order.status}</span>
-                            </div>
-                            <div style="font-size: 12px; margin-top: 4px; opacity: 0.7;">
-                                ${order.amount} FCFA • ${date}
-                            </div>
-                            <small style="display:block; margin-top:4px; color:#aaa;">ID: ${order.order_id}</small>
-                        </div>
-                    `;
-
-                    item.onclick = () => loadAdminChat(order.order_id, item, customerName);
-                    listContainer.appendChild(item);
-                });
-
+                const res = await fetch(`${API_URL}/api/admin/orders`);
+                const orders = await res.json();
+                renderTable(orders);
+                updateStats(orders);
             } catch (e) {
                 console.error(e);
-                listContainer.innerHTML = '<p style="color:red">Erreur chargement commandes (Serveur arrêté ?)</p>';
+                document.getElementById('admin-orders-list').innerHTML = `
+                    <tr><td colspan="6" style="color:red;text-align:center">
+                        Erreur connexion API. Vérifiez que le backend tourne sur le port 5000.<br>
+                        ${e}
+                    </td></tr>`;
             }
         }
 
-        function loadAdminChat(orderId, element, customerName) {
-            // Enter mobile chat view
-            document.querySelector('.success-grid').classList.add('mobile-chat-active');
+        function updateStats(orders) {
+            const pending = orders.filter(o => o.status === 'pending').length;
+            const processing = orders.filter(o => o.status === 'paid' || o.status === 'processing').length;
+            const delivered = orders.filter(o => o.status === 'delivered' || o.status === 'received').length;
 
-             // UI Selection
-            document.querySelectorAll('.conversation-item').forEach(el => {
-                el.style.border = '1px solid transparent';
-                el.style.background = 'rgba(255,255,255,0.05)';
-            });
-            if(element) {
-                element.style.borderColor = '#ff0055';
-                element.style.background = 'rgba(255, 0, 85, 0.1)';
+            document.getElementById('count-pending').innerText = pending;
+            document.getElementById('count-processing').innerText = processing;
+            document.getElementById('count-delivered').innerText = delivered;
+        }
+
+        function renderTable(orders) {
+            const tbody = document.getElementById('admin-orders-list');
+            if(orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">Aucune commande.</td></tr>';
+                return;
             }
 
-            document.getElementById('chatActiveOrder').textContent = `Chat avec ${customerName}`;
+            tbody.innerHTML = orders.map(order => {
+                const date = new Date(order.created_at).toLocaleDateString('fr-FR', {
+                    day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'
+                });
+                
+                let itemsText = 'N/A';
+                if(order.items && Array.isArray(order.items)) {
+                    itemsText = order.items.map(i => `${i.name} (x${i.quantity})`).join(', ');
+                }
+                
+                const client = order.customer_data ? 
+                    (order.customer_data.email || order.customer_data.contactEmail || 'Guest') : 'Guest';
+                
+                let actions = '';
+                
+                // Logic Flow: Pending -> Paid (Validated) -> Processing (Optional middle step) -> Delivered
+                
+                if (order.status === 'pending') {
+                    // Manually confirm payment -> Moves to "Livraison en cours" visual
+                    actions += `<button class="action-btn btn-validate" onclick="updateStatus('${order.order_id}', 'paid')">✅ Valider Paiement</button>`;
+                }
+                
+                if (order.status === 'paid') {
+                    // Assuming Paid = Processing for visual simplification
+                    actions += `<button class="action-btn btn-deliver" onclick="updateStatus('${order.order_id}', 'delivered')">🏁 Terminer Commande</button>`;
+                }
+                
+                if (order.status === 'processing') {
+                     actions += `<button class="action-btn btn-deliver" onclick="updateStatus('${order.order_id}', 'delivered')">🏁 Terminer Commande</button>`;
+                }
 
-            // Reset old chat
-            if (window.activeAdminChat && window.activeAdminChat.stopPolling) {
-                window.activeAdminChat.stopPolling();
+                if (order.status === 'delivered' || order.status === 'received') {
+                    actions += `<span style="opacity:0.5; font-size:0.8rem;">Clôturée</span>`;
+                }
+
+                // Chat button
+                actions += `<button class="action-btn btn-chat" onclick="openAdminChat('${order.order_id}', '${client}')">💬</button>`;
+
+                return `
+                    <tr>
+                        <td style="opacity:0.7">${date}</td>
+                        <td>
+                            <div style="font-weight:bold; font-size:0.9rem;">#${order.order_id.substring(0,8)}...</div>
+                            <div style="font-size:0.8rem; opacity:0.6;">${client}</div>
+                        </td>
+                        <td><div class="items-summary">${itemsText}</div></td>
+                        <td style="color:var(--electric-blue); font-weight:bold;">${typeof order.amount === 'number' ? order.amount.toLocaleString() : order.amount} FCFA</td>
+                        <td><span class="badge ${order.status}">${order.status}</span></td>
+                        <td><div style="display:flex; align-items:center;">${actions}</div></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        async function updateStatus(id, status) {
+            let confirmMsg = "";
+            if(status === 'paid') confirmMsg = "Confirmer la réception du paiement ? Le client verra 'Livraison en cours'.";
+            if(status === 'delivered') confirmMsg = "Confirmer que vous avez livré les V-Bucks/Skin ?";
+            
+            if(!confirm(confirmMsg)) return;
+            
+            try {
+                const res = await fetch(`${API_URL}/api/admin/order/${id}/status`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+                
+                if(res.ok) {
+                    loadAdminOrders(); // Refresh table
+                } else {
+                    alert('Erreur update');
+                }
+            } catch(e) {
+                alert('Erreur: ' + e);
             }
+        }
 
-             const container = document.getElementById('chat-dynamic-content');
-            container.innerHTML = '<div class="spinner" style="margin: auto;"></div>';
+        // ==========================================
+        //  ADMIN CHAT LOGIC
+        // ==========================================
+        let currentAdminChat = null;
 
+        function openAdminChat(orderId, clientName) {
+            document.getElementById('chatOverlay').style.display = 'flex';
+            document.getElementById('chatTitleClient').innerText = clientName;
+            
+            const container = document.getElementById('chatContainer');
+            container.innerHTML = '<div style="text-align:center; padding:20px;">Chargement...</div>';
+
+            // Init Chat
+            // Note: OrderChat class from chat.js must support sender 'admin'
             setTimeout(() => {
-                 // Initialize Chat as ADMIN
-                 window.activeAdminChat = new OrderChat(orderId, API_URL, 'chat-dynamic-content', 'admin');
-            }, 50);
-
+                if(currentAdminChat && currentAdminChat.stopPolling) currentAdminChat.stopPolling();
+                currentAdminChat = new OrderChat(orderId, API_URL, 'chatContainer', 'admin');
+            }, 100);
         }
+
+        function closeChat() {
+            document.getElementById('chatOverlay').style.display = 'none';
+            if(currentAdminChat && currentAdminChat.stopPolling) currentAdminChat.stopPolling();
+        }
+        
+        // Handle enter key on login
+        document.getElementById('adminPass').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+              checkAdmin();
+            }
+        });
     </script>
-</body>
-</html>
+
+    <!-- Chat Modal UI -->
+    <div id="chatOverlay" class="auth-overlay" style="display:none; z-index: 2000; background: rgba(0,0,0,0.8);">
+        <div class="chat-modal-window" style="background:#1a1a2e; width: 500px; height: 700px; display:flex; flex-direction:column; border-radius:12px; border:1px solid rgba(255,255,255,0.1);">
+            <div class="chat-header-static" style="padding:15px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; background:#0f0e17;">
+                <div>
+                    <h3 style="margin:0; font-size:1.1rem;">Chat avec <span style="color:var(--electric-blue)" id="chatTitleClient">Client</span></h3>
+                    <div style="font-size:0.8rem; opacity:0.6;">Support Admin</div>
+                </div>
+                <button onclick="closeChat()" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
+            </div>
+            
+            <div id="chatContainer" style="flex:1; display:flex; flex-direction:column; overflow:hidden;"></div>
+        </div>
+    </div>
+    <script src="chat.js?v=2.2"></script>

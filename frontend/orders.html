@@ -36,6 +36,238 @@
             <div id="ordersList" class="orders-list">
                 <!-- Les commandes seront injectées ici par JavaScript -->
             </div>
+
+            <!-- Styles spécifiques pour le suivi live -->
+            <style>
+                .order-card {
+                    background: rgba(13, 12, 24, 0.85); /* Plus sombre/profond */
+                    backdrop-filter: blur(16px);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-left: 4px solid var(--electric-blue); /* Accent sur le côté */
+                    border-radius: 12px;
+                    padding: 0;
+                    margin: 0 auto 1.5rem auto; /* Centered */
+                    max-width: 650px; /* Highly Constrained width */
+                    overflow: hidden;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                }
+
+                .order-card:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.1);
+                    border-color: rgba(255, 255, 255, 0.2);
+                }
+
+                .order-header-live {
+                    padding: 1rem 1.5rem; /* Reduced padding */
+                    background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                }
+
+                .order-id-title {
+                    font-family: 'Orbitron', sans-serif;
+                    font-size: 1rem; /* Smaller title */
+                    color: white;
+                    letter-spacing: 1px;
+                    margin: 0 0 5px 0;
+                }
+
+                .order-date-sub {
+                    font-family: 'Rajdhani', sans-serif;
+                    font-size: 0.85rem;
+                    color: rgba(255, 255, 255, 0.5);
+                }
+
+                .order-amount-display {
+                    font-family: 'Orbitron', sans-serif;
+                    font-size: 1.2rem; /* Smaller amount */
+                    font-weight: 700;
+                    color: var(--electric-blue);
+                    text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+                }
+
+                /* STATUS CARDS REDESIGN (Compact V2) */
+                .order-status-track {
+                    padding: 0.8rem 1rem;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 8px;
+                    max-width: 100%; /* Fill container now that container is small */
+                    margin: 0 auto;
+                }
+
+                .status-step {
+                    background: rgba(255, 255, 255, 0.03);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 8px; /* Smaller radius */
+                    padding: 10px;      /* Reduced padding */
+                    display: flex;
+                    align-items: center;
+                    transition: all 0.3s ease;
+                    opacity: 0.5;
+                    filter: grayscale(1);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .status-step.active {
+                    opacity: 1;
+                    filter: grayscale(0);
+                    background: rgba(13, 12, 24, 0.9);
+                    border-color: var(--electric-blue);
+                    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2), inset 0 0 5px rgba(0, 212, 255, 0.1); /* Reduced glow */
+                    transform: translateY(-1px);
+                }
+                
+                .status-step.completed {
+                    opacity: 1;
+                    filter: grayscale(0);
+                    border-color: #00ff88;
+                    color: #00ff88;
+                }
+
+                .step-icon {
+                    font-size: 1.2rem;   /* Smaller icon */
+                    margin-right: 10px;  /* Smaller margin */
+                    width: 36px;         /* Smaller box */
+                    height: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 6px;
+                }
+                
+                .status-step.active .step-icon {
+                    background: rgba(0, 212, 255, 0.2);
+                    box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+                    animation: pulse-icon 2s infinite;
+                }
+
+                .step-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    min-width: 0; /* Fix flex overflow */
+                }
+
+                .step-label {
+                    font-family: 'Rajdhani', sans-serif;
+                    font-weight: 700;
+                    font-size: 0.9rem; /* Smaller text */
+                    text-transform: uppercase;
+                    line-height: 1.1;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .step-desc {
+                    font-size: 0.7rem; /* Smaller subtext */
+                    opacity: 0.6;
+                    font-family: sans-serif;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                
+                @keyframes pulse-icon {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                    100% { transform: scale(1); }
+                }
+
+                /* Mobile: Ultra-Compact Stack */
+                @media (max-width: 768px) {
+                    .order-card {
+                        margin: 0 1rem 1rem 1rem; /* Less margin on sides */
+                        width: auto;
+                    }
+
+                    .order-header-live { 
+                        padding: 0.8rem 1rem; /* Compact header */
+                    }
+                    
+                    .order-id-title { font-size: 0.9rem; margin-bottom: 2px; }
+                    .order-date-sub { font-size: 0.75rem; }
+                    .order-amount-display { font-size: 1rem; }
+
+                    .order-status-track {
+                        grid-template-columns: 1fr; 
+                        gap: 5px; /* Tiny gap */
+                        padding: 0.8rem 1rem;
+                        max-width: 100%;
+                    }
+                    
+                    .status-step {
+                        padding: 6px 10px; /* Very compact */
+                        border-radius: 6px;
+                    }
+                    
+                    .step-icon {
+                        width: 28px; height: 28px; font-size: 0.9rem; /* Tiny icon */
+                        margin-right: 8px;
+                        border-radius: 5px;
+                    }
+                    
+                    .step-label { font-size: 0.8rem; }
+                    .step-desc { display: none; }
+                    
+                    .order-details-live, .live-actions {
+                        padding: 0.8rem 1rem; /* Compact content */
+                    }
+                    
+                    .item-icon { width: 32px; height: 32px; font-size: 1rem; }
+                }
+
+                /* --- RESTORED SECTIONS (Was deleted by mistake) --- */
+
+                .order-details-live {
+                    padding: 1.5rem 2rem;
+                    background: rgba(0, 0, 0, 0.2);
+                    border-top: 1px solid rgba(255, 255, 255, 0.05);
+                }
+                
+                .item-row {
+                    display: flex;
+                    align-items: center;
+                    padding: 0.8rem 0;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                }
+                
+                .item-row:last-child { border-bottom: none; }
+
+                .item-icon {
+                    width: 40px;
+                    height: 40px;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 8px;
+                    margin-right: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.2rem;
+                }
+
+                .live-actions {
+                    padding: 1.5rem 2rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background: rgba(0,0,0,0.1);
+                }
+
+                .status-text-live {
+                    font-family: 'Rajdhani', sans-serif;
+                    color: var(--electric-blue);
+                    font-weight: 600;
+                }
+            </style>
             
             <script>
                 document.addEventListener('DOMContentLoaded', () => {

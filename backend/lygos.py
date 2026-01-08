@@ -408,6 +408,37 @@ def get_admin_orders():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route('/api/admin/order/<order_id>/status', methods=['PUT'])
+def update_order_status(order_id):
+    """Endpoint ADMIN : Mettre à jour le statut d'une commande"""
+    # TODO: Auth Admin
+    
+    try:
+        data = request.get_json()
+        new_status = data.get('status')
+        
+        if not new_status:
+            return jsonify({"error": "Status requis"}), 400
+            
+        order = db.session.get(Order, order_id)
+        if not order:
+            return jsonify({"error": "Commande non trouvée"}), 404
+            
+        # Update
+        order.status = new_status
+        order.updated_at = datetime.now(timezone.utc)
+        db.session.commit()
+        
+        print(f"👮 ADMIN: Commande {order_id} passée en statut {new_status}")
+        
+        # Notify user (Optional: Email or just let them see on refresh)
+        
+        return jsonify(order.to_dict()), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route('/api/order/<order_id>', methods=['GET'])
 def get_order(order_id):
     order = db.session.get(Order, order_id)
@@ -417,10 +448,7 @@ def get_order(order_id):
         return jsonify({"error": "Commande non trouvée"}), 404
 
 
-@app.route('/api/orders', methods=['GET'])
-def get_all_orders():
-    orders = Order.query.order_by(Order.created_at.desc()).limit(50).all()
-    return jsonify([o.to_dict() for o in orders]), 200
+
 
 
 # ==========================================

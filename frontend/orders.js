@@ -4,25 +4,69 @@
     class OrdersManager {
         constructor() {
             this.orders = [];
-            this.currentReviewOrderId = null;
             this.init();
         }
 
-        init() {
-            this.loadOrders();
+        async init() {
+            await this.loadOrdersFromApi();
             this.renderOrders();
-            this.bindEvents();
         }
 
-        loadOrders() {
-            const stored = localStorage.getItem('fortniteshop_orders');
-            this.orders = stored ? JSON.parse(stored) : [];
-            // Trier par date (plus récent en premier)
-            this.orders.sort((a, b) => new Date(b.date) - new Date(a.date));
+        async loadOrdersFromApi() {
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                // Not logged in handled by orders.html script
+                return; 
+            }
+
+            try {
+                // Utiliser le port 5000 du backend Flask
+                const response = await fetch('http://localhost:5000/api/user/orders', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log('Orders API Status:', response.status);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Orders API Data:', data);
+                    
+                    // Backend returns { success: true, orders: [...] }
+                    if (data.orders && Array.isArray(data.orders)) {
+                        this.orders = data.orders;
+                    } else if (Array.isArray(data)) {
+                        // Fallback if backend changes to return direct list
+                        this.orders = data;
+                    } else {
+                        console.error('Expected array of orders, got:', data);
+                        this.orders = [];
+                    }
+                } else {
+                    console.error('Failed to fetch orders:', response.statusText);
+                    if (response.status === 401) {
+                        // Token invalid/expired
+                        localStorage.removeItem('auth_token');
+                        window.location.href = 'login.html';
+                    }
+                    this.orders = []; 
+                }
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+                this.orders = [];
+            }
         }
 
-        saveOrders() {
-            localStorage.setItem('fortniteshop_orders', JSON.stringify(this.orders));
+        // Calculate progress percentage based on status
+        getProgressWidth(status) {
+            switch(status) {
+                case 'paid': return '50%';
+                case 'processing': return '50%';
+                case 'delivered': return '100%';
+                case 'received': return '100%';
+                default: return '0%'; // pending
+            }
         }
 
         renderOrders() {
@@ -31,7 +75,7 @@
 
             if (!container) return;
 
-            if (this.orders.length === 0) {
+            if (!this.orders || this.orders.length === 0) {
                 container.style.display = 'none';
                 if (emptyState) emptyState.style.display = 'block';
                 return;
@@ -44,225 +88,156 @@
         }
 
         createOrderCard(order) {
-            const date = new Date(order.date);
+            const date = new Date(order.created_at);
             const formattedDate = date.toLocaleDateString('fr-FR', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
+                day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit'
             });
 
-            const statusBadge = this.getStatusBadge(order.status);
-            const canMarkReceived = order.status === 'pending';
-            const canReview = order.status === 'received' && !order.review;
-            const hasReview = order.review !== null;
+            // Map status to readable text and progress
+            let statusText = "Validation en cours";
+            let statusColor = "white";
+            
+            // Declare step classes
+            let step1Class = 'completed';
+            let step2Class = '';
+            let step3Class = '';
+
+            // User Logic: "If it's here, I paid."
+            // So Step 1 (Validée) is active or done.
+            // Step 2 (Livraison) is what they wait for.
+            
+            if (order.status === 'pending') {
+                step1Class = 'active'; 
+                statusText = "Validation paiement...";
+                statusColor = "#FFC107"; // Orange
+            } else if (order.status === 'paid' || order.status === 'processing') {
+                step1Class = 'completed';
+                step2Class = 'active';
+                statusText = "Paiement validé par le support • Livraison en cours";
+                statusColor = "var(--electric-blue)"; // Blue
+            } else if (order.status === 'delivered' || order.status === 'received') {
+                step1Class = 'completed';
+                step2Class = 'completed';
+                step3Class = 'completed';
+                statusText = "Commande livrée ✅";
+                statusColor = "#00ff88"; // Green
+            }
+
+            const progressWidth = this.getProgressWidth(order.status);
+            
+            // Item summary with icons
+            let itemsHtml = '<div style="opacity:0.6; padding:1rem;">Détails indisponibles</div>';
+            if (order.items && Array.isArray(order.items)) {
+                itemsHtml = order.items.map(item => `
+                    <div class="item-row">
+                        <div class="item-icon">⚡</div>
+                        <div style="flex:1;">
+                            <div style="font-weight:600;">${item.name}</div>
+                            <div style="font-size:0.8rem; opacity:0.6;">Quantité: ${item.quantity}</div>
+                        </div>
+                        <div style="font-family:'Orbitron'; color:var(--electric-blue);">${(item.price * item.quantity).toLocaleString()} FCFA</div>
+                    </div>
+                `).join('');
+            }
 
             return `
-                <article class="order-card" style="background: var(--card-bg); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; border: 2px solid rgba(123, 104, 238, 0.3);">
-                    <div class="order-header" style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <h3 style="margin: 0 0 0.5rem 0; color: var(--electric-blue);">Commande #${order.id}</h3>
-                            <p style="margin: 0; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">${formattedDate}</p>
+                <div class="order-card" id="card-${order.order_id}">
+                    <!-- Header (Always Visible + Clickable) -->
+                    <div class="order-header-live" onclick="toggleOrder('${order.order_id}')" style="cursor: pointer;">
+                        <div style="flex:1">
+                            <h3 class="order-id-title">
+                                <span style="margin-right:10px;">${statusText.includes('livrée') ? '✅' : '📦'}</span>
+                                COMMANDE #${order.order_id.substring(0, 8)}
+                            </h3>
+                            <div class="order-date-sub">📅 ${formattedDate} • <span style="color:${statusColor}">${statusText}</span></div>
                         </div>
-                        ${statusBadge}
-                    </div>
-
-                    <div class="order-items" style="margin-bottom: 1.5rem;">
-                        <h4 style="margin: 0 0 1rem 0; color: rgba(255, 255, 255, 0.9);">Articles :</h4>
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            ${order.items.map(item => `
-                                <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between;">
-                                    <span>${this.escapeHtml(item.name)} x${item.quantity}</span>
-                                    <span style="color: var(--electric-blue); font-weight: 600;">${(item.price * item.quantity).toLocaleString('fr-FR')} FCFA</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(123, 104, 238, 0.3); display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700;">
-                            <span>Total :</span>
-                            <span style="color: var(--neon-pink);">${order.total.toLocaleString('fr-FR')} FCFA</span>
+                        <div style="text-align:right;">
+                            <div class="order-amount-display">${order.amount.toLocaleString()} FCFA</div>
+                            <div class="chevron-icon" style="font-size:1.5rem; transition:transform 0.3s;">▼</div>
                         </div>
                     </div>
 
-                    <div class="order-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        ${canMarkReceived ? `
-                            <button class="cta-button" onclick="ordersManager.markAsReceived('${order.id}')" style="flex: 1; min-width: 150px;">
-                                <span>✅ J'ai reçu ma commande</span>
-                            </button>
-                            <button class="ghost-button" onclick="ordersManager.markAsNotReceived('${order.id}')" style="flex: 1; min-width: 150px;">
-                                <span>❌ Je n'ai pas reçu</span>
-                            </button>
-                        ` : ''}
-                        ${canReview ? `
-                            <button class="cta-button" onclick="ordersManager.openReviewModal('${order.id}')" style="flex: 1; min-width: 150px;">
-                                <span>⭐ Donner mon avis</span>
-                            </button>
-                        ` : ''}
-                        ${hasReview ? `
-                            <div style="flex: 1; padding: 1rem; background: rgba(123, 104, 238, 0.1); border-radius: 8px; border-left: 3px solid var(--electric-blue);">
-                                <div style="margin-bottom: 0.5rem;">
-                                    ${'⭐'.repeat(order.review.rating)}${'☆'.repeat(5 - order.review.rating)}
+                    <!-- Collapsible Content -->
+                    <div id="details-${order.order_id}" class="order-expand-content" style="display:none;">
+                        
+                        <!-- Status Blocks -->
+                        <div class="order-status-track">
+                            <!-- Step 1 -->
+                            <div class="status-step ${step1Class}">
+                                <div class="step-icon">📝</div>
+                                <div class="step-info">
+                                    <div class="step-label">Validée</div>
+                                    <div class="step-desc">Commande reçue</div>
                                 </div>
-                                ${order.review.comment ? `<p style="margin: 0; color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">${this.escapeHtml(order.review.comment)}</p>` : ''}
                             </div>
-                        ` : ''}
+
+                            <!-- Step 2 -->
+                            <div class="status-step ${step2Class}">
+                                <div class="step-icon">🎮</div>
+                                <div class="step-info">
+                                    <div class="step-label">Livraison</div>
+                                    <div class="step-desc">Envoi en cours</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="status-step ${step3Class}">
+                                <div class="step-icon">✅</div>
+                                <div class="step-info">
+                                    <div class="step-label">Terminée</div>
+                                    <div class="step-desc">Livré succès</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-details-live">
+                            <h4 style="margin:0 0 10px 0; font-size:0.9rem; text-transform:uppercase; letter-spacing:1px; opacity:0.5;">Articles</h4>
+                            ${itemsHtml}
+                        </div>
+
+                        <div class="live-actions">
+                            <div class="status-text-live" style="color: ${statusColor}">
+                                📍 ${statusText}
+                            </div>
+                            <button class="cta-glass open-chat-btn" onclick="openOrderChat('${order.order_id}')" style="padding: 10px 20px; font-size: 0.9rem;">
+                                💬 Besoin d'aide ?
+                            </button>
+                        </div>
                     </div>
-                </article>
+                </div>
             `;
-        }
-
-        getStatusBadge(status) {
-            const badges = {
-                'pending': '<span style="padding: 0.5rem 1rem; background: rgba(255, 193, 7, 0.2); color: #FFC107; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">⏳ En attente</span>',
-                'received': '<span style="padding: 0.5rem 1rem; background: rgba(76, 175, 80, 0.2); color: #4CAF50; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">✅ Reçue</span>',
-                'not_received': '<span style="padding: 0.5rem 1rem; background: rgba(244, 67, 54, 0.2); color: #F44336; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">❌ Non reçue</span>'
-            };
-            return badges[status] || badges.pending;
-        }
-
-        markAsReceived(orderId) {
-            const order = this.orders.find(o => o.id === orderId);
-            if (!order) return;
-
-            if (confirm('Confirmer que tu as bien reçu ta commande ?')) {
-                order.status = 'received';
-                this.saveOrders();
-                this.renderOrders();
-            }
-        }
-
-        markAsNotReceived(orderId) {
-            const order = this.orders.find(o => o.id === orderId);
-            if (!order) return;
-
-            if (confirm('Tu n\'as pas reçu ta commande ? Notre équipe va te contacter pour résoudre le problème.')) {
-                order.status = 'not_received';
-                this.saveOrders();
-                this.renderOrders();
-            }
-        }
-
-        openReviewModal(orderId) {
-            const order = this.orders.find(o => o.id === orderId);
-            if (!order) return;
-
-            this.currentReviewOrderId = orderId;
-            const modal = document.getElementById('reviewModal');
-            const orderNameEl = document.getElementById('reviewOrderName');
-            const ratingInput = document.getElementById('reviewRating');
-            const commentInput = document.getElementById('reviewComment');
-
-            if (orderNameEl) orderNameEl.textContent = `Commande #${order.id}`;
-            if (ratingInput) ratingInput.value = '0';
-            if (commentInput) commentInput.value = '';
-
-            // Reset stars
-            document.querySelectorAll('.star-btn').forEach(btn => {
-                btn.style.opacity = '0.3';
-            });
-
-            if (modal) {
-                modal.style.display = 'flex';
-                modal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        closeReviewModal() {
-            const modal = document.getElementById('reviewModal');
-            if (modal) {
-                modal.style.display = 'none';
-                modal.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-            }
-            this.currentReviewOrderId = null;
-        }
-
-        submitReview() {
-            if (!this.currentReviewOrderId) return;
-
-            const rating = parseInt(document.getElementById('reviewRating').value);
-            const comment = document.getElementById('reviewComment').value.trim();
-
-            if (rating === 0) {
-                alert('Veuillez sélectionner une note (1 à 5 étoiles)');
-                return;
-            }
-
-            const order = this.orders.find(o => o.id === this.currentReviewOrderId);
-            if (!order) return;
-
-            order.review = {
-                rating: rating,
-                comment: comment || null,
-                date: new Date().toISOString()
-            };
-
-            // Sauvegarder l'avis dans la liste globale des avis
-            const reviews = JSON.parse(localStorage.getItem('fortniteshop_reviews') || '[]');
-            reviews.push({
-                orderId: order.id,
-                rating: rating,
-                comment: comment || null,
-                date: order.review.date,
-                customerName: order.customer.fullName || 'Client'
-            });
-            localStorage.setItem('fortniteshop_reviews', JSON.stringify(reviews));
-
-            this.saveOrders();
-            this.closeReviewModal();
-            this.renderOrders();
-            
-            alert('Merci pour ton avis ! Il sera affiché sur notre page d\'accueil.');
-        }
-
-        bindEvents() {
-            // Close modal buttons
-            document.getElementById('reviewModalClose')?.addEventListener('click', () => this.closeReviewModal());
-            document.getElementById('reviewCancelBtn')?.addEventListener('click', () => this.closeReviewModal());
-
-            // Submit review
-            document.getElementById('reviewSubmitBtn')?.addEventListener('click', () => this.submitReview());
-
-            // Star rating buttons
-            document.querySelectorAll('.star-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const rating = parseInt(e.target.dataset.rating);
-                    document.getElementById('reviewRating').value = rating;
-                    
-                    // Update star display
-                    document.querySelectorAll('.star-btn').forEach((star, index) => {
-                        star.style.opacity = index < rating ? '1' : '0.3';
-                    });
-                });
-            });
-
-            // Close on backdrop click
-            const modal = document.getElementById('reviewModal');
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        this.closeReviewModal();
-                    }
-                });
-            }
-
-            // Close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && this.currentReviewOrderId) {
-                    this.closeReviewModal();
-                }
-            });
-        }
-
-        escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
         }
     }
 
+    // Global toggle function
+    window.toggleOrder = function(orderId) {
+        const content = document.getElementById(`details-${orderId}`);
+        const card = document.getElementById(`card-${orderId}`);
+        const chevron = card.querySelector('.chevron-icon');
+        
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            card.classList.add('expanded');
+            chevron.style.transform = 'rotate(180deg)';
+        } else {
+            content.style.display = 'none';
+            card.classList.remove('expanded');
+            chevron.style.transform = 'rotate(0deg)';
+        }
+    };
+
+    // Global function for onclick
+    window.openOrderChat = function(orderId) {
+        // Stop propagation to prevent closing the accordion when clicking chat is unlikely but good practice if nested, 
+        // though onclick button handles it usually.
+        event.stopPropagation();
+        window.location.href = `messages.html?chat_order=${orderId}`; 
+    };
+
     // Initialize
-    window.ordersManager = new OrdersManager();
+    document.addEventListener('DOMContentLoaded', () => {
+        window.ordersManager = new OrdersManager();
+    });
+
 })();
 

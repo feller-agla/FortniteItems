@@ -257,8 +257,14 @@
                 item.onclick = () => loadChat(orderId, item);
                 listContainer.appendChild(item);
 
-                // Auto load most recent on desktop
-                if(index === 0 && window.innerWidth > 900) { 
+                // Auto load logic
+                const urlParams = new URLSearchParams(window.location.search);
+                const targetOrder = urlParams.get('chat_order');
+                
+                if (targetOrder && orderId === targetOrder) {
+                    loadChat(orderId, item, true); // True to force view switch on mobile if needed
+                } 
+                else if (!targetOrder && index === 0 && window.innerWidth > 900) { 
                     loadChat(orderId, item, false);
                 }
             });
