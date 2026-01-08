@@ -19,9 +19,14 @@
                 return; 
             }
 
+            // Configuration API Backend
+            const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                ? 'http://localhost:5000'
+                : 'https://fortniteitems.onrender.com';
+
             try {
-                // Utiliser le port 5000 du backend Flask
-                const response = await fetch('http://localhost:5000/api/user/orders', {
+                // Fetch dynamic URL
+                const response = await fetch(`${API_URL}/api/user/orders`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

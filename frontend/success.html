@@ -419,6 +419,18 @@ ID: ${backendId}
                 document.getElementById('orderNumber').textContent = 'Inconnue';
             }
 
+            // 🧹 FINALEMENT: Si on a un Order ID validé (URL ou Local), on vide le panier
+            if (activeOrderId) {
+                 if (typeof cart !== 'undefined') {
+                        cart.clearCart();
+                        console.log('🧹 Panier vidé (Commande confirmée).');
+                 } else {
+                        localStorage.removeItem('fortniteshop_cart');
+                 }
+                 // Nettoyer aussi les infos temporaires
+                 localStorage.removeItem('fortniteshop_pending_order');
+            }
+
             // Helper for saving
             function saveToHistory(item) {
                 try {
