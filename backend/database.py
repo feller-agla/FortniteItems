@@ -15,6 +15,13 @@ def init_db(app):
     """
     database_url = os.getenv('DATABASE_URL')
     
+    # FORCE LOCAL FIX: Ignore Render DB if running locally (avoids DNS errors)
+    # We check 'RENDER' env var which is present in production but not locally
+    is_on_render = os.environ.get('RENDER')
+    if not is_on_render and database_url and ('render.com' in database_url or 'dpg-' in database_url):
+         print("⚠️  DB Distante (Render) détectée en local : Désactivation forcée pour éviter les erreurs DNS.")
+         database_url = None
+
     if database_url:
         # Fix pour les URLs Postgres commençant par postgres:// (Obsolète dans SQLAlchemy)
         if database_url.startswith("postgres://"):

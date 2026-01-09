@@ -136,6 +136,15 @@
         }
 
         handleAddToCart() {
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                this.closeModal();
+                if(confirm("Vous devez être connecté pour commander. Se connecter maintenant ?")) {
+                    window.location.href = 'login.html';
+                }
+                return;
+            }
+
             if (typeof cart === 'undefined' || typeof cart.addItem !== 'function') {
                 console.warn('🛒 Cart non disponible, impossible d\'ajouter l\'item');
                 return;

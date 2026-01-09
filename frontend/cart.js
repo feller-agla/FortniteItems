@@ -232,6 +232,14 @@ class ShoppingCart {
         // Add to cart buttons on product pages
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
+                const token = localStorage.getItem('auth_token');
+                if (!token) {
+                    if(confirm("Vous devez être connecté pour commander. Se connecter maintenant ?")) {
+                       window.location.href = 'login.html';
+                    }
+                    return;
+                }
+
                 const btn = e.currentTarget;
                 const id = btn.dataset.id;
                 const name = btn.dataset.name;

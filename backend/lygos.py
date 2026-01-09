@@ -46,6 +46,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-super-secret-key-fortnite-items-2026')
 
 # Initialiser la base de données
+
 init_db(app)
 
 # Configuration CORS - Permettre les requêtes depuis votre frontend
