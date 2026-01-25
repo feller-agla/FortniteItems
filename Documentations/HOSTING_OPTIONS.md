@@ -125,8 +125,8 @@ exports.handler = async (event) => {
       amount: amount,
       shop_name: 'FortniteItems',
       message: `Commande ${items[0].name}`,
-      success_url: 'https://fortniteitems.netlify.app/success.html',
-      failure_url: 'https://fortniteitems.netlify.app/payment-failed.html',
+      success_url: 'https://fortniteitems.vercel.app/success.html',
+      failure_url: 'https://fortniteitems.vercel.app/payment-failed.html',
       order_id: Date.now().toString()
     }, {
       headers: {

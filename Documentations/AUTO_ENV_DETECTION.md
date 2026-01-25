@@ -30,12 +30,12 @@ Backend Local (localhost:5000)
 
 ### En Production (En ligne)
 
-Quand vous ouvrez : `https://fortniteitems.netlify.app`
+Quand vous ouvrez : `https://fortniteitems.vercel.app`
 
 **Le frontend appellera automatiquement** : `https://fortniteitems.onrender.com`
 
 ```
-Frontend Production (fortniteitems.netlify.app)
+Frontend Production (fortniteitems.vercel.app)
         ↓
 Backend Production (fortniteitems.onrender.com)
 ```
@@ -114,7 +114,7 @@ python3 -m http.server 8000
 ### Test Production
 ```bash
 # Déployez sur Netlify/Render
-# Ouvrez: https://fortniteitems.netlify.app
+# Ouvrez: https://fortniteitems.vercel.app
 # Console devrait afficher: "PRODUCTION" et "https://fortniteitems.onrender.com"
 ```
 

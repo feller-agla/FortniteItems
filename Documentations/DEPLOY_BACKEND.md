@@ -42,7 +42,7 @@ Dans Render, allez dans **Environment** et ajoutez :
 | Key | Value |
 |-----|-------|
 | `LYGOS_API_KEY` | `lygosapp-9651642a-25f7-4e06-98b9-3617433e335c` |
-| `BASE_URL` | `https://fortniteitems.netlify.app` |
+| `BASE_URL` | `https://fortniteitems.vercel.app` |
 | `PYTHON_VERSION` | `3.11.0` |
 
 ### 5. Récupérer l'URL du Backend
@@ -170,7 +170,7 @@ Pour une vraie base de données, ajoutez PostgreSQL dans Render :
 
 **Solution** : Ajoutez votre domaine Netlify dans `lygos.py` :
 ```python
-CORS(app, origins=["https://fortniteitems.netlify.app"])
+CORS(app, origins=["https://fortniteitems.vercel.app"])
 ```
 
 ### Problème : Backend trop lent

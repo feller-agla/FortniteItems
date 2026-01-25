@@ -62,8 +62,8 @@ FEDAPAY_PUBLIC_KEY=pk_sandbox_TA_VRAIE_CLE_ICI
    - `FEDAPAY_SECRET_KEY` = `sk_sandbox_ta_cle...`
    - `FEDAPAY_PUBLIC_KEY` = `pk_sandbox_ta_cle...`
    - `PORT` = `10000`
-   - `SUCCESS_URL` = `https://fortniteitems.netlify.app/success.html`
-   - `CANCEL_URL` = `https://fortniteitems.netlify.app/payment-failed.html`
+   - `SUCCESS_URL` = `https://fortniteitems.vercel.app/success.html`
+   - `CANCEL_URL` = `https://fortniteitems.vercel.app/payment-failed.html`
 
 7. Clique sur **"Create Web Service"**
 

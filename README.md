@@ -454,7 +454,7 @@ git push -u origin main
    
    Type: CNAME
    Name: www
-   Value: [ton-site].netlify.app
+   Value: [ton-site].vercel.app
    ```
 
 ---

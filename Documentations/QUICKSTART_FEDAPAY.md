@@ -68,8 +68,8 @@ git push origin main
    FEDAPAY_SECRET_KEY=sk_live_Djz6H-jLfQOqJMK-W1UNWyCE
    FEDAPAY_PUBLIC_KEY=pk_live_JR8R_WUBELnUYejwmjUU58Ma
    PORT=10000
-   SUCCESS_URL=https://fortniteitems.netlify.app/success.html
-   CANCEL_URL=https://fortniteitems.netlify.app/payment-failed.html
+   SUCCESS_URL=https://fortniteitems.vercel.app/success.html
+   CANCEL_URL=https://fortniteitems.vercel.app/payment-failed.html
    ```
 
 6. Clique sur **"Create Web Service"**

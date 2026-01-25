@@ -11,7 +11,7 @@
 ┌─────────────────────────────────────────────────────────────┐
 │            FRONTEND (Netlify)                                │
 │  ┌────────────────────────────────────────────────────────┐ │
-│  │ https://fortniteitems.netlify.app                      │ │
+│  │ https://fortniteitems.vercel.app                      │ │
 │  │                                                         │ │
 │  │  - index.html      → Page d'accueil                    │ │
 │  │  - product.html    → Détails produit                   │ │
@@ -93,12 +93,12 @@
 15. Client effectue le paiement sur LYGOS
     ↓
 16a. SI SUCCÈS:
-     - Lygos redirige → https://fortniteitems.netlify.app/success.html
+     - Lygos redirige → https://fortniteitems.vercel.app/success.html
      - success.html affiche confirmation
      - Panier vidé automatiquement
     ↓
 16b. SI ÉCHEC:
-     - Lygos redirige → https://fortniteitems.netlify.app/payment-failed.html
+     - Lygos redirige → https://fortniteitems.vercel.app/payment-failed.html
      - payment-failed.html affiche message d'erreur
      - Option de réessayer
     ↓
@@ -137,7 +137,7 @@
 
 3. **Variables d'Environnement**
    - `LYGOS_API_KEY` = `lygosapp-9651642a-25f7-4e06-98b9-3617433e335c`
-   - `BASE_URL` = `https://fortniteitems.netlify.app`
+   - `BASE_URL` = `https://fortniteitems.vercel.app`
    - `PYTHON_VERSION` = `3.11.0`
 
 4. **Déployer**
@@ -188,7 +188,7 @@
    ```
 
 2. **Test Frontend**
-   - Aller sur https://fortniteitems.netlify.app
+   - Aller sur https://fortniteitems.vercel.app
    - Ajouter un produit au panier
    - Faire un checkout complet
    - Vérifier la redirection vers Lygos
@@ -207,7 +207,7 @@
 | Variable | Valeur | Description |
 |----------|--------|-------------|
 | `LYGOS_API_KEY` | `lygosapp-9651642a-25f7-4e06-98b9-3617433e335c` | Clé API Lygos |
-| `BASE_URL` | `https://fortniteitems.netlify.app` | URL du site |
+| `BASE_URL` | `https://fortniteitems.vercel.app` | URL du site |
 | `PYTHON_VERSION` | `3.11.0` | Version Python |
 
 ### Frontend (checkout.js)
@@ -222,7 +222,7 @@ const BACKEND_URL = 'https://fortniteitems-backend.onrender.com';
 
 | Service | URL | Usage |
 |---------|-----|-------|
-| Frontend | https://fortniteitems.netlify.app | Site principal |
+| Frontend | https://fortniteitems.vercel.app | Site principal |
 | Backend API | https://fortniteitems-backend.onrender.com | API Python |
 | Backend Health | https://fortniteitems-backend.onrender.com/health | Status API |
 | Lygos Dashboard | https://dashboard.lygosapp.com | Config paiements |

@@ -14,7 +14,7 @@
 - Start: `gunicorn lygos:app`
 - Variables d'environnement:
   - `LYGOS_API_KEY` = `lygosapp-9651642a-25f7-4e06-98b9-3617433e335c`
-  - `BASE_URL` = `https://fortniteitems.netlify.app`
+  - `BASE_URL` = `https://fortniteitems.vercel.app`
 
 ### 3️⃣ Récupérer l'URL Backend
 Exemple: `https://fortniteitems-backend.onrender.com`

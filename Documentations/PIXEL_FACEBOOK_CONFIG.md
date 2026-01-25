@@ -14,7 +14,7 @@ Suivre les conversions et optimiser vos publicités Facebook en trackant automat
 2. **Menu** → **Gestionnaire d'événements** (Events Manager)
 3. **Connecter des sources de données** → **Web** → **Pixel Facebook**
 4. **Donnez un nom** : "FortniteItems Pixel"
-5. **Entrez votre site** : `https://fortniteitems.netlify.app`
+5. **Entrez votre site** : `https://fortniteitems.vercel.app`
 6. **Copiez l'ID du Pixel** (ex: `123456789012345`)
 
 ### Étape 2 : Configurer le Pixel dans votre site
@@ -39,7 +39,7 @@ Suivre les conversions et optimiser vos publicités Facebook en trackant automat
 ### Étape 3 : Vérifier que ça fonctionne
 
 1. **Installez** : [Facebook Pixel Helper](https://chrome.google.com/webstore/detail/facebook-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc) (extension Chrome)
-2. **Allez sur** : https://fortniteitems.netlify.app
+2. **Allez sur** : https://fortniteitems.vercel.app
 3. **Ouvrez l'extension Pixel Helper** (icône en haut à droite)
 4. **Vous devriez voir** :
    - ✅ Pixel détecté

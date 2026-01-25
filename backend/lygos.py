@@ -59,7 +59,9 @@ ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://fortniteitems.onrender.com"
+    "https://fortniteitems.onrender.com",
+    "https://fortniteitems.vercel.app",
+    "https://www.fortniteitems.vercel.app"
 ]
 CORS(app, origins=ALLOWED_ORIGINS)
 

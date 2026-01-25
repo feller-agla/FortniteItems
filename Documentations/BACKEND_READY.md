@@ -47,7 +47,7 @@ curl -X POST https://fortniteitems.onrender.com/api/create-payment \
 
 **Une fois Netlify déployé** :
 
-1. **Allez sur votre site** : https://fortniteitems.netlify.app (ou votre URL)
+1. **Allez sur votre site** : https://fortniteitems.vercel.app (ou votre URL)
 
 2. **Ajoutez un produit au panier**
    - Cliquez sur un produit (ex: 2800 V-Bucks)
@@ -114,12 +114,12 @@ Données envoyées à l'API: {...}
 
 **Success URL** :
 ```
-https://fortniteitems.netlify.app/success.html
+https://fortniteitems.vercel.app/success.html
 ```
 
 **Failure URL** :
 ```
-https://fortniteitems.netlify.app/payment-failed.html
+https://fortniteitems.vercel.app/payment-failed.html
 ```
 
 ---
@@ -131,7 +131,7 @@ https://fortniteitems.netlify.app/payment-failed.html
 
 **Solution** :
 1. Vérifiez que l'URL de votre site Netlify est dans `ALLOWED_ORIGINS` de [`lygos.py`](lygos.py)
-2. Si votre URL est différente de `fortniteitems.netlify.app`, ajoutez-la et redéployez sur Render
+2. Si votre URL est différente de `fortniteitems.vercel.app`, ajoutez-la et redéployez sur Render
 
 ### L'API ne répond pas
 **Symptôme** : "Failed to fetch" ou timeout
@@ -155,7 +155,7 @@ https://fortniteitems.netlify.app/payment-failed.html
 Vérifiez dans le dashboard Render que ces variables sont configurées :
 
 - ✅ `LYGOS_API_KEY` : Votre clé API Lygos
-- ✅ `BASE_URL` : `https://fortniteitems.netlify.app`
+- ✅ `BASE_URL` : `https://fortniteitems.vercel.app`
 - ✅ `FLASK_ENV` : `production`
 - ✅ `PYTHON_VERSION` : `3.11.0`
 
@@ -167,8 +167,8 @@ Si vous ne connaissez pas encore l'URL de votre site Netlify :
 
 1. Allez sur https://app.netlify.com
 2. Sélectionnez votre site `FortniteItems`
-3. L'URL est affichée en haut (ex: `fortnite-items-abc123.netlify.app`)
-4. Si c'est différent de `fortniteitems.netlify.app`, mettez à jour `ALLOWED_ORIGINS` dans [`lygos.py`](lygos.py)
+3. L'URL est affichée en haut (ex: `fortnite-items-abc123.vercel.app`)
+4. Si c'est différent de `fortniteitems.vercel.app`, mettez à jour `ALLOWED_ORIGINS` dans [`lygos.py`](lygos.py)
 
 ---
 

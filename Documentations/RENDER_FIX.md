@@ -135,13 +135,13 @@ Puis commit et push sur Netlify.
 Dans le dashboard Render, configurez :
 
 1. **LYGOS_API_KEY** : Votre clé API Lygos
-2. **BASE_URL** : `https://fortniteitems.netlify.app`
+2. **BASE_URL** : `https://fortniteitems.vercel.app`
 3. **FLASK_ENV** : `production`
 
 ### CORS
 
 Le backend accepte les requêtes depuis :
-- `https://fortniteitems.netlify.app` (production)
+- `https://fortniteitems.vercel.app` (production)
 - `http://localhost:8000` (développement)
 
 Si votre frontend Netlify a une URL différente, ajoutez-la dans `ALLOWED_ORIGINS` dans [`lygos.py`](lygos.py ).
