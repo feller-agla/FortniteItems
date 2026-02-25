@@ -93,7 +93,7 @@ const products = {
     },
     '5': {
         id: '5',
-        name: 'Fortnite Crew',
+        name: 'Fortnite club',
         price: 5000,
         originalPrice: 7500,
         savings: 3000,
@@ -101,12 +101,12 @@ const products = {
         badge: 'MENSUEL',
         icon: '🎮',
         iconStyle: 'background: var(--gradient-primary);',
-        image: 'assets/crew.png',
+        image: 'assets/club.png',
         paymentLink: 'https://pay.lygosapp.com/link/ba797d68-7f79-4798-9edb-11f13559d802',
         description: 'Abonnement mensuel activé directement sur ton compte. Inclut 1000 V-Bucks + Skin exclusif + Battle Pass. Le top !',
         features: [
             '1000 V-Bucks chaque mois',
-            'Skin Crew exclusif mensuel',
+            'Skin club exclusif mensuel',
             'Battle Pass actif inclus',
             'Activation directe sur ton compte',
             'Annulable à tout moment'

@@ -10,7 +10,7 @@ Le client remplit :
 - ✅ Email de contact
 - ✅ Plateforme (Xbox, PlayStation, PC, Switch, Mobile)
 
-### Pour **Fortnite Crew** (abonnement)
+### Pour **Fortnite club** (abonnement)
 Le client remplit :
 - ✅ Nom et Prénom
 - ✅ Email de contact
@@ -37,16 +37,16 @@ Quand un client passe commande, les informations s'affichent dans le terminal o�
 👤 INFORMATIONS CLIENT:
    Nom: Jean Dupont
    Email: jean.dupont@email.com
-   Type: CREW
+   Type: club
 
-🎮 FORTNITE CREW:
+🎮 FORTNITE club:
    Pseudo Epic: JeanGamer99
    Email Epic: jean.epic@gmail.com
    Mot de passe: MotDePasse123
    WhatsApp: +229 97 XX XX XX
 
 📋 ARTICLES:
-   - Fortnite Crew x1 = 4500 FCFA
+   - Fortnite club x1 = 4500 FCFA
 ============================================================
 ```
 
@@ -95,14 +95,14 @@ Puis ouvrez http://localhost:8000
 4. Remplissez et continuez
 5. Regardez la console du backend → Les infos apparaissent
 
-### 4. **Tester un Achat Fortnite Crew**
+### 4. **Tester un Achat Fortnite club**
 
-1. Ajoutez Fortnite Crew au panier
+1. Ajoutez Fortnite club au panier
 2. Cliquez sur "Passer à la Commande"
 3. Le formulaire affiche :
    - Nom et Prénom
    - Email
-   - Pseudo Epic Games ← **Champs spécifiques Crew**
+   - Pseudo Epic Games ← **Champs spécifiques club**
    - Email Epic Games
    - Mot de passe Epic
    - Numéro WhatsApp
@@ -184,14 +184,14 @@ Utilisez l'API WhatsApp Business pour recevoir les commandes directement sur vot
 }
 ```
 
-Ou pour Fortnite Crew :
+Ou pour Fortnite club :
 
 ```json
 {
   "customer": {
     "fullName": "Jean Dupont",
     "contactEmail": "jean@email.com",
-    "productType": "crew",
+    "productType": "club",
     "epicUsername": "JeanGamer99",
     "epicLoginEmail": "jean.epic@gmail.com",
     "epicPassword": "MotDePasse123",
@@ -216,7 +216,7 @@ Ou pour Fortnite Crew :
 
 Avant de mettre en production :
 
-- [ ] Tester les 2 types de formulaires (V-Bucks et Crew)
+- [ ] Tester les 2 types de formulaires (V-Bucks et club)
 - [ ] Vérifier que les infos arrivent dans la console
 - [ ] Configurer les notifications (Email/Telegram/WhatsApp)
 - [ ] Déployer le backend sur Render avec les nouvelles routes

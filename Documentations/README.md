@@ -1,6 +1,6 @@
 # 🎮 FortniteItems - E-Commerce Platform
 
-Plateforme e-commerce complète pour la vente de V-Bucks et Fortnite Crew. Site moderne avec panier d'achat, pages produits individuelles et système de paiement intégré.
+Plateforme e-commerce complète pour la vente de V-Bucks et Fortnite club. Site moderne avec panier d'achat, pages produits individuelles et système de paiement intégré.
 
 ---
 
@@ -117,7 +117,7 @@ Le script installe automatiquement les dépendances (`requirements.txt`) puis la
 | 2800 V-Bucks | 9 000 F | 14 500 F | -38% |
 | 5000 V-Bucks | 16 000 F | 26 000 F | -38% |
 | 13500 V-Bucks | 38 000 F | 65 000 F | -42% |
-| Fortnite Crew | 4 500 F | 7 500 F | -40% |
+| Fortnite club | 4 500 F | 7 500 F | -40% |
 
 ---
 

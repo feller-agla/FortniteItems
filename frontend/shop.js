@@ -263,7 +263,7 @@
                 { id: '2', name: 'Pack 2800 V-Bucks', price: 9000 },
                 { id: '3', name: 'Pack 5000 V-Bucks', price: 16000 },
                 { id: '4', name: 'Pack 13500 V-Bucks', price: 38000 },
-                { id: '5', name: 'Fortnite Crew', price: 4500 }
+                { id: '5', name: 'Fortnite club', price: 4500 }
             ];
             this.state = {
                 loading: true,

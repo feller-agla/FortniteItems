@@ -20,7 +20,7 @@ class CheckoutManager {
     constructor() {
         this.currentStep = 1;
         this.orderData = {};
-        this.hasCrewProduct = false;
+        this.hasclubProduct = false;
         this.init();
     }
 
@@ -31,31 +31,31 @@ class CheckoutManager {
     }
     
     detectProductType() {
-        // Détecter si le panier contient Fortnite Crew (id = 5)
+        // Détecter si le panier contient Fortnite club (id = 5)
         if (typeof cart !== 'undefined' && cart.items) {
-            this.hasCrewProduct = cart.items.some(item => item.id === '5');
+            this.hasclubProduct = cart.items.some(item => item.id === '5');
             this.updateFormFields();
         }
     }
     
     updateFormFields() {
-        const crewFields = document.getElementById('crewFields');
+        const clubFields = document.getElementById('clubFields');
         const vbucksFields = document.getElementById('vbucksFields');
-        const crewMessage = document.getElementById('crewMessage');
+        const clubMessage = document.getElementById('clubMessage');
         const vbucksMessage = document.getElementById('vbucksMessage');
         const emailHint = document.getElementById('emailHint');
         
-        if (this.hasCrewProduct) {
-            // Afficher les champs Fortnite Crew
-            if (crewFields) {
-                crewFields.style.display = 'block';
+        if (this.hasclubProduct) {
+            // Afficher les champs Fortnite club
+            if (clubFields) {
+                clubFields.style.display = 'block';
                 // Rendre les champs obligatoires
                 document.getElementById('epicUsername').required = true;
                 document.getElementById('epicLoginEmail').required = true;
                 document.getElementById('whatsappNumber').required = true;
             }
             if (vbucksFields) vbucksFields.style.display = 'none';
-            if (crewMessage) crewMessage.style.display = 'block';
+            if (clubMessage) clubMessage.style.display = 'block';
             if (vbucksMessage) vbucksMessage.style.display = 'none';
             if (emailHint) emailHint.textContent = 'Pour la confirmation de commande';
             
@@ -64,15 +64,15 @@ class CheckoutManager {
             if (platformField) platformField.required = false;
         } else {
             // Afficher les champs V-Bucks uniquement
-            if (crewFields) {
-                crewFields.style.display = 'none';
-                // Retirer l'obligation des champs Crew
+            if (clubFields) {
+                clubFields.style.display = 'none';
+                // Retirer l'obligation des champs club
                 document.getElementById('epicUsername').required = false;
                 document.getElementById('epicLoginEmail').required = false;
                 document.getElementById('whatsappNumber').required = false;
             }
             if (vbucksFields) vbucksFields.style.display = 'block';
-            if (crewMessage) crewMessage.style.display = 'none';
+            if (clubMessage) clubMessage.style.display = 'none';
             if (vbucksMessage) vbucksMessage.style.display = 'block';
             if (emailHint) emailHint.textContent = 'Pour recevoir les identifiants du compte';
             
@@ -149,16 +149,16 @@ class CheckoutManager {
         // Stocker les données communes
         this.orderData.fullName = fullName;
         this.orderData.contactEmail = contactEmail;
-        this.orderData.productType = this.hasCrewProduct ? 'crew' : 'fortnite_item';
+        this.orderData.productType = this.hasclubProduct ? 'club' : 'fortnite_item';
 
-        if (this.hasCrewProduct) {
-            // Validation des champs Fortnite Crew
+        if (this.hasclubProduct) {
+            // Validation des champs Fortnite club
             const epicUsername = document.getElementById('epicUsername').value.trim();
             const epicLoginEmail = document.getElementById('epicLoginEmail').value.trim();
             const whatsappNumber = document.getElementById('whatsappNumber').value.trim();
             
             if (!epicUsername || !epicLoginEmail || !whatsappNumber) {
-                this.showError('Veuillez remplir tous les champs Fortnite Crew');
+                this.showError('Veuillez remplir tous les champs Fortnite club');
                 return false;
             }
             
@@ -167,7 +167,7 @@ class CheckoutManager {
                 return false;
             }
             
-            // Stocker les données Crew
+            // Stocker les données club
             this.orderData.epicUsername = epicUsername;
             this.orderData.epicLoginEmail = epicLoginEmail;
             this.orderData.whatsappNumber = whatsappNumber;
@@ -209,8 +209,8 @@ class CheckoutManager {
         message += `- Nom: ${customer.fullName}\n`;
         message += `- Email: ${customer.contactEmail}\n`;
         
-        if (this.hasCrewProduct) {
-            // Informations Fortnite Crew
+        if (this.hasclubProduct) {
+            // Informations Fortnite club
             message += `- Pseudo Epic: ${customer.epicUsername}\n`;
             message += `- Email Epic: ${customer.epicLoginEmail}\n`;
             message += `- WhatsApp: ${customer.whatsappNumber}\n`;
@@ -247,7 +247,7 @@ class CheckoutManager {
                 epicLoginEmail: customer.epicLoginEmail,
                 whatsappNumber: customer.whatsappNumber
             },
-            hasCrewProduct: this.hasCrewProduct,
+            hasclubProduct: this.hasclubProduct,
             review: null // null, ou { rating: 1-5, comment: string, date: string }
         };
         
@@ -496,11 +496,11 @@ async function redirectToLygosPayment() {
     const customerData = {
         fullName: fullName,
         contactEmail: contactEmail,
-        productType: checkout.hasCrewProduct ? 'crew' : 'vbucks'
+        productType: checkout.hasclubProduct ? 'club' : 'vbucks'
     };
     
-    if (checkout.hasCrewProduct) {
-        // Données Fortnite Crew
+    if (checkout.hasclubProduct) {
+        // Données Fortnite club
         customerData.epicUsername = document.getElementById('epicUsername').value;
         customerData.epicLoginEmail = document.getElementById('epicLoginEmail').value;
         customerData.whatsappNumber = document.getElementById('whatsappNumber').value;

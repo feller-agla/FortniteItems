@@ -42,7 +42,7 @@ Ce système envoie automatiquement un email détaillé à **aglaalberic@gmail.co
 - Email de contact
 - Plateforme (Xbox, PS, PC, Switch, Mobile)
 
-#### Pour Fortnite Crew:
+#### Pour Fortnite club:
 - Nom complet
 - Email de contact
 - **Pseudo Epic Games**
@@ -116,7 +116,7 @@ Vous devriez voir:
 
 ### Frontend (`success.html`)
 - **Ajouté**: Appel à `/api/submit-order` lors du chargement de la page
-- **Modifié**: Affichage dynamique des infos client (V-Bucks vs Crew)
+- **Modifié**: Affichage dynamique des infos client (V-Bucks vs club)
 - **Ajouté**: Logs de débogage pour suivre l'envoi
 
 ### Configuration

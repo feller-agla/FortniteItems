@@ -44,7 +44,7 @@ https://votredomaine.com/api/webhook/lygos
 | 2800 V-Bucks | 2 | `93049047-a2b4-4920-a708-b0547b39b585` | 9 000 F |
 | 5000 V-Bucks | 3 | `ecc76f1a-3aa7-4397-ae55-4aa76dc86a70` | 16 000 F |
 | 13500 V-Bucks | 4 | `dfc40c75-1d83-44c2-9c9b-469a83d62408` | 38 000 F |
-| Fortnite Crew | 5 | `ba797d68-7f79-4798-9edb-11f13559d802` | 4 500 F |
+| Fortnite club | 5 | `ba797d68-7f79-4798-9edb-11f13559d802` | 4 500 F |
 
 ---
 

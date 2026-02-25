@@ -36,7 +36,7 @@
 *   Logo **FortniteItems** qui apparaît.
 *   Capture vidéo du site qui scrolle sur les offres :
     *   *13 500 V-Bucks à -40%*
-    *   *Pack Crew*
+    *   *Pack club*
 *   Texte Vert ✅ : **"-40% DE RÉDUCTION"** / **"LÉGAL & SÉCURISÉ"**.
 
 **Audio :**

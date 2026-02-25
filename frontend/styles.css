@@ -820,8 +820,8 @@ body.prefers-reduced-motion .hero-visual {
     display: block;
 }
 
-/* Crew Image - Same styles as vbucks */
-.crew-image {
+/* club Image - Same styles as vbucks */
+.club-image {
     width: 100%;
     height: 100%;
     position: relative;
@@ -830,7 +830,7 @@ body.prefers-reduced-motion .hero-visual {
     justify-content: center;
 }
 
-.crew-img {
+.club-img {
     width: 100%;
     height: 100%;
     object-fit: cover;

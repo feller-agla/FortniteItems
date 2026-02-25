@@ -116,7 +116,7 @@ Chaque email contiendra:
    **Pour V-Bucks**:
    - Plateforme (Xbox, PS, PC, etc.)
    
-   **Pour Fortnite Crew**:
+   **Pour Fortnite club**:
    - Pseudo Epic Games
    - Email de connexion Epic
    - Mot de passe Epic
